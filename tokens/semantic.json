@@ -1,0 +1,402 @@
+[
+  {
+    "name": "Background/default",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#ffffff",
+      "Dark": "#020617"
+    }
+  },
+  {
+    "name": "Background/subtle",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#f8fafc",
+      "Dark": "#0f172a"
+    }
+  },
+  {
+    "name": "Background/elevated",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#ffffff",
+      "Dark": "#0f172a"
+    }
+  },
+  {
+    "name": "Background/sunken",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#f1f5f9",
+      "Dark": "#020617"
+    }
+  },
+  {
+    "name": "Background/inverse",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#0f172a",
+      "Dark": "#f8fafc"
+    }
+  },
+  {
+    "name": "Background/brand",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#152ad3",
+      "Dark": "#3f51e5"
+    }
+  },
+  {
+    "name": "Background/disabled",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#f1f5f9",
+      "Dark": "#1e293b"
+    }
+  },
+  {
+    "name": "Text/primary",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#0f172a",
+      "Dark": "#f8fafc"
+    }
+  },
+  {
+    "name": "Text/secondary",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#334155",
+      "Dark": "#cbd5e1"
+    }
+  },
+  {
+    "name": "Text/tertiary",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#475569",
+      "Dark": "#94a3b8"
+    }
+  },
+  {
+    "name": "Text/disabled",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#94a3b8",
+      "Dark": "#475569"
+    }
+  },
+  {
+    "name": "Text/inverse",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#ffffff",
+      "Dark": "#020617"
+    }
+  },
+  {
+    "name": "Text/brand",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#1123b5",
+      "Dark": "#7182f5"
+    }
+  },
+  {
+    "name": "Text/link",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#1123b5",
+      "Dark": "#7182f5"
+    }
+  },
+  {
+    "name": "Border/default",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#e2e8f0",
+      "Dark": "#334155"
+    }
+  },
+  {
+    "name": "Border/subtle",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#f1f5f9",
+      "Dark": "#1e293b"
+    }
+  },
+  {
+    "name": "Border/strong",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#cbd5e1",
+      "Dark": "#475569"
+    }
+  },
+  {
+    "name": "Border/focus",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#152ad3",
+      "Dark": "#7182f5"
+    }
+  },
+  {
+    "name": "Border/disabled",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#e2e8f0",
+      "Dark": "#334155"
+    }
+  },
+  {
+    "name": "Icon/primary",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#1e293b",
+      "Dark": "#f1f5f9"
+    }
+  },
+  {
+    "name": "Icon/secondary",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#475569",
+      "Dark": "#94a3b8"
+    }
+  },
+  {
+    "name": "Icon/tertiary",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#64748b",
+      "Dark": "#64748b"
+    }
+  },
+  {
+    "name": "Icon/disabled",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#94a3b8",
+      "Dark": "#475569"
+    }
+  },
+  {
+    "name": "Icon/inverse",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#ffffff",
+      "Dark": "#020617"
+    }
+  },
+  {
+    "name": "Icon/brand",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#152ad3",
+      "Dark": "#7182f5"
+    }
+  },
+  {
+    "name": "Icon/link",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#1123b5",
+      "Dark": "#7182f5"
+    }
+  },
+  {
+    "name": "Action/primary",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#152ad3",
+      "Dark": "#3f51e5"
+    }
+  },
+  {
+    "name": "Action/primary-hover",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#1123b5",
+      "Dark": "#152ad3"
+    }
+  },
+  {
+    "name": "Action/primary-active",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#0e1d96",
+      "Dark": "#1123b5"
+    }
+  },
+  {
+    "name": "Action/secondary",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#ffffff",
+      "Dark": "#0f172a"
+    }
+  },
+  {
+    "name": "Action/secondary-hover",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#f1f5f9",
+      "Dark": "#1e293b"
+    }
+  },
+  {
+    "name": "Action/destructive",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#dc2626",
+      "Dark": "#ef4444"
+    }
+  },
+  {
+    "name": "Action/destructive-hover",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#b91c1c",
+      "Dark": "#dc2626"
+    }
+  },
+  {
+    "name": "Action/destructive-active",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#991b1b",
+      "Dark": "#b91c1c"
+    }
+  },
+  {
+    "name": "Feedback/Info/background",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#ecfeff",
+      "Dark": "#083344"
+    }
+  },
+  {
+    "name": "Feedback/Info/border",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#a5f3fc",
+      "Dark": "#155e75"
+    }
+  },
+  {
+    "name": "Feedback/Info/icon",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#0891b2",
+      "Dark": "#22d3ee"
+    }
+  },
+  {
+    "name": "Feedback/Info/text",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#0e7490",
+      "Dark": "#67e8f9"
+    }
+  },
+  {
+    "name": "Feedback/Success/background",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#f0fdf4",
+      "Dark": "#052e16"
+    }
+  },
+  {
+    "name": "Feedback/Success/border",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#bbf7d0",
+      "Dark": "#166534"
+    }
+  },
+  {
+    "name": "Feedback/Success/icon",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#16a34a",
+      "Dark": "#4ade80"
+    }
+  },
+  {
+    "name": "Feedback/Success/text",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#15803d",
+      "Dark": "#86efac"
+    }
+  },
+  {
+    "name": "Feedback/Warning/background",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#fffbeb",
+      "Dark": "#451a03"
+    }
+  },
+  {
+    "name": "Feedback/Warning/border",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#fde68a",
+      "Dark": "#92400e"
+    }
+  },
+  {
+    "name": "Feedback/Warning/icon",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#d97706",
+      "Dark": "#fbbf24"
+    }
+  },
+  {
+    "name": "Feedback/Warning/text",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#92400e",
+      "Dark": "#fcd34d"
+    }
+  },
+  {
+    "name": "Feedback/Danger/background",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#fef2f2",
+      "Dark": "#450a0a"
+    }
+  },
+  {
+    "name": "Feedback/Danger/border",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#fecaca",
+      "Dark": "#991b1b"
+    }
+  },
+  {
+    "name": "Feedback/Danger/icon",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#dc2626",
+      "Dark": "#f87171"
+    }
+  },
+  {
+    "name": "Feedback/Danger/text",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#b91c1c",
+      "Dark": "#fca5a5"
+    }
+  }
+]
