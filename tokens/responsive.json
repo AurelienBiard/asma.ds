@@ -1,0 +1,314 @@
+[
+  {
+    "name": "Typography/display-lg/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 48,
+      "Desktop": 64
+    }
+  },
+  {
+    "name": "Typography/display-lg/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 64,
+      "Desktop": 64
+    }
+  },
+  {
+    "name": "Typography/display-md/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 40,
+      "Desktop": 56
+    }
+  },
+  {
+    "name": "Typography/display-md/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 56,
+      "Desktop": 56
+    }
+  },
+  {
+    "name": "Typography/display-sm/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 32,
+      "Desktop": 48
+    }
+  },
+  {
+    "name": "Typography/display-sm/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 48,
+      "Desktop": 48
+    }
+  },
+  {
+    "name": "Typography/heading-xl/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 32,
+      "Desktop": 40
+    }
+  },
+  {
+    "name": "Typography/heading-xl/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 40,
+      "Desktop": 40
+    }
+  },
+  {
+    "name": "Typography/heading-lg/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 28,
+      "Desktop": 32
+    }
+  },
+  {
+    "name": "Typography/heading-lg/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 40,
+      "Desktop": 40
+    }
+  },
+  {
+    "name": "Typography/heading-md/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 24,
+      "Desktop": 28
+    }
+  },
+  {
+    "name": "Typography/heading-md/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 32,
+      "Desktop": 32
+    }
+  },
+  {
+    "name": "Typography/heading-sm/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 20,
+      "Desktop": 24
+    }
+  },
+  {
+    "name": "Typography/heading-sm/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 28,
+      "Desktop": 28
+    }
+  },
+  {
+    "name": "Typography/body-lg/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 18,
+      "Desktop": 20
+    }
+  },
+  {
+    "name": "Typography/body-lg/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 28,
+      "Desktop": 28
+    }
+  },
+  {
+    "name": "Typography/body-md/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 16,
+      "Desktop": 18
+    }
+  },
+  {
+    "name": "Typography/body-md/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 24,
+      "Desktop": 24
+    }
+  },
+  {
+    "name": "Typography/body-sm/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 14,
+      "Desktop": 16
+    }
+  },
+  {
+    "name": "Typography/body-sm/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 20,
+      "Desktop": 18
+    }
+  },
+  {
+    "name": "Typography/caption/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 14,
+      "Desktop": 14
+    }
+  },
+  {
+    "name": "Typography/caption/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 16,
+      "Desktop": 16
+    }
+  },
+  {
+    "name": "Typography/label/Font-size",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 14,
+      "Desktop": 14
+    }
+  },
+  {
+    "name": "Typography/label/Line-Height",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 16,
+      "Desktop": 16
+    }
+  },
+  {
+    "name": "Spacing/section-xs",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 20,
+      "Desktop": 24
+    }
+  },
+  {
+    "name": "Spacing/section-sm",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 24,
+      "Desktop": 32
+    }
+  },
+  {
+    "name": "Spacing/section-md",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 32,
+      "Desktop": 48
+    }
+  },
+  {
+    "name": "Spacing/section-lg",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 48,
+      "Desktop": 80
+    }
+  },
+  {
+    "name": "Spacing/section-xl",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 80,
+      "Desktop": 128
+    }
+  },
+  {
+    "name": "Spacing/component-xs",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 8,
+      "Desktop": 8
+    }
+  },
+  {
+    "name": "Spacing/component-sm",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 12,
+      "Desktop": 12
+    }
+  },
+  {
+    "name": "Spacing/component-md",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 16,
+      "Desktop": 16
+    }
+  },
+  {
+    "name": "Spacing/component-lg",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 20,
+      "Desktop": 24
+    }
+  },
+  {
+    "name": "Spacing/component-xl",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 24,
+      "Desktop": 32
+    }
+  },
+  {
+    "name": "Radius/control",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 4,
+      "Desktop": 4
+    }
+  },
+  {
+    "name": "Radius/card",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 8,
+      "Desktop": 8
+    }
+  },
+  {
+    "name": "Radius/pill",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 999,
+      "Desktop": 999
+    }
+  },
+  {
+    "name": "Grid/columns",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 4,
+      "Desktop": 12
+    }
+  },
+  {
+    "name": "Grid/gutter",
+    "type": "FLOAT",
+    "byMode": {
+      "Mobile": 16,
+      "Desktop": 24
+    }
+  }
+]

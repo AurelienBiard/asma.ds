@@ -1,0 +1,487 @@
+# =============================================================================
+# Design System Guidelines for AI Agents — Consolidated
+# Target audience: AI agents generating, reviewing, or importing Figma Variables
+# Version: 4.0 — three collections (Primitive/Semantic/Responsive), t-shirt scales
+# =============================================================================
+
+design_system:
+  name: "Design System"
+  purpose: >
+    Single, deterministic source of rules for AI agents that create, review,
+    modify, or import color, typography, spacing, radius, border and opacity
+    tokens as Figma Variables, split across three collections: Primitive
+    (source of truth, single mode), Semantic (Light/Dark, color only), and
+    Responsive (Mobile/Desktop, typography/spacing/radius only). Prefer
+    existing Semantic/Responsive variables over raw Primitive values.
+
+  guiding_principles:
+    - "Prefer Semantic/Responsive tokens in product UI; use Primitive values only when defining or extending the system."
+    - "Never hardcode hex values, px values, or raw numbers in components when a token exists."
+    - "Semantic/Responsive tokens express intent, not appearance."
+    - "Cross-collection aliases (Semantic/Responsive → Primitive) are supported — confirmed with a real plugin export/import test."
+    - "Scales use t-shirt sizing (2xs, xs, sm, md, lg, xl, 2xl...9xl) rather than numeric steps."
+    - "Border and Opacity exist ONLY as Primitives — there is no Semantic or Responsive layer for them; components reference the Primitive scale directly for these two."
+
+# -----------------------------------------------------------------------------
+# 1. ARCHITECTURE
+# -----------------------------------------------------------------------------
+architecture:
+  note: >
+    CONFIRMED via a real plugin export/import test: a Semantic or Responsive
+    variable CAN alias a variable in a different collection (Primitive) — the
+    exported JSON keeps the VARIABLE_ALIAS reference. Requirement: the target
+    id must already exist in the destination file at import time (see
+    figma_plugin_export_import.import_order).
+
+  collections:
+    Primitive:
+      modes: ["Value"]
+      note: "Single mode — source of truth, does not vary by theme or breakpoint."
+      contains: ["Color/*", "Typography/*", "Spacing/*", "Radius/*", "Border/*", "Opacity/*"]
+    Semantic:
+      modes: ["Light", "Dark"]
+      contains: ["Background/*", "Text/*", "Border/*", "Icon/*", "Action/*", "Feedback/*"]
+      note: "Color only. Every variable aliases a Primitive Color variable."
+    Responsive:
+      modes: ["Mobile", "Desktop"]
+      contains: ["Typography/*", "Spacing/*", "Radius/*", "Grid/*"]
+      note: "Border and Opacity are NOT here — they have no semantic/responsive layer, only Primitive values. Grid was added on top of the original request (columns, gutter) since it's genuinely breakpoint-dependent, unlike Border/Opacity."
+
+  rules:
+    - "Never create a new Primitive to solve a component-specific need."
+    - "Prefer an existing Semantic/Responsive variable before creating a new one."
+    - "Semantic and Responsive variables should alias Primitive — cross-collection aliases are expected and supported."
+    - "Components should consume Semantic/Responsive variables, EXCEPT for Border and Opacity, which components take directly from Primitive."
+    - "Do not duplicate an existing token under a different name."
+    - "ALWAYS import Primitive before Semantic or Responsive."
+
+# -----------------------------------------------------------------------------
+# 2. NAMING
+# -----------------------------------------------------------------------------
+naming:
+  format: "<Category>/<Subcategory>/<role> — the collection name itself is never repeated inside the variable name."
+  scale_style: "t-shirt sizing: 2xs, xs, sm, md, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl, 7xl, 8xl, 9xl (order varies slightly per category — see each section)."
+  examples:
+    primitive: ["Color/Blue/600", "Typography/Font-size/md", "Typography/Family/Title", "Spacing/lg", "Radius/2xs", "Border/thin", "Opacity/40"]
+    semantic: ["Action/primary", "Feedback/Danger/text", "Icon/link"]
+    responsive: ["Typography/body-md/Font-size", "Spacing/component-md", "Radius/control"]
+  rules:
+    - "Use lowercase for the role segment (e.g. 'primary', 'default', 'component-md')."
+    - "Do not prefix a variable's name with its own collection name."
+    - "'/' creates a folder/group in the Figma variables panel."
+
+# -----------------------------------------------------------------------------
+# 3. ALIASES
+# -----------------------------------------------------------------------------
+aliases:
+  mandatory_for:
+    - "Semantic Color variables — must alias a Primitive Color variable."
+    - "Responsive Typography/Spacing/Radius variables — must alias a Primitive variable."
+  rule: "Cross-collection aliases (Semantic/Responsive → Primitive) are supported — confirmed with a real export/import test, not assumed."
+  priority: { 1: "Existing Semantic/Responsive alias", 2: "Existing Primitive", 3: "New Semantic/Responsive token", 4: "New Primitive — only if genuinely new" }
+
+# -----------------------------------------------------------------------------
+# 4. MODES
+# -----------------------------------------------------------------------------
+modes:
+  Primitive: { modes: ["Value"], description: "Single mode, required by Figma but not a real choice." }
+  Semantic: { modes: ["Light", "Dark"], description: "Theme axis, color only." }
+  Responsive: { modes: ["Mobile", "Desktop"], description: "Breakpoint axis, typography/spacing/radius only." }
+  rules:
+    - "Three independent axes in three separate collections — never combine them into one collection's modes."
+    - "Radius Responsive roles repeat the same alias in both Mobile and Desktop — radius doesn't change by breakpoint, but the role still lives in Responsive by convention here."
+
+# -----------------------------------------------------------------------------
+# 4b. VARIABLE SCOPES
+# -----------------------------------------------------------------------------
+variable_scopes:
+  what_it_does: >
+    A scope restricts which Figma properties a variable is offered for in
+    the property picker (fill, corner radius, gap, font size, etc.). It does
+    not restrict where the variable CAN be applied (any variable can still
+    be bound via "Apply variable" everywhere) — it only filters the
+    suggestion list, which is what made Figma's "closest match" alias
+    suggestion useful when relinking manually. Tighter scopes = cleaner,
+    more relevant suggestions; ALL_SCOPES = always offered everywhere.
+
+  valid_enum_values:
+    note: "Sourced from Figma's official Plugin API docs (developers.figma.com/docs/plugins/api/VariableScope) — the authoritative list."
+    COLOR: [ALL_SCOPES, ALL_FILLS, FRAME_FILL, SHAPE_FILL, TEXT_FILL, STROKE_COLOR, EFFECT_COLOR]
+    FLOAT: [ALL_SCOPES, TEXT_CONTENT, CORNER_RADIUS, WIDTH_HEIGHT, GAP, OPACITY, STROKE_FLOAT, EFFECT_FLOAT, FONT_WEIGHT, FONT_SIZE, LINE_HEIGHT, LETTER_SPACING, PARAGRAPH_SPACING, PARAGRAPH_INDENT]
+    STRING: [ALL_SCOPES, TEXT_CONTENT, FONT_FAMILY, FONT_STYLE]
+
+  known_undocumented_scope:
+    value: "FONT_VARIATIONS"
+    status: >
+      CORRECTED — earlier assumed to be a stray plugin-export artifact;
+      confirmed via a direct live read of the Figma Plugin API
+      (figma.variables.getVariableByIdAsync) on the actual file that this
+      scope is genuinely stored on the variable in Figma itself, not
+      something the "Export/Import Variables" plugin injected. It is still
+      absent from Figma's officially published VariableScope docs, likely
+      because those docs haven't caught up with the "variable fonts"
+      feature (font axis binding) this scope appears tied to.
+    where_seen_live: "Radius/*, Border/*, Opacity/*, Grid/columns/* in the actual asma.ds file — appears bundled in alongside whichever real scope was explicitly set on each of those FLOAT variables (e.g. Border/thin: [STROKE_FLOAT, FONT_VARIATIONS])."
+    where_absent_live: "Spacing/* and Typography/Font-size/* primitives, which were left at their default empty scopes ([]) — suggesting FONT_VARIATIONS gets bundled in only when a FLOAT variable's scopes are actively edited in the Figma UI, not applied by default."
+    corroboration: "An identical pattern was independently reported on the Figma forum by a different user exporting via a different (GitHub sync) tool — same scope, same non-standard status."
+    practical_impact: "None — per Figma's own docs, scopes only filter which variables are suggested in the UI picker; they never restrict what a variable can actually be bound to. Safe to leave as-is or remove; purely cosmetic for picker suggestions."
+
+  currently_assigned:
+    note: "Read LIVE from the actual asma.ds Figma file via the Plugin API — ground truth, not the originally-generated JSON files (which are now out of date on this point)."
+    Primitive:
+      Color: "[] (empty — left at default, functionally same as ALL_SCOPES for the picker)"
+      Typography_Family: "FONT_FAMILY"
+      Typography_Font-size: "[] (empty — default)"
+      Typography_Font-weight: "FONT_WEIGHT (tightened by the user, matches recommendation)"
+      Typography_Line-Height: "LINE_HEIGHT (tightened by the user, matches recommendation)"
+      Spacing: "[] (empty — default)"
+      Radius: "[FONT_VARIATIONS] (see known_undocumented_scope)"
+      Border: "[STROKE_FLOAT, FONT_VARIATIONS]"
+      Opacity: "[OPACITY, FONT_VARIATIONS]"
+      Grid_columns: "[FONT_VARIATIONS]"
+    Semantic:
+      Background: "FRAME_FILL"
+      Text: "TEXT_FILL"
+      Border: "STROKE_COLOR"
+      Icon: "SHAPE_FILL"
+      Action: "ALL_FILLS"
+      Feedback_background: "FRAME_FILL"
+      Feedback_border: "STROKE_COLOR"
+      Feedback_icon: "SHAPE_FILL"
+      Feedback_text: "TEXT_FILL"
+    Responsive:
+      Typography_Font-size: "FONT_SIZE"
+      Typography_Line-Height: "LINE_HEIGHT"
+      Spacing: ["WIDTH_HEIGHT", "GAP"]
+      Radius: "CORNER_RADIUS"
+      Grid_columns: ["WIDTH_HEIGHT", "GAP"]
+      Grid_gutter: ["WIDTH_HEIGHT", "GAP"]
+
+  recommended_tighter_scopes:
+    note: >
+      ALL_SCOPES is the safe default and what's currently applied to
+      Primitive and Semantic — nothing breaks by leaving it. The table below
+      is an optional refinement: applying these narrower scopes (edit each
+      variable's Scopes field in Figma, no re-import needed) makes the
+      property-picker suggestions cleaner, especially useful while manually
+      relinking aliases.
+    Color_Primitive: "ALL_SCOPES (used across fills, strokes, text, effects — narrowing isn't worth it here)."
+    Semantic_Background: ["FRAME_FILL", "SHAPE_FILL"]
+    Semantic_Text: ["TEXT_FILL"]
+    Semantic_Border_color: ["STROKE_COLOR"]
+    Semantic_Icon: ["SHAPE_FILL"]
+    Semantic_Action: ["FRAME_FILL", "SHAPE_FILL"]
+    Semantic_Feedback_background: ["FRAME_FILL", "SHAPE_FILL"]
+    Semantic_Feedback_border: ["STROKE_COLOR"]
+    Semantic_Feedback_icon: ["SHAPE_FILL"]
+    Semantic_Feedback_text: ["TEXT_FILL"]
+    Primitive_Typography_Font-size: ["FONT_SIZE"]
+    Primitive_Typography_Line-Height: ["LINE_HEIGHT"]
+    Primitive_Typography_Font-weight: ["FONT_WEIGHT"]
+    Primitive_Typography_Family: ["FONT_FAMILY"]
+    Primitive_Spacing: ["GAP", "WIDTH_HEIGHT"]
+    Primitive_Radius: ["CORNER_RADIUS"]
+    Primitive_Border: ["STROKE_FLOAT"]
+    Primitive_Opacity: ["OPACITY"]
+    Primitive_Grid_columns: "ALL_SCOPES (a count, not bound to a single Figma property)"
+    Responsive: "already tightened — see currently_assigned above, no change needed"
+
+  ai_agent_instructions:
+    - "When generating a new variable, pick the narrowest scope from valid_enum_values that matches its real usage, defaulting to ALL_SCOPES only when genuinely used across many property types (e.g. Primitive Color)."
+    - "Never invent a scope string outside valid_enum_values — Figma rejects unknown scope values at import."
+    - "Scopes are a variable property like any other — changing them later is a normal Figma edit, not a breaking change, and doesn't require re-importing or touching existing aliases/bindings."
+
+# -----------------------------------------------------------------------------
+# 5. COLOR (Primitive + Semantic)
+# -----------------------------------------------------------------------------
+color:
+  primitive_families:
+    note: "Full Tailwind-style scale (50→950, plus 0 for Neutral) per family, anchored on the 600 step."
+    Blue:    { "600": "#152AD3" }
+    Cyan:    { "600": "#0891B2" }
+    Green:   { "600": "#16A34A" }
+    Amber:   { "600": "#D97706" }
+    Red:     { "600": "#DC2626" }
+    Neutral: { "600": "#475569" }
+
+  core_rules:
+    - rule: "Use Semantic tokens first"
+      instruction: "Choose a Semantic token based on meaning and interaction, not on the color name."
+    - rule: "Do not hardcode colors"
+      instruction: "Never introduce a new hex value when an existing token expresses the intended role."
+    - rule: "Primary is not informational"
+      instruction: "Blue is the brand/action color — not for success, warning, danger, or informational status."
+    - rule: "Destructive is an action"
+      instruction: "Use destructive for delete/remove/irreversible actions."
+    - rule: "Danger is feedback"
+      instruction: "Use danger for an error/critical state, not merely because an action is destructive."
+    - rule: "Warning is caution"
+      instruction: "Use warning for something requiring attention, not necessarily an error."
+    - rule: "Success is positive feedback"
+      instruction: "Use success for a completed operation or valid state."
+    - rule: "Info is neutral information"
+      instruction: "Use info for contextual information, neither positive nor negative."
+    - rule: "Accessibility"
+      instruction: "Check actual foreground/background contrast against WCAG — don't assume a darker step is automatically accessible."
+
+  semantic_roles:
+    Background: [default, subtle, elevated, sunken, inverse, brand, disabled]
+    Text: [primary, secondary, tertiary, disabled, inverse, brand, link]
+    Border: [default, subtle, strong, focus, disabled]
+    Icon: [primary, secondary, tertiary, disabled, inverse, brand, link]
+    Action: [primary, primary-hover, primary-active, secondary, secondary-hover, destructive, destructive-hover, destructive-active]
+    Feedback:
+      Info: [background, border, icon, text]
+      Success: [background, border, icon, text]
+      Warning: [background, border, icon, text]
+      Danger: [background, border, icon, text]
+
+  component_examples:
+    Button:
+      primary: { background: "Semantic → Action/primary", label: "Semantic → Text/inverse" }
+      destructive: { background: "Semantic → Action/destructive", label: "Semantic → Text/inverse" }
+    Alert:
+      danger: { background: "Semantic → Feedback/Danger/background", border: "Semantic → Feedback/Danger/border", icon: "Semantic → Feedback/Danger/icon", text: "Semantic → Feedback/Danger/text" }
+
+# -----------------------------------------------------------------------------
+# 6. TYPOGRAPHY (Primitive + Responsive)
+# -----------------------------------------------------------------------------
+typography:
+  primitive_family:
+    Title: "Inter"
+    Body: "Inter"
+    Alternate: "JetBrains Mono"
+    rule: "Use Title/Body for standard UI text (both Inter); use Alternate (JetBrains Mono) for code, technical, or monospaced content only."
+
+  primitive_font_size: { "2xs":6, "xs":9, "sm":12, "md":14, "lg":16, "xl":18, "2xl":20, "3xl":24, "4xl":28, "5xl":32, "6xl":40, "7xl":48, "8xl":56, "9xl":64 }
+  primitive_font_weight: { regular: 400, medium: 500, semibold: 600, bold: 700 }
+  primitive_line_height: { "2xs":6, "xs":9, "sm":12, "md":14, "lg":16, "xl":18, "2xl":20, "3xl":24, "4xl":28, "5xl":32, "6xl":40, "7xl":48, "8xl":56, "9xl":64 }
+  primitive_line_height_note: >
+    Mirrors the font-size scale exactly (same step names, same values) as
+    given. This means a role's line-height and font-size CAN reference the
+    same numeric value at different scale steps — double-check each
+    Responsive role still reads comfortably (line-height ≥ font-size) when
+    picking steps.
+
+  responsive_roles:
+    note: "Each role picks a Mobile + Desktop Font-size step, and one Line-Height step (same for both breakpoints)."
+    display-lg: { mobile: "7xl", desktop: "9xl", line_height: "9xl" }
+    display-md: { mobile: "6xl", desktop: "8xl", line_height: "8xl" }
+    display-sm: { mobile: "5xl", desktop: "7xl", line_height: "7xl" }
+    heading-xl: { mobile: "5xl", desktop: "6xl", line_height: "6xl" }
+    heading-lg: { mobile: "4xl", desktop: "5xl", line_height: "6xl" }
+    heading-md: { mobile: "3xl", desktop: "4xl", line_height: "5xl" }
+    heading-sm: { mobile: "2xl", desktop: "3xl", line_height: "4xl" }
+    body-lg:    { mobile: "xl",  desktop: "2xl", line_height: "4xl" }
+    body-md:    { mobile: "lg",  desktop: "xl",  line_height: "3xl" }
+    body-sm:    { mobile: "md",  desktop: "lg",  line_height: "2xl" }
+    caption:    { mobile: "md",  desktop: "md",  line_height: "lg" }
+    label:      { mobile: "md",  desktop: "md",  line_height: "lg" }
+    heading-lg_note: >
+      heading-lg's line-height was originally 36 in the previous numeric
+      scale, which has no exact equivalent in the new t-shirt scale (which
+      jumps from 32 to 40). Rounded up to 6xl (40) rather than down to 5xl
+      (32), to keep comfortable line spacing. Adjust manually in Figma if
+      36 was actually intended.
+
+  selection_rules:
+    - "Use Display only for major page-level statements or hero content."
+    - "Use Heading for section and content hierarchy."
+    - "Use Body for readable content."
+    - "Use Label for controls, fields, tabs, and compact UI labels."
+    - "Use Caption for supporting metadata and secondary information."
+    - "Do not hard-code font-size or line-height in components — bind to the Responsive token."
+
+# -----------------------------------------------------------------------------
+# 7. SPACING (Primitive + Responsive)
+# -----------------------------------------------------------------------------
+spacing:
+  primitive_scale: { none:0, "2xs":4, xs:8, sm:12, md:16, lg:20, xl:24, "2xl":28, "3xl":32, "4xl":40, "5xl":48, "6xl":64, "7xl":80, "8xl":96, "9xl":128 }
+  responsive_roles:
+    section-xs:   { mobile: "lg",  desktop: "xl" }
+    section-sm:   { mobile: "xl",  desktop: "3xl" }
+    section-md:   { mobile: "3xl", desktop: "5xl" }
+    section-lg:   { mobile: "5xl", desktop: "7xl" }
+    section-xl:   { mobile: "7xl", desktop: "9xl" }
+    component-xs: { mobile: "xs",  desktop: "xs" }
+    component-sm: { mobile: "sm",  desktop: "sm" }
+    component-md: { mobile: "md",  desktop: "md" }
+    component-lg: { mobile: "lg",  desktop: "xl" }
+    component-xl: { mobile: "xl",  desktop: "3xl" }
+  rules:
+    - "Use the smallest token that creates the intended hierarchy."
+    - "Prefer Responsive spacing tokens for component and layout decisions."
+    - "Avoid arbitrary values."
+
+# -----------------------------------------------------------------------------
+# 8. RADIUS (Primitive + Responsive)
+# -----------------------------------------------------------------------------
+radius:
+  primitive_scale: { none:0, "3xs":2, "2xs":4, xs:8, sm:12, md:16, pill:999 }
+  responsive_roles: { control: "2xs", card: "xs", pill: "pill" }
+  rules:
+    - "Controls use Responsive → Radius/control (2xs = 4)."
+    - "Cards use Responsive → Radius/card (xs = 8)."
+    - "Pills and fully rounded tags use Responsive → Radius/pill."
+    - "Same alias target in both Mobile and Desktop — radius doesn't change by breakpoint."
+
+# -----------------------------------------------------------------------------
+# 8b. GRID (Primitive + Responsive) — added beyond the original request
+# -----------------------------------------------------------------------------
+grid:
+  added_note: >
+    Not part of the original list — added because column count and gutter
+    width are genuinely breakpoint-dependent (unlike Border/Opacity, which
+    were deliberately kept Primitive-only). Remove this section if not
+    wanted; it doesn't affect anything else in the system.
+  primitive_columns_scale: { "4": 4, "8": 8, "12": 12 }
+  responsive_roles:
+    columns: { mobile: "4", desktop: "12" }
+    gutter:  { mobile: "Spacing/md (16)", desktop: "Spacing/xl (24)" }
+  rules:
+    - "Use Responsive → Grid/columns to drive the number of layout columns per breakpoint."
+    - "Use Responsive → Grid/gutter for the space between columns — it aliases the existing Spacing primitives rather than introducing a new scale."
+
+# -----------------------------------------------------------------------------
+# 9. BORDER (Primitive ONLY — no Semantic or Responsive layer)
+# -----------------------------------------------------------------------------
+border:
+  primitive_scale: { none:0, thin:1, medium:2, large:3 }
+  rule: >
+    Deliberately has no Semantic or Responsive tokens in this version of the
+    system — components reference Primitive → Border/{none|thin|medium|large}
+    directly. If a themed or responsive border-width layer is needed later,
+    add it explicitly (it was present in an earlier iteration of this system
+    and was dropped).
+
+# -----------------------------------------------------------------------------
+# 10. OPACITY (Primitive ONLY — no Semantic or Responsive layer)
+# -----------------------------------------------------------------------------
+opacity:
+  primitive_scale: { none:0, "10":10, "20":20, "40":40, "60":60, "80":80, "100":100 }
+  unit: "percentage (0–100), not 0–1 decimal — confirmed explicitly with the design system owner."
+  rule: >
+    Deliberately has no Semantic or Responsive tokens in this version —
+    components reference Primitive → Opacity/{step} directly. If themed or
+    responsive opacity roles (disabled, hover, backdrop, etc.) are needed
+    later, add them explicitly (an earlier iteration of this system had
+    them: subtle=20, disabled=40, pressed=60, backdrop=60, hover=80).
+
+# -----------------------------------------------------------------------------
+# 11. COMPONENTS
+# -----------------------------------------------------------------------------
+components:
+  general_rules:
+    - "Components consume Semantic (color) and Responsive (typography/spacing/radius) tokens first."
+    - "For Border and Opacity, components consume Primitive directly — there is no intermediate layer for these two."
+    - "Do not bind a component directly to a raw Primitive Color/Typography/Spacing/Radius value if a Semantic/Responsive equivalent exists."
+
+# -----------------------------------------------------------------------------
+# 12. DECISION TREE
+# -----------------------------------------------------------------------------
+decision_tree:
+  when_needing_a_value:
+    - { step: 1, question: "Does an existing Component token solve the need?", action: "Use it." }
+    - { step: 2, question: "Is it Color, Typography, Spacing, or Radius? Does an existing Semantic/Responsive token solve the need?", action: "Use it." }
+    - { step: 3, question: "Is it Border or Opacity?", action: "Go straight to the Primitive scale — there is no Semantic/Responsive layer for these." }
+    - { step: 4, question: "Does an existing Primitive solve the need?", action: "Use it when defining a new Semantic/Responsive/Component alias." }
+    - { step: 5, question: "Is the value genuinely new and reusable?", action: "Create a new Primitive, then expose it through Semantic/Responsive if it's Color/Typography/Spacing/Radius." }
+
+# -----------------------------------------------------------------------------
+# 13. ANTI-PATTERNS
+# -----------------------------------------------------------------------------
+anti_patterns:
+  - "Using Primitive Color/Blue/600 directly inside a Button instead of Semantic Action/primary."
+  - "Hard-coded values when a Responsive spacing/typography/radius token exists."
+  - "Creating a Semantic or Responsive layer for Border or Opacity without an explicit request to reintroduce it."
+  - "Importing Semantic or Responsive JSON before Primitive JSON."
+  - "Mixing up Opacity's unit — this system uses 0–100 percentages, not 0–1 decimals."
+  - "Confusing Title/Body (Inter) with Alternate (JetBrains Mono) — Alternate is for code/technical content only."
+
+# -----------------------------------------------------------------------------
+# 14. VALIDATION CHECKLIST
+# -----------------------------------------------------------------------------
+validation:
+  required_before_finalizing:
+    - "Every Semantic color token has valid Light and Dark alias values."
+    - "Every Responsive typography/spacing/radius token has valid Mobile and Desktop alias values."
+    - "Border and Opacity components reference Primitive directly, not a non-existent Semantic/Responsive token."
+    - "Primitive collection is imported first, then Semantic and Responsive."
+    - "Opacity values are percentages (0–100), not decimals."
+
+# -----------------------------------------------------------------------------
+# 15. FIGMA EXPORT / IMPORT — "Export/Import Variables" plugin
+#     https://www.figma.com/community/plugin/1256972111705530093/export-import-variables
+# -----------------------------------------------------------------------------
+figma_plugin_export_import:
+  plugin_name: "Export/Import Variables (by Honza Toman)"
+  plugin_url: "https://www.figma.com/community/plugin/1256972111705530093/export-import-variables"
+
+  cross_collection_alias_test_result: >
+    CONFIRMED (real export): a Semantic collection variable aliasing a
+    Primitive collection variable (different collection) keeps its
+    VARIABLE_ALIAS reference in the exported JSON rather than being
+    flattened to a raw value.
+
+  import_order:
+    rule: "Import Primitive FIRST, then Semantic and Responsive (order between the latter two doesn't matter) — but see cross_collection_alias_import_limitation below, this alone is NOT sufficient."
+    why: "Semantic/Responsive files reference Primitive variable ids not included in their own 'variables' array — those ids must already exist in the destination file."
+    id_gotcha: >
+      Figma assigns its OWN internal variable ids when a collection is
+      imported — it does NOT reuse whatever id an incoming JSON specifies.
+      Hand-authored Semantic/Responsive files with GUESSED Primitive ids
+      will NOT resolve. Always regenerate Semantic/Responsive from a REAL
+      export of the already-imported Primitive collection (map by variable
+      NAME, which is stable, not by a guessed id).
+
+  cross_collection_alias_import_limitation:
+    status: "CONFIRMED BLOCKING — tested twice, including an isolated single-variable minimal test."
+    finding: >
+      Even with fully correct, real Primitive variable ids, this plugin's
+      IMPORT feature cannot create a cross-collection VARIABLE_ALIAS. It
+      always flattens the alias to a raw resolved value
+      (resolvedValuesByMode.alias ends up null after a round-trip
+      export). This was isolated with a minimal one-variable,
+      one-collection test file that unambiguously confirmed the flattening.
+    root_cause_context: >
+      This is NOT a fundamental Figma Plugin API limitation — the API does
+      support creating true aliases via variable.setValueForMode(modeId,
+      {type:'VARIABLE_ALIAS', id}), confirmed working in Figma's own
+      plugin-development documentation and community reports. The failure
+      is specific to how THIS plugin's import routine is implemented; it
+      apparently never calls setValueForMode with an alias object for
+      cross-collection targets (possibly not for same-collection targets
+      either — untested).
+    practical_implication: >
+      There is currently no reliable fully-automated way to import a
+      multi-collection token system (Primitive + Semantic + Responsive)
+      with LIVE aliases via this plugin. The colors/values themselves ARE
+      correct after import (flattened but accurate) — only the live-link
+      behavior (auto-update when the Primitive changes) is lost.
+    workaround: >
+      Generate a mapping table (collection, variable, mode, target Primitive
+      variable name) from the resolvedValuesByMode.aliasName field already
+      present in each generated file, and have the user manually re-link
+      each variable to its Primitive target in Figma's own UI (the only
+      place true aliases can currently be created reliably for this
+      system). Tedious but the only confirmed-working path.
+    before_generating_more_json: >
+      Do not regenerate Semantic/Responsive JSON again expecting a
+      different import outcome — the flattening is confirmed structural to
+      this plugin's import code, not something a different JSON structure
+      can work around.
+
+  confirmed_json_schema:
+    key_points:
+      - "\"modes\" is an OBJECT mapping modeId → mode name."
+      - "No \"defaultModeId\", no \"resolvedType\" — only \"type\"."
+      - "Every variable includes \"resolvedValuesByMode\" mirroring \"valuesByMode\"."
+      - "Every variable includes \"hiddenFromPublishing\": false and \"codeSyntax\": {}."
+      - "COLOR values are RGBA 0-1 floats. FLOAT values are raw numbers. STRING values are raw strings."
+      - "scopes: ALL_SCOPES is the safe default; FONT_SIZE/LINE_HEIGHT/GAP/WIDTH_HEIGHT/CORNER_RADIUS for the corresponding Responsive types."
+      - "Variable names never repeat their own collection name."
+
+  ai_agent_instructions:
+    - "Generate exactly THREE collection JSON files: Primitive (single 'Value' mode), Semantic (Light/Dark, color only), Responsive (Mobile/Desktop, typography/spacing/radius only — no Border/Opacity)."
+    - "Tell the user explicitly to import Primitive first, then Semantic and Responsive."
+    - "Do not add Semantic or Responsive tokens for Border or Opacity unless explicitly asked — this system deliberately keeps them Primitive-only."

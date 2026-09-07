@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Bouton — Primary</title>
+<link rel="stylesheet" href="../../dist/tokens.css">
+<link rel="stylesheet" href="button.css">
+<style>
+  body {
+    font-family: var(--font-family-scale-body);
+    background: var(--color-background-default);
+    color: var(--color-text-primary);
+    padding: var(--spacing-section-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-component-lg);
+  }
+  .row { display: flex; align-items: center; gap: var(--spacing-component-md); }
+</style>
+</head>
+<body>
+
+  <section class="row">
+    <button class="btn btn--primary btn--sm"><span data-copy="actions.save">Enregistrer</span></button>
+    <button class="btn btn--primary btn--md"><span data-copy="actions.save">Enregistrer</span></button>
+    <button class="btn btn--primary btn--lg"><span data-copy="actions.save">Enregistrer</span></button>
+  </section>
+
+  <section class="row">
+    <button class="btn btn--primary btn--md">
+      <span class="btn__icon" aria-hidden="true">
+        <svg viewBox="0 0 20 20"><path d="M10 3v14M3 10h14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      </span>
+      <span data-copy="actions.save">Enregistrer</span>
+    </button>
+    <button class="btn btn--primary btn--md">
+      <span data-copy="actions.next">Suivant</span>
+      <span class="btn__icon" aria-hidden="true">
+        <svg viewBox="0 0 20 20"><path d="M7 3l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </button>
+    <button class="btn btn--primary btn--md" disabled><span data-copy="actions.save">Enregistrer</span></button>
+  </section>
+
+  <script>
+    // Microcopy centralisée — voir /tokens/content.json (fallback : texte déjà présent dans le HTML)
+    fetch('../../tokens/content.json')
+      .then(r => r.json())
+      .then(copy => {
+        document.querySelectorAll('[data-copy]').forEach(el => {
+          const path = el.dataset.copy.split('.'); // ex: "actions.save"
+          el.textContent = path.reduce((o, k) => o[k], copy.fr);
+        });
+      })
+      .catch(() => {}); // échec silencieux : le texte de fallback reste affiché
+  </script>
+</body>
+</html>
