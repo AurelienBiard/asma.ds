@@ -1,6 +1,6 @@
 # Design System
 
-Source de vérité : Figma (fichier `asma.ds`, 3 collections de variables — *Primitive*, *Semantic*, *Responsive*). Ce repo garde une copie synchronisée de ces tokens pour le code (CSS) et pour la documentation lue par un agent IA.
+Source de vérité : les fichiers `guidelines/design-system-ai-guidelines.yaml` et `components/<nom>/<nom>-component-spec.md` de ce repo. Figma (fichier `asma.ds`) et ce repo GitHub sont synchronisés à partir de ces fichiers — jamais l'inverse.
 
 ## Structure
 
@@ -49,7 +49,7 @@ button.textContent = copy.fr.actions.save; // "Enregistrer"
 
 ## Composants
 
-**Source de vérité : les fichiers `guidelines/design-system-ai-guidelines.yaml` et `components/<nom>/<nom>-component-spec.md`.** Figma et GitHub sont des cibles **synchronisées** à partir de ces fichiers, jamais l'inverse.
+Composants (Bouton, Dot Indicator, etc.) construits dans Figma à partir des specs du repo — voir la source de vérité en tête de ce README.
 
 Flux de travail :
 1. Toute décision (nouveau token, nouveau composant, nouvel état/variant) est écrite ou modifiée dans le `.yaml`/`.md` correspondant, dans le repo.
