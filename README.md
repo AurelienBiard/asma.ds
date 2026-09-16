@@ -49,7 +49,14 @@ button.textContent = copy.fr.actions.save; // "Enregistrer"
 
 ## Composants
 
-Décision : les composants (Bouton, etc.) sont écrits directement en code (HTML/CSS/JS), pas construits dans Figma — Figma reste la source de vérité pour les **tokens** (Variables), pas pour les composants. Évite le double travail Figma → traduction manuelle, cohérent avec un projet solo/code-first.
+**Source de vérité : les fichiers `guidelines/design-system-ai-guidelines.yaml` et `components/<nom>/<nom>-component-spec.md`.** Figma et GitHub sont des cibles **synchronisées** à partir de ces fichiers, jamais l'inverse.
+
+Flux de travail :
+1. Toute décision (nouveau token, nouveau composant, nouvel état/variant) est écrite ou modifiée dans le `.yaml`/`.md` correspondant, dans le repo.
+2. Cette spec est ensuite poussée vers Figma (construction/mise à jour du composant via l'API du plugin Figma, ou du token via les Variables).
+3. Si un ajustement est fait directement dans Figma (itération manuelle par le designer), il doit être reporté dans le `.md`/`.yaml` correspondant pour rester la référence — Figma ne doit jamais diverger silencieusement de la spec écrite.
+
+**Priorité du projet** : ce design system doit être lisible par un agent IA pour permettre un prototypage rapide. Chaque page Guidelines Figma suit une structure homogène reflétant son `.md` source : titres de section préfixés `H2:`, et un bloc final "Spécifications techniques" listant la propriété de variante exacte et sa correspondance avec les tokens Primitive/Semantic/Responsive.
 
 ## Régénérer le CSS après un changement de tokens
 
