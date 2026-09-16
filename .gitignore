@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+
+# Python (scripts/build_css.py)
+__pycache__/
+*.pyc
+
+# Divers
+*.log

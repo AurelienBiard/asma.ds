@@ -1,0 +1,27 @@
+{
+  "fr": {
+    "actions": {
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "confirm": "Confirmer",
+      "delete": "Supprimer",
+      "next": "Suivant",
+      "back": "Retour",
+      "submit": "Envoyer",
+      "close": "Fermer",
+      "retry": "Réessayer",
+      "learn_more": "En savoir plus"
+    },
+    "feedback": {
+      "loading": "Chargement…",
+      "empty": "Aucun résultat",
+      "error_generic": "Une erreur est survenue",
+      "success_generic": "Enregistré avec succès"
+    },
+    "form": {
+      "required_field": "Ce champ est requis",
+      "placeholder_search": "Rechercher…",
+      "placeholder_email": "vous@exemple.com"
+    }
+  }
+}
