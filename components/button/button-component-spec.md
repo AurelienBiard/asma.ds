@@ -1,104 +1,62 @@
-# Composant Bouton — Spec de construction (v2)
+# Composant Bouton
 
-Une seule taille pour l'instant (MD) — pas de variant Size à prévoir.
+> Ce fichier est la **source de vérité** du composant. Toute modification (anatomie, variants, tokens) se fait ici en premier, puis est répercutée dans Figma. Ne pas modifier le composant Figma directement sans reporter le changement dans ce fichier ensuite.
 
-## Propriétés de variante (Figma Component Properties)
+Une seule taille (MD), hauteur fixe 40px.
 
-- **Type**: `Primary` / `Outlined` / `Neutral` / `Ghost` / `Link`
-- **State**: `Default` / `Hover` / `Active` / `Disabled` / `Focus`
-- **Icon-only**: `Boolean` — modificateur de forme combinable avec n'importe quel Type (carré, label masqué visuellement mais gardé pour l'accessibilité)
+## Propriétés du composant Figma
 
-## Structure (auto-layout horizontal, hug contents, centré)
+- **Type** (variant) : `Primary` / `Outlined` / `Neutral` / `Ghost` / `Link`
+- **State** (variant) : `Default` / `Hover` / `Active` / `Disabled` / `Focus`
+- **Icon-leading**, **Icon-trailing** : instances directes du composant `Icon` (16×16, `Format=Outline`, `Weight=Regular`) — pas de Slot (retiré, plus de bénéfice une fois la recommandation de remplacement passée à "supprimer + glisser depuis Assets").
+- **Show-icon-leading**, **Show-icon-trailing** (Boolean, défaut `false`) : visibilité des icônes.
+- **Show-label** (Boolean, défaut `true`) : visibilité du label.
+- **Label** (Text, défaut `"Enregistrer"`) : contenu du label, éditable par instance.
+- **Icon-only** (Boolean, défaut `false`) : **non lié automatiquement** à `Show-label` — Figma ne permet pas de logique conditionnelle entre propriétés. À activer manuellement avec `Show-label=False`, et ajuster le padding à la main pour un rendu carré (limitation Figma, pas un oubli).
 
-```
-Button
- ├─ Icon (slot, optionnel, leading)
- ├─ Label
- └─ Icon (slot, optionnel, trailing)
-```
+25 variantes (5 Type × 5 State).
 
-- Gap : `Responsive → Spacing/component-xs`
-- Padding X : `Spacing/component-md` — Padding Y : `Spacing/component-sm`
-- Radius : `Responsive → Radius/control`
-- Text style : **Label**
+## Correspondance couleur par Type
 
-## Tokens par type × état
+| Type | Fond (Default) | Bordure | Texte | Icône |
+|---|---|---|---|---|
+| Primary | `Action/primary` | — | `Text/inverse` | `Icon/inverse` |
+| Outlined | `Action/secondary` | `Border/default` (Default) → `Border/strong` (Active) | `Text/primary` | `Icon/primary` |
+| Neutral | `Action/neutral` | — | `Text/primary` | `Icon/primary` |
+| Ghost | transparent | — | `Text/primary` | `Icon/primary` |
+| Link | transparent | — | `Text/link` | `Icon/link` |
 
-### Primary (filled, brand)
-| État | Background | Texte |
-|---|---|---|
-| Default | `Action/primary` | `Text/inverse` |
-| Hover | `Action/primary-hover` | `Text/inverse` |
-| Active | `Action/primary-active` | `Text/inverse` |
+## États communs à tous les Types
 
-### Outlined (fond plein neutre + bordure)
-| État | Background | Texte | Border |
-|---|---|---|---|
-| Default | `Action/secondary` | `Text/primary` | `Border/default` |
-| Hover | `Action/secondary-hover` | `Text/primary` | `Border/default` |
-| Active | `Action/secondary-active` **(nouveau token)** | `Text/primary` | `Border/strong` |
+- **Hover / Active** : progression d'intensité du fond (sauf Link : soulignement au lieu de fond).
+- **Disabled** : `Background/disabled` + `Text/disabled` pour **tous** les Types — choix volontaire confirmé (reconnaissance immédiate et cohérente prime sur la préservation de la couleur du Type). Ne pas "corriger" ce comportement.
+- **Focus** : bordure `Border/focus` + `Primitive/Border/medium`, `strokeAlign: OUTSIDE`. Sur `Ghost`, un fond léger (`Action/ghost-hover`) est ajouté en Focus pour délimiter visuellement la zone cliquable.
+- Une tentative de halo (Drop Shadow) à la place de la bordure de Focus a été testée puis abandonnée — retour à la bordure classique.
 
-### Neutral (filled, gris) — **nouveaux tokens**
-| État | Background | Texte |
-|---|---|---|
-| Default | `Action/neutral` | `Text/primary` |
-| Hover | `Action/neutral-hover` | `Text/primary` |
-| Active | `Action/neutral-active` | `Text/primary` |
+## Icônes — construction et limitation connue
 
-### Ghost (transparent par défaut) — **nouveaux tokens**
-| État | Background | Texte |
-|---|---|---|
-| Default | transparent (pas de token) | `Text/primary` |
-| Hover | `Action/ghost-hover` | `Text/primary` |
-| Active | `Action/ghost-active` | `Text/primary` |
+**Format par défaut : `Outline`** (pas `Stroke`). Taille 16×16px.
 
-### Link (texte seul, pas de fond/bordure/padding) — **aucun nouveau token, réutilise Text/link**
-| État | Background | Texte | Décoration |
-|---|---|---|---|
-| Default | transparent | `Text/link` | aucune |
-| Hover | transparent | `Text/link` | souligné |
-| Active | transparent | `Text/link` | souligné + légèrement plus sombre (opacité, pas de nouveau token) |
+**Méthode de coloration (à réutiliser pour tout futur composant nichant une icône colorée) :**
+1. Ne jamais utiliser `figma.createInstance()` à froid — une instance fraîchement créée n'a **aucun override matérialisé**, ses descendants sont introuvables via l'API tant qu'aucun override n'existe dessus.
+2. **Cloner** une instance qui a déjà un override existant sur ce même vecteur.
+3. **Colorer AVANT** de changer le pictogramme via `setProperties({"Instance#46:0": nouvelId})` — l'ordre inverse échoue de façon non fiable.
+4. Accès au vecteur interne via un ID à 3 segments : `I<id instance clonée>;<id fixe instance Phosphor interne au composant Icon>;<id fixe du vecteur>`.
+5. **Vérification fiable** : ne pas se fier à `getNodeByIdAsync` sur l'ID du vecteur dans un appel séparé (peut retourner `null` de façon trompeuse) — vérifier via `instance.overrides`.
+6. **Piège évité** : une propriété Instance-swap partagée pour le remplacement libre a été abandonnée — une seule valeur possible pour tout le ComponentSet, incompatible avec 3 teintes différentes selon le Type. Le remplacement libre reste possible via Swap instance natif.
 
-⚠️ Link n'a pas de padding, radius ni Focus-ring identique aux autres types (à traiter au cas par cas — souligné au focus suffit généralement).
+## Contraste (correction système)
 
-## Icon-only (modificateur de forme)
+`Text/disabled` avait des valeurs Light/Dark quasiment inversées. Corrigé globalement :
+- Light : `Neutral/600` `#475569` → 6.92:1
+- Dark : `Neutral/400` `#94a3b8` → 5.71:1
 
-S'applique à n'importe quel Type ci-dessus. Devient carré (padding égal sur les 4 côtés, `Spacing/component-sm`), le label reste dans la structure pour l'accessibilité (`aria-label` en Figma / attribut HTML) mais n'est pas affiché visuellement. Ne s'applique pas à Link (pas de padding à carrer).
+## Leçons de construction
 
-## Icônes — bibliothèque et convention
+- `.clone()` ne préserve pas les `componentPropertyReferences` — les rebinder explicitement après.
+- `combineAsVariants` peut échouer sur des composants héritant de références d'un autre ComponentSet — préférer `existingSet.appendChild(newComponent)`.
+- Un ComponentSet vidé de tous ses membres est supprimé automatiquement par Figma.
 
-- **Source** : Phosphor Icons, copié-collé en composants réels (pas une Team Library externe — voir `icon_library` dans les guidelines pour le raisonnement).
-- **Emplacement dans Figma** : page `🎨 FOUNDATION / ↳ Icons`, sections organisées par catégorie (Weather & Nature, Communication, Maps & Travel, Media, Time, Games, Design, etc. — même taxonomie que Phosphor).
-- **Structure** : chaque icône est un `COMPONENT_SET` avec deux propriétés de variante : `Format` (Stroke / Outline) et `Weight` (Regular / Thin / Light / Bold / Fill / Duotone).
-- **Propriété `Weight`** : toujours **Regular** pour les icônes de bouton (convention documentée, pas une Variable — les propriétés de variante d'un composant ne sont pas bindables sur nos tokens).
-- **Propriété `Format`** : Stroke (cohérent avec le style filaire des icônes de démo).
-- **Pas de mise à jour automatique** : ces composants sont une copie figée au moment du copier-coller — une future mise à jour de Phosphor ne se répercutera pas ici (limite acceptée, commune à toute méthode d'import Phosphor dans Figma).
+## Guidelines Figma
 
-## États communs à tous les types
-
-### Disabled
-- Background : `Background/disabled`
-- Texte : `Text/disabled`
-- Border (si applicable, Outlined) : `Border/disabled`
-- Opacité : `Primitive → Opacity/40` (0.4 — pas bindable nativement sur `opacity` du node en Figma, valeur littérale)
-
-### Focus (accessibilité)
-- Anneau externe : `Semantic → Border/focus`, épaisseur `Primitive → Border/medium`
-- Identique pour les 4 types — se combine visuellement avec l'état Default de chaque type
-
-## Nouveaux tokens Semantic à créer dans Figma (Light/Dark)
-
-| Token | Light | Dark |
-|---|---|---|
-| `Action/secondary-active` | `#e2e8f0` | `#334155` |
-| `Action/neutral` | `#f1f5f9` | `#1e293b` |
-| `Action/neutral-hover` | `#e2e8f0` | `#334155` |
-| `Action/neutral-active` | `#cbd5e1` | `#475569` |
-| `Action/ghost-hover` | `#f1f5f9` | `#1e293b` |
-| `Action/ghost-active` | `#e2e8f0` | `#334155` |
-
-## Résumé des tokens utilisés
-
-- **Semantic** : Action/primary(-hover/-active), Action/secondary(-hover/-active), Action/neutral(-hover/-active), Action/ghost-hover/-active, Text/inverse, Text/primary, Text/disabled, Background/disabled, Border/default, Border/strong, Border/disabled, Border/focus
-- **Responsive** : Spacing/component-xs, component-sm, component-md, Radius/control
-- **Primitive** : Border/thin, Border/medium, Opacity/40
+Page dédiée `↳ Button`, section "Guidelines" complète + frame "Presentation" (5 Types en Default côte à côte).

@@ -49,7 +49,18 @@ button.textContent = copy.fr.actions.save; // "Enregistrer"
 
 ## Composants
 
-Composants (Bouton, Dot Indicator, etc.) construits dans Figma à partir des specs du repo — voir la source de vérité en tête de ce README.
+Construits dans Figma à partir des specs du repo — voir la source de vérité en tête de ce README.
+
+| Composant | Statut | Spec |
+|---|---|---|
+| Button | ✅ 25 variantes | `components/button/` |
+| Dot Indicator | ✅ 6 variantes | `components/dot-indicator/` |
+| Icon | ✅ wrapper Phosphor | `components/icon/` |
+| TextInput | ✅ 32 variantes | `components/text-input/` |
+| PasswordInput | ✅ 32 variantes | `components/password-input/` |
+| Tooltip | ✅ 36 variantes | `components/tooltip/` |
+
+15 composants Input au total prévus (Text inputs / Selection inputs / Date & time / Numeric inputs / File & media) — voir `guidelines/design-system-ai-guidelines.yaml` pour la liste complète et le raisonnement de réduction depuis ~40 types demandés initialement.
 
 Flux de travail :
 1. Toute décision (nouveau token, nouveau composant, nouvel état/variant) est écrite ou modifiée dans le `.yaml`/`.md` correspondant, dans le repo.

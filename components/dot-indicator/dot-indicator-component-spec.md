@@ -12,7 +12,7 @@ Le Dot Indicator est un petit indicateur visuel, généralement circulaire, util
 
 ## Variants
 
-- **Default** — indique une nouveauté ou une information non consultée.
+- **Default** — indique une nouveauté ou une information non consultée. Utilise le token `Feedback/Success/icon` (changé depuis `Icon/primary` sur demande explicite — même couleur que la variante Success).
 - **Semantic** — Info / Success / Warning / Danger : la couleur communique une signification spécifique définie par le Design System.
 - **Brand** — couleur primaire, sans signification sémantique particulière.
 
@@ -77,7 +77,7 @@ Si le dot représente une notification ou un état, cette information doit être
 
 | Color | Token |
 |---|---|
-| Default | `Icon/primary` |
+| Default | `Feedback/Success/icon` |
 | Info | `Feedback/Info/icon` |
 | Success | `Feedback/Success/icon` |
 | Warning | `Feedback/Warning/icon` |

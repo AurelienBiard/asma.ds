@@ -396,8 +396,28 @@ icon_library:
 
   usage_convention:
     - "Default Weight for UI icons (e.g. inside buttons) is Regular — a project convention, not a bindable Variable, since a component's own variant properties (Format/Weight) can't be bound to Figma Variables."
-    - "Default Format is Stroke, consistent with the rest of the DS's line-based visual style."
+    - "Default Format is Outline (corrected from an earlier Stroke convention)."
+    - "Icon color when nested in a component (e.g. Button) cannot be set on an INSTANCE's internal vectors via the Plugin API (children read as empty on instances, even though the master component's children are accessible) — confirmed limitation. Workaround: clone the master COMPONENT (not an instance) per needed tint, bind its vector fill(s) to the Semantic color token, then swapComponent() the nested instance to that pre-tinted local component. Only covers the specific icon tinted this way; swapping to a different Phosphor icon requires repeating this or manual recoloring."
+    - "RESOLVED (superseding the note above): the earlier Icon-tinted workaround components have been deleted. Correct method: nest the DS Icon wrapper component (not raw Phosphor, not a workaround clone), and clone it FROM an existing instance that already has a materialized fill override on its internal vector (e.g. a reference built manually once in the Figma UI) rather than from figma.createInstance() — a freshly created instance has no materialized override and its descendants are unreadable via the Plugin API until one exists. Apply the color override BEFORE setting componentPropertyReferences on the clone (setting a property reference first resets the materialized override). Access the internal vector via a 3-segment mirrored id: I<cloned instance id>;<fixed Icon-internal Phosphor instance id>;<fixed vector id> (the last two segments are invariant, inherited from the Icon master). Verify success via instance.overrides (lists overriddenFields) rather than re-fetching the vector by id in a separate call, which can return null even when the override is correctly saved."
+    - "To replace a Button's icon with a differently-sized component (e.g. Dot Indicator instead of Icon), do not use Swap instance on the existing icon — Figma keeps the old instance's size on swap, a native behavior that can't be worked around programmatically. Instead delete the instance and drag a fresh one from Assets into place, which respects the new component's natural size."
     - "Icon Variables/Variable-scopes do not apply here — icons are consumed as component instances with their own Format/Weight variant picker, separate from the Primitive/Semantic/Responsive variable system."
+
+# -----------------------------------------------------------------------------
+# 10c. COMPONENT DESCRIPTION FIELD
+# -----------------------------------------------------------------------------
+component_description_field:
+  rule: >
+    Every ComponentSet's native "description" field (Figma Plugin API:
+    component.description) must be filled — this is the closest possible
+    touchpoint between an agent/dev and the component (visible in the Assets
+    panel and Dev Mode inspection, no extra navigation required), distinct
+    from and complementary to the full Guidelines page.
+  format: >
+    Short (2-4 sentences), not a copy of the full Guidelines page. Cover:
+    what it's for, the key variant/property axes, one critical usage or
+    accessibility rule if applicable, and a pointer to the full spec file
+    (components/<name>/<name>-component-spec.md) for anything more.
+  when: "Fill immediately when a component is built or restructured — not a separate later pass."
 
 # -----------------------------------------------------------------------------
 # 11. COMPONENTS
@@ -407,6 +427,94 @@ components:
     - "Components consume Semantic (color) and Responsive (typography/spacing/radius) tokens first."
     - "For Border and Opacity, components consume Primitive directly — there is no intermediate layer for these two."
     - "Do not bind a component directly to a raw Primitive Color/Typography/Spacing/Radius value if a Semantic/Responsive equivalent exists."
+
+# -----------------------------------------------------------------------------
+# 11d. COMPONENT INVENTORY (built) AND ROADMAP (planned)
+# -----------------------------------------------------------------------------
+component_inventory:
+  built:
+    - { name: "Button", variants: 25, spec: "components/button/" }
+    - { name: "Dot Indicator", variants: 6, spec: "components/dot-indicator/" }
+    - { name: "Icon", note: "Phosphor wrapper, Size x Bullet x BulletPosition", spec: "components/icon/" }
+    - { name: "TextInput", variants: 32, spec: "components/text-input/" }
+    - { name: "PasswordInput", variants: 32, spec: "components/password-input/" }
+    - { name: "Tooltip", variants: 36, spec: "components/tooltip/" }
+  input_roadmap:
+    note: >
+      Reduced from ~40 requested input types to 15 real components by reusing
+      a common base and merging near-duplicate variants under one component
+      with usage-level documentation instead of a separate ComponentSet.
+    text_inputs: ["TextInput (covers Email/URL/Username/Phone/Number/Currency/Percentage/Decimal)", "PasswordInput", "Search (planned next)", "Textarea", "Code/OTP", "PIN"]
+    selection_inputs: ["Checkbox", "Radio", "Switch", "Segmented Control", "Select (covers Multi-select/Combobox/Autocomplete)", "Tag Input"]
+    date_time: ["Calendar (covers all Date/Range/Month/Year/Week Picker variants)", "Duration Input"]
+    numeric_inputs: ["Stepper (covers Quantity)", "Range Slider (single + dual-thumb)"]
+    file_media: ["Dropzone (covers File/Drag & Drop Upload)", "Image Upload", "Color Picker"]
+
+# -----------------------------------------------------------------------------
+# 11e. FIGMA TECHNIQUE LESSONS (cross-component, hard-won this project)
+# -----------------------------------------------------------------------------
+figma_technique_lessons:
+  icon_coloring: >
+    Never color a nested icon's vector via figma.createInstance() — a freshly
+    created instance has no materialized override, so its descendants are
+    unreadable via the Plugin API. Clone an instance that already has a
+    materialized override on that vector instead. Apply the color BEFORE
+    swapping the pictogram via setProperties() — the reverse order fails
+    unreliably. Verify success via instance.overrides (lists overriddenFields),
+    never by re-fetching the vector's mirrored id in a separate script call —
+    that can return null even when the override is correctly saved.
+  shared_property_conflict: >
+    A component property (Boolean/Text/Instance-swap) defined once at the
+    ComponentSet level can only hold ONE default value for the whole set.
+    Never use a shared property to try to give different variant members
+    (e.g. different Types or States) different baked-in defaults — this
+    silently makes the last write win across all members. Encountered on
+    Button (icon color per Type) and avoided pre-emptively on Tooltip
+    (icon per State). Free-form replacement should go through native
+    Swap instance instead, not a shared property.
+  clone_loses_property_references: >
+    node.clone() does not reliably preserve componentPropertyReferences
+    (Boolean/Text bindings on layers). After cloning, rebind visible/
+    characters explicitly rather than assuming the clone inherited them.
+  empty_component_set_deleted: >
+    A ComponentSet stripped of all its member components is automatically
+    deleted by Figma. Always add replacement members before removing the
+    old ones, or recombine via combineAsVariants immediately after removal.
+  tooltip_arrow_no_seam: >
+    To attach a pointer/arrow to a bordered body without a visible seam:
+    keep the arrow (transparent, fixed-size frame) and the body (its own
+    fill+border+radius) as SIBLINGS in normal auto-layout flow, never one
+    absolutely-positioned overlapping the other. Use a small NEGATIVE
+    itemSpacing (e.g. -1) on their shared parent to let them overlap by a
+    hairline and hide any residual antialiasing seam. Position the arrow
+    along the cross-axis via the parent's counterAxisAlignItems (MIN/CENTER/
+    MAX), not via an internal alignment inside an artificially widened arrow
+    frame. Draw each pointing direction as its own vector path rather than
+    rotating one — rotation moves the anchor point in ways that are hard to
+    verify without direct visual access to the canvas.
+  canvas_stacking: >
+    Figma auto-layout frames have an itemReverseZIndex property ("Canvas
+    stacking": First on top / Last on top). When two overlapping siblings'
+    visual order matters (e.g. the tooltip arrow's overlap zone), don't
+    assume flow order alone determines what renders in front — set
+    itemReverseZIndex explicitly per case.
+  description_field_escaping: >
+    A component's/component set's `description` field auto-escapes
+    apostrophes as literal "&#39;" text (and quotes as "&quot;"). Avoid
+    apostrophes/straight quotes in descriptions; use guillemets « » or
+    rephrase instead.
+  section_styling_convention: >
+    New Figma Sections created for this project (component/guidelines
+    groupings) get: fill Background/subtle, no stroke, no corner radius,
+    inner text in Text/primary. Never apply this to sections that aren't
+    ours (e.g. the Phosphor icon library's own category sections) — revert
+    those to Figma's default white fill + light stroke if touched by mistake.
+  dynamic_page_orphan_nodes: >
+    In this file's document-access mode, a freshly created node not
+    explicitly appended to a page/parent can be silently discarded at the
+    end of a script even without an error — always call page.appendChild()
+    (or equivalent) immediately after figma.createFrame()/createComponent(),
+    don't rely on an assumed "current page" auto-attach.
 
 # -----------------------------------------------------------------------------
 # 12. DECISION TREE
