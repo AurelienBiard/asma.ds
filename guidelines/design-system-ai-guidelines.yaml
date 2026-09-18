@@ -438,7 +438,14 @@ component_inventory:
     - { name: "Icon", note: "Phosphor wrapper, Size x Bullet x BulletPosition", spec: "components/icon/" }
     - { name: "TextInput", variants: 32, spec: "components/text-input/" }
     - { name: "PasswordInput", variants: 32, spec: "components/password-input/" }
+    - { name: "Search", variants: 32, spec: "components/search-input/" }
+    - { name: "Textarea", variants: 32, spec: "components/textarea/" }
+    - { name: "OTP-cell + Code-OTP + PIN", note: "1 atomic (32 variants) + 2 assemblies (4 variants each)", spec: "components/code-otp/, components/pin/" }
     - { name: "Tooltip", variants: 36, spec: "components/tooltip/" }
+    - { name: "Checkbox", variants: 24, spec: "components/checkbox/" }
+    - { name: "Radio", variants: 16, spec: "components/radio/" }
+    - { name: "Switch", variants: 8, spec: "components/switch/" }
+    - { name: "Segment + Segmented-control", note: "1 atomic (8 variants) + 1 assembly example", spec: "components/segmented-control/" }
   input_roadmap:
     note: >
       Reduced from ~40 requested input types to 15 real components by reusing

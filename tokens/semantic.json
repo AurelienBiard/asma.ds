@@ -283,8 +283,8 @@
     "name": "Feedback/Info/border",
     "type": "COLOR",
     "byMode": {
-      "Light": "#a5f3fc",
-      "Dark": "#155e75"
+      "Light": "#0891b2",
+      "Dark": "#22d3ee"
     }
   },
   {
@@ -315,8 +315,8 @@
     "name": "Feedback/Success/border",
     "type": "COLOR",
     "byMode": {
-      "Light": "#bbf7d0",
-      "Dark": "#166534"
+      "Light": "#16a34a",
+      "Dark": "#4ade80"
     }
   },
   {
@@ -347,8 +347,8 @@
     "name": "Feedback/Warning/border",
     "type": "COLOR",
     "byMode": {
-      "Light": "#fde68a",
-      "Dark": "#92400e"
+      "Light": "#d97706",
+      "Dark": "#fbbf24"
     }
   },
   {
@@ -379,8 +379,8 @@
     "name": "Feedback/Danger/border",
     "type": "COLOR",
     "byMode": {
-      "Light": "#fecaca",
-      "Dark": "#991b1b"
+      "Light": "#dc2626",
+      "Dark": "#f87171"
     }
   },
   {

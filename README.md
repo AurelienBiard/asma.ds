@@ -58,9 +58,16 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | Icon | ✅ wrapper Phosphor | `components/icon/` |
 | TextInput | ✅ 32 variantes | `components/text-input/` |
 | PasswordInput | ✅ 32 variantes | `components/password-input/` |
+| Search | ✅ 32 variantes | `components/search-input/` |
+| Textarea | ✅ 32 variantes | `components/textarea/` |
+| Code-OTP / PIN | ✅ OTP-cell (32) + 2 assemblages | `components/code-otp/`, `components/pin/` |
 | Tooltip | ✅ 36 variantes | `components/tooltip/` |
+| Checkbox | ✅ 24 variantes | `components/checkbox/` |
+| Radio | ✅ 16 variantes | `components/radio/` |
+| Switch | ✅ 8 variantes | `components/switch/` |
+| Segment / Segmented-control | ✅ 8 + 1 assemblage | `components/segmented-control/` |
 
-15 composants Input au total prévus (Text inputs / Selection inputs / Date & time / Numeric inputs / File & media) — voir `guidelines/design-system-ai-guidelines.yaml` pour la liste complète et le raisonnement de réduction depuis ~40 types demandés initialement.
+Text inputs (6/6) et une bonne partie des Selection inputs terminés. Restent : Select, Tag Input (Selection inputs), Calendar, Duration Input (Date & time), Stepper, Range Slider (Numeric inputs), Dropzone, Image Upload, Color Picker (File & media) — voir `guidelines/design-system-ai-guidelines.yaml` pour la feuille de route complète.
 
 Flux de travail :
 1. Toute décision (nouveau token, nouveau composant, nouvel état/variant) est écrite ou modifiée dans le `.yaml`/`.md` correspondant, dans le repo.
