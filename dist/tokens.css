@@ -238,11 +238,12 @@
   --radius-pill: 999px;
   --grid-columns: 4;
   --grid-gutter: 16px;
+  --spacing-component-2xs: 4pxpx;
 }
 
 [data-theme="dark"] {
   --color-background-default: #020617;
-  --color-background-subtle: #0f172a;
+  --color-background-subtle: #020617;
   --color-background-elevated: #0f172a;
   --color-background-sunken: #020617;
   --color-background-inverse: #f8fafc;

@@ -1,0 +1,145 @@
+version: "5.0"
+name: ASMA Foundations
+status: stable
+purpose: "Normative documentation of the existing Figma token architecture; this file does not reorganize it."
+
+architecture:
+  Primitive:
+    modes: [Value]
+    contains: [Color, Typography, Spacing, Radius, Border, Opacity]
+    role: "Source values; no theme or breakpoint variation."
+  Semantic:
+    modes: [Light, Dark]
+    contains: [Background, Text, Border, Icon, Action, Feedback]
+    role: "Color meaning/context layer."
+  Responsive:
+    modes: [Mobile, Desktop]
+    contains: [Typography, Spacing, Radius, Grid]
+    role: "Breakpoint-dependent layer."
+  exclusions: ["Border has no Semantic/Responsive layer.", "Opacity has no Semantic/Responsive layer."]
+  import_order: [Primitive, Semantic, Responsive]
+
+source_files: {Primitive: tokens/primitive.json, Semantic: tokens/semantic.json, Responsive: tokens/responsive.json}
+
+naming:
+  format: "<Category>/<Subcategory>/<role>"
+  rule: "Collection names are not repeated inside variable names."
+  examples:
+    primitive: [Color/Blue/600, Typography/Font-size/md, Typography/Family/Title, Spacing/lg, Radius/2xs, Border/thin, Opacity/40]
+    semantic: [Action/primary, Feedback/Danger/text, Icon/link]
+    responsive: [Typography/body-md/Font-size, Typography/body-md/Line-Height, Spacing/component-md, Radius/control]
+  rules: ["Use lowercase role segments.", "'/' creates Figma groups.", "Do not introduce a second naming convention."]
+
+aliases:
+  semantic: "Every Semantic color role aliases a Primitive color."
+  responsive: "Responsive Typography/Spacing/Radius roles alias Primitive values."
+  priority: [existing_semantic_or_responsive_alias, existing_primitive, new_semantic_or_responsive, new_primitive_only_if_genuinely_new]
+  rule: "Never duplicate an existing value under another token name."
+
+modes:
+  Primitive: [Value]
+  Semantic: [Light, Dark]
+  Responsive: [Mobile, Desktop]
+  rules: ["Theme and breakpoint axes stay independent.", "Do not combine axes into one collection.", "Responsive Radius repeats the same alias in Mobile/Desktop by convention."]
+
+color:
+  primitive_families: {Blue: "#152AD3 at 600", Cyan: "#0891B2 at 600", Green: "#16A34A at 600", Amber: "#D97706 at 600", Red: "#DC2626 at 600", Neutral: "#475569 at 600"}
+  scale: "50–950; Neutral also has 0."
+  semantic_roles:
+    Background: [default, subtle, elevated, sunken, inverse, brand, disabled]
+    Text: [primary, secondary, tertiary, disabled, inverse, brand, link]
+    Border: [default, subtle, strong, focus, disabled]
+    Icon: [primary, secondary, tertiary, disabled, inverse, brand, link]
+    Action: [primary, primary-hover, primary-active, secondary, secondary-hover, secondary-active, destructive, destructive-hover, destructive-active, neutral, neutral-hover, neutral-active, ghost-hover, ghost-active]
+    Feedback:
+      Info: [background, border, icon, text]
+      Success: [background, border, icon, text]
+      Warning: [background, border, icon, text]
+      Danger: [background, border, icon, text]
+  rules: ["Choose by meaning, never by color name.", "Blue is brand/action, not automatically informational.", "Destructive is an action; Danger is feedback.", "Warning means caution; Success means positive state/completion.", "Info is contextual.", "Never hardcode hex values when a semantic role exists."]
+
+typography:
+  families: {Title: Inter, Body: Inter, Alternate: "JetBrains Mono"}
+  family_rule: "Alternate is for code, technical or monospaced content."
+  font_size: {2xs: 6, xs: 9, sm: 12, md: 14, lg: 16, xl: 18, 2xl: 20, 3xl: 24, 4xl: 28, 5xl: 32, 6xl: 40, 7xl: 48, 8xl: 56, 9xl: 64}
+  font_weight: {regular: 400, medium: 500, semibold: 600, bold: 700}
+  line_height: {2xs: 6, xs: 9, sm: 12, md: 14, lg: 16, xl: 18, 2xl: 20, 3xl: 24, 4xl: 28, 5xl: 32, 6xl: 40, 7xl: 48, 8xl: 56, 9xl: 64}
+  responsive_roles:
+    display-lg: {mobile: 7xl, desktop: 9xl, line_height: 9xl}
+    display-md: {mobile: 6xl, desktop: 8xl, line_height: 8xl}
+    display-sm: {mobile: 5xl, desktop: 7xl, line_height: 7xl}
+    heading-xl: {mobile: 5xl, desktop: 6xl, line_height: 6xl}
+    heading-lg: {mobile: 4xl, desktop: 5xl, line_height: 6xl}
+    heading-md: {mobile: 3xl, desktop: 4xl, line_height: 5xl}
+    heading-sm: {mobile: 2xl, desktop: 3xl, line_height: 4xl}
+    body-lg: {mobile: xl, desktop: 2xl, line_height: 4xl}
+    body-md: {mobile: lg, desktop: xl, line_height: 3xl}
+    body-sm: {mobile: md, desktop: lg, line_height: 2xl}
+    body-xs: {mobile: sm, desktop: sm, line_height: md}
+    caption: {mobile: md, desktop: md, line_height: lg}
+    label: {mobile: md, desktop: md, line_height: lg}
+  usage: {Display: "Major page-level statements/hero.", Heading: "Hierarchy.", Body: "Readable content.", "Body/XS": "Incidental small text (validation/error messages on Input components) — constant across breakpoints, not primary reading content.", Label: "Controls and compact labels.", Caption: "Supporting metadata."}
+
+spacing:
+  primitive: {none: 0, 2xs: 4, xs: 8, sm: 12, md: 16, lg: 20, xl: 24, 2xl: 28, 3xl: 32, 4xl: 40, 5xl: 48, 6xl: 64, 7xl: 80, 8xl: 96, 9xl: 128}
+  responsive:
+    section-xs: {mobile: lg, desktop: xl}
+    section-sm: {mobile: xl, desktop: 3xl}
+    section-md: {mobile: 3xl, desktop: 5xl}
+    section-lg: {mobile: 5xl, desktop: 7xl}
+    section-xl: {mobile: 7xl, desktop: 9xl}
+    component-2xs: {mobile: 2xs, desktop: 2xs}
+    component-xs: {mobile: xs, desktop: xs}
+    component-sm: {mobile: sm, desktop: sm}
+    component-md: {mobile: md, desktop: md}
+    component-lg: {mobile: lg, desktop: xl}
+    component-xl: {mobile: xl, desktop: 3xl}
+
+radius:
+  responsive: {control: {mobile: 2xs, desktop: 2xs}, card: {mobile: xs, desktop: xs}, pill: {mobile: 999, desktop: 999}}
+border:
+  primitive_only: true
+  values: {none: 0, thin: 1, medium: 2, thick: 3}
+opacity:
+  primitive_only: true
+  unit: "0–100 percentage"
+  rule: "Never use 0–1 decimals."
+grid:
+  responsive: {columns: {mobile: 4, desktop: 12}, gutter: {mobile: 16, desktop: 24}}
+
+component_consumption:
+  order: [Semantic Color, Responsive Typography, Responsive Spacing, Responsive Radius, Primitive Border, Primitive Opacity]
+  rule: "Use the highest semantic level expressing intent; Border and Opacity remain Primitive-only."
+
+icons:
+  library: Phosphor
+  format: Outline
+  weight: Regular
+  rule: "Icons are component instances, not variables."
+
+figma_scopes:
+  purpose: "Scopes filter picker suggestions; they do not restrict variable binding."
+  valid:
+    COLOR: [ALL_SCOPES, ALL_FILLS, FRAME_FILL, SHAPE_FILL, TEXT_FILL, STROKE_COLOR, EFFECT_COLOR]
+    FLOAT: [ALL_SCOPES, TEXT_CONTENT, CORNER_RADIUS, WIDTH_HEIGHT, GAP, OPACITY, STROKE_FLOAT, EFFECT_FLOAT, FONT_WEIGHT, FONT_SIZE, LINE_HEIGHT, LETTER_SPACING, PARAGRAPH_SPACING, PARAGRAPH_INDENT]
+    STRING: [ALL_SCOPES, TEXT_CONTENT, FONT_FAMILY, FONT_STYLE]
+  observed:
+    Primitive: {Family: FONT_FAMILY, Font-weight: FONT_WEIGHT, Line-Height: LINE_HEIGHT, Border: [STROKE_FLOAT, FONT_VARIATIONS], Opacity: [OPACITY, FONT_VARIATIONS]}
+    Semantic: {Background: FRAME_FILL, Text: TEXT_FILL, Border: STROKE_COLOR, Icon: SHAPE_FILL, Action: ALL_FILLS}
+    Responsive: {Font-size: FONT_SIZE, Line-Height: LINE_HEIGHT, Spacing: [WIDTH_HEIGHT, GAP], Radius: CORNER_RADIUS, Grid: [WIDTH_HEIGHT, GAP]}
+  undocumented: {FONT_VARIATIONS: "Observed in the live file; do not invent it as an import contract."}
+
+figma_export_import:
+  plugin: "Export/Import Variables"
+  url: "https://www.figma.com/community/plugin/1256972111705530093/export-import-variables"
+  import_order: [Primitive, Semantic, Responsive]
+  limitation: "Cross-collection aliases can be flattened by plugin import. Correct values after import do not prove live aliases survived."
+  validation: "Verify aliases in Figma whenever live linkage matters."
+
+validation:
+  - "Primitive/Semantic/Responsive taxonomy remains unchanged."
+  - "Semantic is color-only."
+  - "Responsive contains Typography/Spacing/Radius/Grid."
+  - "Border and Opacity are Primitive-only."
+  - "Opacity uses 0–100."
+  - "Primitive is imported first."

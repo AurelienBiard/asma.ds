@@ -1,6 +1,6 @@
 # Design System
 
-Source de vérité : les fichiers `guidelines/design-system-ai-guidelines.yaml` et `components/<nom>/<nom>-component-spec.md` de ce repo. Figma (fichier `asma.ds`) et ce repo GitHub sont synchronisés à partir de ces fichiers — jamais l'inverse.
+Source de vérité : les 5 fichiers `guidelines/*.yaml` (architecture v5 — core/foundations/agent/decisions/accessibility) et `components/<nom>/<nom>-component-spec.md` de ce repo. Figma (fichier `asma.ds`) et ce repo GitHub sont synchronisés à partir de ces fichiers — jamais l'inverse.
 
 ## Structure
 
@@ -11,7 +11,13 @@ design-system/
 │   ├── semantic.json     # Couleurs contextuelles — modes Light/Dark
 │   └── responsive.json   # Typo, spacing, radius, grid — modes Mobile/Desktop
 ├── guidelines/
-│   └── design-system-ai-guidelines.yaml   # Règles d'usage, architecture, scopes Figma
+│   ├── core.yaml           # Philosophie, arbre de décision component/variant/slot/pattern
+│   ├── foundations.yaml    # Architecture des tokens (Primitive/Semantic/Responsive), scopes Figma
+│   ├── agent.yaml          # Comment un agent IA doit lire/appliquer ce repo, contraintes Figma connues
+│   ├── decisions.yaml      # Guide de sélection de composant (quel composant pour quel besoin)
+│   └── accessibility.yaml  # Règles a11y (contraste, clavier, focus, formulaires)
+├── patterns/
+│   └── README.md           # Patterns candidats (workflows recurrents multi-composants)
 ├── scripts/
 │   └── build_css.py      # Génère dist/tokens.css depuis les 3 fichiers tokens/
 └── dist/
@@ -67,7 +73,7 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | Switch | ✅ 8 variantes | `components/switch/` |
 | Segment / Segmented-control | ✅ 8 + 1 assemblage | `components/segmented-control/` |
 
-Text inputs (6/6) et une bonne partie des Selection inputs terminés. Restent : Select, Tag Input (Selection inputs), Calendar, Duration Input (Date & time), Stepper, Range Slider (Numeric inputs), Dropzone, Image Upload, Color Picker (File & media) — voir `guidelines/design-system-ai-guidelines.yaml` pour la feuille de route complète.
+Text inputs (6/6) et une bonne partie des Selection inputs terminés. Restent : Select, Tag Input (Selection inputs), Calendar, Duration Input (Date & time), Stepper, Range Slider (Numeric inputs), Dropzone, Image Upload, Color Picker (File & media) — voir `guidelines/decisions.yaml` pour le guide de sélection de composant.
 
 Flux de travail :
 1. Toute décision (nouveau token, nouveau composant, nouvel état/variant) est écrite ou modifiée dans le `.yaml`/`.md` correspondant, dans le repo.
@@ -93,4 +99,4 @@ Flux de travail :
 | Responsive | `Spacing/component-md` | `--spacing-component-md` |
 | Responsive Typography | `Typography/body-md/Font-size` | `--font-size-body-md` |
 
-Le détail complet des règles (architecture, quand utiliser primitive vs semantic vs responsive, scopes Figma) est dans `guidelines/design-system-ai-guidelines.yaml`.
+Le détail complet des règles est réparti sur les 5 fichiers `guidelines/*.yaml` : architecture des tokens et scopes Figma dans `foundations.yaml`, philosophie et arbre de décision dans `core.yaml`, guide de sélection de composant dans `decisions.yaml`, contraintes techniques Figma connues dans `agent.yaml`, règles a11y dans `accessibility.yaml`.

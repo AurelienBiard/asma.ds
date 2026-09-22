@@ -310,5 +310,26 @@
       "Mobile": 16,
       "Desktop": 24
     }
+  },
+  {
+    "name": "Spacing/component-2xs",
+    "byMode": {
+      "Mobile": "4px",
+      "Desktop": "4px"
+    }
+  },
+  {
+    "name": "Typography/body-xs/Font-size",
+    "byMode": {
+      "Mobile": "12px",
+      "Desktop": "12px"
+    }
+  },
+  {
+    "name": "Typography/body-xs/Line-Height",
+    "byMode": {
+      "Mobile": "14px",
+      "Desktop": "14px"
+    }
   }
 ]

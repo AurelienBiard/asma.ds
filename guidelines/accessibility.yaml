@@ -1,0 +1,21 @@
+version: "5.0"
+principles:
+  - "Accessibility is part of component behavior."
+  - "Interactive controls must be keyboard reachable."
+  - "Focus must remain visible."
+  - "Color must not be the sole carrier of critical information."
+contrast:
+  normal_text: "4.5:1 minimum"
+  large_text: "3:1 minimum"
+  meaningful_ui_graphics: "3:1 where applicable"
+  rule: "Check actual foreground/background combinations."
+interaction:
+  keyboard: ["All interactive controls are keyboard reachable.", "Keyboard behavior matches the component interaction model."]
+  focus: ["Never remove visible focus without an equivalent indication."]
+  states: ["States remain distinguishable without relying only on color."]
+forms:
+  labels: ["Every field has an accessible label.", "Placeholder is not a label."]
+  required: "Required status must be programmatically and visually understandable."
+  errors: ["Identify the affected field.", "Explain the problem and, when possible, the correction."]
+motion: ["Respect reduced-motion preferences.", "Essential information must not depend on animation."]
+content: ["Icon-only actions need accessible names.", "Decorative icons must not create redundant accessible content."]

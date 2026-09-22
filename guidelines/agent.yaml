@@ -1,0 +1,46 @@
+version: "5.0"
+role: "Treat ASMA as a constrained system of concepts, decisions and tokens, not visual suggestions."
+
+read_order:
+  - guidelines/core.yaml
+  - guidelines/foundations.yaml
+  - guidelines/decisions.yaml
+  - guidelines/accessibility.yaml
+  - relevant component specs
+  - relevant pattern specs
+  - relevant token JSON
+
+before_implementation:
+  - "Search repository first."
+  - "Read the relevant spec."
+  - "Do not infer undocumented behavior from screenshots."
+  - "Prefer modification of an existing concept over duplication."
+
+token_rules:
+  - "Never hardcode values when a token exists."
+  - "Semantic Color expresses meaning."
+  - "Responsive Typography/Spacing/Radius express responsive values."
+  - "Primitive Border and Opacity are intentional exceptions."
+  - "Do not restructure token collections."
+  - "Preserve aliases where implementation supports them."
+
+figma_rules:
+  - "Figma is an implementation target, not the source of truth."
+  - "Do not silently modify Figma."
+  - "Do not invent variable scopes."
+  - "Do not assume JSON import preserved live aliases."
+  - "Document technical limitations."
+
+change_report:
+  required: [what_changed, why, authoritative_source, affected_artifacts, token_or_alias_impact, accessibility_impact]
+
+known_constraints:
+  variable_import: "Export/Import Variables can flatten cross-collection aliases on import."
+  component_properties: "A ComponentSet property has one default for the set; do not encode different baked defaults per variant through one shared property (e.g. a different icon color per Type/State) — this silently makes the last write win. Use native Swap instance for free-form per-instance replacement instead."
+  icons: "Use the ASMA Icon wrapper workflow; do not invent nested-vector workarounds. Never color a nested icon's vector via figma.createInstance() — a fresh instance has no materialized override and its descendants are unreadable via the Plugin API. Clone an instance with an existing materialized override instead, color it BEFORE swapping the pictogram (reverse order is unreliable), and verify success via instance.overrides — not by re-fetching the vector's id in a separate call, which can return null even when the override saved correctly."
+  clone_loses_property_references: "node.clone() does not reliably preserve componentPropertyReferences (Boolean/Text bindings). Rebind visible/characters explicitly after cloning."
+  empty_component_set_deleted: "A ComponentSet stripped of all its members is auto-deleted by Figma. Add replacements before removing originals, or recombine via combineAsVariants immediately after."
+  sibling_overlap_attachment: "To attach a pointer/arrow (or any small element) to a bordered body without a visible seam: keep both as SIBLINGS in normal auto-layout flow with a small negative itemSpacing, never one absolutely-positioned over the other. Position along the cross-axis via the parent's counterAxisAlignItems, not internal alignment. When overlap order matters, set itemReverseZIndex explicitly rather than assuming flow order."
+  description_field_escaping: "A component's description field auto-escapes apostrophes/quotes as literal &#39;/&quot; text. Avoid straight apostrophes/quotes in descriptions."
+  section_styling_convention: "New ASMA-owned Figma Sections get: fill Background/subtle, no stroke, no corner radius, inner text Text/primary. Never apply this to sections not owned by ASMA (e.g. the Phosphor icon library's own sections)."
+  dynamic_page_orphan_nodes: "A freshly created node not explicitly appended to a page/parent can be silently discarded at script end even without an error. Always append immediately after creation."

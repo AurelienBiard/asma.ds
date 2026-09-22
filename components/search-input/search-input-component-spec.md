@@ -7,7 +7,7 @@ Champ de recherche — base identique à TextInput (32 variantes Interaction × 
 ## Différences avec TextInput
 
 - **Search-icon** (leading) et **Search-icon-trailing** : instances du composant `Icon` (pictogramme `MagnifyingGlass`), chacune indépendamment affichable via `Show-icon-leading` (Boolean, défaut `true`) et `Show-icon-trailing` (Boolean, défaut `false`). Icônes non interactives (contrairement au toggle de PasswordInput).
-- **Search-button** (Boolean `Show-button`, défaut `false`) : bouton attaché après le champ — instance de `Button` (Type=Primary, Icon-only=true, Show-label=false), redimensionné à 40×40, radius gauche retiré pour un accolement propre. ⚠️ Affiche par défaut l'icône héritée de Button/Primary (pas la loupe) — à changer manuellement (Swap instance) si la cohérence visuelle avec la loupe du champ est souhaitée.
+- **Search-button** (Boolean `Show-button`, défaut `false`) : bouton attaché après le champ — instance de `Button` (Type=Primary, Icon-only=true, Show-label=false), redimensionné à 40×40, padding fixé à `Spacing/component-xs` (8px) sur les 4 côtés pour un rendu carré (corrigé suite à audit `improve-ui`, 2026-09-18 — zone de contenu 24×24 centrée), radius gauche retiré pour un accolement propre. ⚠️ Affiche par défaut l'icône héritée de Button/Primary (pas la loupe) — à changer manuellement (Swap instance) si la cohérence visuelle avec la loupe du champ est souhaitée.
 - Structure : `Row` (horizontal, FILL) contient `[Field, Search-button]` ; `Field` contient `[Search-icon, Placeholder/Value (gap 8px), Search-icon-trailing]`.
 
 ## Propriétés du composant Figma

@@ -12,7 +12,7 @@ Une seule taille (MD), hauteur fixe 40px.
 - **Show-icon-leading**, **Show-icon-trailing** (Boolean, défaut `false`) : visibilité des icônes.
 - **Show-label** (Boolean, défaut `true`) : visibilité du label.
 - **Label** (Text, défaut `"Enregistrer"`) : contenu du label, éditable par instance.
-- **Icon-only** (Boolean, défaut `false`) : **non lié automatiquement** à `Show-label` — Figma ne permet pas de logique conditionnelle entre propriétés. À activer manuellement avec `Show-label=False`, et ajuster le padding à la main pour un rendu carré (limitation Figma, pas un oubli).
+- **Icon-only** (Boolean, défaut `false`) : **non lié automatiquement** à `Show-label` — Figma ne permet pas de logique conditionnelle entre propriétés. À activer manuellement avec `Show-label=False`, et fixer le padding à `Spacing/component-xs` (8px) sur les 4 côtés pour un rendu carré (convention établie suite à l'audit `improve-ui` du 2026-09-18 — appliquée sur `Search-button`, seul usage réel actuel).
 
 25 variantes (5 Type × 5 State).
 

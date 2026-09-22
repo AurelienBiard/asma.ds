@@ -1,0 +1,59 @@
+version: "5.0"
+name: ASMA
+purpose: "Normative rules for an AI-readable design system. Guidelines are the source of truth."
+
+source_of_truth:
+  order: [guidelines/*.yaml, components/<name>/<name>-component-spec.md, patterns/<name>/<name>-spec.md, tokens/*.json, Figma]
+  rule: "Document decisions in the repository; Figma must not silently redefine the system."
+
+principles:
+  consistency: "Prefer existing ASMA solutions."
+  reuse_before_create: "Search existing components, patterns and tokens before creating anything."
+  semantic_before_primitive: "Prefer semantic intent tokens when they exist."
+  token_before_value: "Never hardcode a design value when an ASMA token exists."
+  variant_before_component: "Same concept and behavior: prefer a variant, property or configuration."
+  composition_before_duplication: "Compose existing components when their combination expresses the need."
+  pattern_before_custom: "Use an existing recurring workflow pattern before a custom solution."
+  component_is_a_concept: "A component represents a reusable interface concept, not a visual appearance."
+  use_case_does_not_define_component: "A new use case does not automatically justify a new component."
+
+component_boundary:
+  create_component_only_if: [distinct_concept, distinct_responsibility, reusable_behavior]
+  prefer_variant_when: [same_concept, same_behavior, visual_or_configuration_difference]
+  prefer_slot_when: [same_structure, variable_content]
+  prefer_pattern_when: [multiple_components, recurring_workflow]
+  do_not_create_component_for: [color_difference, typography_difference, state_difference, responsive_difference, content_difference, one_screen_requirement]
+
+decision_order:
+  - "Understand intent and interaction."
+  - "Search existing pattern."
+  - "Search existing component."
+  - "Check variants, properties and slots."
+  - "Check composition."
+  - "Check semantic/responsive tokens."
+  - "Check primitives."
+  - "Justify a genuinely new element."
+  - "Document the decision."
+
+token_architecture:
+  status: stable
+  collections: [Primitive, Semantic, Responsive]
+  source: [tokens/primitive.json, tokens/semantic.json, tokens/responsive.json]
+  rule: "Do not restructure the existing Figma taxonomy merely to make it AI-ready."
+
+change_management:
+  new_token: ["Search existing roles", "Search primitives", "Prove the value is new", "Create primitive if required", "Expose semantic/responsive meaning", "Update JSON and documentation"]
+  new_component: ["Search components/patterns", "Explain why variants/properties/slots/composition fail", "Write spec", "Implement documented behavior"]
+  new_pattern: ["Prove recurrence", "Document workflow, components and states"]
+  breaking_change: "Explicitly document changes to token meaning, aliases, component contracts or naming."
+
+ai_reasoning:
+  ambiguity: "Identify decision dimensions and choose the smallest existing abstraction that fully represents the need. Never invent undocumented conventions."
+  new_element_record: [problem, existing_elements_checked, why_insufficient, proposed_solution, impact, documentation_update]
+
+non_negotiable:
+  - "No hardcoded values when tokens exist."
+  - "No one-off component for a screen-specific need."
+  - "No duplicate concept under another component name."
+  - "No silent Figma divergence."
+  - "No token taxonomy restructuring without evidence."

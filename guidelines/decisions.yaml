@@ -1,0 +1,58 @@
+version: "5.0"
+purpose: "Decision logic for choosing existing ASMA abstractions before creating new ones."
+
+process: [understand_intent, search_pattern, search_component, check_variants_properties_slots, check_composition, check_tokens, justify_creation, document]
+
+component_selection:
+  Button: "Action triggering an operation. Icon-only rendering (no visible label) is the Icon-only boolean variant property on Button, not a separate component — same concept, same interaction model, only a visual/configuration difference."
+  Link: "Navigation."
+  Checkbox: "Independent boolean choices; multiple may be selected."
+  Radio: "Mutually exclusive visible choice."
+  SegmentedControl: "Small visible mutually exclusive set for frequent switching."
+  Select: "Selection from an option set; use multiple=true for multi-select."
+  Input: "Single-line free-form entry."
+  Search: "Query-oriented entry with search semantics."
+  Textarea: "Multi-line free-form entry."
+  Switch: "Immediate on/off setting."
+  DateTimePicker: "Date/time selection as one conceptual control."
+  Slider: "Continuous or range numeric selection."
+  Stepper: "Discrete quantity increment/decrement."
+  TagInput: "Multiple discrete values represented as removable tags."
+  Tag: "Static, non-interactive label for categorization or metadata — read-only, solid fill."
+  Chip: "Interactive element for an active user choice (applied filter, selected option, value in a multi-value field) — outlined, never solid fill (reserved for Tag). See patterns/README or Tag page guidelines for the full distinction."
+  ThemeSwitcher: "Toggles the active Light/Dark variable mode for the whole file — functional via Figma SET_VARIABLE_MODE reactions, not just a visual state change."
+  Tabs: "Peer-view navigation within the same context."
+  Menu: "Command/action list from a trigger."
+  Command: "Searchable command selection."
+  Dialog: "Focused modal task or decision."
+  Drawer: "Contextual secondary task/content."
+  Popover: "Contextual floating content/control."
+  Tooltip: "Brief non-essential explanation."
+  Alert: "Persistent feedback."
+  Toast: "Transient feedback."
+  Progress: "Known progress toward completion."
+  Skeleton: "Loading placeholder."
+  EmptyState: "Meaningful absence of content with optional next action."
+  Table: "Structured tabular data."
+  DataGrid: "Table-like data with richer interaction/editing/keyboard behavior."
+  List: "Repeated content without tabular semantics."
+  Card: "Bounded coherent content/action container."
+
+input_decision:
+  dimensions: [value_type, free_form_or_selection, option_count, option_visibility, switching_frequency, single_or_multiple, immediate_or_deferred_effect]
+  rules: ["Do not choose by visual similarity alone.", "Free-form input and selection are different concepts."]
+
+variant:
+  use_when: [same_concept, same_behavior, different_state, different_size, different_visual_style, optional_content]
+  reject_when: "Interaction model or conceptual responsibility changes."
+
+pattern:
+  create_when: [recurring_workflow, multiple_components, stable_interaction_model, reuse_across_screens]
+  reject_when: "It is merely a one-off screen composition."
+
+new_component_gate:
+  questions: ["What distinct concept does it own?", "What responsibility does it own?", "What reusable behavior does it introduce?", "Why are variants/properties/slots insufficient?", "Why is composition insufficient?", "Where will it be reused?"]
+
+token_choice:
+  order: [existing_semantic, existing_responsive, existing_primitive, new_semantic_or_responsive, new_primitive]
+  exception: "Border and Opacity intentionally consume Primitive directly."
