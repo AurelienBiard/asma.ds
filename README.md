@@ -57,21 +57,57 @@ button.textContent = copy.fr.actions.save; // "Enregistrer"
 
 Construits dans Figma à partir des specs du repo — voir la source de vérité en tête de ce README.
 
+### Text & Selection inputs (12/12)
 | Composant | Statut | Spec |
 |---|---|---|
-| Button | ✅ 25 variantes | `components/button/` |
-| Dot Indicator | ✅ 6 variantes | `components/dot-indicator/` |
-| Icon | ✅ wrapper Phosphor | `components/icon/` |
 | TextInput | ✅ 32 variantes | `components/text-input/` |
 | PasswordInput | ✅ 32 variantes | `components/password-input/` |
 | Search | ✅ 32 variantes | `components/search-input/` |
 | Textarea | ✅ 32 variantes | `components/textarea/` |
 | Code-OTP / PIN | ✅ OTP-cell (32) + 2 assemblages | `components/code-otp/`, `components/pin/` |
-| Tooltip | ✅ 36 variantes | `components/tooltip/` |
+| TagInput | ✅ 32 variantes | `components/tag-input/` |
 | Checkbox | ✅ 24 variantes | `components/checkbox/` |
 | Radio | ✅ 16 variantes | `components/radio/` |
 | Switch | ✅ 8 variantes | `components/switch/` |
 | Segment / Segmented-control | ✅ 8 + 1 assemblage | `components/segmented-control/` |
+| Select / Select-option | ✅ 32 + 4 variantes | `components/select/` |
+| Tag | ✅ 18 variantes | `components/tag/` |
+| Chip | ✅ 18 variantes | `components/chip/` |
+
+### Date & time / Numeric / File & media (7/7)
+| Composant | Statut | Spec |
+|---|---|---|
+| Calendar | ✅ Calendar-day (7) + assemblage | `components/calendar/` |
+| Duration Input | ✅ Duration-segment (8) + assemblage | `components/duration-input/` |
+| Stepper | ✅ 3 variantes | `components/stepper/` |
+| Range Slider | ✅ 8 variantes | `components/range-slider/` |
+| Dropzone | ✅ 5 variantes | `components/dropzone/` |
+| Image Upload | ✅ 4 variantes | `components/image-upload/` |
+| Color Picker | ✅ 4 variantes (déclencheur seul) | `components/color-picker/` |
+
+### Feedback & navigation
+| Composant | Statut | Spec |
+|---|---|---|
+| Button | ✅ 25 variantes | `components/button/` |
+| Dot Indicator | ✅ 6 variantes | `components/dot-indicator/` |
+| Icon | ✅ wrapper Phosphor | `components/icon/` |
+| Tooltip | ✅ 36 variantes | `components/tooltip/` |
+| Alert | ✅ 4 variantes | `components/alert/` |
+| Toast | ✅ 4 variantes | `components/toast/` |
+| Skeleton | ✅ 3 variantes | `components/skeleton/` |
+| Progress (linear/circular) | ✅ 12+12 variantes | voir Figma page `↳ Progress` |
+| Step Indicator | ✅ Step-item (3) + assemblages | `components/step-indicator/` |
+| Tabs | ✅ Tab-item (4) + assemblage | `components/tabs/` |
+| Menu-item | ✅ 8 variantes | `components/menu/` |
+| Avatar | ✅ 9 variantes | `components/avatar/` |
+| Theme switcher | ✅ 2 variantes, fonctionnel | voir Figma page `↳ Theme switcher` |
+
+### Patterns (page Figma `↳ Navigation`)
+| Pattern | Statut |
+|---|---|
+| Sidebar (Mode=Expanded/Collapsed) | ✅ |
+| Topbar (SaaS) | ✅ |
+| Site-nav (vitrine) | ✅ |
 
 Text inputs (6/6) et une bonne partie des Selection inputs terminés. Restent : Select, Tag Input (Selection inputs), Calendar, Duration Input (Date & time), Stepper, Range Slider (Numeric inputs), Dropzone, Image Upload, Color Picker (File & media) — voir `guidelines/decisions.yaml` pour le guide de sélection de composant.
 
