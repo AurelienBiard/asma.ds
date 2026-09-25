@@ -45,7 +45,11 @@ def primitive_var_name(name):
         # Typography/Font-size/md -> --font-size-scale-md
         # Typography/Font-weight/regular -> --font-weight-scale-regular
         # Typography/Line-Height/md -> --line-height-scale-md
-        sub = slug(parts[1])
+        # NOTE (corrigé 2026-09-25) : "Family" seul ne contient pas "font", contrairement à
+        # Font-size/Font-weight — sans ce cas particulier, le token générait --family-scale-*
+        # au lieu de --font-family-scale-*, la variable attendue par components/button/button.css
+        # (et documentée juste au-dessus) : la police du bouton n'était donc jamais appliquée.
+        sub = "font-family" if parts[1] == "Family" else slug(parts[1])
         return f"--{sub}-scale-{slug(parts[2])}"
     if parts[0] == "Grid":
         # Grid/columns/4 -> --grid-columns-scale-4

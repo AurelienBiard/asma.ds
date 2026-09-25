@@ -275,8 +275,8 @@
     "name": "Feedback/Info/background",
     "type": "COLOR",
     "byMode": {
-      "Light": "#ecfeff",
-      "Dark": "#083344"
+      "Light": "#cffafe",
+      "Dark": "#164e63"
     }
   },
   {
@@ -307,8 +307,8 @@
     "name": "Feedback/Success/background",
     "type": "COLOR",
     "byMode": {
-      "Light": "#f0fdf4",
-      "Dark": "#052e16"
+      "Light": "#dcfce7",
+      "Dark": "#14532d"
     }
   },
   {
@@ -339,8 +339,8 @@
     "name": "Feedback/Warning/background",
     "type": "COLOR",
     "byMode": {
-      "Light": "#fffbeb",
-      "Dark": "#451a03"
+      "Light": "#fef3c7",
+      "Dark": "#78350f"
     }
   },
   {
@@ -371,8 +371,8 @@
     "name": "Feedback/Danger/background",
     "type": "COLOR",
     "byMode": {
-      "Light": "#fef2f2",
-      "Dark": "#450a0a"
+      "Light": "#fee2e2",
+      "Dark": "#7f1d1d"
     }
   },
   {

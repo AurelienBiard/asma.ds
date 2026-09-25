@@ -102,14 +102,26 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | Avatar | ✅ 9 variantes | `components/avatar/` |
 | Theme switcher | ✅ 2 variantes, fonctionnel | voir Figma page `↳ Theme switcher` |
 
-### Patterns (page Figma `↳ Navigation`)
+### Navigation & Surfaces
+| Composant | Statut | Spec |
+|---|---|---|
+| Link | ✅ 4 variantes | `components/link/` |
+| Command-item / Command | ✅ 3 + 1 assemblage | `components/command/` |
+| Card | ✅ 3 variantes (Interaction) | `components/card/` |
+| Popover | ✅ 4 variantes | `components/popover/` |
+| Dialog-header / Dialog-body / Dialog-footer | ✅ 3 composants | `components/dialog/` |
+| Drawer | ✅ 3 variantes (Position) | `components/drawer/` |
+| Label / Field | ✅ 2 + 1 | `components/label/` |
+
+### Patterns (page Figma `↳ Navigation` et `↳ Authentication`)
 | Pattern | Statut |
 |---|---|
 | Sidebar (Mode=Expanded/Collapsed) | ✅ |
 | Topbar (SaaS) | ✅ |
 | Site-nav (vitrine) | ✅ |
+| Login | ✅ — `patterns/authentication/login-pattern-spec.md` |
 
-Text inputs (6/6) et une bonne partie des Selection inputs terminés. Restent : Select, Tag Input (Selection inputs), Calendar, Duration Input (Date & time), Stepper, Range Slider (Numeric inputs), Dropzone, Image Upload, Color Picker (File & media) — voir `guidelines/decisions.yaml` pour le guide de sélection de composant.
+Tous les composants listés dans les tableaux ci-dessus sont construits (✅) — voir `guidelines/decisions.yaml` pour le guide de sélection de composant en cas de nouveau besoin.
 
 Flux de travail :
 1. Toute décision (nouveau token, nouveau composant, nouvel état/variant) est écrite ou modifiée dans le `.yaml`/`.md` correspondant, dans le repo.

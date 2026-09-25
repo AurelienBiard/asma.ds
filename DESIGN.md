@@ -13,8 +13,8 @@ colors:
   text-primary: "#0f172a"
   text-secondary: "#475569"
   text-disabled: "#475569"
-  border-default: "#e2e8f0"
-  border-strong: "#cbd5e1"
+  border-default: "#64748b"
+  border-strong: "#475569"
   border-focus: "#152ad3"
   info: "#0891b2"
   success: "#16a34a"
@@ -29,22 +29,36 @@ typography:
     fontFamily: Inter
     fontSize: 1.5rem
     fontWeight: 700
-  body-md:
+  body-lg:
     fontFamily: Inter
     fontSize: 1rem
     fontWeight: 400
-  body-sm:
+    lineHeight: 1.5rem
+  body-md:
     fontFamily: Inter
     fontSize: 0.875rem
     fontWeight: 400
+    lineHeight: 1.25rem
+  body-sm:
+    fontFamily: Inter
+    fontSize: 0.75rem
+    fontWeight: 400
+    lineHeight: 1rem
+  body-xs:
+    fontFamily: Inter
+    fontSize: 0.625rem
+    fontWeight: 400
+    lineHeight: 0.875rem
   label:
     fontFamily: Inter
     fontSize: 0.875rem
-    fontWeight: 500
-    lineHeight: 1rem
+    fontWeight: 600
+    lineHeight: 1.25rem
   caption:
     fontFamily: JetBrains Mono
-    fontSize: 0.8125rem
+    fontSize: 0.75rem
+    fontWeight: 400
+    lineHeight: 1rem
 rounded:
   control: 4px
 spacing:
