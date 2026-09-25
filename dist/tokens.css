@@ -214,21 +214,24 @@
   --line-height-heading-md: 32px;
   --font-size-heading-sm: 20px;
   --line-height-heading-sm: 28px;
-  --font-size-body-lg: 18px;
-  --line-height-body-lg: 28px;
-  --font-size-body-md: 16px;
-  --line-height-body-md: 24px;
-  --font-size-body-sm: 14px;
-  --line-height-body-sm: 20px;
-  --font-size-caption: 14px;
+  --font-size-body-lg: 16px;
+  --line-height-body-lg: 24px;
+  --font-size-body-md: 14px;
+  --line-height-body-md: 20px;
+  --font-size-body-sm: 12px;
+  --line-height-body-sm: 16px;
+  --font-size-body-xs: 10px;
+  --line-height-body-xs: 14px;
+  --font-size-caption: 12px;
   --line-height-caption: 16px;
   --font-size-label: 14px;
-  --line-height-label: 16px;
+  --line-height-label: 20px;
   --spacing-section-xs: 20px;
   --spacing-section-sm: 24px;
   --spacing-section-md: 32px;
   --spacing-section-lg: 48px;
   --spacing-section-xl: 80px;
+  --spacing-component-2xs: 4px;
   --spacing-component-xs: 8px;
   --spacing-component-sm: 12px;
   --spacing-component-md: 16px;
@@ -239,9 +242,6 @@
   --radius-pill: 999px;
   --grid-columns: 4;
   --grid-gutter: 16px;
-  --spacing-component-2xs: 4pxpx;
-  --font-size-body-xs: 12pxpx;
-  --line-height-body-xs: 14pxpx;
 }
 
 [data-theme="dark"] {
@@ -313,10 +313,6 @@
     --font-size-heading-lg: 32px;
     --font-size-heading-md: 28px;
     --font-size-heading-sm: 24px;
-    --font-size-body-lg: 20px;
-    --font-size-body-md: 18px;
-    --font-size-body-sm: 16px;
-    --line-height-body-sm: 18px;
     --spacing-section-xs: 24px;
     --spacing-section-sm: 32px;
     --spacing-section-md: 48px;

@@ -32,7 +32,7 @@ naming:
 
 aliases:
   semantic: "Every Semantic color role aliases a Primitive color."
-  responsive: "Responsive Typography/Spacing/Radius roles alias Primitive values."
+  responsive: "Responsive Typography/Spacing/Radius roles alias Primitive values where a matching Primitive step exists (see note on Body/XS below — not every Responsive value has one)."
   priority: [existing_semantic_or_responsive_alias, existing_primitive, new_semantic_or_responsive, new_primitive_only_if_genuinely_new]
   rule: "Never duplicate an existing value under another token name."
 
@@ -47,7 +47,7 @@ color:
   scale: "50–950; Neutral also has 0."
   semantic_roles:
     Background: [default, subtle, elevated, sunken, inverse, brand, disabled]
-    Text: [primary, secondary, tertiary, disabled, inverse, brand, link]
+    Text: [primary, secondary, tertiary, disabled, inverse, brand, link, on-brand]
     Border: [default, subtle, strong, focus, disabled]
     Icon: [primary, secondary, tertiary, disabled, inverse, brand, link]
     Action: [primary, primary-hover, primary-active, secondary, secondary-hover, secondary-active, destructive, destructive-hover, destructive-active, neutral, neutral-hover, neutral-active, ghost-hover, ghost-active]
@@ -57,6 +57,7 @@ color:
       Warning: [background, border, icon, text]
       Danger: [background, border, icon, text]
   rules: ["Choose by meaning, never by color name.", "Blue is brand/action, not automatically informational.", "Destructive is an action; Danger is feedback.", "Warning means caution; Success means positive state/completion.", "Info is contextual.", "Never hardcode hex values when a semantic role exists."]
+  recent_additions: "Text/on-brand (Light+Dark both #ffffff) — for text/icons placed directly on a Background/brand fill, distinct from Text/inverse."
 
 typography:
   families: {Title: Inter, Body: Inter, Alternate: "JetBrains Mono"}
@@ -64,6 +65,12 @@ typography:
   font_size: {2xs: 6, xs: 9, sm: 12, md: 14, lg: 16, xl: 18, 2xl: 20, 3xl: 24, 4xl: 28, 5xl: 32, 6xl: 40, 7xl: 48, 8xl: 56, 9xl: 64}
   font_weight: {regular: 400, medium: 500, semibold: 600, bold: 700}
   line_height: {2xs: 6, xs: 9, sm: 12, md: 14, lg: 16, xl: 18, 2xl: 20, 3xl: 24, 4xl: 28, 5xl: 32, 6xl: 40, 7xl: 48, 8xl: 56, 9xl: 64}
+
+  # Révision 2026-09-25 : le tableau ci-dessous remplace l'ancienne échelle progressive
+  # (body-lg/md/sm variaient encore mobile->desktop). Les rôles body/caption/label sont
+  # désormais des valeurs FIXES, identiques Mobile et Desktop — décision confirmée à
+  # plusieurs reprises (le contenu de lecture courant ne doit pas changer de taille
+  # au redimensionnement ; seuls Display/Heading restent progressifs).
   responsive_roles:
     display-lg: {mobile: 7xl, desktop: 9xl, line_height: 9xl}
     display-md: {mobile: 6xl, desktop: 8xl, line_height: 8xl}
@@ -72,13 +79,26 @@ typography:
     heading-lg: {mobile: 4xl, desktop: 5xl, line_height: 6xl}
     heading-md: {mobile: 3xl, desktop: 4xl, line_height: 5xl}
     heading-sm: {mobile: 2xl, desktop: 3xl, line_height: 4xl}
-    body-lg: {mobile: xl, desktop: 2xl, line_height: 4xl}
-    body-md: {mobile: lg, desktop: xl, line_height: 3xl}
-    body-sm: {mobile: md, desktop: lg, line_height: 2xl}
-    body-xs: {mobile: sm, desktop: sm, line_height: md}
-    caption: {mobile: md, desktop: md, line_height: lg}
-    label: {mobile: md, desktop: md, line_height: lg}
+    body-lg: {mobile: lg, desktop: lg, line_height: "24px (no primitive step at 24 between 3xl=24 — 3xl is actually 24, use 3xl)"}
+    body-md: {mobile: md, desktop: md, line_height: "20px (no primitive step at 20 — between lg=16 and 2xl=20 — use 2xl)"}
+    body-sm: {mobile: sm, desktop: sm, line_height: lg}
+    body-xs: {mobile: "10px — NOTE: no Primitive Font-size step matches 10 (xs=9, sm=12); this is a direct value, not a Primitive alias, until/unless a 10px Primitive step is added", desktop: "10px (same note)", line_height: xs}
+    caption: {mobile: sm, desktop: sm, line_height: lg}
+    label: {mobile: md, desktop: md, line_height: "20px (same as body-md — see below)"}
   usage: {Display: "Major page-level statements/hero.", Heading: "Hierarchy.", Body: "Readable content.", "Body/XS": "Incidental small text (validation/error messages on Input components) — constant across breakpoints, not primary reading content.", Label: "Controls and compact labels.", Caption: "Supporting metadata."}
+
+  # Résumé en px (valeurs réelles appliquées dans tokens/responsive.json et Figma — 2026-09-25)
+  current_scale_px:
+    body-lg: "16/24"
+    body-md: "14/20"
+    body-sm: "12/16"
+    body-xs: "10/14"
+    caption: "12/16"
+    label: "14/20 — même taille ET line-height que body-md ; la distinction label/corps de texte passe entièrement par le poids (Semi Bold), documenté dans components/label/label-component-spec.md"
+
+  tag_chip_size_mapping:
+    rule: "Sur Tag et Chip, la propriété Size pilote le Text Style : Small -> Body/SM, Medium -> Body/MD, Large -> Body/LG."
+    note: "Corrigé le 2026-09-25 — le mapping précédent (Large->Body/SM, Medium->Misc/Label, Small->Body/XS) était un bug, corrigé à la fois dans Figma (36 variantes Tag+Chip) et dans les component-specs."
 
 spacing:
   primitive: {none: 0, 2xs: 4, xs: 8, sm: 12, md: 16, lg: 20, xl: 24, 2xl: 28, 3xl: 32, 4xl: 40, 5xl: 48, 6xl: 64, 7xl: 80, 8xl: 96, 9xl: 128}

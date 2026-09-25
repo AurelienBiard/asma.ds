@@ -8,7 +8,7 @@ Voir le "Pattern" en tête de la page `↳ Tag` : la distinction n'est **pas** "
 
 ## Propriétés
 
-- `Type`/`Size` : identiques à Tag.
+- `Type`/`Size` : identiques à Tag. Text Style par `Size` — **`Small` → `Body/SM`, `Medium` → `Body/MD`, `Large` → `Body/LG`** (même correction que Tag, appliquée en même temps le 2026-09-25).
 - Bordure, texte et icônes dans la couleur du `Type` : `Border/strong` + `Text/primary` pour Neutral (**pas** `Border/default`, jugé trop faible sur fond transparent), `Action/primary` pour Brand, `Feedback/{statut}/border` + `Feedback/{statut}/text` pour les 4 statuts.
 - `Show-icon-leading`/`Show-icon-trailing` (Boolean, défaut `true`) — trailing par défaut = `X` (close), pour l'usage "retirable" le plus fréquent.
 - Hauteur **identique à Tag** par palier de `Size` (36/24/22px) — corrigée après un écart de 2px dû à un bug connu (`strokeAlign: INSIDE` + hug auto-layout ajoute 2px même en INSIDE, empiriquement confirmé). Compensé par un padding vertical en **valeur littérale** (variable -1px) plutôt qu'en variable liée, en gardant le mode hug dynamique (pas de hauteur figée en `FIXED`).
