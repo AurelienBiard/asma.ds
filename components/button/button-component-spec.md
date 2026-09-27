@@ -60,4 +60,4 @@ Une seule taille (MD), hauteur fixe 40px. Libellé en Text Style `Misc/Label` �
 
 ## Guidelines Figma
 
-Page dédiée `↳ Button`, section "Guidelines" complète + frame "Presentation" (5 Types en Default côte à côte).
+Page dédiée `↳ Button`, section "Guidelines" complète + frame "Presentation" (4 Types en Default côte à côte).

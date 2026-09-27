@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-27 (4) — Nettoyage de formulations
+
+### Composants
+- **Segmented control** : retiré « Composant unique (pas de variantes) », devenu contradictoire depuis l'ajout de la propriété `Motion` — remplacé par un renvoi explicite à `Motion=Static/Tension`.
+- **Theme switcher** : anatomie de la variante `Motion=Tension` clarifiée — les cellules `Cell-active`/`Cell-inactive` y sont renommées `Cell-sun`/`Cell-moon` (positions fixes), c'est l'`Indicator` qui porte l'état actif.
+- **Button** : ligne "Guidelines Figma" encore à « 5 Types » après le retrait de `Link` — corrigée en 4 Types.
+
 ## 2026-09-27 (3) — Fondation Motion
 
 ### Tokens (Primitive)

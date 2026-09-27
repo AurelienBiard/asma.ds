@@ -33,7 +33,7 @@ Au clic, deux actions Figma enchaînées : `CHANGE_TO` vers l'autre variante + `
 
 Même principe que `SegmentedControl` / `Motion=Tension` (spec de référence : `components/segmented-control/`, fondation : `foundations.yaml` → `motion`) :
 - **Tension-layer** sous les deux cellules, en retrait `Spacing/component-2xs`, filtre `asma-tension`.
-- **Indicator** opaque `Background/elevated`, 20×20, radius `Radius/control` : il remplace le fond de `Cell-active` (les deux cellules deviennent transparentes, icônes inchangées en `Icon/primary`).
+- **Indicator** opaque `Background/elevated`, 20×20, radius `Radius/control` : il porte le fond actif et se déplace entre les deux positions. Les deux cellules sont renommées **Cell-sun** / **Cell-moon** (positions fixes portant chacune son icône) et deviennent transparentes dans cette variante — c'est l'Indicator qui indique laquelle est active, pas leur propre fond.
 - Au clic : bord d'attaque `Motion/Duration/sm` + `Motion/Easing/spring`, bord de fuite `Motion/Duration/md` + `Motion/Easing/standard` ; Drop sur l'ancienne cellule en `Motion/Duration/md` + `Motion/Easing/accelerate`.
 - Contraintes respectées : cellules de 20px ≥ taille minimale (8px), écart de 4px ≤ pont maximal (6px) — les deux formes fusionnent pendant le trajet.
 - `prefers-reduced-motion: reduce` → bascule sans transition. Accessibilité inchangée (`role="switch"`, `aria-checked`).

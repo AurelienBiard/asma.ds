@@ -15,7 +15,7 @@ Onglet individuel, réutilisé par Segmented-control.
 
 ## Segmented-control (assemblage)
 
-Composant unique (pas de variantes) : conteneur `Action/neutral`, padding `Primitive/Spacing/2xs`, radius `Radius/control`, contenant 3 instances de `Segment` avec un gap de 4px. Exemple construit avec le 2ᵉ segment sélectionné.
+Conteneur `Action/neutral`, padding `Primitive/Spacing/2xs`, radius `Radius/control`, contenant 3 instances de `Segment` avec un gap de 4px. Exemple construit avec le 2ᵉ segment sélectionné. Propriété **Motion** (variant) : `Static` (défaut) / `Tension` — voir ci-dessous.
 
 ## Usage
 
