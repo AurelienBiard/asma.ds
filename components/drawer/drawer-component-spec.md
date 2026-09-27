@@ -17,7 +17,7 @@ Tâche/contenu secondaire contextuel (`decisions.yaml` → `Drawer`). Réutilise
 
 ## Tokens
 
-Fond `Background/elevated` · Radius uniquement sur les coins côté contenu (`Radius/lg`) · Ombre `Shadow/xl` · Fond assombri `Overlay/scrim`.
+Fond `Background/elevated` · Radius uniquement sur les coins côté contenu (`Radius/card`) · Ombre : aucune ombre tokenisée — l'architecture n'a pas de famille Shadow (Semantic = couleur uniquement) · Fond assombri : voile plein écran sans token dédié — aucun token Overlay n'existe.
 
 ## Drawer vs Dialog
 
@@ -26,3 +26,5 @@ Drawer : panneau secondaire dismissible ancré à un bord (filtres, détail d'un
 ## Guidelines Figma
 
 Page dédiée `↳ Drawer`.
+
+> **Correction (2026-09-27)** : la spec citait des tokens inexistants (`Radius/lg`, `Spacing/lg`/`Spacing/md` en Responsive, `Shadow/*`, `Overlay/scrim`). Remappés sur l'existant (`Radius/card`, `Spacing/component-md` — valeur déjà utilisée dans Figma) ; ombre et voile documentés sans token, aucun token créé. À répercuter dans Figma.

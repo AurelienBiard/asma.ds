@@ -11,7 +11,7 @@ colors:
   background-elevated: "#ffffff"
   background-subtle: "#f8fafc"
   text-primary: "#0f172a"
-  text-secondary: "#475569"
+  text-secondary: "#334155"
   text-disabled: "#475569"
   border-default: "#64748b"
   border-strong: "#475569"
@@ -21,43 +21,35 @@ colors:
   warning: "#d97706"
   danger: "#dc2626"
 typography:
+  # Valeurs Mobile (base mobile-first) — Desktop : display-sm 3rem/3rem, heading-md 1.75rem/2rem ; body, label, caption fixes
   display-sm:
     fontFamily: Inter
-    fontSize: 1.5rem
+    fontSize: 2rem
+    lineHeight: 3rem
     fontWeight: 700
   heading-md:
     fontFamily: Inter
     fontSize: 1.5rem
+    lineHeight: 2rem
     fontWeight: 700
-  body-lg:
-    fontFamily: Inter
-    fontSize: 1rem
-    fontWeight: 400
-    lineHeight: 1.5rem
   body-md:
     fontFamily: Inter
     fontSize: 0.875rem
-    fontWeight: 400
     lineHeight: 1.25rem
+    fontWeight: 400
   body-sm:
     fontFamily: Inter
     fontSize: 0.75rem
-    fontWeight: 400
     lineHeight: 1rem
-  body-xs:
-    fontFamily: Inter
-    fontSize: 0.625rem
     fontWeight: 400
-    lineHeight: 0.875rem
   label:
     fontFamily: Inter
     fontSize: 0.875rem
-    fontWeight: 600
     lineHeight: 1.25rem
+    fontWeight: 600
   caption:
     fontFamily: JetBrains Mono
     fontSize: 0.75rem
-    fontWeight: 400
     lineHeight: 1rem
 rounded:
   control: 4px
@@ -93,13 +85,13 @@ asma.ds est un design system produit, mobile-first, construit avec une architect
 
 ## Colors
 
-La couleur de marque (`primary`, bleu) porte les actions principales et les états sélectionnés/actifs (boutons, cases cochées, radios, curseurs de switch). Les 4 couleurs de statut (`info`/`success`/`warning`/`danger`) sont volontairement saturées — alignées sur la couleur des icônes de statut pour un contraste suffisant en bordure de champ (correction récente : les bordures de validation étaient trop pâles).
+La couleur de marque (`primary`, bleu) porte les actions principales et les états sélectionnés/actifs (boutons, cases cochées, radios, curseurs de switch). Texte et icônes posés sur un fond de marque utilisent `Text/on-brand` / `Icon/on-brand` (blanc dans les deux thèmes), jamais `Text/inverse` qui devient quasi noir en Dark. Les fonds Feedback sont au grade 100 (Light) / 900 (Dark). Les 4 couleurs de statut (`info`/`success`/`warning`/`danger`) sont volontairement saturées — alignées sur la couleur des icônes de statut pour un contraste suffisant en bordure de champ (correction récente : les bordures de validation étaient trop pâles).
 
 `text-disabled` est identique en apparence des deux côtés du thème mais résulte de deux valeurs Primitive différentes (`Neutral/600` en Light, `Neutral/400` en Dark) — nécessaire après correction d'un bug de contraste où ces valeurs étaient quasiment inversées entre les deux modes.
 
 ## Typography
 
-Police unique **Inter** pour tout le texte d'interface, **JetBrains Mono** réservée à la documentation technique lisible par agent (pas d'usage produit). `label` (14px/16px) est le style standard pour tout contrôle de formulaire (bouton, champ, case à cocher) — jamais `body-md`, qui est réservé au contenu éditorial.
+Police **Inter** pour le texte d'interface. **JetBrains Mono** (famille Alternate) est réservée au code, au contenu technique et au style `caption` (métadonnées d'appoint, libellés de section en capitales comme ceux de la Sidebar) — jamais pour le texte courant ni les contrôles. `label` (14px/20px, Semi Bold) est le style standard pour tout contrôle de formulaire (bouton, champ, case à cocher) — jamais `body-md`, qui est réservé au contenu éditorial ; les deux partagent taille et hauteur de ligne, seule la graisse les distingue.
 
 ## Layout & Spacing
 
@@ -108,6 +100,10 @@ Police unique **Inter** pour tout le texte d'interface, **JetBrains Mono** rése
 ## Shapes
 
 Un seul rayon de coin pour tous les contrôles interactifs (`rounded.control`, 4px) — pas de variation par composant. Les indicateurs ronds (Dot Indicator, Radio) utilisent un rayon à 50% de leur propre taille plutôt que ce token, puisqu'ils doivent rester des cercles parfaits quelle que soit leur taille.
+
+## Motion
+
+Le mouvement porte un changement d'état, jamais de la décoration. Fondation Primitive uniquement (`Motion/Duration/sm` 240ms, `md` 440ms ; `Motion/Easing/spring`, `standard`, `accelerate` ; `Motion/Tension/*`). Seul traitement signature : la **tension de surface** — l'indicateur de sélection s'étire vers sa nouvelle position et laisse une gouttelette qui se détache — réservée aux indicateurs opaques de `SegmentedControl` et `ThemeSwitcher` (variante `Motion=Tension`), jamais sur un Chip ni un élément en contour. `prefers-reduced-motion` coupe toute animation.
 
 ## Components
 

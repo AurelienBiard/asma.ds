@@ -14,7 +14,7 @@ Contenu/contrôle flottant contextuel, non modal (`decisions.yaml` → `Popover`
 
 ## Tokens
 
-Fond `Background/elevated` · Bordure `Border/default` · Radius `Radius/md` · Ombre `Shadow/lg`
+Fond `Background/elevated` · Bordure `Border/default` · Radius `Radius/md` · Ombre : aucune ombre tokenisée — l'architecture n'a pas de famille Shadow (Semantic = couleur uniquement)
 Title : `Heading/SM` · Description : `Body/SM` + `Text/secondary`
 
 ## Popover vs Card vs Dialog
@@ -26,3 +26,5 @@ Title : `Heading/SM` · Description : `Body/SM` + `Text/secondary`
 ## Guidelines Figma
 
 Page dédiée `↳ Popover`.
+
+> **Correction (2026-09-27)** : la spec citait des tokens inexistants (`Radius/lg`, `Spacing/lg`/`Spacing/md` en Responsive, `Shadow/*`, `Overlay/scrim`). Remappés sur l'existant (`Radius/card`, `Spacing/component-md` — valeur déjà utilisée dans Figma) ; ombre et voile documentés sans token, aucun token créé. À répercuter dans Figma.

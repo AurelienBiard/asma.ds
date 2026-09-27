@@ -8,7 +8,7 @@ component_selection:
   Link: "Navigation."
   Checkbox: "Independent boolean choices; multiple may be selected."
   Radio: "Mutually exclusive visible choice."
-  SegmentedControl: "Small visible mutually exclusive set for frequent switching."
+  SegmentedControl: "Small visible mutually exclusive set for frequent switching. Variant Motion=Tension (surface-tension indicator) allowed — see foundations.yaml → motion."
   Select: "Selection from an option set; use multiple=true for multi-select."
   Input: "Single-line free-form entry."
   Search: "Query-oriented entry with search semantics."
@@ -20,7 +20,7 @@ component_selection:
   TagInput: "Multiple discrete values represented as removable tags."
   Tag: "Static, non-interactive label for categorization or metadata — read-only, solid fill."
   Chip: "Interactive element for an active user choice (applied filter, selected option, value in a multi-value field) — outlined, never solid fill (reserved for Tag). See patterns/README or Tag page guidelines for the full distinction."
-  ThemeSwitcher: "Toggles the active Light/Dark variable mode for the whole file — functional via Figma SET_VARIABLE_MODE reactions, not just a visual state change."
+  ThemeSwitcher: "Toggles the active Light/Dark variable mode for the whole file — functional via Figma SET_VARIABLE_MODE reactions, not just a visual state change. Variant Motion=Tension allowed — see foundations.yaml → motion."
   Tabs: "Peer-view navigation within the same context."
   Menu: "Command/action list from a trigger."
   Command: "Searchable command selection."
@@ -43,7 +43,8 @@ input_decision:
   rules: ["Do not choose by visual similarity alone.", "Free-form input and selection are different concepts."]
 
 variant:
-  use_when: [same_concept, same_behavior, different_state, different_size, different_visual_style, optional_content]
+  use_when: [same_concept, same_behavior, different_state, different_size, different_visual_style, optional_content, different_motion]
+  motion_note: "A motion treatment (e.g. surface tension) is a variant property (Motion=Static|Tension), never a new component."
   reject_when: "Interaction model or conceptual responsibility changes."
 
 pattern:

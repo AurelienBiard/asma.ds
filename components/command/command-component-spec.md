@@ -16,8 +16,10 @@ Composant unique : une instance `Field` en recherche en tête (slot rempli par u
 
 ## Tokens
 
-Conteneur `Background/elevated`, `Radius/lg`, `Shadow/xl` · Libellé section `Misc/Caption` + `Text/secondary` · Label item `Body/MD` · Badge raccourci `Background/subtle`, `Radius/sm`, `Misc/Caption`.
+Conteneur `Background/elevated`, `Radius/card`, ombre : aucune ombre tokenisée — l'architecture n'a pas de famille Shadow (Semantic = couleur uniquement) · Libellé section `Misc/Caption` + `Text/secondary` · Label item `Body/MD` · Badge raccourci `Background/subtle`, `Radius/sm`, `Misc/Caption`.
 
 ## Guidelines Figma
 
 Page dédiée `↳ Command`. Regrouper les commandes par section au-delà de ~5 items, ne pas présenter une liste plate.
+
+> **Correction (2026-09-27)** : la spec citait des tokens inexistants (`Radius/lg`, `Spacing/lg`/`Spacing/md` en Responsive, `Shadow/*`, `Overlay/scrim`). Remappés sur l'existant (`Radius/card`, `Spacing/component-md` — valeur déjà utilisée dans Figma) ; ombre et voile documentés sans token, aucun token créé. À répercuter dans Figma.

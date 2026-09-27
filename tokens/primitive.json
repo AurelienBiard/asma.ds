@@ -945,6 +945,62 @@
     }
   },
   {
+    "name": "Motion/Duration/sm",
+    "type": "FLOAT",
+    "byMode": {
+      "Value": 240
+    }
+  },
+  {
+    "name": "Motion/Duration/md",
+    "type": "FLOAT",
+    "byMode": {
+      "Value": 440
+    }
+  },
+  {
+    "name": "Motion/Easing/spring",
+    "type": "STRING",
+    "byMode": {
+      "Value": "cubic-bezier(0.34, 1.45, 0.64, 1)"
+    }
+  },
+  {
+    "name": "Motion/Easing/standard",
+    "type": "STRING",
+    "byMode": {
+      "Value": "cubic-bezier(0.55, 0, 0.2, 1)"
+    }
+  },
+  {
+    "name": "Motion/Easing/accelerate",
+    "type": "STRING",
+    "byMode": {
+      "Value": "cubic-bezier(0.4, 0, 0.8, 0.6)"
+    }
+  },
+  {
+    "name": "Motion/Tension/blur",
+    "type": "FLOAT",
+    "byMode": {
+      "Value": 4
+    }
+  },
+  {
+    "name": "Motion/Tension/contrast",
+    "type": "FLOAT",
+    "byMode": {
+      "Value": 18
+    }
+  },
+  {
+    "name": "Motion/Tension/offset",
+    "type": "FLOAT",
+    "byMode": {
+      "Value": -7
+    }
+  },
+  {
     "name": "Grid/columns/4",
     "type": "FLOAT",
     "byMode": {

@@ -21,7 +21,7 @@ Candidate patterns:
 - LoadingState
 
 Built patterns (see Figma page "Navigation", under the top-level "Patterns" section):
-- Sidebar — persistent SaaS navigation, built from Menu-item. Variant Mode=Expanded/Collapsed (icon-only, 64px, reuses Show-label=false on its Menu-item instances).
+- Sidebar — persistent SaaS navigation, built from Menu-item. Variant Mode=Expanded/Collapsed (icon-only, 64px, reuses Show-label=false on its Menu-item instances). Spec: `patterns/navigation/sidebar-pattern-spec.md`.
 - Topbar (SaaS) — global search/notifications/account bar, complements Sidebar. Uses a real Avatar instance (Type=Initials, Size=Medium).
 - Site-nav (vitrine) — flat marketing site navigation with CTA, no user account context
 

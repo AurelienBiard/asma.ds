@@ -2,11 +2,13 @@
 
 > Ce fichier est la **source de vérité** du composant. Toute modification (anatomie, variants, tokens) se fait ici en premier, puis est répercutée dans Figma. Ne pas modifier le composant Figma directement sans reporter le changement dans ce fichier ensuite.
 
-Une seule taille (MD), hauteur fixe 40px.
+Une seule taille (MD), hauteur fixe 40px. Libellé en Text Style `Misc/Label` — 14px/20px, **Semi Bold** (même graisse que tous les contrôles de formulaire).
+
+> **Correction (2026-09-27)** : Primary utilisait `Text/inverse` / `Icon/inverse`, qui valent Neutral/950 en Dark — texte quasi noir sur `Action/primary` Dark (#3f51e5), contraste ≈ 3,4:1 (échec AA). Remplacés par `Text/on-brand` / `Icon/on-brand` (blanc dans les deux thèmes, ≈ 6:1 en Dark). La graisse du libellé passe de Medium (500) à Semi Bold (600) pour suivre `Misc/Label`.
 
 ## Propriétés du composant Figma
 
-- **Type** (variant) : `Primary` / `Outlined` / `Neutral` / `Ghost` / `Link`
+- **Type** (variant) : `Primary` / `Outlined` / `Neutral` / `Ghost` — l'ancien Type `Link` a été retiré : utiliser le composant `Link` (`components/link/`) pour la navigation.
 - **State** (variant) : `Default` / `Hover` / `Active` / `Disabled` / `Focus`
 - **Icon-leading**, **Icon-trailing** : instances directes du composant `Icon` (16×16, `Format=Outline`, `Weight=Regular`) — pas de Slot (retiré, plus de bénéfice une fois la recommandation de remplacement passée à "supprimer + glisser depuis Assets").
 - **Show-icon-leading**, **Show-icon-trailing** (Boolean, défaut `false`) : visibilité des icônes.
@@ -14,22 +16,21 @@ Une seule taille (MD), hauteur fixe 40px.
 - **Label** (Text, défaut `"Enregistrer"`) : contenu du label, éditable par instance.
 - **Icon-only** (Boolean, défaut `false`) : **non lié automatiquement** à `Show-label` — Figma ne permet pas de logique conditionnelle entre propriétés. À activer manuellement avec `Show-label=False`, et fixer le padding à `Spacing/component-xs` (8px) sur les 4 côtés pour un rendu carré (convention établie suite à l'audit `improve-ui` du 2026-09-18 — appliquée sur `Search-button`, seul usage réel actuel).
 
-25 variantes (5 Type × 5 State).
+20 variantes (4 Type × 5 State).
 
 ## Correspondance couleur par Type
 
 | Type | Fond (Default) | Bordure | Texte | Icône |
 |---|---|---|---|---|
-| Primary | `Action/primary` | — | `Text/inverse` | `Icon/inverse` |
+| Primary | `Action/primary` | — | `Text/on-brand` | `Icon/on-brand` |
 | Outlined | `Action/secondary` | `Border/default` (Default) → `Border/strong` (Active) | `Text/primary` | `Icon/primary` |
 | Neutral | `Action/neutral` | — | `Text/primary` | `Icon/primary` |
 | Ghost | transparent | — | `Text/primary` | `Icon/primary` |
-| Link | transparent | — | `Text/link` | `Icon/link` |
 
 ## États communs à tous les Types
 
-- **Hover / Active** : progression d'intensité du fond (sauf Link : soulignement au lieu de fond).
-- **Disabled** : `Background/disabled` + `Text/disabled` pour **tous** les Types — choix volontaire confirmé (reconnaissance immédiate et cohérente prime sur la préservation de la couleur du Type). Ne pas "corriger" ce comportement.
+- **Hover / Active** : progression d'intensité du fond.
+- **Disabled** : `Background/disabled` + `Text/disabled` + icônes `Icon/disabled` pour **tous** les Types — choix volontaire confirmé (reconnaissance immédiate et cohérente prime sur la préservation de la couleur du Type). Ne pas "corriger" ce comportement.
 - **Focus** : bordure `Border/focus` + `Primitive/Border/medium`, `strokeAlign: OUTSIDE`. Sur `Ghost`, un fond léger (`Action/ghost-hover`) est ajouté en Focus pour délimiter visuellement la zone cliquable.
 - Une tentative de halo (Drop Shadow) à la place de la bordure de Focus a été testée puis abandonnée — retour à la bordure classique.
 

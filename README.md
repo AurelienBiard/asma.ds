@@ -7,7 +7,7 @@ Source de vérité : les 5 fichiers `guidelines/*.yaml` (architecture v5 — cor
 ```
 design-system/
 ├── tokens/
-│   ├── primitive.json    # Couleurs (échelle Tailwind), typo, spacing, radius, border, opacity, grid — mode unique
+│   ├── primitive.json    # Couleurs (échelle Tailwind), typo, spacing, radius, border, opacity, motion, grid — mode unique
 │   ├── semantic.json     # Couleurs contextuelles — modes Light/Dark
 │   └── responsive.json   # Typo, spacing, radius, grid — modes Mobile/Desktop
 ├── guidelines/
@@ -88,7 +88,7 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 ### Feedback & navigation
 | Composant | Statut | Spec |
 |---|---|---|
-| Button | ✅ 25 variantes | `components/button/` |
+| Button | ✅ 20 variantes | `components/button/` |
 | Dot Indicator | ✅ 6 variantes | `components/dot-indicator/` |
 | Icon | ✅ wrapper Phosphor | `components/icon/` |
 | Tooltip | ✅ 36 variantes | `components/tooltip/` |
@@ -100,28 +100,16 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | Tabs | ✅ Tab-item (4) + assemblage | `components/tabs/` |
 | Menu-item | ✅ 8 variantes | `components/menu/` |
 | Avatar | ✅ 9 variantes | `components/avatar/` |
-| Theme switcher | ✅ 2 variantes, fonctionnel | voir Figma page `↳ Theme switcher` |
+| Theme switcher | ✅ 2 variantes, fonctionnel | `components/theme-switcher/` |
 
-### Navigation & Surfaces
-| Composant | Statut | Spec |
-|---|---|---|
-| Link | ✅ 4 variantes | `components/link/` |
-| Command-item / Command | ✅ 3 + 1 assemblage | `components/command/` |
-| Card | ✅ 3 variantes (Interaction) | `components/card/` |
-| Popover | ✅ 4 variantes | `components/popover/` |
-| Dialog-header / Dialog-body / Dialog-footer | ✅ 3 composants | `components/dialog/` |
-| Drawer | ✅ 3 variantes (Position) | `components/drawer/` |
-| Label / Field | ✅ 2 + 1 | `components/label/` |
-
-### Patterns (page Figma `↳ Navigation` et `↳ Authentication`)
+### Patterns (page Figma `↳ Navigation`)
 | Pattern | Statut |
 |---|---|
-| Sidebar (Mode=Expanded/Collapsed) | ✅ |
+| Sidebar (Mode=Expanded/Collapsed) | ✅ — `patterns/navigation/sidebar-pattern-spec.md` |
 | Topbar (SaaS) | ✅ |
 | Site-nav (vitrine) | ✅ |
-| Login | ✅ — `patterns/authentication/login-pattern-spec.md` |
 
-Tous les composants listés dans les tableaux ci-dessus sont construits (✅) — voir `guidelines/decisions.yaml` pour le guide de sélection de composant en cas de nouveau besoin.
+Voir `guidelines/decisions.yaml` pour le guide de sélection de composant. Historique des évolutions : `CHANGELOG.md`.
 
 Flux de travail :
 1. Toute décision (nouveau token, nouveau composant, nouvel état/variant) est écrite ou modifiée dans le `.yaml`/`.md` correspondant, dans le repo.
@@ -142,6 +130,7 @@ Flux de travail :
 |---|---|---|
 | Primitive Color | `Color/Blue/600` | `--color-blue-600` |
 | Primitive (autres, suffixe `-scale-` pour éviter les collisions avec Responsive) | `Radius/pill` | `--radius-scale-pill` |
+| Primitive Motion | `Motion/Easing/spring` | `--motion-easing-scale-spring` |
 | Semantic | `Action/primary` | `--color-action-primary` |
 | Semantic (Feedback, imbriqué) | `Feedback/Danger/text` | `--color-feedback-danger-text` |
 | Responsive | `Spacing/component-md` | `--spacing-component-md` |

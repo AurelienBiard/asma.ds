@@ -20,18 +20,20 @@ Fond `Background/elevated` · Title `Heading/SM` · Subtitle `Misc/Caption` + `T
 
 Composant unique avec une **vraie propriété Slot Figma** (`figma.createSlot()` n'existe pas via script — un Slot ne peut être créé que manuellement dans l'UI Figma — mais une fois créé ainsi, il est bien lisible/pilotable via l'API Plugin, confirmé sur ce composant).
 
-Fond `Background/elevated` · Padding `Spacing/lg` (Responsive).
+Fond `Background/elevated` · Padding `Spacing/component-md` (Responsive).
 
 ## Dialog-footer
 
 Composant unique, **aucune propriété exposée** — placer des instances `Button` directement en enfants (typiquement un "Annuler" secondaire + une action primaire).
 
-Fond `Background/elevated` · Bordure haute `Border/default` · Padding `Spacing/md`.
+Fond `Background/elevated` · Bordure haute `Border/default` · Padding `Spacing/component-md` (Responsive).
 
 ## Composition
 
-Empiler header + body + footer dans un conteneur (radius `Radius/lg`, ombre `Shadow/xl`, largeur fixe selon breakpoint) avec un fond assombri plein écran (`Overlay/scrim`) derrière.
+Empiler header + body + footer dans un conteneur (radius `Radius/card`, aucune ombre tokenisée — l'architecture n'a pas de famille Shadow (Semantic = couleur uniquement), largeur fixe selon breakpoint) avec un fond assombri plein écran (voile plein écran sans token dédié — aucun token Overlay n'existe) derrière.
 
 ## Guidelines Figma
 
 Page dédiée `↳ Dialog`.
+
+> **Correction (2026-09-27)** : la spec citait des tokens inexistants (`Radius/lg`, `Spacing/lg`/`Spacing/md` en Responsive, `Shadow/*`, `Overlay/scrim`). Remappés sur l'existant (`Radius/card`, `Spacing/component-md` — valeur déjà utilisée dans Figma) ; ombre et voile documentés sans token, aucun token créé. À répercuter dans Figma.

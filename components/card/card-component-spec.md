@@ -18,9 +18,11 @@ Body/Footer sont de simples frames, **pas** de propriété Slot Figma sur ce com
 
 ## Tokens
 
-- Fond : `Background/elevated` · Bordure : `Border/default` · Radius : `Radius/lg` (Responsive) · Padding : `Spacing/lg` (Responsive)
+- Fond : `Background/elevated` · Bordure : `Border/default` · Radius : `Radius/card` (Responsive) · Padding : `Spacing/component-md` (Responsive)
 - Title : Text Style `Heading/SM` · Subtitle : `Misc/Caption` + `Text/secondary` · Body : `Body/MD`
 
 ## Guidelines Figma
 
 Page dédiée `↳ Card`.
+
+> **Correction (2026-09-27)** : la spec citait des tokens inexistants (`Radius/lg`, `Spacing/lg`/`Spacing/md` en Responsive, `Shadow/*`, `Overlay/scrim`). Remappés sur l'existant (`Radius/card`, `Spacing/component-md` — valeur déjà utilisée dans Figma) ; ombre et voile documentés sans token, aucun token créé. À répercuter dans Figma.

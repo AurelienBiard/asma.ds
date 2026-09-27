@@ -12,7 +12,7 @@
   border: none;
   border-radius: var(--radius-control);
   font-family: var(--font-family-scale-body);
-  font-weight: var(--font-weight-scale-medium);
+  font-weight: var(--font-weight-scale-semibold);
   font-size: var(--font-size-label);
   line-height: var(--line-height-label);
   cursor: pointer;
@@ -33,7 +33,7 @@
 /* ---- Variante Primary (filled, brand) — états ---- */
 .btn--primary {
   background: var(--color-action-primary);
-  color: var(--color-text-inverse);
+  color: var(--color-text-on-brand); /* Text/on-brand : blanc dans les deux thèmes (Text/inverse = quasi noir en Dark) */
 }
 .btn--primary:hover:not(:disabled) {
   background: var(--color-action-primary-hover);
@@ -81,21 +81,6 @@
   background: var(--color-action-ghost-active);
 }
 
-/* ---- Variante Link (texte seul, pas de fond/bordure/padding) — états ---- */
-.btn--link {
-  background: transparent;
-  color: var(--color-text-link);
-  padding: 0;
-  border-radius: 0;
-}
-.btn--link:hover:not(:disabled) {
-  text-decoration: underline;
-}
-.btn--link:active:not(:disabled) {
-  text-decoration: underline;
-  opacity: 0.85;
-}
-
 /* ---- Icon-only (modificateur de forme, combinable avec n'importe quel Type) ---- */
 .btn--icon-only {
   padding: var(--spacing-component-sm);
@@ -110,7 +95,6 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
 }
-/* Link + Icon-only n'a pas de sens (pas de padding à carrer) : combinaison à éviter */
 
 /* ---- Disabled — identique pour tous les types ---- */
 .btn:disabled {
@@ -119,9 +103,6 @@
   border-color: var(--color-border-disabled);
   opacity: calc(var(--opacity-scale-40) / 100);
   cursor: not-allowed;
-}
-.btn--link:disabled {
-  background: transparent; /* Link reste transparent même désactivé */
 }
 
 /* ---- Focus (accessibilité, toutes variantes) ---- */

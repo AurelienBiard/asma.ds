@@ -6,7 +6,7 @@ purpose: "Normative documentation of the existing Figma token architecture; this
 architecture:
   Primitive:
     modes: [Value]
-    contains: [Color, Typography, Spacing, Radius, Border, Opacity]
+    contains: [Color, Typography, Spacing, Radius, Border, Opacity, Motion]
     role: "Source values; no theme or breakpoint variation."
   Semantic:
     modes: [Light, Dark]
@@ -16,7 +16,7 @@ architecture:
     modes: [Mobile, Desktop]
     contains: [Typography, Spacing, Radius, Grid]
     role: "Breakpoint-dependent layer."
-  exclusions: ["Border has no Semantic/Responsive layer.", "Opacity has no Semantic/Responsive layer."]
+  exclusions: ["Border has no Semantic/Responsive layer.", "Opacity has no Semantic/Responsive layer.", "Motion has no Semantic/Responsive layer (added 2026-09-27)."]
   import_order: [Primitive, Semantic, Responsive]
 
 source_files: {Primitive: tokens/primitive.json, Semantic: tokens/semantic.json, Responsive: tokens/responsive.json}
@@ -49,7 +49,7 @@ color:
     Background: [default, subtle, elevated, sunken, inverse, brand, disabled]
     Text: [primary, secondary, tertiary, disabled, inverse, brand, link, on-brand]
     Border: [default, subtle, strong, focus, disabled]
-    Icon: [primary, secondary, tertiary, disabled, inverse, brand, link]
+    Icon: [primary, secondary, tertiary, disabled, inverse, brand, link, on-brand]
     Action: [primary, primary-hover, primary-active, secondary, secondary-hover, secondary-active, destructive, destructive-hover, destructive-active, neutral, neutral-hover, neutral-active, ghost-hover, ghost-active]
     Feedback:
       Info: [background, border, icon, text]
@@ -57,11 +57,12 @@ color:
       Warning: [background, border, icon, text]
       Danger: [background, border, icon, text]
   rules: ["Choose by meaning, never by color name.", "Blue is brand/action, not automatically informational.", "Destructive is an action; Danger is feedback.", "Warning means caution; Success means positive state/completion.", "Info is contextual.", "Never hardcode hex values when a semantic role exists."]
-  recent_additions: "Text/on-brand (Light+Dark both #ffffff) — for text/icons placed directly on a Background/brand fill, distinct from Text/inverse."
+  recent_additions: "Text/on-brand and Icon/on-brand (Light+Dark both Neutral/0 #ffffff) — for text/icons placed directly on a brand fill (Background/brand, Action/primary), distinct from Text/inverse / Icon/inverse which flip to Neutral/950 in Dark. Icon/on-brand added 2026-09-27."
+  feedback_backgrounds: "Feedback/*/background = grade 100 (Light) / 900 (Dark) since the Tag contrast correction — the former 50/950 values were too close to the page background."
 
 typography:
   families: {Title: Inter, Body: Inter, Alternate: "JetBrains Mono"}
-  family_rule: "Alternate is for code, technical or monospaced content."
+  family_rule: "Alternate (JetBrains Mono) is for code, technical or monospaced content, and for the Misc/Caption text style (supporting metadata, uppercase section labels such as the Sidebar sections). Never for running text or controls."
   font_size: {2xs: 6, xs: 9, sm: 12, md: 14, lg: 16, xl: 18, 2xl: 20, 3xl: 24, 4xl: 28, 5xl: 32, 6xl: 40, 7xl: 48, 8xl: 56, 9xl: 64}
   font_weight: {regular: 400, medium: 500, semibold: 600, bold: 700}
   line_height: {2xs: 6, xs: 9, sm: 12, md: 14, lg: 16, xl: 18, 2xl: 20, 3xl: 24, 4xl: 28, 5xl: 32, 6xl: 40, 7xl: 48, 8xl: 56, 9xl: 64}
@@ -127,9 +128,36 @@ opacity:
 grid:
   responsive: {columns: {mobile: 4, desktop: 12}, gutter: {mobile: 16, desktop: 24}}
 
+motion:
+  primitive_only: true
+  added: "2026-09-27"
+  duration: {sm: 240, md: 440}
+  duration_unit: "ms"
+  easing:
+    spring: "cubic-bezier(0.34, 1.45, 0.64, 1) — slight overshoot; leading edge of a moving shape."
+    standard: "cubic-bezier(0.55, 0, 0.2, 1) — trailing edge, catches up without bounce."
+    accelerate: "cubic-bezier(0.4, 0, 0.8, 0.6) — shapes that leave (droplet shrinking)."
+  tension:
+    purpose: "Surface tension: opaque shapes placed UNDER the content, merged/split by one SVG filter (feGaussianBlur + feColorMatrix alpha threshold). Text, focus rings and accessibility stay on normal, unfiltered DOM."
+    blur: 4            # feGaussianBlur stdDeviation, px
+    contrast: 18       # alpha multiplier in feColorMatrix
+    offset: -7         # alpha offset = 0.5 - contrast × 0.4167
+    filter: '<filter id="asma-tension" x="-20%" y="-60%" width="140%" height="220%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="4"/><feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"/></filter>'
+    behavior: ["Leading edge moves in Duration/sm + Easing/spring, trailing edge in Duration/md + Easing/standard (the shape stretches, then contracts).", "A droplet (copy of the shape at the previous position) shrinks in Duration/md + Easing/accelerate and detaches through the filter."]
+    geometry: {min_shape_size: "≈ blur × 2 (8px)", max_bridge_distance: "≈ blur × 1.6 (6px)", filter_padding: "≈ blur × 7 around the layer (filter region)"}
+  usage_rules:
+    - "Reserved to the selection indicator of a small, visible, exclusive set: SegmentedControl and ThemeSwitcher (variant Motion=Tension). Any other use requires a documented decision."
+    - "Opaque fills only: transparency is erased below the threshold. Never on outlined elements — Chip (outlined by definition), Border-only states, focus rings."
+    - "Never apply the filter to text, icons or the component itself: only to a dedicated aria-hidden shape layer beneath the content."
+    - "One moving indicator per control; no ambient/looping animation."
+    - "Motion carries state change, not decoration: the selected state must remain readable without animation (text color + indicator position)."
+    - "Respect prefers-reduced-motion: no transition, no droplet — the indicator jumps to its final position."
+    - "The blur softens corners: accepted deviation from Radius/control on the indicator only."
+  css_note: "SVG filter attributes cannot read CSS variables: the filter values are written literally and must match Motion/Tension/*. Durations and easings are consumed as CSS variables (--motion-duration-scale-*, --motion-easing-scale-*)."
+
 component_consumption:
   order: [Semantic Color, Responsive Typography, Responsive Spacing, Responsive Radius, Primitive Border, Primitive Opacity]
-  rule: "Use the highest semantic level expressing intent; Border and Opacity remain Primitive-only."
+  rule: "Use the highest semantic level expressing intent; Border, Opacity and Motion remain Primitive-only."
 
 icons:
   library: Phosphor
@@ -144,7 +172,7 @@ figma_scopes:
     FLOAT: [ALL_SCOPES, TEXT_CONTENT, CORNER_RADIUS, WIDTH_HEIGHT, GAP, OPACITY, STROKE_FLOAT, EFFECT_FLOAT, FONT_WEIGHT, FONT_SIZE, LINE_HEIGHT, LETTER_SPACING, PARAGRAPH_SPACING, PARAGRAPH_INDENT]
     STRING: [ALL_SCOPES, TEXT_CONTENT, FONT_FAMILY, FONT_STYLE]
   observed:
-    Primitive: {Family: FONT_FAMILY, Font-weight: FONT_WEIGHT, Line-Height: LINE_HEIGHT, Border: [STROKE_FLOAT, FONT_VARIATIONS], Opacity: [OPACITY, FONT_VARIATIONS]}
+    Primitive: {Family: FONT_FAMILY, Font-weight: FONT_WEIGHT, Line-Height: LINE_HEIGHT, Border: [STROKE_FLOAT, FONT_VARIATIONS], Opacity: [OPACITY, FONT_VARIATIONS], Motion: "[] (hidden from pickers — consumed in code and prototype transitions, not bound to layer properties)"}
     Semantic: {Background: FRAME_FILL, Text: TEXT_FILL, Border: STROKE_COLOR, Icon: SHAPE_FILL, Action: ALL_FILLS}
     Responsive: {Font-size: FONT_SIZE, Line-Height: LINE_HEIGHT, Spacing: [WIDTH_HEIGHT, GAP], Radius: CORNER_RADIUS, Grid: [WIDTH_HEIGHT, GAP]}
   undocumented: {FONT_VARIATIONS: "Observed in the live file; do not invent it as an import contract."}

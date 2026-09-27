@@ -10,6 +10,7 @@ Nommage (voir guidelines/design-system-ai-guidelines.yaml pour le détail) :
 - Primitive Color            -> --color-{family}-{step}
 - Primitive Typography       -> --font-family-scale-{role} / --font-size-scale-{step} / etc.
 - Primitive Spacing/Radius/Border/Opacity/Grid -> --{cat}-scale-{step}
+- Primitive Motion             -> --motion-{duration|easing|tension}-scale-{step} (ms, courbe brute, px/sans unité)
   (le suffixe "-scale-" évite toute collision avec les rôles Semantic/Responsive,
    ex. Primitive Radius/pill vs Responsive Radius/pill)
 - Semantic Color              -> --color-{group}-{role}  (ex: --color-action-primary)
@@ -45,15 +46,15 @@ def primitive_var_name(name):
         # Typography/Font-size/md -> --font-size-scale-md
         # Typography/Font-weight/regular -> --font-weight-scale-regular
         # Typography/Line-Height/md -> --line-height-scale-md
-        # NOTE (corrigé 2026-09-25) : "Family" seul ne contient pas "font", contrairement à
-        # Font-size/Font-weight — sans ce cas particulier, le token générait --family-scale-*
-        # au lieu de --font-family-scale-*, la variable attendue par components/button/button.css
-        # (et documentée juste au-dessus) : la police du bouton n'était donc jamais appliquée.
+        # Typography/Family/Title -> --font-family-scale-title (nom documenté ci-dessus)
         sub = "font-family" if parts[1] == "Family" else slug(parts[1])
         return f"--{sub}-scale-{slug(parts[2])}"
     if parts[0] == "Grid":
         # Grid/columns/4 -> --grid-columns-scale-4
         return f"--grid-{slug(parts[1])}-scale-{slug(parts[2])}"
+    if parts[0] == "Motion":
+        # Motion/Duration/sm -> --motion-duration-scale-sm ; Motion/Easing/spring -> --motion-easing-scale-spring
+        return f"--motion-{slug(parts[1])}-scale-{slug(parts[2])}"
     # Spacing/md, Radius/pill, Border/thin, Opacity/40 -> --spacing-scale-md, etc.
     return f"--{slug(parts[0])}-scale-{slug(parts[1])}"
 
@@ -108,10 +109,16 @@ def build():
         val = tok["byMode"]["Value"]
         if tok["type"] == "COLOR":
             lines_root.append(f"  {name}: {val};")
+        elif tok["type"] == "STRING" and tok["name"].startswith("Motion/Easing/"):
+            lines_root.append(f"  {name}: {val};")  # courbe CSS brute, non quotée
         elif tok["type"] == "STRING":
             lines_root.append(f'  {name}: "{val}";')
+        elif tok["name"].startswith("Motion/Duration/"):
+            lines_root.append(f"  {name}: {val}ms;")
         else:
-            unit = "" if "Font-weight" in tok["name"] or "Opacity" in tok["name"] or "Grid" in tok["name"] else "px"
+            unitless = ("Font-weight" in tok["name"] or "Opacity" in tok["name"] or "Grid" in tok["name"]
+                        or tok["name"] in ("Motion/Tension/contrast", "Motion/Tension/offset"))
+            unit = "" if unitless else "px"
             lines_root.append(f"  {name}: {val}{unit};")
 
     # --- Semantic -> :root (Light) + [data-theme="dark"] ---

@@ -208,6 +208,14 @@
     }
   },
   {
+    "name": "Icon/on-brand",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#ffffff",
+      "Dark": "#ffffff"
+    }
+  },
+  {
     "name": "Action/primary",
     "type": "COLOR",
     "byMode": {
