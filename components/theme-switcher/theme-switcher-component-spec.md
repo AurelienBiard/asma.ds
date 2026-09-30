@@ -16,8 +16,16 @@ Bascule le mode de la collection **Semantic** (Light ↔ Dark) pour tout le fich
 
 - **Mode** (variant) : `Light` (défaut) / `Dark` — la cellule active est Sun en `Light`, Moon en `Dark`.
 - **Motion** (variant) : `Static` (défaut) / `Tension` — voir ci-dessous.
+- **State** (variant, ajouté le 2026-09-29) : `Default` / `Hover` / `Disabled` — voir "États" ci-dessous. Manquait malgré un vrai bouton interactif (`role="switch"`).
 
-4 variantes (2 Mode × 2 Motion).
+12 variantes (2 Mode × 2 Motion × 3 State).
+
+## États (ajouté le 2026-09-29)
+
+Règle de corrélation avec `Motion` : **Hover et Disabled ne touchent jamais la Tension-layer, l'Indicator, ni le filtre `asma-tension`** — identique en `Static` et en `Tension`, quel que soit le Mode. C'est une conséquence directe de la règle d'usage déjà posée sur `Motion=Tension` (`foundations.yaml` → `motion.usage_rules` : le filtre est réservé à un **changement d'état** porté par une forme opaque unique) — un survol ou un état désactivé n'est pas un changement d'état, donc n'anime/ne déforme jamais l'Indicator. Seuls `Track` et les icônes sont concernés par ces deux états.
+
+- **Hover** : `Track` garde son fond `Action/secondary-active` inchangé (déjà au maximum d'intensité disponible dans cette famille de tokens — pas de `-hover` dédié), ajout d'un contour 1px `Border/default` autour du `Track`. Ni les cellules (`Cell-active`/`Cell-inactive` en Static, `Cell-sun`/`Cell-moon`/`Indicator` en Tension) ni les icônes ne changent.
+- **Disabled** : `Track` passe en fond `Background/disabled` + bordure `Border/disabled`. Les icônes (`Sun-icon`/`Moon-icon`, les deux, dans les deux Motion) passent en `Icon/disabled`. La cellule active / l'`Indicator` **reste** `Background/elevated` inchangé — comme le Thumb de `Switch` qui reste blanc en Disabled — pour garder le toggle lisible malgré l'ensemble atténué. Non cliquable : la transition Light↔Dark (et donc l'effet Tension) ne peut jamais se déclencher dans cet état.
 
 ## Comportement
 

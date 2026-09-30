@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-30 — Chip/Command-item/Theme switcher : états manquants + Cell, Table
+
+### Composants
+- **Chip** : ajout de la propriété `State` (`Default`/`Hover`/`Active`/`Disabled`) — manquait alors que Chip est défini comme interactif. `Active` remplit le Chip (bordure retirée) plutôt que de l'assombrir. `Type` restreint à `Neutral`/`Brand` uniquement (les 4 statuts Feedback retirés — un filtre/sélection actif n'a pas besoin de sémantique de statut). Neutral `Active` corrigé deux fois (`Action/neutral` → `Action/neutral-active` → `Background/inverse`, sur retour direct : pas assez prononcé). 24 variantes (`Type` × `Size` × `State`).
+- **Command-item** : ajout de `State=Disabled` — une commande indisponible dans le contexte courant (permission manquante) n'avait aucun traitement visuel prévu.
+- **Theme switcher** : ajout de `State` (`Default`/`Hover`/`Disabled`), 12 variantes (2 Mode × 2 Motion × 3 State). Règle de corrélation avec `Motion` posée explicitement : Hover et Disabled ne touchent jamais la Tension-layer/l'Indicator/le filtre `asma-tension`, dans aucune combinaison Mode/Motion.
+- **Cell** (nouveau) : brique de contenu d'une cellule de data table — `Content` (`Text`/`Avatar-text`/`Tag`/`Actions`/`Slot`) × `Align` (`Left`/`Right`), 10 variantes. Pas d'état propre : les états sont portés par `Row` dans `Table`.
+- **Table** (nouveau) : `Header-cell` (tri `None`/`Asc`/`Desc`, 12 variantes) + `Row` (sélection, `State`×`Selectable`, 8 variantes), construits sur `Cell`. Pas de composant paramétrique unique — assemblage manuel comme `Command`.
+
 ## 2026-09-27 (4) — Nettoyage de formulations
 
 ### Composants
