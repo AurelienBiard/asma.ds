@@ -18,8 +18,8 @@ Conteneur horizontal, largeur **220px dans le composant** (dans `Table`, la cell
 
 ## Contenu par valeur de `Content`
 
-- **Text** : un nœud texte, `Body/MD` + `Text/primary`.
-- **Avatar-text** : instance `Avatar` (`Type=Initials, Size=Small`) + texte `Body/MD` + `Text/primary`. Réutilise `Avatar` tel quel — aucune nouvelle brique.
+- **Text** : un nœud texte, `Body/MD` + `Text/primary`. **Troncature 1 ligne** (ajouté le 2026-09-30) : `textTruncation: ENDING` + `maxLines: 1` — jamais de retour à la ligne dans une cellule, un contenu trop long est coupé avec une ellipse plutôt que d'agrandir la hauteur de la ligne ou de casser l'alignement du tableau. Le nom complet reste consultable via `title` (HTML) ou un `Tooltip` au survol si le besoin est fréquent sur cette colonne.
+- **Avatar-text** : instance `Avatar` (`Type=Initials, Size=Small`) + texte `Body/MD` + `Text/primary`, même troncature 1 ligne que `Text` sur le texte (l'Avatar, taille fixe, n'est jamais compressé). Réutilise `Avatar` tel quel — aucune nouvelle brique.
 - **Tag** : instance `Tag` (`Type=Neutral, Size=Medium` par défaut, changeable par instance).
 - **Actions** : instance `Button` (`Type=Ghost`, `Icon-only=true`, `Show-label=false`), icône par défaut `DotsThreeVertical` (déclencheur de menu contextuel — le cas le plus fréquent en fin de ligne de table). Remplaçable par n'importe quelle icône via Swap instance pour une action unique explicite (ex. `Trash`, `PencilSimple`).
 - **Slot** : zone libre pour tout contenu non couvert (ex. mini-graphique, contrôle composé, plusieurs boutons).

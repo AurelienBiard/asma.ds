@@ -24,10 +24,13 @@ Manquaient jusqu'ici alors que Chip est défini comme interactif ; définis pour
 - **Default** : voir "Propriétés" — outlined, fond transparent, bordure/texte/icône colorés par `Type`.
 - **Hover** : même traitement que `Segment` en `Selected=False` — bordure/texte/icône **inchangés**, ajout d'un fond `Action/ghost-hover` derrière le Chip (toujours outlined, pas de remplissage coloré). Aucun nouveau token requis.
 - **Active** (sélectionné — filtre actif, valeur validée) : le Chip **se remplit** plutôt que de simplement s'assombrir — bordure retirée, fond passe à une couleur pleine du `Type`, texte/icône ajustés en conséquence :
-  - **Neutral** : fond `Action/neutral-active` (**pas** `Action/neutral`, corrigé le 2026-09-28 — trop proche du fond de page, pas assez prononcé pour signaler un état sélectionné), texte `Text/primary`, icône `Icon/primary`.
+  - **Neutral** : fond `Background/inverse` (noir plein en Light / blanc plein en Dark), texte `Text/inverse`, icône `Icon/inverse` — corrigé deux fois le 2026-09-28 (`Action/neutral` puis `Action/neutral-active` jugés pas assez prononcés, retour explicite du produit : « je veux du noir sur l'active »).
   - **Brand** : fond `Action/primary`, texte `Text/on-brand`, icône `Icon/on-brand`.
-  - **Survol d'un Chip Active** : comportement, pas une variante distincte — légère intensification du fond (`Action/neutral-hover` pour Neutral — à un cran de plus que `Action/neutral-active` —, `Action/primary-hover` pour Brand), comme la progression d'intensité déjà utilisée sur Button.
 - **Disabled** : `Background/disabled` + `Text/disabled` + `Icon/disabled` + `Border/disabled`, pour les deux `Type` — même choix que Button (reconnaissance immédiate et cohérente prime sur la préservation de la couleur du Type ; ne pas "corriger" ce comportement).
+
+## Leçon de construction (2026-10-05)
+
+Les variantes `Hover`, `Active` et `Disabled` ajoutées le 2026-09-28 n'avaient pas leurs propriétés de composant branchées : `Label`, `Show-icon-leading` et `Show-icon-trailing` n'avaient aucun effet sur les instances de ces états (le libellé restait « Chip »). Corrigé sur les 18 variantes concernées (`componentPropertyReferences`). À vérifier systématiquement à l'ajout d'un nouvel axe de variantes : les références de propriétés ne se copient pas toutes seules.
 
 ## Usage dans TagInput
 

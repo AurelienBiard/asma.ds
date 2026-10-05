@@ -14,7 +14,7 @@ Une seule taille (MD), hauteur fixe 40px. Libellé en Text Style `Misc/Label` �
 - **Show-icon-leading**, **Show-icon-trailing** (Boolean, défaut `false`) : visibilité des icônes.
 - **Show-label** (Boolean, défaut `true`) : visibilité du label.
 - **Label** (Text, défaut `"Enregistrer"`) : contenu du label, éditable par instance.
-- **Icon-only** (Boolean, défaut `false`) : **non lié automatiquement** à `Show-label` — Figma ne permet pas de logique conditionnelle entre propriétés. À activer manuellement avec `Show-label=False`, et fixer le padding à `Spacing/component-xs` (8px) sur les 4 côtés pour un rendu carré (convention établie suite à l'audit `improve-ui` du 2026-09-18 — appliquée sur `Search-button`, seul usage réel actuel).
+- **Icon-only** (Boolean, défaut `false`) : **non lié automatiquement** à `Show-label` — Figma ne permet pas de logique conditionnelle entre propriétés. À activer manuellement avec `Show-label=False`, et fixer le padding à `Spacing/component-xs` (8px) sur les 4 côtés pour un rendu carré de 32×32 (convention établie suite à l'audit `improve-ui` du 2026-09-18 — appliquée sur `Search-button`). Deuxième usage réel (2026-10-04) : `Prev`/`Next` du composant `Pagination` (voir `components/pagination/`), qui réutilise ce même gabarit 32×32 pour s'aligner avec `Page-item`.
 
 20 variantes (4 Type × 5 State).
 

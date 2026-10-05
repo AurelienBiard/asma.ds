@@ -37,6 +37,7 @@ component_selection:
   DataGrid: "Table-like data with richer interaction/editing/keyboard behavior."
   List: "Repeated content without tabular semantics."
   Card: "Bounded coherent content/action container."
+  Pagination: "Navigation across a bounded sequence of pages of the same data set. Prev/Next are reused Button instances (Type=Ghost, Icon-only=true), not a new control — only Page-item (the numbered selector itself) and the manual assembly are new. Not a single parametric ComponentSet, same reasoning as Table: page count is arbitrary."
 
 input_decision:
   dimensions: [value_type, free_form_or_selection, option_count, option_visibility, switching_frequency, single_or_multiple, immediate_or_deferred_effect]

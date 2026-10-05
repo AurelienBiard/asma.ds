@@ -1,5 +1,44 @@
 # Changelog
 
+## 2026-10-05 (4) — Resynchronisation asma.ds
+
+### Corrections
+- **Chip** : la spec indiquait encore `Action/neutral-active` pour `Active`/`Neutral`, alors que Figma (et la décision du 2026-09-28) est `Background/inverse` + `Text/inverse`. Spec réalignée ; la ligne « survol d'un Chip Active » (basée sur `neutral-active`) retirée faute de valeur vérifiée dans Figma.
+- **Cell, Table** : les modifications de troncature et de fond `Background/subtle` du `Header-row` n'étaient pas présentes dans les fichiers du dossier local — réappliquées.
+- **Artefact asma.ds** : ajout de `Pagination`, `Progress`, du pattern `Filter bar` ; `Cell`, `Table`, `Chip`, `Avatar` resynchronisés.
+
+## 2026-10-05 (3) — Documentation de Progress
+
+### Composants
+- **Progress** (documenté) : `Progress-linear` et `Progress-circular` existaient dans Figma (page `↳ Progress`) sans spec dans le repo. `components/progress/progress-component-spec.md` créé à partir de l'état réel : `State` (`Determinate`/`Indeterminate`) × `Percentage` (0 à 100 par pas de 10, `none`), 12 variantes chacun. Non spécifié à ce jour : animation `Indeterminate`, `prefers-reduced-motion`, variantes de statut.
+- **Guidelines Figma** de la page `↳ Progress` corrigées : anneau 48×48 en `arcData` (`innerRadius 0.7`) et non 40×40 / trait 4px / extrémités arrondies, 12 variantes et non 11.
+
+## 2026-10-05 (2) — Nouveau pattern Filter bar
+
+### Patterns
+- **Filter bar** (nouveau) : `Search` + `Select`(s) + « Réinitialiser » + action principale, puis ligne de `Chip` (`Neutral`/`Medium`/`Active`) pour les filtres appliqués et compteur de résultats. Composition de composants existants, assemblage manuel (nombre de filtres arbitraire). Application immédiate par défaut. `FilterBar` retiré des patterns candidats.
+
+### Corrections
+- **Chip** : `Label`, `Show-icon-leading`, `Show-icon-trailing` n'étaient pas branchés sur les variantes `Hover`/`Active`/`Disabled` (18 variantes) — corrigé.
+
+## 2026-10-05 — Audit : aucun texte sans Text Style
+
+### Règle
+- Tout nœud texte du fichier Figma porte un Text Style (aucune police/taille en dur). Audit sur toutes les pages (hors instances) : 19 textes corrigés.
+
+### Corrections
+- **Pagination** : `Label` des `Page-item`, `Ellipsis` et texte « Page {n} sur {N} » en `Misc/Label` (construits à la main au départ).
+- **Toast** : bouton « Annuler » (4 variantes `Status`) en `Misc/Label`.
+- **Avatar** : initiales en `Body/XS` / `Body/SM` / `Body/LG` (Regular) au lieu de Semi Bold 9,6/12,8/16 px sans style.
+- **Guidelines** (pages `Button`, `Numeric inputs`, `Navigation`) : 12 paragraphes à mise en forme mixte — lead-in en `Misc/Label`, suite en `Body/MD`. Les paragraphes de la page `Button` passent de 16 px à 14 px (alignés sur les autres pages).
+
+## 2026-10-04 — Nouveau composant Pagination
+
+### Composants
+- **Pagination** (nouveau) : `Page-item` (brique atomique, `State=Default/Hover/Current`, 3 variantes, 32×32) + `Prev`/`Next` (instances de `Button`, `Type=Ghost, Icon-only=true` — deuxième usage réel du gabarit 32×32 établi sur `Search-button`). Pas de composant paramétrique unique — assemblage manuel comme `Table` (nombre de pages arbitraire). Deux structures : `Numbered` (fenêtrage avec `Ellipsis`, texte non componentisé) et `Simple` (« Page {n} sur {N} », espace contraint ou total inconnu). Icônes `CaretLeft`/`CaretRight` (pas de famille `Chevron` dans la fondation).
+- **Button** : note mise à jour sur `Icon-only` — `Pagination` en devient le deuxième usage réel (après `Search-button`).
+- **decisions.yaml** : ajout de `Pagination` au vocabulaire de `component_selection`.
+
 ## 2026-09-30 — Chip/Command-item/Theme switcher : états manquants + Cell, Table
 
 ### Composants

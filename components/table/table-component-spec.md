@@ -22,6 +22,8 @@ En-tête de colonne, cliquable quand la colonne est triable.
 
 Conteneur horizontal 220px (largeur du composant, comme `Cell` — s'étire pour remplir sa colonne dans `Table`), hauteur hug. Padding `Spacing/component-sm` (horizontal, 12px) / `Spacing/component-2xs` (vertical, 4px), `itemSpacing: Spacing/component-2xs` (4px), alignement vertical centré. Deux enfants : `Label` (texte) puis instance `Sort-icon` (wrapper `Icon`, `Size=Small`).
 
+**Troncature 1 ligne** (ajouté le 2026-09-30, même règle que `Cell` → `Content=Text`) : `Label` en `textTruncation: ENDING` + `maxLines: 1` — un nom de colonne trop long est coupé avec une ellipse plutôt que de forcer un retour à la ligne (qui décalerait la hauteur de toute la `Header-row`) ou de pousser `Sort-icon` hors de la largeur de la colonne. Le nom complet reste consultable via `title` (HTML).
+
 ### États et couleurs
 
 - **Sort=None** : `Label` en `Misc/Label` + `Text/secondary`. `Sort-icon` = pictogramme `CaretUpDown`, couleur `Icon/tertiary` — indique une colonne triable mais inactive (au repos, la moins appuyée visuellement).
@@ -60,6 +62,8 @@ Conteneur horizontal, hauteur hug (44px avec le contenu par défaut, portée par
 ## Table (assemblage)
 
 Pas de composant unique paramétrique : une instance `Header-row` (assemblage manuel — `Select-cell` avec `Checkbox` en `Checked=Indeterminate` si sélection partielle / `True` si tout est sélectionné / `False` sinon, puis une instance `Header-cell` par colonne) suivie d'instances `Row`, le tout dans une frame conteneur (`Background/elevated`, bordure `Border/subtle`, `Radius/card`, `clipsContent: true` pour que la bordure basse de la dernière ligne ne dépasse pas).
+
+`Header-row` : fond `Background/subtle` (ajouté le 2026-10-01 — fond transparent jusqu'ici, l'en-tête ne se distinguait pas visuellement des `Row` en `Default`). Même bordure basse 1px `Border/subtle` que `Row`. Fond fixe, ne change pas au survol (l'en-tête n'est pas lui-même interactif — seuls `Header-cell` et la `Checkbox` de sélection le sont, chacun avec son propre état).
 
 Exemple construit sur la page `↳ Table` : `Header-row` (checkbox indéterminée + colonne "Colonne" triée `Asc` + colonne "Colonne" non triable alignée à droite) + 3 `Row` (`Default`, `Hover`, `Selected`), toutes `Selectable=True`.
 
