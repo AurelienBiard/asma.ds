@@ -87,6 +87,8 @@ asma.ds est un design system produit, mobile-first, construit avec une architect
 
 La couleur de marque (`primary`, bleu) porte les actions principales et les états sélectionnés/actifs (boutons, cases cochées, radios, curseurs de switch). Texte et icônes posés sur un fond de marque utilisent `Text/on-brand` / `Icon/on-brand` (blanc dans les deux thèmes), jamais `Text/inverse` qui devient quasi noir en Dark. Les fonds Feedback sont au grade 100 (Light) / 900 (Dark). Les 4 couleurs de statut (`info`/`success`/`warning`/`danger`) sont volontairement saturées — alignées sur la couleur des icônes de statut pour un contraste suffisant en bordure de champ (correction récente : les bordures de validation étaient trop pâles).
 
+En Dark, les surfaces Background suivent une échelle d'élévation : `sunken` (Neutral/950) < `default` (900) < `subtle` (850) < `elevated` (800) — plus c'est élevé, plus c'est clair. `disabled` (800) coïncide volontairement avec `elevated`.
+
 `text-disabled` est identique en apparence des deux côtés du thème mais résulte de deux valeurs Primitive différentes (`Neutral/600` en Light, `Neutral/400` en Dark) — nécessaire après correction d'un bug de contraste où ces valeurs étaient quasiment inversées entre les deux modes.
 
 ## Typography

@@ -448,6 +448,13 @@
     }
   },
   {
+    "name": "Color/Neutral/850",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#172033"
+    }
+  },
+  {
     "name": "Color/Neutral/900",
     "type": "COLOR",
     "byMode": {

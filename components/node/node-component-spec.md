@@ -57,9 +57,12 @@ Ordre de priorité, du plus fort au plus faible :
 
 Liaison entre deux `Handle` (sortie d'un nœud → entrée d'un autre). Représentée par un trait vectoriel, pas par un composant paramétrique : sa géométrie dépend des positions des nœuds. Le ComponentSet `Edge` n'est qu'un **gabarit de style** (courbe de référence 160×64) à copier et à dessiner entre les nœuds.
 
-- **State** (variant) : `Default` / `Selected` / `Error` / `Disabled`. 4 variantes.
+- **Shape** (variant) : `Curve-up` (bézier montante, de bas-gauche à haut-droite), `Curve-down` (bézier descendante, de haut-gauche à bas-droite), `Straight` (droite horizontale) ou `Vertical` (droite verticale, de haut en bas).
+- **State** (variant) : `Default` / `Selected` / `Error` / `Disabled`.
+
+16 variantes (4 Shape × 4 State). Le gabarit montre la forme de chaque tracé ; en usage réel, `Curve-up` / `Curve-down` se choisissent selon que la cible est plus haute ou plus basse que la source, `Straight` quand les deux `Handle` sont alignés sur une même ligne horizontale. `Vertical` pour une liaison verticale (graphe orienté de haut en bas, liaison entre un nœud et un élément placé au-dessus ou en dessous) ; les `Handle` de `Port` étant à gauche et à droite, un tracé vertical suppose des prises posées en haut ou en bas du nœud — non spécifié à ce jour (voir « Non spécifié »).
 - Trait 2px en **tirets 10/10** (`dashPattern` [10, 10]) pour tous les états, extrémités arrondies (`strokeCap: ROUND`). `Default` : `Border/strong`. `Selected` : `Action/primary`. `Error` : `Feedback/Danger/border`. `Disabled` : `Border/disabled` (distingué par la couleur seule, les tirets étant communs).
-- **Type de tracé** (choix par l'usage, pas une propriété) : `Bezier` (défaut, courbe en S, tangentes horizontales — flux gauche → droite), `Step` (angles droits arrondis), `Straight`. Un seul type par graphe.
+- **Famille de tracé** (choix par graphe) : bézier (`Curve-up` / `Curve-down`, courbe en S, tangentes horizontales — flux gauche → droite) ou droit (`Straight` horizontal, `Vertical`) ; `Step` (angles droits arrondis) reste possible mais non gabarité. Un seul type de tracé par graphe : ne pas mélanger courbes et droites.
 - Pas de pointe de flèche par défaut : le sens est porté par l'emplacement des ports (sortie à droite, entrée à gauche).
 - Étiquette d'edge (condition, branche « oui/non ») : une instance de `Tag` (`Neutral`, `Small`) posée au milieu du tracé. Aucun composant dédié.
 
@@ -68,7 +71,7 @@ Liaison entre deux `Handle` (sortie d'un nœud → entrée d'un autre). Représe
 - **Connexion** : glisser depuis un `Handle` de sortie vers un `Handle` d'entrée. Pendant le glisser, les `Handle` compatibles passent en `Hover`, les incompatibles en `Invalid`. Une sortie peut alimenter plusieurs entrées ; une entrée n'accepte qu'une seule `Edge` par défaut (à préciser par produit).
 - **Sélection** : clic sur un `Node` ou une `Edge` → `Selected`. Un seul élément sélectionné par défaut ; Maj+clic pour une sélection multiple.
 - **Déplacement** : glisser l'en-tête déplace le nœud ; les `Edge` suivent. Aucun état visuel dédié au glissement n'est spécifié.
-- **Non spécifié à ce jour** : animation de flux sur une `Edge` en cours d'exécution, mini-carte, zoom/pan, regroupement de nœuds, état `Running` d'un `Node`, comportement responsive (le graphe est un canvas : pas de réorganisation mobile).
+- **Non spécifié à ce jour** : `Handle` en haut / en bas d'un nœud (nécessaire pour un graphe vertical de bout en bout), bézier à tangentes verticales, animation de flux sur une `Edge` en cours d'exécution, mini-carte, zoom/pan, regroupement de nœuds, état `Running` d'un `Node`, comportement responsive (le graphe est un canvas : pas de réorganisation mobile).
 
 ## Usage
 

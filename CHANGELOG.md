@@ -1,5 +1,61 @@
 # Changelog
 
+## 2026-10-07 (3) — Dark : échelle de surfaces Background
+
+- **Primitive** : ajout de `Color/Neutral/850` (`#172033`), cran intermédiaire entre 800 et 900.
+- **Semantic (Dark)** : `Background/sunken` → Neutral/950 (`#020617`), `Background/default` → Neutral/900 (`#0f172a`), `Background/subtle` → Neutral/850 (`#172033`, était une valeur littérale égale à 950), `Background/elevated` → Neutral/800 (`#1e293b`). Light inchangé. Avant, `default`, `subtle` et `sunken` étaient identiques en Dark (`#020617`).
+- Échelle Dark : plus une surface est élevée, plus elle est claire ; `sunken` reste la plus sombre.
+- `Background/disabled` (Dark, Neutral/800) est volontairement identique à `elevated` : collision acceptée. `Text/disabled` y garde 5,71:1.
+- `Border/subtle` (Dark) : Neutral/800 → Neutral/700 (`#334155`) — 1,41:1 sur `elevated`, 1,57:1 sur `subtle`, 1,72:1 sur `default` (il était invisible sur `elevated`, 1:1). Identique à `Border/disabled` (Dark).
+- `Icon/disabled` (Dark) : Neutral/600 → Neutral/500 (`#64748b`) — 3,07:1 sur `disabled` (était 1,93:1). Même valeur que `Icon/tertiary`, comme `Text/disabled` et `Text/tertiary` en Dark.
+- `dist/tokens.css` régénéré (`scripts/build_css.py`).
+
+## 2026-10-07 (2) — STYLE.md (identité graphique, cover)
+
+- **STYLE.md** (nouveau, racine) : identité graphique lisible par les agents — principes, couleur, typographie, cadre de page 1920×1080, composants éditoriaux, 5 doodles par pôle, cover, do/don't. Complète `DESIGN.md` ; aucun nouveau token.
+- **STYLE.md** : section Cover (bandes de doodles inclinées −12,14°, bloc titre aligné bas-droite) et dalle des doodles (cyan `#cffafe` @20 % + ombres intérieures `#18fefe` @8 %) documentées ; variantes `Doodle` : `Pole=ProductDesign` / `DesignSystem` / `UX/UI` / `Tech` / `IA`.
+- Piste mezzotint abandonnée (aucun shader ni cadre de test restant dans le fichier).
+
+## 2026-10-07 — Edge : tracé vertical
+
+- **Edge** : `Shape=Vertical` (droite verticale) ajouté — 16 variantes (4 Shape × 4 State). Les `Handle` de `Port` restant à gauche/droite, un graphe vertical de bout en bout (prises en haut/bas) et les bézier à tangentes verticales ne sont pas spécifiés.
+
+## 2026-10-06 (5) — Timeline horizontale, nouveau composant Image
+
+### Composants
+- **Timeline** : ajout de la propriété `Orientation` (`Vertical` / `Horizontal`) × `State` — 4 variantes au lieu de 2. Horizontale : élément de 240px, rail au-dessus du contenu, connecteur qui s'étire jusqu'à l'élément suivant ; à réserver à 3–5 étapes. Exemple Figma avec les deux orientations.
+- **Image** (nouveau) : `Ratio` (`Square`/`Landscape`/`Wide`) × `State` (`Default`/`Loading`/`Error`), 9 variantes ; `Caption` + `Show-caption`. L'image est le `Fill` du calque `Media` (`Cover` pour les photos, `Contain` pour les logos). Loading au même token que `Skeleton` (`Background/disabled`). Page Figma `↳ Image` + Guidelines. Aucun nouveau token.
+- **decisions.yaml** : ajout de `Image` à `component_selection`.
+- Non spécifié : ratio libre, image en arrière-plan, `srcset`, lightbox ; repli responsive de la timeline horizontale. La liste de logos sera un pattern.
+
+## 2026-10-06 (4) — Nouveau composant Timeline
+
+### Composants
+- **Timeline** (nouveau) : `Timeline-item` (brique atomique, `State` `Default`/`Current`, 2 variantes ; propriétés `Period`, `Title`, `Subtitle`, `Description`, `Show-description`, `Show-connector`) assemblé en liste verticale manuelle. Marqueur 12px + connecteur 2px (`Rail`), `Content` en `Misc/Caption` / `Misc/Label` / `Body/MD`. Pour un historique de faits datés en lecture seule (parcours professionnel, journal d'activité) — distinct de `Step-indicator` (parcours à accomplir). Aucun nouveau token. Page Figma `↳ Timeline` avec exemple d'historique d'expérience (4 postes) et Guidelines.
+- **decisions.yaml** : ajout de `Timeline` à `component_selection`.
+- Non spécifié : tracé horizontal ou alterné, statuts, logo d'organisation, groupement par année.
+
+## 2026-10-06 (3) — Edge : tracés droit et descendant
+
+- **Edge** : ajout de la propriété `Shape` (`Curve-up` / `Curve-down` / `Straight`) × `State` — 12 variantes au lieu de 4. Les variantes existantes deviennent `Shape=Curve-up`.
+
+## 2026-10-06 (2) — Node : corrections
+
+- **Node** : `Body` et `Ports` avaient un fond blanc par défaut qui masquait la bordure (côtés et bas) — fonds retirés. `Icon` est de nouveau une instance imbriquée de `Icon` (exposée) au lieu d'un glyphe brut lié à une propriété Instance swap ; propriété `Icon` supprimée. Ajout de `Show-input` / `Show-output` ; `Icon`, `Status-icon`, `Port-input`, `Port-output` exposés.
+- **Port** : ajout des booléens `Show-label` et `Show-handle`.
+- **Edge** : tirets 10/10 sur tous les états (le tiret 4/4 de `Disabled` est abandonné).
+
+## 2026-10-06 — Nouveaux composants Node, Port, Handle, Edge
+
+### Composants
+- **Node** (nouveau) : carte de graphe de nœuds (workflow, pipeline, agents), 240px — `Header` (`Icon`, `Title`, `Status-icon`), `Body`, `Ports`. `State` (`Default`/`Hover`/`Selected`/`Disabled`) × `Status` (`None`/`Success`/`Error`), 12 variantes. Propriétés `Title`, `Description`, `Show-body`, `Icon` (Instance swap).
+- **Port** (nouveau) : ligne de 24px portant un `Handle` à cheval sur le bord du nœud, `Side` (`Input`/`Output`), propriété `Label`.
+- **Handle** (nouveau) : point de connexion 12px, `State` (`Default`/`Hover`/`Connected`/`Invalid`/`Disabled`), cible réelle 24×24 en code.
+- **Edge** (nouveau) : liaison vectorielle 2px (bézier), gabarit de style `State` (`Default`/`Selected`/`Error`/`Disabled`) — dessinée entre les nœuds, pas étirable.
+- Assemblage manuel (nombre de nœuds/ports/liaisons arbitraire), comme `Table`. Aucun nouveau token. Page Figma `↳ Node` avec exemple de graphe (4 nœuds, 3 liaisons) et Guidelines.
+- **decisions.yaml** : ajout de `Node` à `component_selection`.
+- Non spécifié : animation de flux, état `Running`, mini-carte, zoom/pan, regroupement.
+
 ## 2026-10-05 (4) — Resynchronisation asma.ds
 
 ### Corrections

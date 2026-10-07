@@ -4,7 +4,7 @@
     "type": "COLOR",
     "byMode": {
       "Light": "#ffffff",
-      "Dark": "#020617"
+      "Dark": "#0f172a"
     }
   },
   {
@@ -12,7 +12,7 @@
     "type": "COLOR",
     "byMode": {
       "Light": "#f8fafc",
-      "Dark": "#020617"
+      "Dark": "#172033"
     }
   },
   {
@@ -20,7 +20,7 @@
     "type": "COLOR",
     "byMode": {
       "Light": "#ffffff",
-      "Dark": "#0f172a"
+      "Dark": "#1e293b"
     }
   },
   {
@@ -124,7 +124,7 @@
     "type": "COLOR",
     "byMode": {
       "Light": "#f1f5f9",
-      "Dark": "#1e293b"
+      "Dark": "#334155"
     }
   },
   {
@@ -180,7 +180,7 @@
     "type": "COLOR",
     "byMode": {
       "Light": "#94a3b8",
-      "Dark": "#475569"
+      "Dark": "#64748b"
     }
   },
   {
