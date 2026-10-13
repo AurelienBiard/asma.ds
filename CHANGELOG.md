@@ -1,5 +1,57 @@
 # Changelog
 
+## 2026-10-13 (5) — Entête de l'artefact alignée sur la cover
+
+- Entête (`Cover/preview.html`) de l'artefact asma.ds redessinée d'après la cover Figma (`STYLE.md` §7). Nouvelle section `STYLE.md` §10 qui la décrit. Aucun token modifié.
+
+## 2026-10-13 (4) — Breadcrumb : spec, correctifs et entrée dans le repo
+
+- **Breadcrumb** (composant déjà construit dans Figma, page `↳ Breadcrumb`) : spec `components/breadcrumb/breadcrumb-component-spec.md`, entrée `Breadcrumb` dans `decisions.yaml`, ligne dans le README.
+- **Correctifs Figma** : Text Style `Body/MD` appliqué (texte sans style auparavant : JetBrains Mono 12 en capitales) ; niveaux 1 à 3 = instances exposées de `Link` (les propriétés `Level-1/2/3` sont supprimées, le libellé se modifie sur l'instance) ; page courante en `Text/secondary` au lieu de `Text/tertiary` (contraste Dark d'environ 3,75:1 insuffisant) ; mention « page Portfolio — APropos et Asma.ds » retirée des guidelines.
+- Section d'exemples `Exemples` ajoutée sur la page Figma `↳ Breadcrumb` (fil à 4 niveaux et fil à 2 niveaux au-dessus d'un titre de page).
+- **Comportement écran étroit** : `layoutWrap = WRAP` (gap de lignes `component-2xs`), instance en `FILL` dans son conteneur ; `Level-4` en `FILL`, min. 160px, une ligne avec ellipse. Exemple `Exemple — Mobile, intitulés longs` (frame 360px) : le fil passe sur 3 lignes, la page courante reste visible. Aucun nouveau token ; réduction « … » des niveaux intermédiaires non retenue.
+
+## 2026-10-13 (3) — Toast et Menu-item : espacements hors échelle liés aux tokens
+
+- **Toast** : padding vertical 10px → `Spacing/component-sm` (12px), identique au padding horizontal. Hauteur 42 → 46px (4 variantes).
+- **Menu-item** : `Indent=True`, padding gauche 32px → `Spacing/component-xl` (32px en Desktop, **24px en Mobile**). Le canvas Figma, en mode Mobile par défaut, affiche donc 24px (largeur 172 → 164px) ; ajuster si l'alignement sur 32px doit rester fixe.
+- Reste en attente (catégorie B de l'audit du 2026-10-13) : 2px, 3/7/11/12px, 6px, 10px de Line.
+
+## 2026-10-13 (2) — Figma : liaison des paddings et gaps aux tokens Spacing
+
+- **Audit** des 36 pages de composants (paddings et gaps des auto-layouts). 273 valeurs non liées ou liées à une bibliothèque externe sont désormais liées aux variables locales : 4px → `Spacing/component-2xs`, 8px → `component-xs`, 12px → `component-sm`, 16px → `component-md`. Aucune valeur ni taille de composant modifiée (vérifié par comparaison avant/après sur chaque composant).
+- Pages touchées : Calendar, Card, Command, Duration Input, Line (+ copie dans Tooltip, qui était liée à des variables d'une autre bibliothèque), Menu, Node (Port), Pagination, Selection inputs (Segmented-control), Step Indicator, Table (Header-cell), Text inputs (gaps), Timeline (gap du Rail), Tooltip.
+- **Restent en dur, volontairement** (décision en attente) : 2px (gaps Card/Tag/Chip, padding du Rail de Timeline-item), 3 / 7 / 11 / 12px (paddings verticaux de Chip et des champs de saisie : probable compensation de la bordure de 1px), 6px/2px (Shortcut-badge de Command), 10px (Line, Toast), 32px (indentation du Menu-item) ; gaps de −1px de Popover/Tooltip (chevauchement voulu de la flèche).
+- Non audités : page Icon, Patterns, frames d'exemple, radius et bordures.
+
+## 2026-10-13 — Règle de choix des spacings
+
+- **DESIGN.md** : ajout de la règle `component-*` (dans un composant) vs `section-*` (entre blocs de page), avec les chevauchements de valeurs et les assemblages manuels.
+- **design-system-ai-guidelines.yaml** : `component-2xs` (4px, existant dans `tokens/responsive.json`) ajouté aux rôles responsive ; règles de choix ajoutées. Aucun token créé ni modifié.
+
+## 2026-10-12 (3) — Progress Linear : largeur adaptable
+
+- **Progress Linear** : le `Fill` suit désormais la largeur de l'instance (contrainte `SCALE`, `Track` sans auto-layout, `Fill` à x=0) dans les 12 variantes ; avant, sa largeur était figée en pixels (instance étirée = barre fausse). Aucun nouveau token.
+- Page Figma `↳ Dossier de compétences` : les 16 instances nommées `Skill-level` (instances de `Progress-linear`) passent en `FILL` en largeur dans leur ligne.
+
+## 2026-10-12 (2) — Timeline-item : logo
+
+- **Timeline-item** : ajout de `Show-logo` (Boolean, défaut `false`) et d'une instance exposée de `Logos` en première position de `Content`, au-dessus de `Period` (4 variantes). Remplace le `Slot` puis le `Skeleton` essayés plus tôt le même jour (retirés). Aucun nouveau token.
+- Non ajusté : alignement du `Marker` quand le logo est affiché ; propriété de variante `Property 1` de `Logos` non renommée. Le composant `Logos` (page `↳ Logos`) n'a pas encore de spec dans le repo.
+
+## 2026-10-12 — Nouveau composant Lang switcher
+
+- **Lang switcher** (nouveau) : basé sur `Theme switcher`, pictogrammes remplacés par des codes de langue ISO 639-1 (`FR` / `EN`) en `Body/XS` (Inter 10px). Propriétés `Lang` FR/EN × `Motion` Static/Tension × `State` Default/Hover/Disabled (12 variantes). Track 52×28, cellules 20×20 (comme Theme switcher). Réaction `CHANGE_TO` uniquement (pas de `SET_VARIABLE_MODE`). Page Figma `↳ Lang switcher` + Guidelines. Aucun nouveau token.
+- **decisions.yaml** : ajout de `LangSwitcher` à `component_selection`.
+- **Correctif Hover/Disabled** (Lang switcher et Theme switcher) : le contour 1px était rogné (Track 1px plus grande que le composant). `strokesIncludedInLayout = false`, Track de la taille du composant dans tous les états ; Track 52×28 pour les deux.
+- Choix à confirmer : codes de langue (pas de pays), 2 langues seulement.
+
+## 2026-10-08 — Nouveau composant Blockquote
+
+- **Blockquote** (nouveau) : `Style` `Default` / `Accent` (2 variantes) ; propriétés `Text`, `Citation`, `Show-citation`. Barre de 4px à gauche (`Border/strong` / `Action/primary`), texte `Body/LG`, citation `Body/SM`. Page Figma `↳ Blockquote` (entre `Avatar` et `Button`) + Guidelines. Aucun nouveau token.
+- **decisions.yaml** : ajout de `Blockquote` à `component_selection` ; rattrapage de `Node`, `Timeline` et `Image` (déjà publiés dans l'artefact mais absents du repo).
+- Non spécifié : variante à fond, guillemets décoratifs, avatar de l'auteur, « pull quote » en `Heading`.
+
 ## 2026-10-07 (3) — Dark : échelle de surfaces Background
 
 - **Primitive** : ajout de `Color/Neutral/850` (`#172033`), cran intermédiaire entre 800 et 900.

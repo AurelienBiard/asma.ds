@@ -115,3 +115,7 @@ Format 1920×1080, fond `Background/subtle`. Deux plans :
 - Ligne de sommaire de la cover : masquée, statut à confirmer (supprimer ou conserver).
 - Cadre de page hors format 1920×1080 (mobile, web) : non spécifié.
 - Dossier de compétences : slides non encore spécifiées une par une (Expériences, Contact).
+
+## 10. Entête de l'artefact asma.ds (`Cover/preview.html`)
+
+Déclinaison de la cover (§7) pour l'entête de l'artefact, 960×288 (échelle ½ de la cover) : même fond `Background/subtle`, deux bandes de dalles doodle inclinées de −12° à gauche et au centre, débordant du cadre ; bloc titre en bas à droite, aligné à droite (« DESIGN SYSTEM » Inter Bold 48, sous-titre, « Design system » / « V 1.0, 2026 » en Inter 14). Mêmes règles que la cover : pas de filets ni de cadre blueprint, texte jamais sur une dalle. Seuls deux tracés de doodle sont repris. Fichier publié dans l'artefact (page Cover) ; le repo n'en contient pas de copie.
