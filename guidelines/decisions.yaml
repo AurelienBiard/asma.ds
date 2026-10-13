@@ -21,6 +21,7 @@ component_selection:
   Tag: "Static, non-interactive label for categorization or metadata — read-only, solid fill."
   Chip: "Interactive element for an active user choice (applied filter, selected option, value in a multi-value field) — outlined, never solid fill (reserved for Tag). See patterns/README or Tag page guidelines for the full distinction."
   ThemeSwitcher: "Toggles the active Light/Dark variable mode for the whole file — functional via Figma SET_VARIABLE_MODE reactions, not just a visual state change. Variant Motion=Tension allowed — see foundations.yaml → motion."
+  LangSwitcher: "Binary language toggle (FR/EN) for the interface — ISO 639-1 language codes as typographic labels (Body/XS), no icons, not country codes or flags. Same structure and Motion=Tension rule as ThemeSwitcher; no SET_VARIABLE_MODE. For 3+ languages use Select or Menu."
   Tabs: "Peer-view navigation within the same context."
   Menu: "Command/action list from a trigger."
   Command: "Searchable command selection."
@@ -37,7 +38,12 @@ component_selection:
   DataGrid: "Table-like data with richer interaction/editing/keyboard behavior."
   List: "Repeated content without tabular semantics."
   Card: "Bounded coherent content/action container."
+  Breadcrumb: "Secondary navigation showing the current page's position in a site hierarchy and linking back to parent levels (max 4 levels, Show-level-1..4 booleans). Parent levels reuse the Link component (exposed instances); the current level is Body/MD Text/secondary, non-interactive. Not a replacement for primary navigation (Menu / Tabs) nor for Step-indicator (progress through a flow to complete)."
   Pagination: "Navigation across a bounded sequence of pages of the same data set. Prev/Next are reused Button instances (Type=Ghost, Icon-only=true), not a new control — only Page-item (the numbered selector itself) and the manual assembly are new. Not a single parametric ComponentSet, same reasoning as Table: page count is arbitrary."
+  Node: "Step of a node graph (workflow, pipeline, agent graph) with labelled connection points. Family of Handle (connection dot), Port (labelled row carrying a Handle), Node (card) and Edge (link, drawn as a vector — the ComponentSet is a style template only). Not a Card (a Card is a passive container with no ports), not a Step-indicator (linear journey). Manual assembly, same reasoning as Table: node/port/edge counts are arbitrary."
+  Timeline: "Read-only chronological history of dated facts (work experience, activity log, record history), vertical or horizontal. Atomic Timeline-item assembled manually into a list (arbitrary item count, same reasoning as Table). Not a Step-indicator (progress through a journey still to be completed, interactive), not a Table (comparable data in columns), not a Dot Indicator (8px notification dot)."
+  Image: "Display of a raster or SVG image with a fixed ratio (Square, Landscape, Wide), rounded corners, Loading and Error states and an optional caption. Base for thumbnails, galleries and logo lists (logos use Contain, never stretched). Not an Avatar (a person or entity portrait), not an Image-upload/Dropzone (file input), not an Icon (interface glyph). A logo list is a pattern composed of Image, not a variant of it."
+  Blockquote: "Quotation highlighted within content (a person's words, a testimonial, an excerpt): vertical bar on the left, quote text, optional citation line. Variants Default / Accent (one Accent per view). Not an Alert (system message), not a Card (content container), not a Tooltip (contextual help)."
 
 input_decision:
   dimensions: [value_type, free_form_or_selection, option_count, option_visibility, switching_frequency, single_or_multiple, immediate_or_deferred_effect]

@@ -20,13 +20,14 @@
 - **Title** (Text) : intitulé (poste, événement).
 - **Subtitle** (Text) : organisation, lieu ou complément (« Studio Lumen · Paris »).
 - **Description** (Text) et **Show-description** (Boolean, défaut `true`) : texte libre sous le sous-titre.
+- **Show-logo** (Boolean, défaut `false`) : affiche, tout en haut de `Content` (au-dessus de `Period`), une instance exposée de `Logos` (variante au choix sur l'instance : `Ynov`, `Frinergy`, `CHStudio`, `Innlog`, `OuestFrance`) — logo de l'organisation.
 - **Show-connector** (Boolean, défaut `true`) : trait vertical vers l'élément suivant. À mettre sur `false` pour le **dernier** élément de la liste.
 
 ### Anatomie — Vertical
 
 Conteneur horizontal, largeur 480px dans le composant (s'étire à la largeur de son conteneur), deux enfants :
 - **Rail** (vertical, largeur 16px, `FILL` en hauteur, alignement centré) : `Marker` puis `Connector`. `Marker` : cercle 12×12, `Radius/pill`, bordure 2px, décalé de 2px du haut pour s'aligner sur la première ligne de texte. `Connector` : trait 2px de large, `FILL` en hauteur, `Border/default`, masquable.
-- **Content** (vertical, `FILL`, gap `Spacing/component-2xs`, padding bas `Spacing/component-lg` — espace entre deux éléments) : `Period` (`Misc/Caption` + `Text/tertiary`), `Title` (`Misc/Label` + `Text/primary`), `Subtitle` (`Body/MD` + `Text/secondary`), `Description` (`Body/MD` + `Text/secondary`, masquable).
+- **Content** (vertical, `FILL`, gap `Spacing/component-2xs`, padding bas `Spacing/component-lg` — espace entre deux éléments) : `Period` (`Misc/Caption` + `Text/tertiary`), `Title` (`Misc/Label` + `Text/primary`), `Subtitle` (`Body/MD` + `Text/secondary`), `Description` (`Body/MD` + `Text/secondary`, masquable), et, en première position, `Logo` (instance exposée de `Logos`, masquée par défaut, voir ci-dessous).
 - Gap horizontal Rail/Content : `Spacing/component-sm`.
 
 ### Anatomie — Horizontal
@@ -36,6 +37,12 @@ Conteneur **vertical**, largeur **240px** par élément (`FIXED`), gap `Spacing/
 - **Content** (vertical, `FILL`, gap `Spacing/component-2xs`, padding **droit** `Spacing/component-lg` — espace entre deux éléments) : mêmes `Period`, `Title`, `Subtitle`, `Description` que la version verticale.
 
 À réserver à **3 à 5 étapes** qui tiennent sur une ligne ; au-delà, passer en `Vertical`. Sur écran étroit, une timeline horizontale doit se replier en verticale (ou défiler horizontalement avec un indicateur) — comportement non spécifié à ce jour.
+
+### Logo
+
+Premier enfant de `Content`, au-dessus de `Period` : instance exposée du composant `Logos` (page Figma `↳ Logos`, section Foundation ; 40×40 ; variante par défaut `OuestFrance`), **visible = `Show-logo`** (`false` par défaut), même emplacement dans les 4 variantes ; gap `Spacing/component-2xs` avec `Period`. `alt` = nom de l'organisation (voir `Image`).
+
+Limites connues : le `Marker` du `Rail` reste calé en haut (à hauteur du logo quand il est affiché, non de `Period`) ; la propriété de variante de `Logos` s'appelle encore `Property 1` dans Figma (non renommée).
 
 ### États (marqueur)
 

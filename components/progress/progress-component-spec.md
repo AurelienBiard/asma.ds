@@ -20,7 +20,7 @@ Barre horizontale, 240px de large dans le composant (en usage réel, s'étire à
 - Conteneur vertical, gap 4px, `clipsContent: true`. Deux enfants en `Determinate`, un seul en `Indeterminate`.
 - **Percentage-label** (`Determinate` uniquement) : `Misc/Label` + `Text/primary`, `FILL` en largeur, aligné à droite, au-dessus de la barre.
 - **Track** : 240×8, fond `Action/neutral`, radius 4px (valeur littérale, pas de token), `clipsContent: true`.
-- **Fill** : hauteur 8, fond `Action/primary`, radius 4px. Largeur fixe = pourcentage × largeur du `Track` (50 % → 120px ; 0 % → 0px).
+- **Fill** : hauteur 8, fond `Action/primary`, radius 4px. Largeur = pourcentage × largeur du `Track` (50 % → 120px dans le composant ; 0 % → 0px). **Adaptable en largeur (2026-10-12)** : `Track` en `layoutMode=NONE`, `FILL` en largeur ; `Fill` positionné à x=0 avec contrainte horizontale `SCALE` — redimensionner une instance (ou la passer en `FILL` dans un conteneur) étire le `Track` et le `Fill` garde le même pourcentage.
 
 ### Indeterminate
 

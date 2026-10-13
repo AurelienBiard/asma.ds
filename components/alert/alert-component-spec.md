@@ -14,6 +14,8 @@ Feedback **éphémère**, flottant en superposition — disparaît automatiqueme
 
 Mêmes 4 `Status` et tokens Feedback qu'Alert, mais plus compact (une seule ligne, pas de `Description`). `Action` textuelle optionnelle (`Show-action`, Semi Bold souligné, ex. "Annuler"/"Voir") en plus de `Show-close`. Propriétés `Title`, `Action-label` (Text).
 
+**Espacement du Toast (2026-10-13)** : padding de `Spacing/component-sm` (12px) sur les 4 côtés (le vertical était de 10px en dur) ; gap de `Spacing/component-xs`. Hauteur passée de 42 à 46px.
+
 ## Leçons de construction
 
 - Une propriété texte liée via `componentPropertyReferences` peut réinitialiser le `fontName`/`textDecoration` local du calque au moment du binding — toujours réappliquer le style visuel personnalisé (gras, souligné) **après** avoir terminé tous les bindings de propriétés, jamais avant.

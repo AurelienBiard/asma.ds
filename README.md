@@ -101,6 +101,8 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | Menu-item | ✅ 8 variantes | `components/menu/` |
 | Avatar | ✅ 9 variantes | `components/avatar/` |
 | Theme switcher | ✅ 2 variantes, fonctionnel | `components/theme-switcher/` |
+| Breadcrumb | ✅ 1 composant, 4 niveaux (Show-level-1..4) | `components/breadcrumb/` |
+| Lang switcher | ✅ 12 variantes (FR/EN, typographique) | `components/lang-switcher/` |
 
 ### Patterns (page Figma `↳ Navigation`)
 | Pattern | Statut |

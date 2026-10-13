@@ -303,6 +303,7 @@ spacing:
     section-md:   { mobile: "3xl", desktop: "5xl" }
     section-lg:   { mobile: "5xl", desktop: "7xl" }
     section-xl:   { mobile: "7xl", desktop: "9xl" }
+    component-2xs: { mobile: "2xs", desktop: "2xs" }
     component-xs: { mobile: "xs",  desktop: "xs" }
     component-sm: { mobile: "sm",  desktop: "sm" }
     component-md: { mobile: "md",  desktop: "md" }
@@ -312,6 +313,11 @@ spacing:
     - "Use the smallest token that creates the intended hierarchy."
     - "Prefer Responsive spacing tokens for component and layout decisions."
     - "Avoid arbitrary values."
+    - "component-* = space INSIDE a component or between elements of the same block (padding, internal gap, icon/label gap, rhythm between items of a list). Same density on every breakpoint up to md; only lg and xl grow on Desktop."
+    - "section-* = space BETWEEN page-level blocks (between sections, title-to-content of a section, band margins). Every value changes between Mobile and Desktop."
+    - "A component never contains section-* tokens: if needed inside, it is a page assembly, not a component."
+    - "Values overlap (component-xl and section-sm are both 32 on Desktop; component-lg and section-xs are both 24): choose by the ROLE of the space, never by the number."
+    - "Manual assemblies (Table, Timeline, Filter bar): rhythm between items = component-*; space between the whole assembly and its surroundings = section-*."
 
 # -----------------------------------------------------------------------------
 # 8. RADIUS (Primitive + Responsive)

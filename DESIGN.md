@@ -99,6 +99,12 @@ Police **Inter** pour le texte d'interface. **JetBrains Mono** (famille Alternat
 
 Échelle en t-shirt sizing (2xs → 9xl), pas numérique. Les composants interactifs (bouton, champ, case à cocher) utilisent presque exclusivement `xs`, `sm` et `md` — les échelles plus grandes (`lg` et au-delà) sont réservées à la mise en page, pas aux composants eux-mêmes.
 
+**`Spacing/component-*` ou `Spacing/section-*` ?** On choisit selon ce que l'espace sépare, jamais selon sa valeur (elles se chevauchent : `component-xl` et `section-sm` valent tous deux 32 en Desktop ; `component-lg` et `section-xs`, 24).
+- `component-*` (2xs → xl, 4 → 32px) : espace **dans** un composant ou entre éléments d'un même bloc — paddings, gaps internes, espace icône/label, rythme entre items d'une liste. Identique en Mobile et Desktop jusqu'à `md` ; seuls `lg` (20 → 24) et `xl` (24 → 32) grandissent.
+- `section-*` (xs → xl, 20 → 128px) : espace **entre** blocs de page — entre sections, entre le titre d'une section et son contenu, marges d'un bandeau. Toutes les valeurs changent entre Mobile et Desktop.
+- Un composant ne contient jamais de `section-*` : si on en a besoin à l'intérieur, c'est un assemblage de page, pas un composant.
+- Assemblages manuels (`Table`, `Timeline`, `Filter bar`) : rythme entre items = `component-*` ; espace entre l'assemblage et son environnement = `section-*`.
+
 ## Shapes
 
 Un seul rayon de coin pour tous les contrôles interactifs (`rounded.control`, 4px) — pas de variation par composant. Les indicateurs ronds (Dot Indicator, Radio) utilisent un rayon à 50% de leur propre taille plutôt que ce token, puisqu'ils doivent rester des cercles parfaits quelle que soit leur taille.

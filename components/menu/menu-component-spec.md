@@ -4,7 +4,7 @@ Item de navigation réutilisable (menu, sidebar), avec support de sous-menu et d
 
 ## Propriétés
 
-`State` = `Default`/`Hover`/`Active`/`Disabled` × `Indent` = `False`/`True`, 8 variantes. `Active` = fond `Action/secondary-active`, `Hover` = `Action/ghost-hover`. `Indent=True` décale le padding gauche à 32px (item de sous-menu).
+`State` = `Default`/`Hover`/`Active`/`Disabled` × `Indent` = `False`/`True`, 8 variantes. `Active` = fond `Action/secondary-active`, `Hover` = `Action/ghost-hover`. `Indent=True` décale le padding gauche à `Spacing/component-xl` (item de sous-menu) : 32px en Desktop, 24px en Mobile (avant le 2026-10-13 : 32px en dur).
 
 `Leading-icon`, `Expand-icon` (chevron `CaretDown`, signale un sous-menu dépliable) : instances imbriquées du wrapper `Icon`, `isExposedInstance = true` — exposées pour permettre de changer le pictogramme directement depuis le panneau de propriétés d'une instance (pas besoin de Swap instance manuel).
 
