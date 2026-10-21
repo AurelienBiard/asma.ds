@@ -123,8 +123,8 @@
     "name": "Border/subtle",
     "type": "COLOR",
     "byMode": {
-      "Light": "#f1f5f9",
-      "Dark": "#334155"
+      "Light": "#cbd5e1",
+      "Dark": "#475569"
     }
   },
   {

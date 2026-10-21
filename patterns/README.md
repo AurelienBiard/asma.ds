@@ -24,6 +24,7 @@ Built patterns (see Figma page "Navigation", under the top-level "Patterns" sect
 - Topbar (SaaS) — global search/notifications/account bar, complements Sidebar. Uses a real Avatar instance (Type=Initials, Size=Medium).
 - Site-nav (vitrine) — flat marketing site navigation with CTA, no user account context
 - Filter bar — search + filters + applied-filter chips above a data set (Table, list). Composition of Search, Select, Chip, Button; no new component. Spec: `patterns/filter-bar/filter-bar-pattern-spec.md`.
+- Skill — ligne de compétence (libellé, note, outils, description), ComponentSet Device=Desktop/Mobile, issue des sections Cartographie et Outils & technologies du Portfolio. Spec: `patterns/skill/skill-pattern-spec.md`.
 
 Pattern specs should contain: Purpose, Use when, Do not use when, Components,
 Structure, Interaction flow, States, Validation/errors, Accessibility,

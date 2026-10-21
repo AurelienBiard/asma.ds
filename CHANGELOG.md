@@ -1,5 +1,34 @@
 # Changelog
 
+## 2026-10-21 — Timeline : suivi du scroll
+
+- `Timeline` : nouveau comportement documenté (section « Suivi du scroll » + « États (connecteur) » dans `timeline-component-spec.md`). Ligne de repère sur le marqueur du premier élément, actif = dernier marqueur au-dessus de la ligne, connecteur rempli en continu en `Action/primary` et reste plein une fois passé, anneau sur les marqueurs passés. Prototype validé, aucun changement Figma ni token.
+
+## 2026-10-15 (3) — Skill Desktop : Progress dans le header
+
+- `Skill` `Device=Desktop` : `Progress` déplacée dans le `Header`, entre `Label` et `Note` (120px fixe) ; `Label` tronqué. Mobile inchangé (barre sous le header). `Note` : `minWidth` 150px (Desktop et Mobile). Spec et guidelines Figma mises à jour.
+
+## 2026-10-15 (2) — Skill Mobile : libellé tronqué
+
+- `Skill` `Device=Mobile` : `Header` en ligne (flex row, comme Desktop), `Label` en `FILL` tronqué sur une ligne (ellipse), `Note` à droite. Spec `skill-pattern-spec.md` et guidelines Figma mises à jour.
+
+## 2026-10-15 — Border/subtle : contraste rehaussé
+
+- `Border/subtle` Light : Neutral/100 → **Neutral/300** (`#cbd5e1`) — 1.48:1 sur `default`, 1.42:1 sur `subtle` (auparavant 1.1:1 et 1.05:1, presque invisible). Neutral/200 écarté : identique à `Border/disabled`.
+- `Border/subtle` Dark : Neutral/700 → **Neutral/600** (`#475569`) — 2.36:1 sur `default`, 2.15:1 sur `subtle`, 1.93:1 sur `elevated` (auparavant 1.72, 1.57, 1.41).
+- Reste en dessous de `Border/default` (Neutral/500). Appliqué dans Figma (variable Semantic), `tokens/semantic.json` et `dist/tokens.css` régénéré. Affecte tout ce qui utilise `Border/subtle` (Table, Skill, séparateurs…).
+
+## 2026-10-14 (2) — Timeline-item : outils (Show-tools)
+
+- `Timeline-item` : bloc `Tools` sous `Description` (booléen `Show-tools`, `false` par défaut) avec `Tool-1..5` (`Tag` Neutral Medium, exposés, `Show-tool-1..5`), comme sur le pattern `Skill`. 4 variantes. Spec `timeline-component-spec.md` mise à jour.
+
+## 2026-10-14 — Pattern Skill (ComponentSet Mobile/Desktop)
+
+- Nouveau **pattern `Skill`** (page Figma `↳ Skill`, section `💻 PATTERNS`) : ligne de compétence couvrant les sections « Cartographie de compétences » et « Outils & technologies » de `About / Desktop`, au style de la Row « Outils & technologies » (vertical, bordure basse `Border/subtle`).
+- ComponentSet `Device=Desktop|Mobile` ; propriétés `Label`, `Score`, `Description` (Text), `Show-score`, `Show-level`, `Show-progress`, `Show-description`, `Show-tools`, `Show-tool-1..5` (Boolean) ; instances exposées `Level` (Tag), `Progress` (Progress-linear), `Tool-1..5` (Tag). La note = Score + Level + Progress.
+- Spec `patterns/skill/skill-pattern-spec.md`, entrée `Skill` dans `decisions.yaml`, ligne dans `patterns/README.md`. Aucun token nouveau. Page Figma : sections Skill, Exemples (cartographie, outils, complète, mobile) et Guidelines.
+- Non fait : remplacement des lignes existantes de la page Portfolio par des instances de `Skill`.
+
 ## 2026-10-13 (5) — Entête de l'artefact alignée sur la cover
 
 - Entête (`Cover/preview.html`) de l'artefact asma.ds redessinée d'après la cover Figma (`STYLE.md` §7). Nouvelle section `STYLE.md` §10 qui la décrit. Aucun token modifié.

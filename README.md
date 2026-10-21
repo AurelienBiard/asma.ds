@@ -110,6 +110,7 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | Sidebar (Mode=Expanded/Collapsed) | ✅ — `patterns/navigation/sidebar-pattern-spec.md` |
 | Topbar (SaaS) | ✅ |
 | Site-nav (vitrine) | ✅ |
+| Skill (Device=Desktop/Mobile) | ✅ — `patterns/skill/skill-pattern-spec.md` |
 
 Voir `guidelines/decisions.yaml` pour le guide de sélection de composant. Historique des évolutions : `CHANGELOG.md`.
 
