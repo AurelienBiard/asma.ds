@@ -157,6 +157,7 @@
   --color-background-inverse: #0f172a;
   --color-background-brand: #152ad3;
   --color-background-disabled: #f1f5f9;
+  --color-background-strong: #e2e8f0;
   --color-text-primary: #0f172a;
   --color-text-secondary: #334155;
   --color-text-tertiary: #475569;
@@ -262,6 +263,7 @@
   --color-background-inverse: #f8fafc;
   --color-background-brand: #3f51e5;
   --color-background-disabled: #1e293b;
+  --color-background-strong: #334155;
   --color-text-primary: #f8fafc;
   --color-text-secondary: #cbd5e1;
   --color-text-tertiary: #94a3b8;

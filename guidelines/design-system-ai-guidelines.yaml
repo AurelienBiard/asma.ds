@@ -225,7 +225,7 @@ color:
       instruction: "Check actual foreground/background contrast against WCAG — don't assume a darker step is automatically accessible."
 
   semantic_roles:
-    Background: [default, subtle, elevated, sunken, inverse, brand, disabled]
+    Background: [default, subtle, elevated, sunken, inverse, brand, disabled, strong]
     Text: [primary, secondary, tertiary, disabled, inverse, brand, link]
     Border: [default, subtle, strong, focus, disabled]
     Icon: [primary, secondary, tertiary, disabled, inverse, brand, link]

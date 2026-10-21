@@ -56,6 +56,14 @@
     }
   },
   {
+    "name": "Background/strong",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#e2e8f0",
+      "Dark": "#334155"
+    }
+  },
+  {
     "name": "Text/primary",
     "type": "COLOR",
     "byMode": {

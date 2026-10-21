@@ -46,7 +46,7 @@ color:
   primitive_families: {Blue: "#152AD3 at 600", Cyan: "#0891B2 at 600", Green: "#16A34A at 600", Amber: "#D97706 at 600", Red: "#DC2626 at 600", Neutral: "#475569 at 600"}
   scale: "50–950; Neutral also has 0."
   semantic_roles:
-    Background: [default, subtle, elevated, sunken, inverse, brand, disabled]
+    Background: [default, subtle, elevated, sunken, inverse, brand, disabled, strong]
     Text: [primary, secondary, tertiary, disabled, inverse, brand, link, on-brand]
     Border: [default, subtle, strong, focus, disabled]
     Icon: [primary, secondary, tertiary, disabled, inverse, brand, link, on-brand]

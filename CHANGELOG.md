@@ -1,8 +1,13 @@
 # Changelog
 
+## 2026-10-21 (2) — Tag Neutral : nouveau token Background/strong
+
+- Nouveau token Semantic **`Background/strong`** : Light → Neutral/200 (`#e2e8f0`), Dark → Neutral/700 (`#334155`). `--color-background-strong` dans `dist/tokens.css` (régénéré).
+- `Tag` `Type=Neutral` : fond `Action/neutral` → `Background/strong` (contre la page : 1,10 → 1,23:1 Light, 1,22 → 1,72:1 Dark ; texte `Text/primary` 14,5:1 / 9,9:1). Statuts et Brand inchangés. Spec Tag, `foundations.yaml`, `design-system-ai-guidelines.yaml` et `DESIGN.md` mis à jour.
+
 ## 2026-10-21 — Timeline : suivi du scroll
 
-- `Timeline` : nouveau comportement documenté (section « Suivi du scroll » + « États (connecteur) » dans `timeline-component-spec.md`). Ligne de repère sur le marqueur du premier élément, actif = dernier marqueur au-dessus de la ligne, connecteur rempli en continu en `Action/primary` et reste plein une fois passé, anneau sur les marqueurs passés. Prototype validé, aucun changement Figma ni token.
+- `Timeline` : nouveau comportement documenté (section « Suivi du scroll » + « États (connecteur) » dans `timeline-component-spec.md`). Ligne de repère fixe à 36 % de la hauteur de la fenêtre (décision du 2026-10-21, plus calée sur le premier marqueur), actif = dernier marqueur au-dessus de la ligne (aucun actif tant qu'aucun n'a atteint la ligne), connecteur rempli en continu en `Action/primary` et reste plein une fois passé, anneau sur les marqueurs passés. Seul l'élément actif porte le rendu `Current` (pas d'état `Active` distinct). Aucun changement Figma ni token.
 
 ## 2026-10-15 (3) — Skill Desktop : Progress dans le header
 

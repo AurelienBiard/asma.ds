@@ -52,7 +52,7 @@ Limites connues : le `Marker` du `Rail` reste calé en haut (à hauteur du logo 
 ### États (marqueur)
 
 - **Default** : fond `Background/elevated`, bordure `Border/strong`.
-- **Current** : fond et bordure `Action/primary` (cercle plein). Un seul `Current` par liste, normalement en tête.
+- **Current** : fond et bordure `Action/primary` (cercle plein). Un seul `Current` par liste, normalement en tête ; avec le suivi du scroll, c'est l'élément actif qui le porte (voir « Suivi du scroll »).
 
 Le texte garde les mêmes styles dans les deux états : le marqueur seul porte la distinction (pas de gras ni de couleur de texte supplémentaires).
 
@@ -79,20 +79,20 @@ Instances de `Timeline-item` dans une frame auto-layout (gap 0) : **empilées ve
 
 Prototype validé le 2026-10-21. À appliquer à toute `Timeline` de plus d'un écran.
 
-- **Ligne de repère** : ligne horizontale imaginaire, fixe dans la fenêtre, placée par défaut sur le **centre du marqueur du premier élément** au chargement de la page (à scroll 0). Elle ne bouge pas quand on défile ; ce sont les éléments qui la traversent. Elle est invisible en production.
-- **Élément actif** : le dernier élément dont le centre du marqueur est au-dessus ou sur la ligne de repère. Au chargement, c'est donc le premier. Un seul élément actif à la fois ; au bas de la liste, c'est le dernier. L'actif prend le rendu de marqueur `Current` (fond et bordure `Action/primary`).
+- **Ligne de repère** : ligne horizontale imaginaire, fixe dans la fenêtre, à **36 % de la hauteur de la fenêtre** (décision du 2026-10-21 : valeur fixe, et non plus calée sur le premier marqueur, la `Timeline` n'étant pas toujours en haut de page). Elle ne bouge pas quand on défile ; ce sont les éléments qui la traversent. Elle est invisible en production.
+- **Élément actif** : le dernier élément dont le centre du marqueur est au-dessus ou sur la ligne de repère. Tant qu'aucun marqueur n'a atteint la ligne (liste plus bas dans la page), aucun élément n'est actif. Un seul élément actif à la fois ; au bas de la liste, c'est le dernier. L'actif prend le rendu de marqueur `Current` (fond et bordure `Action/primary`).
 - **Marqueurs passés** : les éléments au-dessus de l'actif gardent un fond `Background/elevated` et une bordure `Action/primary` (anneau), pour garder la trace du chemin parcouru. Les éléments en dessous de l'actif restent `Default`.
 - **Connecteur, remplissage continu** : le connecteur de chaque élément se remplit en `Action/primary` à mesure que la ligne de repère le parcourt, du haut vers le bas, proportionnellement à sa hauteur. Il est vide tant que la ligne n'a pas atteint son marqueur, plein une fois qu'elle l'a dépassé. **Un connecteur passé reste plein** ; il ne redevient vide qu'en remontant. Le connecteur du dernier élément reste masqué.
 - **Horizontale** : même logique sur l'axe horizontal (scroll horizontal du conteneur), non prototypée.
 - **Transitions** : le remplissage suit le scroll sans animation propre (aucun délai). Les changements d'état du marqueur (`Default` ↔ `Current`) durent `motion-duration-scale-sm` (240ms) avec `motion-easing-scale-standard`. `prefers-reduced-motion` : plus de transition de marqueur, le remplissage reste (il est lié au scroll, pas à l'animation).
 - **Clic ou Entrée** sur un élément : fait défiler la page pour amener son marqueur sur la ligne de repère.
-- **Réglage** : position de la ligne en % de la hauteur de la fenêtre (36 % dans le prototype, soit le premier marqueur). Au-delà de ce défaut, ne la déplacer que pour tenir compte d'une barre fixe en haut de page.
+- **Réglage** : position de la ligne en % de la hauteur de la fenêtre (36 % par défaut). Ne la déplacer que pour tenir compte d'une barre fixe en haut de page.
+- **Current et élément actif** (décision du 2026-10-21) : dans une `Timeline` avec suivi du scroll, seul l'élément actif porte le rendu `Current`. Aucun autre élément n'est marqué « en cours » (`State=Current` statique), sauf demande expresse ; l'information « en cours » reste portée par le texte de `Period` (« 2025 – Aujourd'hui »). Pas d'état `Active` distinct.
 
 Hors de ce comportement, la `Timeline` reste en lecture seule (voir ci-dessus) : le suivi du scroll n'ajoute ni état Hover ni Focus au marqueur.
 
 #### Points à valider
 
-- L'actif réutilise `State=Current` (même rendu) : `Current` garde sa définition « poste en cours » pour la donnée, mais le suivi du scroll applique le même rendu à l'élément actif. Si les deux doivent coexister à l'écran, créer un état `Active` distinct reste à décider.
 - Anneau des marqueurs passés : choix par défaut, non encore reporté dans Figma.
 - Connecteur coloré en `Action/primary` : aucun token dédié créé.
 

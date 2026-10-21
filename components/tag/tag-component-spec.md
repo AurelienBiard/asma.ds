@@ -4,12 +4,16 @@
 
 ## Propriétés
 
-- `Type` (variant) : `Neutral`/`Brand`/`Info`/`Success`/`Warning`/`Danger`. Neutral/Brand en fond plein (`Action/neutral`/`Action/primary`) ; les 4 statuts en fond teinté (`Feedback/{statut}/background`, sans bordure).
+- `Type` (variant) : `Neutral`/`Brand`/`Info`/`Success`/`Warning`/`Danger`. Neutral/Brand en fond plein (`Background/strong`/`Action/primary`) ; les 4 statuts en fond teinté (`Feedback/{statut}/background`, sans bordure).
 - `Size` (variant) : `Large`/`Medium`/`Small`. Padding/gap en tokens `Spacing/component-md-xs-2xs` selon la taille ; Text Style : **`Small` → `Body/SM`, `Medium` → `Body/MD`, `Large` → `Body/LG`** (corrigé le 2026-09-25 — le mapping précédent était erroné : Large pointait vers Body/SM, Medium vers Misc/Label, Small vers Body/XS). Gap le plus fin (Medium/Small) : **2px littéral**, aucun token n'existe à ce palier.
 - `Label` (Text).
 - `Show-icon-leading`/`Show-icon-trailing` (Boolean, défaut `true` tous les deux) : icônes indépendantes, instances directes du wrapper `Icon` (même montage que Button), colorées identiquement au texte.
 
 18 variantes (`Type` × `Size`).
+
+## Fond Neutral (2026-10-21)
+
+Le Tag `Neutral` passe de `Action/neutral` (Neutral/100 Light, 1,10:1 contre la page) à **`Background/strong`** (nouveau token : Neutral/200 en Light, Neutral/700 en Dark), plus détaché de la page. Texte inchangé (`Text/primary`) : 14,5:1 en Light, 9,9:1 en Dark. Les Tags de statut sont inchangés. `Action/neutral` garde son rôle d'action (boutons Neutral, hovers).
 
 ## Correction de contraste (impact système)
 
