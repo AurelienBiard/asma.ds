@@ -162,8 +162,7 @@ component_consumption:
 icons:
   library: Phosphor
   format: Outline
-  weight: Thin
-  weight_rule: "Weight=Thin is systematic and takes priority for every UI icon. Any other weight (Light, Regular, Bold, Fill, Duotone) is an exceptional case that must be justified and documented in the component spec. Never mix weights in one interface without a documented exception."
+  weight: Regular
   rule: "Icons are component instances, not variables."
 
 figma_scopes:

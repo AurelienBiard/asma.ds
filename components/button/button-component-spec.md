@@ -10,7 +10,7 @@ Une seule taille (MD), hauteur fixe 40px. Libellé en Text Style `Misc/Label` �
 
 - **Type** (variant) : `Primary` / `Outlined` / `Neutral` / `Ghost` — l'ancien Type `Link` a été retiré : utiliser le composant `Link` (`components/link/`) pour la navigation.
 - **State** (variant) : `Default` / `Hover` / `Active` / `Disabled` / `Focus`
-- **Icon-leading**, **Icon-trailing** : instances directes du composant `Icon` (16×16, `Format=Outline`, `Weight=Regular` à ce jour, cible `Thin`) — pas de Slot (retiré, plus de bénéfice une fois la recommandation de remplacement passée à "supprimer + glisser depuis Assets").
+- **Icon-leading**, **Icon-trailing** : instances directes du composant `Icon` (16×16, `Format=Outline`, `Weight=Regular`) — pas de Slot (retiré, plus de bénéfice une fois la recommandation de remplacement passée à "supprimer + glisser depuis Assets").
 - **Show-icon-leading**, **Show-icon-trailing** (Boolean, défaut `false`) : visibilité des icônes.
 - **Show-label** (Boolean, défaut `true`) : visibilité du label.
 - **Label** (Text, défaut `"Enregistrer"`) : contenu du label, éditable par instance.
