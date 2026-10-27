@@ -10,7 +10,7 @@ Bascule le mode de la collection **Semantic** (Light ↔ Dark) pour tout le fich
 
 - **Track** : rail horizontal 52×28, padding `Spacing/component-2xs` (4px) sur les 4 côtés, gap `Spacing/component-2xs`, fond `Action/secondary-active`, radius `Radius/card`.
 - **Cell-active** / **Cell-inactive** : deux cellules 20×20, radius `Radius/control`. La cellule active a le fond `Background/elevated` ; l'inactive est transparente.
-- **Sun-icon** / **Moon-icon** : instances du wrapper `Icon` (`Size=Small`, rendu 12×12, `Format=Outline`, `Weight=Regular`), pictogrammes `Sun` et `Moon`, couleur `Icon/primary`.
+- **Sun-icon** / **Moon-icon** : instances du wrapper `Icon` (`Size=Small`, rendu 12×12, `Format=Outline`, `Weight=Light`), pictogrammes `Sun` et `Moon`, couleur `Icon/primary`.
 
 ## Propriétés du composant Figma
 

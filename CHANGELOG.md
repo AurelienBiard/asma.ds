@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-27 (4) — Icônes : graisse Light par défaut
+
+- Convention : les icônes d'interface (Phosphor, `Format=Outline`) utilisent **`Weight=Light`** par défaut (avant : Regular). Mis à jour dans `foundations.yaml` (`icons.weight`), le guide IA et les specs Icon, Button, Theme switcher et Pagination.
+- Figma : toutes les instances `Weight=Regular` passées en `Weight=Light` (composants, patterns, Userflow, Prototypes, Dossier de compétences, Portfolio) via la propriété Instance-swap du wrapper `Icon` ; défaut du composant `Icon` = `Acorn` Light ; glyphes Checkbox, PasswordInput et Line migrés directement. Couleurs liées aux variables conservées.
+- Inchangés : 32 icônes `Weight=Thin` et 2 `Fill` déjà présentes dans Dossier de compétences / Portfolio.
+
 ## 2026-10-27 (3) — Voile (scrim) : token Shadow/scrim et règle (proposition)
 
 - **1 nouveau token Semantic** `Shadow/scrim` : Light → `Color/Shadow/35` (35 %), Dark → `Color/Shadow/60` (60 %). Aucune nouvelle Primitive. `--color-shadow-scrim`. Portée Figma : remplissages (frame / forme), pas un Effect Style.

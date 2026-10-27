@@ -177,7 +177,7 @@ component_consumption:
 icons:
   library: Phosphor
   format: Outline
-  weight: Regular
+  weight: Light
   rule: "Icons are component instances, not variables."
 
 figma_scopes:
