@@ -469,5 +469,29 @@
       "Light": "#ffffff",
       "Dark": "#ffffff"
     }
+  },
+  {
+    "name": "Shadow/subtle",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#0206171a",
+      "Dark": "#02061759"
+    }
+  },
+  {
+    "name": "Shadow/strong",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#02061733",
+      "Dark": "#02061799"
+    }
+  },
+  {
+    "name": "Shadow/scrim",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#02061759",
+      "Dark": "#02061799"
+    }
   }
 ]

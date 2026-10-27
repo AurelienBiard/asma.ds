@@ -10,7 +10,7 @@ architecture:
     role: "Source values; no theme or breakpoint variation."
   Semantic:
     modes: [Light, Dark]
-    contains: [Background, Text, Border, Icon, Action, Feedback]
+    contains: [Background, Text, Border, Icon, Action, Feedback, Shadow]
     role: "Color meaning/context layer."
   Responsive:
     modes: [Mobile, Desktop]
@@ -50,6 +50,7 @@ color:
     Text: [primary, secondary, tertiary, disabled, inverse, brand, link, on-brand]
     Border: [default, subtle, strong, focus, disabled]
     Icon: [primary, secondary, tertiary, disabled, inverse, brand, link, on-brand]
+    Shadow: [subtle, strong, scrim]
     Action: [primary, primary-hover, primary-active, secondary, secondary-hover, secondary-active, destructive, destructive-hover, destructive-active, neutral, neutral-hover, neutral-active, ghost-hover, ghost-active]
     Feedback:
       Info: [background, border, icon, text]
@@ -116,6 +117,20 @@ spacing:
     component-lg: {mobile: lg, desktop: xl}
     component-xl: {mobile: xl, desktop: 3xl}
 
+elevation:
+  status: "Proposal 2026-10-27 — token and Effect Styles created; component mapping and Dark surface rules pending validation."
+  levels: {0: "flat, no effect", 1: "Raised — Card", 2: "Floating — Popover, Menu, Select, Tooltip", 3: "Overlay — Toast", 4: "Panel — Drawer", 5: "Modal — Dialog, Command"}
+  effect_styles: "Figma Effect Styles Elevation/1..5, two drop shadows each (x y blur spread): 1 [0 1 3 0][0 1 2 -1] ; 2 [0 4 8 -2][0 2 4 -2] ; 3 [0 8 16 -6][0 3 6 -4] ; 4 [0 16 28 -10][0 6 12 -8] ; 5 [0 32 64 -16][0 12 24 -12]. Level is carried by offset/blur/spread, not opacity."
+  color_tokens: {"Shadow/subtle": "levels 1-2 — Color/Shadow/10 (Light), Color/Shadow/35 (Dark)", "Shadow/strong": "levels 3-5 — Color/Shadow/20 (Light), Color/Shadow/60 (Dark)", "Shadow/scrim": "scrim behind modal overlays (levels 4-5) — Color/Shadow/35 (Light), Color/Shadow/60 (Dark)"}
+  primitives: "Color/Shadow/{10,20,35,60} = Color/Neutral/950 (#020617) at N % opacity, stored as 8-digit hex. Exception to the 50-950 color scale: the step is the opacity percentage."
+  dark_mode: "Shadows are barely visible on dark surfaces: Dark relies on lighter surfaces (Background/elevated, strong) plus Border/subtle 1px; a scrim (Shadow/scrim) sits behind modal overlays."
+  scrim:
+    token: "Shadow/scrim — Light = Color/Shadow/35 (35 %), Dark = Color/Shadow/60 (60 %). Fill of a full-viewport layer; never an Effect Style."
+    use_when: "Only behind modal overlays that block the page: Drawer (level 4), Dialog and Command (level 5). Drawer is modal when it overlays the page; a persistent side panel that pushes content has no scrim."
+    do_not_use: "No scrim for levels 1-3 (Card, Popover, Menu, Select, Tooltip, Toast): they are non-blocking."
+    stacking: "Page content < scrim < overlay. The overlay carries its own elevation level (4 or 5). One scrim at a time; a second modal opened on top replaces it, it does not add a second layer."
+    behavior: "Covers the whole viewport including headers. Click on the scrim dismisses the overlay unless the overlay is blocking (destructive confirmation, unsaved form); Escape follows the same rule. Content under the scrim becomes inert (focus trapped in the overlay). Appear/disappear with existing Motion tokens, opacity only."
+    accessibility: "Scrim is decorative (aria-hidden); the dialog semantics (role, aria-modal, focus trap) live on the overlay."
 radius:
   responsive: {control: {mobile: 2xs, desktop: 2xs}, card: {mobile: xs, desktop: xs}, pill: {mobile: 999, desktop: 999}}
 border:

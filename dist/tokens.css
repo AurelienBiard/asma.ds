@@ -69,6 +69,10 @@
   --color-neutral-900: #0f172a;
   --color-neutral-950: #020617;
   --color-neutral-0: #ffffff;
+  --color-shadow-10: #0206171a;
+  --color-shadow-20: #02061733;
+  --color-shadow-35: #02061759;
+  --color-shadow-60: #02061799;
   --font-family-scale-title: "Inter";
   --font-family-scale-body: "Inter";
   --font-family-scale-alternate: "JetBrains Mono";
@@ -209,6 +213,9 @@
   --color-action-ghost-hover: #f1f5f9;
   --color-action-ghost-active: #e2e8f0;
   --color-text-on-brand: #ffffff;
+  --color-shadow-subtle: #0206171a;
+  --color-shadow-strong: #02061733;
+  --color-shadow-scrim: #02061759;
 
   /* Responsive — Mobile (base, mobile-first) */
   --font-size-display-lg: 48px;
@@ -315,6 +322,9 @@
   --color-action-ghost-hover: #1e293b;
   --color-action-ghost-active: #334155;
   --color-text-on-brand: #ffffff;
+  --color-shadow-subtle: #02061759;
+  --color-shadow-strong: #02061799;
+  --color-shadow-scrim: #02061799;
 }
 
 @media (min-width: 768px) {

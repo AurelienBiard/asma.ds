@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-10-27 (3) — Voile (scrim) : token Shadow/scrim et règle (proposition)
+
+- **1 nouveau token Semantic** `Shadow/scrim` : Light → `Color/Shadow/35` (35 %), Dark → `Color/Shadow/60` (60 %). Aucune nouvelle Primitive. `--color-shadow-scrim`. Portée Figma : remplissages (frame / forme), pas un Effect Style.
+- Règle (`foundations.yaml` → `elevation.scrim`) : voile uniquement derrière les overlays modaux bloquants (niveaux 4–5 : Drawer modal, Dialog, Command) ; aucun voile pour les niveaux 1–3 ; ordre contenu < voile < overlay ; un seul voile à la fois ; clic sur le voile ou Échap ferme sauf overlay bloquant ; contenu sous le voile inerte ; voile décoratif (`aria-hidden`) ; apparition en opacité avec les tokens Motion existants.
+- Page Figma `↳ Elevation` : aperçus Light / Dark du voile sous un Dialog (niveau 5).
+- **À valider** : opacités 35 % (Light) / 60 % (Dark), Drawer toujours modal ou non.
+
+## 2026-10-27 (2) — Elevation : 5 niveaux et tokens Shadow (proposition)
+
+- Page Figma `↳ Elevation` (Foundation) : 5 Effect Styles `Elevation/1` à `Elevation/5` (deux ombres chacun) et aperçus Light / Dark. Niveaux : 1 Raised (Card), 2 Floating (Popover, Menu, Select, Tooltip), 3 Overlay (Toast), 4 Panel (Drawer), 5 Modal (Dialog, Command).
+- **4 nouvelles Primitive** `Color/Shadow/10`, `/20`, `/35`, `/60` = `Color/Neutral/950` (`#020617`) à N % d'opacité (hex à 8 chiffres : `#0206171a`, `#02061733`, `#02061759`, `#02061799`). Dérogation assumée à l'échelle 50–950 : le palier est le pourcentage d'opacité.
+- **2 nouveaux tokens Semantic** : `Shadow/subtle` (Light → `Color/Shadow/10`, Dark → `/35` ; niveaux 1–2) et `Shadow/strong` (Light → `/20`, Dark → `/60` ; niveaux 3–5). Portée Figma `EFFECT_COLOR`. CSS : `--color-shadow-subtle`, `--color-shadow-strong` (`dist/tokens.css` régénéré). Nouveau groupe `Shadow` dans `foundations.yaml` (`semantic_roles`) et section `elevation`.
+- Les Effect Styles sont liés aux tokens ; le niveau est porté par le décalage, le flou et l'étalement (niveaux 3–5 resserrés pour compenser l'opacité unique).
+- **À valider** : rattachement des composants aux niveaux, surfaces Dark par niveau, scrim des overlays. Aucun composant n'utilise encore ces styles.
+
 ## 2026-10-21 (2) — Tag Neutral : nouveau token Background/strong
 
 - Nouveau token Semantic **`Background/strong`** : Light → Neutral/200 (`#e2e8f0`), Dark → Neutral/700 (`#334155`). `--color-background-strong` dans `dist/tokens.css` (régénéré).

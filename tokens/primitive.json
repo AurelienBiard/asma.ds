@@ -476,6 +476,34 @@
     }
   },
   {
+    "name": "Color/Shadow/10",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#0206171a"
+    }
+  },
+  {
+    "name": "Color/Shadow/20",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#02061733"
+    }
+  },
+  {
+    "name": "Color/Shadow/35",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#02061759"
+    }
+  },
+  {
+    "name": "Color/Shadow/60",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#02061799"
+    }
+  },
+  {
     "name": "Typography/Family/Title",
     "type": "STRING",
     "byMode": {

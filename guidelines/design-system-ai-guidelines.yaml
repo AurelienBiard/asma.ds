@@ -229,6 +229,7 @@ color:
     Text: [primary, secondary, tertiary, disabled, inverse, brand, link]
     Border: [default, subtle, strong, focus, disabled]
     Icon: [primary, secondary, tertiary, disabled, inverse, brand, link]
+    Shadow: [subtle, strong, scrim]
     Action: [primary, primary-hover, primary-active, secondary, secondary-hover, destructive, destructive-hover, destructive-active]
     Feedback:
       Info: [background, border, icon, text]
