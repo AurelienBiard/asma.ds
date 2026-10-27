@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-27 — Iconographie : graisse Thin systématique
+
+- Nouvelle règle : toutes les icônes (Phosphor, `Format=Outline`) utilisent **`Weight=Thin`**, de façon systématique et prioritaire. Toute autre graisse est un cas exceptionnel, justifié et documenté dans la spec du composant.
+- Mis à jour : `foundations.yaml` (`icons.weight: Thin` + `weight_rule`), `design-system-ai-guidelines.yaml`, `icon-component-spec.md` (Do / Don't, défaut), mentions « à ce jour Regular, cible Thin » dans `button`, `theme-switcher` et `pagination`.
+- **Migration Figma en attente** : les instances `Icon` existantes (Button, ThemeSwitcher, Pagination, Sidebar, Search, Select, etc.) et l'icône par défaut `Acorn` sont encore en `Weight=Regular`.
+
 ## 2026-10-21 (2) — Tag Neutral : nouveau token Background/strong
 
 - Nouveau token Semantic **`Background/strong`** : Light → Neutral/200 (`#e2e8f0`), Dark → Neutral/700 (`#334155`). `--color-background-strong` dans `dist/tokens.css` (régénéré).

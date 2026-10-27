@@ -38,7 +38,7 @@ Deux structures d'assemblage selon le contexte :
 
 ### Prev / Next
 
-Instance `Button` (`Type=Ghost`, `Icon-only=true`, padding `Spacing/component-xs` carré 32×32 — même convention que sur `Search-button`, voir `button-component-spec.md` ; `Pagination` en devient le **deuxième usage réel**). Icônes `ChevronLeft` / `ChevronRight` (Phosphor, `Outline`, `Regular`, 16×16). `Disabled` natif du composant `Button` (`Background/disabled` + `Text/disabled` + `Icon/disabled`) quand la page courante est la première (`Prev`) ou la dernière (`Next`) — aucune règle nouvelle, réutilisation directe de l'état existant du composant.
+Instance `Button` (`Type=Ghost`, `Icon-only=true`, padding `Spacing/component-xs` carré 32×32 — même convention que sur `Search-button`, voir `button-component-spec.md` ; `Pagination` en devient le **deuxième usage réel**). Icônes `ChevronLeft` / `ChevronRight` (Phosphor, `Outline`, `Regular` à ce jour (cible `Thin`), 16×16). `Disabled` natif du composant `Button` (`Background/disabled` + `Text/disabled` + `Icon/disabled`) quand la page courante est la première (`Prev`) ou la dernière (`Next`) — aucune règle nouvelle, réutilisation directe de l'état existant du composant.
 
 ### Troncature (Numbered — comportement)
 

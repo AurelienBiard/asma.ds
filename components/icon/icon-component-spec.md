@@ -32,12 +32,13 @@ Si un Bullet est affiché, l'information qu'il représente (nouveauté, notifica
 ## Do / Don't
 
 **Do :**
-- Utiliser un seul et même format/graisse Phosphor dans toute l'interface (Format=Outline, Weight=Regular par convention).
+- **Utiliser systématiquement et en priorité la graisse `Weight=Thin`** (Format=Outline) pour toutes les icônes de l'interface. Un seul format/graisse dans toute l'interface.
+- Toute autre graisse (`Light`, `Regular`, `Bold`, `Fill`, `Duotone`) est une exception : à réserver aux cas où `Thin` ne convient pas (lisibilité insuffisante, ex. très petite taille ou fond complexe), à documenter dans la spec du composant concerné.
 - Réserver le Bullet aux cas où une vraie nouveauté/attention existe.
 - Choisir la taille d'icône cohérente avec le texte ou le composant qui l'entoure.
 
 **Don't :**
-- Mélanger plusieurs graisses Phosphor (Regular et Bold) dans une même interface.
+- Mélanger plusieurs graisses Phosphor dans une même interface, hors exception documentée.
 - Utiliser le Bullet pour afficher une quantité (→ Badge).
 - Ajouter un Bullet par défaut sur toutes les icônes.
 
@@ -48,7 +49,7 @@ Si un Bullet est affiché, l'information qu'il représente (nouveauté, notifica
   - `Size` = `Small` | `Medium` | `Large` | `XLarge`
   - `Bullet` = `False` | `True`
   - `BulletPosition` = `bottom-right` | `bottom-left` | `top-left` | `top-right` | `none`
-- **Propriété Instance-swap** (icône) : défaut = `Acorn` (Phosphor, `Format=Outline`, `Weight=Regular`) — source = composants locaux de la page `🎨 FOUNDATION / ↳ Icons`, aucune restriction technique à `Acorn`, n'importe quel Phosphor local convient.
+- **Propriété Instance-swap** (icône) : défaut = `Acorn` (Phosphor, `Format=Outline` ; `Weight=Regular` à ce jour dans Figma, cible `Thin` — migration en attente) — source = composants locaux de la page `🎨 FOUNDATION / ↳ Icons`, aucune restriction technique à `Acorn`, n'importe quel Phosphor local convient.
 - **Composant nested (Bullet)** : instance du composant local `Dot Indicator`, `Color=Brand` sur les 4 positions (harmonisé — voir historique ci-dessous).
 
 **Corrections effectuées lors de la construction** : les composants `Add` (icône), `Type=Brand` et `Form=Bullet, Type=Success, Variant=Opacity` (indicateurs) provenaient initialement d'une bibliothèque Figma externe (`remote: true`). Ils ont été remplacés par des composants 100% locaux : icône Phosphor (Foundation/Icons) et instances du composant `Dot Indicator` du design system. Toute icône ou indicateur ajouté à ce composant DOIT provenir des composants locaux du fichier — jamais d'une bibliothèque externe/remote.
