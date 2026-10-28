@@ -78,7 +78,7 @@ typography:
     display-md: {mobile: 6xl, desktop: 8xl, line_height: 8xl}
     display-sm: {mobile: 5xl, desktop: 7xl, line_height: 7xl}
     heading-xl: {mobile: 5xl, desktop: 6xl, line_height: 6xl}
-    heading-lg: {mobile: 4xl, desktop: 5xl, line_height: 6xl}
+    heading-lg: {mobile: 4xl, desktop: 5xl, line_height: 5xl}
     heading-md: {mobile: 3xl, desktop: 4xl, line_height: 5xl}
     heading-sm: {mobile: 2xl, desktop: 3xl, line_height: 4xl}
     body-lg: {mobile: lg, desktop: lg, line_height: "24px (no primitive step at 24 between 3xl=24 — 3xl is actually 24, use 3xl)"}

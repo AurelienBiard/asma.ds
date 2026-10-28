@@ -8,7 +8,7 @@
   { "name": "Typography/heading-xl/Font-size", "type": "FLOAT", "byMode": { "Mobile": 32, "Desktop": 40 } },
   { "name": "Typography/heading-xl/Line-Height", "type": "FLOAT", "byMode": { "Mobile": 40, "Desktop": 40 } },
   { "name": "Typography/heading-lg/Font-size", "type": "FLOAT", "byMode": { "Mobile": 28, "Desktop": 32 } },
-  { "name": "Typography/heading-lg/Line-Height", "type": "FLOAT", "byMode": { "Mobile": 40, "Desktop": 40 } },
+  { "name": "Typography/heading-lg/Line-Height", "type": "FLOAT", "byMode": { "Mobile": 32, "Desktop": 32 } },
   { "name": "Typography/heading-md/Font-size", "type": "FLOAT", "byMode": { "Mobile": 24, "Desktop": 28 } },
   { "name": "Typography/heading-md/Line-Height", "type": "FLOAT", "byMode": { "Mobile": 32, "Desktop": 32 } },
   { "name": "Typography/heading-sm/Font-size", "type": "FLOAT", "byMode": { "Mobile": 20, "Desktop": 24 } },

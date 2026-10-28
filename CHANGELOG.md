@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-28 (4) — Heading/LG : line-height 32
+
+- `Typography/heading-lg/Line-Height` passe de 40 (`6xl`) à 32 (`5xl`) en Mobile et Desktop (Figma, `tokens/responsive.json`, `dist/tokens.css`, `foundations.yaml`, `design-system-ai-guidelines.yaml`). Le Text Style `Heading/LG` suit (28/32 en Mobile, 32/32 en Desktop). Aucun nouveau token.
+- **À noter** : en Desktop, taille et interligne sont égaux (32/32) ; à vérifier sur les titres de 2 lignes.
+
 ## 2026-10-28 (3) — DA : pictogrammes et logos remplacent les doodles (STYLE.md)
 
 - `STYLE.md` mis à jour d'après la page Figma `↳ Logos` et la cover : nouveau §6 « Pictogrammes et logos » (`picto` 80×80, 8 variantes : 3 marques `concatenation` / `asma-ds` / `asma-os` + 5 pôles ; tuile `Feedback/Info/background`, glyphe `Icon/primary`, coins `Radius/card` ; lockups `logo / concatenation`, `logo / asma-ds`, `logo / asma-os` = `picto` 32 + wordmark vectoriel, gap 8).

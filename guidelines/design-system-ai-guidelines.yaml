@@ -270,7 +270,7 @@ typography:
     display-md: { mobile: "6xl", desktop: "8xl", line_height: "8xl" }
     display-sm: { mobile: "5xl", desktop: "7xl", line_height: "7xl" }
     heading-xl: { mobile: "5xl", desktop: "6xl", line_height: "6xl" }
-    heading-lg: { mobile: "4xl", desktop: "5xl", line_height: "6xl" }
+    heading-lg: { mobile: "4xl", desktop: "5xl", line_height: "5xl" }
     heading-md: { mobile: "3xl", desktop: "4xl", line_height: "5xl" }
     heading-sm: { mobile: "2xl", desktop: "3xl", line_height: "4xl" }
     body-lg:    { mobile: "xl",  desktop: "2xl", line_height: "4xl" }
@@ -281,9 +281,9 @@ typography:
     heading-lg_note: >
       heading-lg's line-height was originally 36 in the previous numeric
       scale, which has no exact equivalent in the new t-shirt scale (which
-      jumps from 32 to 40). Rounded up to 6xl (40) rather than down to 5xl
-      (32), to keep comfortable line spacing. Adjust manually in Figma if
-      36 was actually intended.
+      jumps from 32 to 40). It was first rounded up to 6xl (40); on
+      2026-10-28 it was set to 5xl (32) (40 was too loose), identical in
+      Mobile and Desktop.
 
   selection_rules:
     - "Use Display only for major page-level statements or hero content."
