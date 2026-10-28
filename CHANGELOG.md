@@ -1,5 +1,32 @@
 # Changelog
 
+## 2026-10-28 (3) — DA : pictogrammes et logos remplacent les doodles (STYLE.md)
+
+- `STYLE.md` mis à jour d'après la page Figma `↳ Logos` et la cover : nouveau §6 « Pictogrammes et logos » (`picto` 80×80, 8 variantes : 3 marques `concatenation` / `asma-ds` / `asma-os` + 5 pôles ; tuile `Feedback/Info/background`, glyphe `Icon/primary`, coins `Radius/card` ; lockups `logo / concatenation`, `logo / asma-ds`, `logo / asma-os` = `picto` 32 + wordmark vectoriel, gap 8).
+- Cover (§7) : grille de 8 `picto` 160×160 pivotée de 5° à la place des deux bandes de doodles (conservées dans le fichier, masquées). Bloc titre inchangé.
+- Doodles passés en historique (§6 bis) ; la dalle cyan littérale (`#cffafe` / `#18fefe`) n'est plus une règle : la tuile des pictogrammes est liée à une variable.
+- §1, §2, §8 et §9 alignés ; §10 signale que `Cover/preview.html` (entête de l'artefact) reproduit encore l'ancienne DA.
+- **À valider** : sort des doodles (supprimer ou archiver), renommage de la propriété `Property 1` de `picto`, marges de protection des logos.
+
+## 2026-10-28 (2) — Élévation plus douce (valeurs de Frame 225)
+
+- Les 5 Effect Styles `Elevation/1` à `5` passent de deux ombres avec étalement négatif à **une seule ombre douce, sans étalement**, toutes colorées par `Shadow/subtle` : 1 → `0 5 10`, 2 → `0 10 25`, 3 → `0 20 50`, 4 → `0 32 70`, 5 → `0 50 100` (x y flou).
+- Valeurs reprises de la frame de référence `Frame 225` (flat, overlay, sticky-nav, dialog) pour les niveaux 1, 2, 3 et 5 ; le niveau 4 (Drawer) est calculé entre les niveaux 3 et 5. Le niveau 4 est la seule valeur non dessinée.
+- `Shadow/strong` n'est plus utilisé par les niveaux (conservé pour l'instant). La couleur d'ombre reste `Color/Neutral/950` à 10 % (Light) / 35 % (Dark), pas le `#141414` de la référence.
+- Mis à jour : page Figma `↳ Elevation` (textes et tableau), `foundations.yaml` (`elevation`).
+
+## 2026-10-28 — KPI : nouveau composant, minicourbe et chargement
+
+- Nouveau composant `KPI` (page Figma `↳ KPI`), construit à partir du design de l'utilisateur (frames `KPI / Desktop` et `KPI / Mobile` converties en ComponentSet) : `Icon` Small + `Label`, `Value` en `Display/SM`, `Tag` Small pour la variation et `Caption`.
+- 12 variantes : `Device` (Desktop 280 px / Mobile 160 px, grille 2 colonnes d'un écran 360) × `Trend` (Neutral / Positive / Negative = `Type` du Tag Neutral / Success / Danger + flèche ; jugement, pas direction) × `State` (Default / Loading). `Device` fixe le mode Responsive.
+- **Minicourbe** : nouveau sous-composant `Sparkline` (variant `Trend`), présenté en pastille (fond `Background/subtle`, radius `Radius/card`, padding `Spacing/component-sm`, tracé 72 × 32 en `Border/medium` coloré `Feedback/Success/icon` / `Feedback/Danger/icon` / `Icon/secondary`), propriété `Show-chart` (défaut `false`). À droite de la valeur en Desktop (96 × 56), sous la valeur en Mobile (pleine largeur × 56). Décorative ; tracé Figma indicatif, vraies données en code.
+- **Chargement** : `State=Loading` remplace chaque élément par une instance `Skeleton` (Circle / Text / Rectangle) aux hauteurs exactes de l'état Default (aucun décalage). `Trend` sans effet dans cet état.
+- Microcopy française conservée dans les défauts et les exemples : `+8,2 %`, `−3,1 %`, `0,0 %`.
+- Propriétés : `Label`, `Value`, `Caption` (Text), `Show-icon` / `Show-delta` / `Show-caption` / `Show-chart` (Boolean), instances exposées `Icon` (Instance-swap) et `Tag`.
+- Spec `components/kpi/kpi-component-spec.md` ; entrée `KPI` dans `decisions.yaml`. Aucun token créé. Exemples Desktop, Mobile et Chargement sur la page Figma.
+- Contrastes du trait de la minicourbe sur `Background/subtle` (Light / Dark) : Success 3,15 / 9,34, Danger 4,62 / 5,88, Neutral 7,24 / 6,34 — tous ≥ 3:1.
+- **À valider** : forme du tracé placeholder.
+
 ## 2026-10-27 (4) — Icônes : graisse Light par défaut
 
 - Convention : les icônes d'interface (Phosphor, `Format=Outline`) utilisent **`Weight=Light`** par défaut (avant : Regular). Mis à jour dans `foundations.yaml` (`icons.weight`), le guide IA et les specs Icon, Button, Theme switcher et Pagination.
