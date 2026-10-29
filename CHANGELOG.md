@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-29 — Champs de saisie : bordure Default en `Border/subtle`
+
+- Tous les champs en `Interaction=Default` / `Validation=None` passent de `Border/default` à `Border/subtle` (Figma : TextInput, PasswordInput, Search, Textarea, Select, TagInput, OTP-cell, Duration-segment, Stepper ; 17 variantes). Hover (`Border/strong`), Focus, Disabled et les états de validation sont inchangés. Aucun nouveau token.
+- Spec : `components/text-input/text-input-component-spec.md`.
+- **À valider** : contraste de la bordure (`Border/subtle`) sur le fond du champ, en Light et en Dark.
+
 ## 2026-10-28 (5) — Logo asma-ds : image de profil (PNG)
 
 - Ajout de `assets/logo/asma-ds-profile.png` (1024×1024, fond transparent aux coins) : export du `picto` `asma-ds` de la page Figma `↳ Logos` (tuile `Feedback/Info/background`, forme `Icon/primary`, thème Light).

@@ -26,10 +26,12 @@ Champ de saisie texte de base — fondation des autres champs texte du système 
 
 | Interaction | Bordure |
 |---|---|
-| Default | `Border/default` |
+| Default | `Border/subtle` (depuis le 2026-10-29 ; `Border/default` auparavant) |
 | Hover | `Border/strong` |
 | Focus | `Border/focus` + `Primitive/Border/medium`, `strokeAlign: OUTSIDE` |
 | Disabled | `Border/disabled`, fond `Background/disabled`, texte `Text/disabled` |
+
+Cette règle vaut pour tous les champs de saisie en `Interaction=Default` et `Validation=None` : `TextInput`, `PasswordInput`, `Search`, `Textarea`, `Select`, `TagInput`, `OTP-cell` / `Code-OTP`, `Duration-segment` et `Stepper` (Numeric inputs). Hover reste `Border/strong`. Bordure discrète : le champ se distingue par son fond `Background/elevated` ; à vérifier au regard du contraste des composants d'interface (3:1) avant de généraliser sur fond clair.
 
 **Validation prioritaire sur Interaction** pour la bordure — un champ Error en Hover garde la bordure `Feedback/Danger/border`, pas `Border/strong`. Exception documentée : en Disabled, la bordure de validation reste visible même si le champ n'est plus interactif (choix volontaire).
 
