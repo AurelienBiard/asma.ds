@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-28 (5) — Logo asma-ds : image de profil (PNG)
+
+- Ajout de `assets/logo/asma-ds-profile.png` (1024×1024, fond transparent aux coins) : export du `picto` `asma-ds` de la page Figma `↳ Logos` (tuile `Feedback/Info/background`, forme `Icon/primary`, thème Light).
+
 ## 2026-10-28 (4) — Heading/LG : line-height 32
 
 - `Typography/heading-lg/Line-Height` passe de 40 (`6xl`) à 32 (`5xl`) en Mobile et Desktop (Figma, `tokens/responsive.json`, `dist/tokens.css`, `foundations.yaml`, `design-system-ai-guidelines.yaml`). Le Text Style `Heading/LG` suit (28/32 en Mobile, 32/32 en Desktop). Aucun nouveau token.
