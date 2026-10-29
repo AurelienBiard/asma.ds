@@ -46,6 +46,7 @@ Cette règle vaut pour tous les champs de saisie en `Interaction=Default` et `Va
 - Radius : `Radius/control`.
 - Placeholder/Value : Text Style `Misc/Label`, troncature 1 ligne avec ellipse (`textTruncation: ENDING`, `maxLines: 1`, `layoutSizingHorizontal: FILL`).
 - `clipsContent: false` sur Field et sur le composant global.
+- **Conteneurs parents** : la bordure Focus est dessinée à l'extérieur du champ (`strokeAlign: OUTSIDE`) ; les cadres qui contiennent un champ (formulaires, rangées, cartes) ne doivent pas rogner leur contenu (`clipsContent: false`), sinon l'anneau de focus est coupé. Vaut pour tous les champs de saisie.
 
 ## Icônes de statut
 

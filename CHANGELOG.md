@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-29 (2) — TagInput : hauteur 44, Clear-all à droite, comportement d'autocomplétion
+
+- **Composant** (Figma, 32 variantes) : hauteur minimale du `Field` 40 → **44px**, alignée sur les autres champs ; contenu centré verticalement. `Clear-all` en position absolue, ancré à droite et centré (contraintes droite / centre) ; padding droit du `Field` 8 → 32px pour lui réserver la place. Aucun nouveau token.
+- **Comportement documenté** (spec `components/tag-input/`) : liste de suggestions au focus et à la saisie, autocomplétion insensible à la casse et aux accents, option « Créer « … » » quand aucune valeur ne correspond exactement, doublons évités, garde-fou métier optionnel, clavier, accessibilité (combobox / listbox).
+- **Liste de suggestions** : composition de `Select-option` documentée (pas de composant Listbox dédié pour l'instant).
+- **Règle générale** (spec TextInput + `guidelines/agent.yaml`, `known_constraints.input_focus_ring_clip`) : ne jamais rogner les conteneurs d'un champ, la bordure Focus étant dessinée à l'extérieur. Ajout aussi de `slot_content_lazy_traversal` (contenu d'un slot invisible au premier parcours après un clonage).
+- Figma : bloc « TagInput » ajouté aux guidelines de la page `↳ Text inputs` + section de référence « TagInput — comportement (autocomplétion & création) » (8 états).
+- **À valider** : élévation de la liste de suggestions (`Elevation/2` proposé) ; hauteur des champs dans la spec TextInput (40px écrit, 44px mesuré dans Figma).
+
 ## 2026-10-29 — Champs de saisie : bordure Default en `Border/subtle`
 
 - Tous les champs en `Interaction=Default` / `Validation=None` passent de `Border/default` à `Border/subtle` (Figma : TextInput, PasswordInput, Search, Textarea, Select, TagInput, OTP-cell, Duration-segment, Stepper ; 17 variantes). Hover (`Border/strong`), Focus, Disabled et les états de validation sont inchangés. Aucun nouveau token.
