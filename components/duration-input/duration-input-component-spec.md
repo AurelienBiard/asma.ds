@@ -4,7 +4,7 @@ Saisie d'une durée (pas un point dans le temps — voir Calendar). Pattern segm
 
 ## Duration-segment (atomique)
 
-`Interaction` × `Content` (Default/Hover/Focus/Disabled × Empty/Filled), 8 variantes. Case 48×40, nombre à 2 chiffres centré (`Heading/SM`). Mêmes règles de bordure que TextInput.
+`Interaction` × `Content` (Default/Hover/Focus/Disabled × Empty/Filled), 8 variantes. Case 44×44, nombre à 2 chiffres centré (`Heading/SM`). Mêmes règles de bordure que TextInput.
 
 ## Duration-input (assemblage)
 

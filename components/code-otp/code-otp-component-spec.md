@@ -8,7 +8,7 @@ Saisie de code à cases multiples — anatomie différente des autres champs tex
 
 Case unique, réutilisée par Code-OTP et PIN.
 
-- **Anatomie** : `Field` carré 40×40 (padding retiré, `primaryAxisAlignItems`/`counterAxisAlignItems: CENTER`), un seul caractère (Text Style `Heading/SM`, centré). Pas de Status-icon (pas de place, la validation est portée par le groupe, pas par case).
+- **Anatomie** : `Field` carré 44×44 (padding retiré, `primaryAxisAlignItems`/`counterAxisAlignItems: CENTER`), un seul caractère (Text Style `Heading/SM`, centré). Pas de Status-icon (pas de place, la validation est portée par le groupe, pas par case).
 - **Propriétés** : Interaction (Default/Hover/Focus/Disabled) × Content (Empty/Filled) × Validation (None/Error/Warning/Success), 32 variantes. Propriété texte `Value` (uniquement sur Content=Filled).
 
 ## Code-OTP (assemblage, 6 cases, chiffre visible)

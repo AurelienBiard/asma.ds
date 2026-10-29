@@ -7,20 +7,22 @@ L'Icon est un symbole graphique représentant une fonctionnalité, une action ou
 ## Anatomie
 
 - **Icon** — le pictogramme lui-même (source : bibliothèque Phosphor, page Foundation/Icons).
-- **Bullet** — indicateur optionnel (instance du composant [Dot Indicator](../dot-indicator/dot-indicator-component-spec.md)) signalant une nouveauté ou une attention requise sur l'icône.
+- **Bullet** — indicateur optionnel sur l'icône : instance du composant [Dot Indicator](../dot-indicator/dot-indicator-component-spec.md) (nouveauté, attention requise) ou, quand une quantité est pertinente, du composant [Count](../count/count-component-spec.md) qui prend alors la place du Dot.
 - **BulletPosition** — position du Bullet par rapport à l'icône : top-right, top-left, bottom-right, bottom-left, ou none.
 
 ## Variants
 
 - **Size** — Small / Medium / Large / XLarge.
-- **Bullet** — False / True — affiche ou non l'indicateur de nouveauté.
-- **BulletPosition** — n'a d'effet que lorsque Bullet = True.
+- **Bullet** — False / True / Count — rien, le Dot Indicator, ou le Count (Type Danger, Size Small par défaut). Avec `Count`, l'instance imbriquée `Count` est exposée : sa valeur (`Value`) et son Type se règlent depuis l'instance d'Icon.
+- **BulletPosition** — n'a d'effet que lorsque Bullet = True ou Count. Avec Count, le badge déborde de 4 px du coin de l'icône.
+
+36 variantes (4 Size × [1 sans Bullet + 4 positions × 2 types de Bullet]).
 
 L'icône elle-même est un slot d'échange (Instance-swap) : n'importe quel composant de la bibliothèque Phosphor locale (page Foundation/Icons) peut être inséré à sa place.
 
 ## Usage du Bullet
 
-Le Bullet reprend les règles du composant Dot Indicator : signaler une présence ou une nouveauté, jamais une quantité (utiliser un Badge pour un nombre). Ne pas l'activer sur toutes les icônes « importantes » : son usage doit rester significatif et rare.
+Le Bullet reprend les règles du composant Dot Indicator : signaler une présence ou une nouveauté, jamais une quantité. Quand une quantité est pertinente, `Bullet=Count` : le Count prend la place du Dot, aux mêmes quatre positions ; Dot ou Count, jamais les deux. Un Count Small de 16 px couvre l'essentiel d'une icône Small : préférer Medium ou plus. Ne pas l'activer sur toutes les icônes « importantes » : son usage doit rester significatif et rare.
 
 ## Accessibilité
 
@@ -38,7 +40,7 @@ Si un Bullet est affiché, l'information qu'il représente (nouveauté, notifica
 
 **Don't :**
 - Mélanger plusieurs graisses Phosphor (Regular et Bold) dans une même interface.
-- Utiliser le Bullet pour afficher une quantité (→ Badge).
+- Utiliser `Bullet=True` (Dot) pour afficher une quantité (→ `Bullet=Count`).
 - Ajouter un Bullet par défaut sur toutes les icônes.
 
 ## Spécifications techniques

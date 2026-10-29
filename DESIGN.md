@@ -63,7 +63,7 @@ components:
     backgroundColor: "{colors.primary}"
     textColor: "#ffffff"
     rounded: "{rounded.control}"
-    height: 40px
+    height: 44px
   button-outlined:
     backgroundColor: "{colors.secondary}"
     textColor: "{colors.text-primary}"
@@ -72,7 +72,7 @@ components:
     backgroundColor: "{colors.background-elevated}"
     borderColor: "{colors.border-default}"
     rounded: "{rounded.control}"
-    height: 40px
+    height: 44px
   checkbox:
     backgroundColor: "{colors.primary}"
     rounded: "{rounded.control}"
@@ -117,7 +117,7 @@ Le mouvement porte un changement d'état, jamais de la décoration. Fondation Pr
 
 Référence rapide seulement — chaque composant a sa propre spec détaillée dans `components/<nom>/`, qui fait autorité en cas de divergence avec ce fichier.
 
-Hauteur standard des contrôles de saisie sur une ligne (bouton, champ texte) : **40px**, obtenue par `spacing.sm` (padding vertical) + la hauteur de ligne du style `label`. Ne jamais fixer cette hauteur en dur — elle doit rester le résultat du padding + du texte, pas une valeur imposée (un stroke en alignement `INSIDE` combiné à un hug peut fausser ce calcul de 1-2px selon le contexte — vérifier visuellement après toute modification de bordure).
+Hauteur standard des contrôles de saisie sur une ligne (bouton, champ texte) : **44px**, obtenue par `spacing.sm` (padding vertical, 2 fois) + la hauteur de ligne du style `label` (20px) ; un bouton sans libellé fait 44×44 fixe. Ne jamais fixer cette hauteur en dur — elle doit rester le résultat du padding + du texte, pas une valeur imposée (un stroke en alignement `INSIDE` combiné à un hug peut fausser ce calcul de 1-2px selon le contexte — vérifier visuellement après toute modification de bordure).
 
 ## Do's and Don'ts
 

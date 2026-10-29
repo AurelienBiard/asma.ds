@@ -44,5 +44,3 @@ known_constraints:
   description_field_escaping: "A component's description field auto-escapes apostrophes/quotes as literal &#39;/&quot; text. Avoid straight apostrophes/quotes in descriptions."
   section_styling_convention: "New ASMA-owned Figma Sections get: fill Background/subtle, no stroke, no corner radius, inner text Text/primary. Never apply this to sections not owned by ASMA (e.g. the Phosphor icon library's own sections)."
   dynamic_page_orphan_nodes: "A freshly created node not explicitly appended to a page/parent can be silently discarded at script end even without an error. Always append immediately after creation."
-  input_focus_ring_clip: "The Focus border of every input is drawn outside the field (strokeAlign OUTSIDE). Never clip the containers that hold an input (forms, rows, cards, dialog body slots): set clipsContent false on them, or the focus ring is cut."
-  slot_content_lazy_traversal: "Right after cloning a frame that contains SLOT content (e.g. a Dialog-body with a form), the first findOne/findAll can miss nodes inside the slot. Run one warm-up traversal (node.findAll(() => true)) before looking nodes up."

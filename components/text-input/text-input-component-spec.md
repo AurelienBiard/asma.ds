@@ -6,7 +6,7 @@ Champ de saisie texte de base — fondation des autres champs texte du système 
 
 ## Anatomie
 
-- **Field** : conteneur (fond, bordure, radius, padding), hauteur fixe 40px, `layoutSizingHorizontal: FILL` (s'adapte à son conteneur).
+- **Field** : conteneur (fond, bordure, radius, padding), hauteur fixe 44px, `layoutSizingHorizontal: FILL` (s'adapte à son conteneur).
 - **Placeholder / Value** : texte affiché — propriétés texte dédiées, éditables indépendamment.
 - **Status-icon** : icône de statut, visible uniquement si Validation ≠ None.
 - **Message** : texte d'aide/erreur sous le champ, visible uniquement si Validation ≠ None — propriété texte dédiée.
@@ -41,7 +41,7 @@ Cette règle vaut pour tous les champs de saisie en `Interaction=Default` et `Va
 
 ## Dimensions et comportement
 
-- Hauteur du Field fixée à 40px — atteinte en évitant `strokeAlign: INSIDE` combiné à un stroke sur un frame en hug (ajoute mystérieusement 2px de hauteur, cause exacte non identifiée malgré investigation ; contournement : construire avec `strokeAlign: OUTSIDE` pour Focus, sinon reconstruire proprement sans jamais appeler `resize()` sur la hauteur si le problème persiste).
+- Hauteur du Field fixée à 44px (padding vertical `Spacing/component-sm` moins la bordure de 1px, + ligne de 20px ; la spec disait 40px par erreur jusqu'au 2026-10-29) — atteinte en évitant `strokeAlign: INSIDE` combiné à un stroke sur un frame en hug (ajoute mystérieusement 2px de hauteur, cause exacte non identifiée malgré investigation ; contournement : construire avec `strokeAlign: OUTSIDE` pour Focus, sinon reconstruire proprement sans jamais appeler `resize()` sur la hauteur si le problème persiste).
 - Padding horizontal du Field : `Spacing/component-xs`. Padding vertical : `Spacing/component-sm`.
 - Radius : `Radius/control`.
 - Placeholder/Value : Text Style `Misc/Label`, troncature 1 ligne avec ellipse (`textTruncation: ENDING`, `maxLines: 1`, `layoutSizingHorizontal: FILL`).

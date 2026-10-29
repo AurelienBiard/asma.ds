@@ -1,5 +1,35 @@
 # Changelog
 
+## 2026-10-29 (5) — Tous les champs de saisie à 44 px
+
+- Figma : `OTP-cell` (donc `Code-OTP`), `Duration-segment` et `Stepper` passent de 40 à 44 px de haut (cases 44×44 ; Stepper 44, boutons − / + en 44×44). `Search-button` passe de 40×40 à 44×44 pour s'aligner sur le champ. `TextInput`, `PasswordInput`, `Search`, `Select` et `TagInput` étaient déjà à 44 px (spec TextInput corrigée) ; `Textarea` reste à 160 px.
+- Specs corrigées : `text-input` (44 px, la spec disait 40), `search-input`, `code-otp`, `duration-input` (case 44×44, la spec disait 48×40), `stepper`, `DESIGN.md` (hauteur standard 44 px).
+- `Button` : l'exception « bouton sans libellé dans un champ reste 40×40 » est supprimée, la règle 44×44 est générale.
+- `Stepper` : la bordure (toujours présente dans les trois états) n'entre plus dans la mise en page (`strokesIncludedInLayout: false`) ; la zone de la valeur passe de 42 à 44 px de haut, comme les boutons, et la largeur est la même dans les trois états (136 px).
+- `tag-input` : la note sur l'écart avec la spec TextInput est résolue. **À valider** : la largeur de la cellule `Duration-segment` (maintenant 44).
+
+## 2026-10-29 (4) — Button sans libellé : 44×44 fixe
+
+- Nouvelle règle (`components/button/button-component-spec.md`) : un Button sans libellé garde la hauteur de 44 px et une largeur fixe de 44 px (taille `FIXED`, icône centrée). Remplace le gabarit 32×32 (padding `component-xs`) de l'ancienne convention.
+- Figma : 34 instances `Icon-only=true` passées en 44×44 fixe (`↳ Cell`, `↳ Table`, `↳ Pagination`, `↳ Dossier de compétences`, `Prototypes`, exemple de `↳ Count`). Exception : les boutons dans les champs (`↳ Text inputs`, `↳ Numeric inputs`, 38 instances) restent 40×40.
+- Effets de bord : les rangées `Pagination` passent de 40 à 44 px de haut ; dans `Prototypes`, deux `Page-header` gagnent 4 px et une `App-bar` 4 px.
+- Correction de la spec : la hauteur du Button avec libellé est 44 px (la spec disait 40 px).
+- **À valider** : `README.md` indique encore « 40px » pour la hauteur des contrôles sur une ligne (bouton et champ) ; vrai pour les champs, pas pour le bouton. Les boutons sans libellé hors `Icon-only` (ex. `↳ Portfolio`) n'ont pas été modifiés.
+
+## 2026-10-29 (3) — Le Count prend la place du Dot Indicator
+
+- `Icon` : nouvelle valeur `Bullet=Count` (16 variantes : 4 Size × 4 BulletPosition). Le Count (Danger, Small par défaut) occupe le slot du Dot, déborde de 4 px du coin de l'icône ; l'instance imbriquée `Count` est exposée (valeur, Type). `ComponentSet` Icon : 20 → 36 variantes. Les variantes existantes sont inchangées.
+- Specs `Icon`, `Dot Indicator`, `Count` et `decisions.yaml` : règle « quantité pertinente → Count à la place du Dot ; jamais les deux ».
+- **À valider** : Count Small (16 px) sur une icône Small (16 px) la recouvre en grande partie.
+
+## 2026-10-29 (2) — Nouveau composant Count
+
+- `components/count/count-component-spec.md` : composant Count (page Figma `↳ Count`), 12 variantes (Type Neutral/Brand/Info/Success/Warning/Danger × Size Medium 20 px / Small 16 px), propriété texte `Value`. Même mapping couleur que `Tag`, `Body/SM` et `Body/XS`, `Radius/pill`, `Spacing/component-2xs`. Aucun nouveau token.
+- Plafond `99+`, masqué à 0, Small réservé à la superposition sur une icône.
+- `decisions.yaml` : entrée `Count`. `design-system-ai-guidelines.yaml` et `README.md` : composant ajouté à la liste.
+- Les mentions « Badge » des specs `Dot Indicator` et `Icon` (et du texte Figma de la page Dot indicator) pointent maintenant vers `Count`.
+- **À valider** : hauteurs 20 / 16 px en valeurs littérales ; lisibilité de `Body/XS` en Small.
+
 ## 2026-10-29 (2) — TagInput : hauteur 44, Clear-all à droite, comportement d'autocomplétion
 
 - **Composant** (Figma, 32 variantes) : hauteur minimale du `Field` 40 → **44px**, alignée sur les autres champs ; contenu centré verticalement. `Clear-all` en position absolue, ancré à droite et centré (contraintes droite / centre) ; padding droit du `Field` 8 → 32px pour lui réserver la place. Aucun nouveau token.

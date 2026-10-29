@@ -18,7 +18,7 @@ Le Dot Indicator est un petit indicateur visuel, généralement circulaire, util
 
 La couleur ne doit pas être l'unique moyen de communiquer une information importante.
 
-Lorsque le nombre d'éléments est pertinent, utiliser un Badge plutôt qu'un Dot Indicator — le Dot signale une présence/absence d'information, le Badge une quantité.
+Lorsque le nombre d'éléments est pertinent, utiliser un Count plutôt qu'un Dot Indicator — le Dot signale une présence/absence d'information, le Count une quantité. Le Count prend la place du Dot le cas échéant (sur une icône : `Icon` → `Bullet=Count`, mêmes positions).
 
 ## États
 
@@ -37,8 +37,8 @@ Le Dot Indicator ne devrait généralement pas être interactif lui-même. L'int
 ## Contenu
 
 Le Dot Indicator ne contient normalement aucun texte. Si une information doit être exprimée sous forme de :
-- nombre → Badge
-- texte court → Badge
+- nombre → Count
+- texte court → Tag
 - état explicite → Status / Status Indicator
 - notification non lue → Dot Indicator
 

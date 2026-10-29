@@ -2,7 +2,7 @@
 
 > Ce fichier est la **source de vérité** du composant. Toute modification (anatomie, variants, tokens) se fait ici en premier, puis est répercutée dans Figma. Ne pas modifier le composant Figma directement sans reporter le changement dans ce fichier ensuite.
 
-Une seule taille (MD), hauteur fixe 40px. Libellé en Text Style `Misc/Label` — 14px/20px, **Semi Bold** (même graisse que tous les contrôles de formulaire).
+Une seule taille (MD), hauteur de 44px avec libellé (padding `Spacing/component-sm` × 2 + ligne de 20px ; la mention « 40px » des versions précédentes ne correspondait pas au composant Figma). Libellé en Text Style `Misc/Label` — 14px/20px, **Semi Bold** (même graisse que tous les contrôles de formulaire).
 
 > **Correction (2026-09-27)** : Primary utilisait `Text/inverse` / `Icon/inverse`, qui valent Neutral/950 en Dark — texte quasi noir sur `Action/primary` Dark (#3f51e5), contraste ≈ 3,4:1 (échec AA). Remplacés par `Text/on-brand` / `Icon/on-brand` (blanc dans les deux thèmes, ≈ 6:1 en Dark). La graisse du libellé passe de Medium (500) à Semi Bold (600) pour suivre `Misc/Label`.
 
@@ -14,9 +14,18 @@ Une seule taille (MD), hauteur fixe 40px. Libellé en Text Style `Misc/Label` �
 - **Show-icon-leading**, **Show-icon-trailing** (Boolean, défaut `false`) : visibilité des icônes.
 - **Show-label** (Boolean, défaut `true`) : visibilité du label.
 - **Label** (Text, défaut `"Enregistrer"`) : contenu du label, éditable par instance.
-- **Icon-only** (Boolean, défaut `false`) : **non lié automatiquement** à `Show-label` — Figma ne permet pas de logique conditionnelle entre propriétés. À activer manuellement avec `Show-label=False`, et fixer le padding à `Spacing/component-xs` (8px) sur les 4 côtés pour un rendu carré de 32×32 (convention établie suite à l'audit `improve-ui` du 2026-09-18 — appliquée sur `Search-button`). Deuxième usage réel (2026-10-04) : `Prev`/`Next` du composant `Pagination` (voir `components/pagination/`), qui réutilise ce même gabarit 32×32 pour s'aligner avec `Page-item`.
+- **Icon-only** (Boolean, défaut `false`) : **non lié automatiquement** à `Show-label` — Figma ne permet pas de logique conditionnelle entre propriétés. À activer manuellement avec `Show-label=False` ; le bouton suit alors la règle « Bouton sans libellé » ci-dessous (44×44 fixe). Usages : `Search-button`, `Prev`/`Next` du composant `Pagination` (voir `components/pagination/`), actions de ligne de `Table`/`Cell`.
 
 20 variantes (4 Type × 5 State).
+
+## Règle : bouton sans libellé (2026-10-29)
+
+Quand un Button n'a pas de libellé (`Show-label=False`, en pratique avec `Icon-only=true`), il garde la hauteur standard de **44 px** et sa largeur est **fixe à 44 px** : cible carrée de 44×44, icône centrée, `layoutSizingHorizontal` et `layoutSizingVertical` en `FIXED`, jamais en hug. Le padding n'a plus d'effet sur la taille.
+
+- **Pourquoi** : même hauteur que le bouton avec libellé, donc alignement dans les rangées mixtes ; cible tactile confortable (WCAG 2.5.8 exige 24 px, 2.5.5 niveau AAA recommande 44 px).
+- **Limite technique** : Figma ne lie pas `Icon-only` à la taille. La règle s'applique donc par instance (taille fixe 44×44) et reste à reporter dans le code (`width: 44px; height: 44px` sur un bouton sans texte visible).
+- **Pas d'exception** : tous les champs de saisie font 44 px de haut (depuis le 2026-10-29), donc les boutons sans libellé qui les accompagnent (`Search-button`, − / + du `Stepper`) sont aussi en 44×44.
+- **Nom accessible** : toujours un `aria-label` (voir Accessibilité).
 
 ## Correspondance couleur par Type
 

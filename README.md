@@ -89,6 +89,7 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | Composant | Statut | Spec |
 |---|---|---|
 | Button | ✅ 20 variantes | `components/button/` |
+| Count | ✅ 12 variantes | `components/count/` |
 | Dot Indicator | ✅ 6 variantes | `components/dot-indicator/` |
 | Icon | ✅ wrapper Phosphor | `components/icon/` |
 | Tooltip | ✅ 36 variantes | `components/tooltip/` |

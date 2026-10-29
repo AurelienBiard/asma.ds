@@ -441,8 +441,9 @@ components:
 component_inventory:
   built:
     - { name: "Button", variants: 25, spec: "components/button/" }
+    - { name: "Count", variants: 12, spec: "components/count/" }
     - { name: "Dot Indicator", variants: 6, spec: "components/dot-indicator/" }
-    - { name: "Icon", note: "Phosphor wrapper, Size x Bullet x BulletPosition", spec: "components/icon/" }
+    - { name: "Icon", note: "Phosphor wrapper, Size x Bullet (False|True|Count) x BulletPosition", spec: "components/icon/" }
     - { name: "TextInput", variants: 32, spec: "components/text-input/" }
     - { name: "PasswordInput", variants: 32, spec: "components/password-input/" }
     - { name: "Search", variants: 32, spec: "components/search-input/" }
