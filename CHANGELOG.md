@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-10-31 — Picto dans le README
+
+- `README.md` : en-tête avec le picto `assets/logo/asma-ds-profile.png` (96 px, centré) et le titre `asma.ds`. Le README ne référençait aucune image jusque-là.
+
 ## 2026-10-30 — Count ExtraSmall (12 px) et style Body/2XS
 
 - Figma : `Count` gagne `Size=ExtraSmall` (12 px, nouveau Text Style `Body/2XS`, padding horizontal 3 px, rond parfait pour un chiffre) : 18 variantes (6 Type × 3 Size).

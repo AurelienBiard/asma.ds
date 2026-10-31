@@ -1,4 +1,8 @@
-# Design System
+<p align="center">
+  <img src="assets/logo/asma-ds-profile.png" alt="asma.ds" width="96" height="96">
+</p>
+
+<h1 align="center">asma.ds</h1>
 
 Source de vérité : les 5 fichiers `guidelines/*.yaml` (architecture v5 — core/foundations/agent/decisions/accessibility) et `components/<nom>/<nom>-component-spec.md` de ce repo. Figma (fichier `asma.ds`) et ce repo GitHub sont synchronisés à partir de ces fichiers — jamais l'inverse.
 
