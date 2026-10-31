@@ -38,12 +38,13 @@ Propriétés :
 
 ## Minicourbe (`Sparkline`)
 
-Sous-composant du KPI (ComponentSet `Sparkline`, variant `Trend` = `Neutral` / `Positive` / `Negative`, page Figma `↳ KPI`, section `Sparkline`). Une **pastille** contenant une ligne seule, sans axe, sans valeur, sans infobulle.
+Sous-composant du KPI (ComponentSet `Sparkline`, variant `Trend` = `Neutral` / `Positive` / `Negative` / `Stagnant`, page Figma `↳ KPI`, section `Sparkline`). Une **pastille** contenant une ligne seule, sans axe, sans valeur, sans infobulle.
 
 - **Pastille** : fond `Background/subtle`, radius `Radius/card`, padding `Spacing/component-sm` (12), auto-layout vertical, hauteur hug.
-- **Tracé** : 72 × 32 dans la pastille, épaisseur `Border/medium`, extrémités et jonctions arrondies, pas de remplissage. Couleur : `Feedback/Success/icon` (Positive), `Feedback/Danger/icon` (Negative), `Icon/secondary` (Neutral).
+- **Tracé** : 72 × 32 dans la pastille, épaisseur `Border/medium`, extrémités et jonctions arrondies, pas de remplissage. Couleur : `Feedback/Success/icon` (Positive), `Feedback/Danger/icon` (Negative), `Icon/secondary` (Neutral et Stagnant).
 - **Position** : Desktop — à droite de `Value`, 96 × 56. Mobile — sous `Value`, pleine largeur × 56 (le tracé suit la largeur). La `Value-row` passe de 48 à 56 de haut quand la minicourbe est affichée : prévoir ce décalage (le KPI avec minicourbe est plus haut que sans).
-- **Forme indicative** : le tracé du composant Figma est un placeholder (montée, descente, irrégulier selon `Trend`). En code, tracer les vraies données en SVG (une `polyline`, points normalisés sur la boîte 72 × 32) — le composant ne définit que la pastille, le trait et la couleur.
+- **Stagnant** : courbe quasi plate (écart de 2,6 px sur 32, centrée dans la boîte) pour une valeur qui ne bouge pas sur la période. À distinguer de `Neutral`, qui est irrégulier (monte et descend sans tendance, sans jugement). Même couleur `Icon/secondary`, pastille 96 × 56 inchangée.
+- **Forme indicative** : le tracé du composant Figma est un placeholder (montée, descente, irrégulier, plat selon `Trend`). En code, tracer les vraies données en SVG (une `polyline`, points normalisés sur la boîte 72 × 32) — le composant ne définit que la pastille, le trait et la couleur.
 - **Pourquoi pas un composant « Chart »** : aucune interaction, aucune donnée affichée ; c'est un habillage visuel de la valeur. Un vrai graphique (axes, survol) serait un autre composant.
 - **Accessibilité** : décorative (`aria-hidden="true"`) quand la variation est affichée, car elle dit déjà le sens. Sans variation (`Show-delta=false`), lui donner `role="img"` et un `aria-label` qui résume période et sens (« Commandes sur 30 jours, en hausse »).
 

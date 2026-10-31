@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-31 (2) — Sparkline : courbe stagnante
+
+- Figma : `Sparkline` gagne `Trend=Stagnant` (4 variantes) : courbe quasi plate, centrée dans la pastille 96 × 56, couleur `Icon/secondary` comme Neutral. `Neutral` reste irrégulier (monte et descend sans tendance).
+- Spec `kpi` et `decisions.yaml` mises à jour. Le `Trend` du KPI lui-même (jugement du Tag) ne change pas.
+
 ## 2026-10-31 — Picto dans le README
 
 - `README.md` : en-tête avec le picto `assets/logo/asma-ds-profile.png` (96 px, centré) et le titre `asma.ds`. Le README ne référençait aucune image jusque-là.
