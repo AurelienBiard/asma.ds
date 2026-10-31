@@ -13,7 +13,7 @@ L'Icon est un symbole graphique représentant une fonctionnalité, une action ou
 ## Variants
 
 - **Size** — Small / Medium / Large / XLarge.
-- **Bullet** — False / True / Count — rien, le Dot Indicator, ou le Count (Type Danger, Size Small par défaut). Avec `Count`, l'instance imbriquée `Count` est exposée : sa valeur (`Value`) et son Type se règlent depuis l'instance d'Icon.
+- **Bullet** — False / True / Count — rien, le Dot Indicator, ou le Count (Type Danger ; Size Small par défaut, ExtraSmall sur les icônes Small et Medium). Avec `Count`, l'instance imbriquée `Count` est exposée : sa valeur (`Value`) et son Type se règlent depuis l'instance d'Icon.
 - **BulletPosition** — n'a d'effet que lorsque Bullet = True ou Count. Avec Count, le badge déborde de 4 px du coin de l'icône.
 
 36 variantes (4 Size × [1 sans Bullet + 4 positions × 2 types de Bullet]).

@@ -85,15 +85,17 @@ typography:
     body-md: {mobile: md, desktop: md, line_height: "20px (no primitive step at 20 — between lg=16 and 2xl=20 — use 2xl)"}
     body-sm: {mobile: sm, desktop: sm, line_height: lg}
     body-xs: {mobile: "10px — NOTE: no Primitive Font-size step matches 10 (xs=9, sm=12); this is a direct value, not a Primitive alias, until/unless a 10px Primitive step is added", desktop: "10px (same note)", line_height: xs}
+    body-2xs: {mobile: "8px — NOTE: no Primitive Font-size step matches 8 (2xs=6, xs=9); direct value like body-xs", desktop: "8px (same note)", line_height: "12px (no Primitive step — between sm=12 … use sm)"}
     caption: {mobile: sm, desktop: sm, line_height: lg}
     label: {mobile: md, desktop: md, line_height: "20px (same as body-md — see below)"}
-  usage: {Display: "Major page-level statements/hero.", Heading: "Hierarchy.", Body: "Readable content.", "Body/XS": "Incidental small text (validation/error messages on Input components) — constant across breakpoints, not primary reading content.", Label: "Controls and compact labels.", Caption: "Supporting metadata."}
+  usage: {Display: "Major page-level statements/hero.", Heading: "Hierarchy.", Body: "Readable content.", "Body/2XS": "Smallest text (8/12), reserved for the Count ExtraSmall value — never for readable text, constant across breakpoints.", "Body/XS": "Incidental small text (validation/error messages on Input components) — constant across breakpoints, not primary reading content.", Label: "Controls and compact labels.", Caption: "Supporting metadata."}
 
   # Résumé en px (valeurs réelles appliquées dans tokens/responsive.json et Figma — 2026-09-25)
   current_scale_px:
     body-lg: "16/24"
     body-md: "14/20"
     body-sm: "12/16"
+    body-2xs: "8/12"
     body-xs: "10/14"
     caption: "12/16"
     label: "14/20 — même taille ET line-height que body-md ; la distinction label/corps de texte passe entièrement par le poids (Semi Bold), documenté dans components/label/label-component-spec.md"

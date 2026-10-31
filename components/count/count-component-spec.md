@@ -15,17 +15,17 @@ Le Count est un petit repère chiffré qui affiche **une quantité** : élément
 
 ## Anatomie
 
-- **Container** : pastille `Radius/pill`, hauteur fixe (20 px Medium, 16 px Small), largeur minimale égale à la hauteur, hug horizontal, padding horizontal `Spacing/component-2xs`.
+- **Container** : pastille `Radius/pill`, hauteur fixe (20 px Medium, 16 px Small, 12 px ExtraSmall), largeur minimale égale à la hauteur, hug horizontal, padding horizontal `Spacing/component-2xs`.
 - **Value** : le nombre, centré.
 - **Anchor** : élément auquel le Count est rattaché (hors composant). Sur une icône, le Count prend la place du `Dot Indicator` : composant `Icon`, `Bullet=Count`, mêmes quatre positions (débordement de 4 px du coin).
 
 ## Propriétés du composant Figma
 
 - **Type** (variant) : `Neutral` / `Brand` / `Info` / `Success` / `Warning` / `Danger`.
-- **Size** (variant) : `Medium` / `Small`.
+- **Size** (variant) : `Medium` / `Small` / `ExtraSmall`.
 - **Value** (Text) : le nombre, défaut `8`.
 
-12 variantes (6 Type × 2 Size).
+18 variantes (6 Type × 3 Size).
 
 ## Règles de couleur et de texte
 
@@ -44,13 +44,15 @@ Même mapping que `Tag`. Aucun nouveau token.
 |---|---|---|
 | Medium | 20 px | `Body/SM` |
 | Small | 16 px | `Body/XS` |
+| ExtraSmall | 12 px (padding horizontal 3 px) | `Body/2XS` (8/12, nouveau style) |
 
 Les hauteurs sont des valeurs littérales (aucun token de taille dédié).
 
 ## Usage
 
 - **Medium** : à côté d'un libellé (onglet, entrée de menu, filtre), séparé par `Spacing/component-xs`.
-- **Small** : uniquement en superposition sur une icône, en haut à droite, débordant d'environ un quart de sa taille. Réservé au cas où le nom accessible du parent exprime déjà la quantité.
+- **Small** : uniquement en superposition sur une icône Large ou XLarge, en haut à droite, débordant d'environ un quart de sa taille. Réservé au cas où le nom accessible du parent exprime déjà la quantité.
+- **ExtraSmall** : superposition sur une icône `Small` (16 px) ou `Medium` (20 px), où un Count de 16 px couvrirait presque tout le pictogramme. Un seul chiffre tient dans un rond de 12 px ; `99+` s'étire en pastille. Mêmes règles que Small.
 - **Valeur** : entier positif. Au-delà de 99, afficher `99+`. À 0, ne pas afficher le Count, sauf si zéro est une information (ex. « Résultats 0 »). Jamais « 0 » en superposition sur une icône.
 - **Contenu** : un nombre uniquement, pas d'unité, de texte ni d'icône. Une présence sans quantité → `Dot Indicator` ; un libellé ou un statut → `Tag` ; une valeur à surveiller avec sa variation → `KPI` ; une progression → `Progress`.
 
@@ -81,6 +83,6 @@ Page `↳ Count` (entre `↳ Command` et `↳ Dot indicator`) : section `Guideli
 
 ## À valider
 
-- Hauteurs 20 / 16 px en valeurs littérales : à rattacher à un token si une échelle de tailles de composants est introduite.
-- `Body/XS` (10 px) pour Small : lisibilité limitée, d'où la restriction à la superposition sur icône.
+- Hauteurs 20 / 16 / 12 px en valeurs littérales : à rattacher à un token si une échelle de tailles de composants est introduite.
+- `Body/XS` (10 px) pour Small et `Body/2XS` (8 px) pour ExtraSmall : lisibilité limitée, d'où la restriction à la superposition sur icône. `Body/2XS` n'a pas de pas Primitive (2xs=6, xs=9) : valeur directe, comme `Body/XS`.
 - Cas non couverts : Count dans un `Button` avec libellé, dans un `Tab-item` (propriété dédiée), dans la `Sidebar`.

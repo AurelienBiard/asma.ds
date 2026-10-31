@@ -21,6 +21,8 @@
   { "name": "Typography/body-sm/Line-Height", "type": "FLOAT", "byMode": { "Mobile": 16, "Desktop": 16 } },
   { "name": "Typography/body-xs/Font-size", "type": "FLOAT", "byMode": { "Mobile": 10, "Desktop": 10 } },
   { "name": "Typography/body-xs/Line-Height", "type": "FLOAT", "byMode": { "Mobile": 14, "Desktop": 14 } },
+  { "name": "Typography/body-2xs/Font-size", "type": "FLOAT", "byMode": { "Mobile": 8, "Desktop": 8 } },
+  { "name": "Typography/body-2xs/Line-Height", "type": "FLOAT", "byMode": { "Mobile": 12, "Desktop": 12 } },
   { "name": "Typography/caption/Font-size", "type": "FLOAT", "byMode": { "Mobile": 12, "Desktop": 12 } },
   { "name": "Typography/caption/Line-Height", "type": "FLOAT", "byMode": { "Mobile": 16, "Desktop": 16 } },
   { "name": "Typography/label/Font-size", "type": "FLOAT", "byMode": { "Mobile": 14, "Desktop": 14 } },

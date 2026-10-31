@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-30 — Count ExtraSmall (12 px) et style Body/2XS
+
+- Figma : `Count` gagne `Size=ExtraSmall` (12 px, nouveau Text Style `Body/2XS`, padding horizontal 3 px, rond parfait pour un chiffre) : 18 variantes (6 Type × 3 Size).
+- `Icon` : `Bullet=Count` utilise ExtraSmall sur les tailles `Small` (16 px) et `Medium` (20 px), Small sur `Large` et `XLarge`. Débord de 4 px du coin conservé.
+- Nouveau Text Style `Body/2XS` (Inter Regular 8/12, lié aux variables Responsive `Typography/body-2xs/Font-size` et `/Line-Height`, valeurs directes 8 et 12 : aucun pas Primitive ne correspond). Réservé à la valeur du Count ExtraSmall. Reporté dans `tokens/responsive.json`, `dist/tokens.css`, `foundations.yaml`.
+- Specs mises à jour : `count`, `icon`.
+
 ## 2026-10-29 (5) — Tous les champs de saisie à 44 px
 
 - Figma : `OTP-cell` (donc `Code-OTP`), `Duration-segment` et `Stepper` passent de 40 à 44 px de haut (cases 44×44 ; Stepper 44, boutons − / + en 44×44). `Search-button` passe de 40×40 à 44×44 pour s'aligner sur le champ. `TextInput`, `PasswordInput`, `Search`, `Select` et `TagInput` étaient déjà à 44 px (spec TextInput corrigée) ; `Textarea` reste à 160 px.
