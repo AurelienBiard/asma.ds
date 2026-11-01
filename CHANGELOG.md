@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-11-01 — Button Type=Danger
+
+- Figma : `Button` gagne `Type=Danger` (5 états) : fond `Action/destructive` / `-hover` / `-active`, texte et icônes `Text/on-brand` / `Icon/on-brand`, Focus = `Border/focus`, Disabled = gris commun. 25 variantes (5 Type × 5 State). Propriétés (Label, Show-*) rebranchées. Guidelines de la page `↳ Button` mises à jour.
+- Spec `button` et `README.md` mis à jour. Aucun nouveau token.
+- **À valider** : contraste du texte blanc sur `Action/destructive` en Dark (`Red/500`, 3,76:1 < 4,5:1).
+
+## 2026-10-31 (4) — Table : pas de bordure sous la dernière ligne
+
+- Règle systématique ajoutée à la spec `table` et à `decisions.yaml` : la dernière `Row` n'a pas de bordure basse (le conteneur porte déjà la bordure).
+- Figma : `strokeBottomWeight=0` sur la dernière `Row` de `Table (example)` ; guideline `Row` complétée. Le composant `Row` garde sa bordure basse (le reste des lignes en a besoin).
+
+## 2026-10-31 (3) — Boutons sans libellé restés à 40 px
+
+- Figma : 8 boutons avaient `Show-label=false` sans `Icon-only=true` (donc 40 × 40 au lieu de 44 × 44) : les 3 boutons de `PortfolioHeader` Mode=Mobile (+ ses instances dans les prototypes et la cover), `Action-1` du guide `PageHeader` et un bouton isolé de la page `↳ Button`. Tous passés en `Icon-only=true`, 44 × 44. Contrôle : 168 boutons sans libellé dans le fichier, tous en 44 × 44.
+- Spec `button` : ajout du piège (régler `Show-label`, `Icon-only` et la taille ensemble).
+- À valider : l'en-tête mobile du portfolio gagne 4 px de haut.
+
 ## 2026-10-31 (2) — Sparkline : courbe stagnante
 
 - Figma : `Sparkline` gagne `Trend=Stagnant` (4 variantes) : courbe quasi plate, centrée dans la pastille 96 × 56, couleur `Icon/secondary` comme Neutral. `Neutral` reste irrégulier (monte et descend sans tendance).

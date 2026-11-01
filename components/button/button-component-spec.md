@@ -8,7 +8,7 @@ Une seule taille (MD), hauteur de 44px avec libellé (padding `Spacing/component
 
 ## Propriétés du composant Figma
 
-- **Type** (variant) : `Primary` / `Outlined` / `Neutral` / `Ghost` — l'ancien Type `Link` a été retiré : utiliser le composant `Link` (`components/link/`) pour la navigation.
+- **Type** (variant) : `Primary` / `Outlined` / `Neutral` / `Ghost` / `Danger` (ajouté le 2026-11-01) — l'ancien Type `Link` a été retiré : utiliser le composant `Link` (`components/link/`) pour la navigation.
 - **State** (variant) : `Default` / `Hover` / `Active` / `Disabled` / `Focus`
 - **Icon-leading**, **Icon-trailing** : instances directes du composant `Icon` (16×16, `Format=Outline`, `Weight=Light`) — pas de Slot (retiré, plus de bénéfice une fois la recommandation de remplacement passée à "supprimer + glisser depuis Assets").
 - **Show-icon-leading**, **Show-icon-trailing** (Boolean, défaut `false`) : visibilité des icônes.
@@ -16,7 +16,7 @@ Une seule taille (MD), hauteur de 44px avec libellé (padding `Spacing/component
 - **Label** (Text, défaut `"Enregistrer"`) : contenu du label, éditable par instance.
 - **Icon-only** (Boolean, défaut `false`) : **non lié automatiquement** à `Show-label` — Figma ne permet pas de logique conditionnelle entre propriétés. À activer manuellement avec `Show-label=False` ; le bouton suit alors la règle « Bouton sans libellé » ci-dessous (44×44 fixe). Usages : `Search-button`, `Prev`/`Next` du composant `Pagination` (voir `components/pagination/`), actions de ligne de `Table`/`Cell`.
 
-20 variantes (4 Type × 5 State).
+25 variantes (5 Type × 5 State).
 
 ## Règle : bouton sans libellé (2026-10-29)
 
@@ -25,6 +25,7 @@ Quand un Button n'a pas de libellé (`Show-label=False`, en pratique avec `Icon-
 - **Pourquoi** : même hauteur que le bouton avec libellé, donc alignement dans les rangées mixtes ; cible tactile confortable (WCAG 2.5.8 exige 24 px, 2.5.5 niveau AAA recommande 44 px).
 - **Limite technique** : Figma ne lie pas `Icon-only` à la taille. La règle s'applique donc par instance (taille fixe 44×44) et reste à reporter dans le code (`width: 44px; height: 44px` sur un bouton sans texte visible).
 - **Pas d'exception** : tous les champs de saisie font 44 px de haut (depuis le 2026-10-29), donc les boutons sans libellé qui les accompagnent (`Search-button`, − / + du `Stepper`) sont aussi en 44×44.
+- **Piège** : `Show-label=false` seul ne suffit pas. Sans `Icon-only=true` et sans taille 44×44, le bouton retombe à 40 px de haut (icône 16 + padding 12 × 2, plus de ligne de libellé de 20 px). Toujours régler les trois ensemble : `Show-label=false`, `Icon-only=true`, 44×44 fixe. Contrôlé le 2026-10-31 : les 168 boutons sans libellé du fichier Figma sont en 44×44.
 - **Nom accessible** : toujours un `aria-label` (voir Accessibilité).
 
 ## Correspondance couleur par Type
@@ -34,12 +35,14 @@ Quand un Button n'a pas de libellé (`Show-label=False`, en pratique avec `Icon-
 | Primary | `Action/primary` | — | `Text/on-brand` | `Icon/on-brand` |
 | Outlined | `Action/secondary` | `Border/default` (Default) → `Border/strong` (Active) | `Text/primary` | `Icon/primary` |
 | Neutral | `Action/neutral` | — | `Text/primary` | `Icon/primary` |
+| Danger | `Action/destructive` | — | `Text/on-brand` | `Icon/on-brand` |
 | Ghost | transparent | — | `Text/primary` | `Icon/primary` |
 
 ## États communs à tous les Types
 
 - **Hover / Active** : progression d'intensité du fond.
 - **Disabled** : `Background/disabled` + `Text/disabled` + icônes `Icon/disabled` pour **tous** les Types — choix volontaire confirmé (reconnaissance immédiate et cohérente prime sur la préservation de la couleur du Type). Ne pas "corriger" ce comportement.
+- **Danger** (ajouté le 2026-11-01) : action **destructive ou irréversible** (supprimer, archiver définitivement). Fond `Action/destructive` (Default), `Action/destructive-hover` (Hover), `Action/destructive-active` (Active) ; Focus : fond Default + bordure `Border/focus`. Disabled : gris neutre commun. Réservé à l'action qui détruit — jamais pour un simple avertissement (→ `Alert`). Quand l'action est irréversible, demander une confirmation avant (`Dialog`). Le nom du Type suit le mot d'usage « Danger » ; les tokens restent `Action/destructive*` (« Destructive is an action, Danger is feedback »). **À valider** : contraste du texte blanc sur `Action/destructive` — Light `Red/600` 4,83:1 (AA), Dark `Red/500` 3,76:1 (sous 4,5:1 ; hover Dark `Red/600` 4,83:1). Correctif possible : Dark default → `Red/600`, hover → `Red/700`, active → `Red/800`.
 - **Focus** : bordure `Border/focus` + `Primitive/Border/medium`, `strokeAlign: OUTSIDE`. Sur `Ghost`, un fond léger (`Action/ghost-hover`) est ajouté en Focus pour délimiter visuellement la zone cliquable.
 - Une tentative de halo (Drop Shadow) à la place de la bordure de Focus a été testée puis abandonnée — retour à la bordure classique.
 

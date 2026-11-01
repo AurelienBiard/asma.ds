@@ -239,8 +239,8 @@ color:
 
   component_examples:
     Button:
-      primary: { background: "Semantic → Action/primary", label: "Semantic → Text/inverse" }
-      destructive: { background: "Semantic → Action/destructive", label: "Semantic → Text/inverse" }
+      primary: { background: "Semantic → Action/primary", label: "Semantic → Text/on-brand" }
+      danger: { background: "Semantic → Action/destructive (hover: destructive-hover, active: destructive-active)", label: "Semantic → Text/on-brand", icon: "Semantic → Icon/on-brand", note: "Button Type=Danger (2026-11-01) = destructive or irreversible action only; Disabled uses the shared neutral grey." }
     Alert:
       danger: { background: "Semantic → Feedback/Danger/background", border: "Semantic → Feedback/Danger/border", icon: "Semantic → Feedback/Danger/icon", text: "Semantic → Feedback/Danger/text" }
 
@@ -319,6 +319,7 @@ spacing:
     - "A component never contains section-* tokens: if needed inside, it is a page assembly, not a component."
     - "Values overlap (component-xl and section-sm are both 32 on Desktop; component-lg and section-xs are both 24): choose by the ROLE of the space, never by the number."
     - "Manual assemblies (Table, Timeline, Filter bar): rhythm between items = component-*; space between the whole assembly and its surroundings = section-*."
+    - "Table: the last row of a table never has a bottom border (the container carries the outer border). Figma: strokeBottomWeight=0 on the last Row instance; code: tr:last-child { border-bottom: 0 }. Applies whenever rows are added or removed — the rule follows position."
 
 # -----------------------------------------------------------------------------
 # 8. RADIUS (Primitive + Responsive)

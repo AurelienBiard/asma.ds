@@ -34,7 +34,7 @@ component_selection:
   Progress: "Known progress toward completion."
   Skeleton: "Loading placeholder."
   EmptyState: "Meaningful absence of content with optional next action."
-  Table: "Structured tabular data."
+  Table: "Structured tabular data. Rule: the last row of a table has no bottom border (the container already carries the outer border; a row border would double it). Figma: strokeBottomWeight=0 on the last Row instance; code: tr:last-child { border-bottom: 0 }."
   DataGrid: "Table-like data with richer interaction/editing/keyboard behavior."
   List: "Repeated content without tabular semantics."
   Card: "Bounded coherent content/action container."

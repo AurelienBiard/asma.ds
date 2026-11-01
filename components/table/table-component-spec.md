@@ -49,6 +49,8 @@ Ligne de données, conteneur de `Cell`.
 
 Conteneur horizontal, hauteur hug (44px avec le contenu par défaut, portée par `Cell`), largeur hug (s'étire pour remplir le tableau dans un contexte réel). Bordure basse uniquement, 1px `Border/subtle` (`strokeBottomWeight`, les 3 autres côtés à 0).
 
+**Règle systématique : la dernière ligne d'un tableau n'a pas de bordure basse.** Le conteneur du tableau porte déjà la bordure extérieure ; une bordure de ligne en plus la doublerait. Dans Figma : sur l'instance de la dernière `Row`, `strokeBottomWeight = 0` (surcharge d'instance). En code : `tr:last-child { border-bottom: 0 }` (ou `.row:last-child`). Vaut pour tout assemblage de lignes dans un conteneur bordé (`Table`, listes de `Row`), y compris quand on ajoute ou retire des lignes : la règle suit la position, pas la ligne.
+
 - **Select-cell** (`Selectable=True` uniquement) : frame 44×44 centrée, contient une instance exposée `Checkbox` (`Show-label=false`) — juste la case, sans label.
 - **Cells** : frame horizontale hug, contient les instances `Cell` de la ligne (autant que de colonnes). Pas de Slot Figma scriptable ici (contrairement à `Cell` elle-même) — `component.createSlot()` ne s'attache qu'à un `COMPONENT`, pas à une frame interne, et un Slot au niveau du composant `Row` se serait positionné hors de la frame `Cells` plutôt que de remplacer son contenu. Composition manuelle : dupliquer l'instance `Row` et remplacer le contenu de `Cells` par les instances `Cell` voulues, comme pour `Body`/`Footer` sur `Card`.
 
