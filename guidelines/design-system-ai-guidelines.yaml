@@ -69,6 +69,7 @@ naming:
     - "Use lowercase for the role segment (e.g. 'primary', 'default', 'component-md')."
     - "Do not prefix a variable's name with its own collection name."
     - "'/' creates a folder/group in the Figma variables panel."
+    - "Figma layer names: layout layers inside components (frames, auto-layouts, slots, groups) are lowerCamelCase (field, valueRow, selectCell, headerRow, cellActive; generic numbered frames frame85). Applies to layers only: component, ComponentSet, variant (Type=Primary), component property (Show-label), instance and text layer names keep their existing convention. Names with '/' or '=' are never converted."
 
 # -----------------------------------------------------------------------------
 # 3. ALIASES
@@ -240,7 +241,7 @@ color:
   component_examples:
     Button:
       primary: { background: "Semantic → Action/primary", label: "Semantic → Text/on-brand" }
-      danger: { background: "Semantic → Action/destructive (hover: destructive-hover, active: destructive-active)", label: "Semantic → Text/on-brand", icon: "Semantic → Icon/on-brand", note: "Button Type=Danger (2026-11-01) = destructive or irreversible action only; Disabled uses the shared neutral grey." }
+      destructive: { background: "Semantic → Action/destructive (hover: destructive-hover, active: destructive-active)", label: "Semantic → Text/on-brand", icon: "Semantic → Icon/on-brand", note: "Button Type=Danger (2026-11-01) = destructive or irreversible action only; Disabled uses the shared neutral grey." }
     Alert:
       danger: { background: "Semantic → Feedback/Danger/background", border: "Semantic → Feedback/Danger/border", icon: "Semantic → Feedback/Danger/icon", text: "Semantic → Feedback/Danger/text" }
 

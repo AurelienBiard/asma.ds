@@ -14,8 +14,8 @@ Composant unique couvrant tous les pickers de date (Date Picker, Date Range Pick
 ## Calendar (assemblage)
 
 - `Header` : `Nav-prev`/`Nav-next` (CaretLeft/CaretRight) encadrant `Month-label`. **Largeur fixe 248px** (pas hug), alignée sur la grille.
-- `Weekday-row` : 7 cases 32×20, `Text/tertiary`.
-- `Days-grid` : 5-6 rangées `Week-N` de 7 instances `Calendar-day`. Rangées `Header` et `Week-N` en largeur **FIXE** pour un alignement constant des colonnes.
+- `weekdayRow` : 7 cases 32×20, `Text/tertiary`.
+- `daysGrid` : 5-6 rangées `Week-N` de 7 instances `Calendar-day`. Rangées `Header` et `Week-N` en largeur **FIXE** pour un alignement constant des colonnes.
 - `clipsContent: false` partout (outer, Header, Days-grid, chaque Week) — retiré pour cohérence après une modification manuelle.
 
 ## Usage

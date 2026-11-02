@@ -42,7 +42,7 @@ Sous-composant du KPI (ComponentSet `Sparkline`, variant `Trend` = `Neutral` / `
 
 - **Pastille** : fond `Background/subtle`, radius `Radius/card`, padding `Spacing/component-sm` (12), auto-layout vertical, hauteur hug.
 - **Tracé** : 72 × 32 dans la pastille, épaisseur `Border/medium`, extrémités et jonctions arrondies, pas de remplissage. Couleur : `Feedback/Success/icon` (Positive), `Feedback/Danger/icon` (Negative), `Icon/secondary` (Neutral et Stagnant).
-- **Position** : Desktop — à droite de `Value`, 96 × 56. Mobile — sous `Value`, pleine largeur × 56 (le tracé suit la largeur). La `Value-row` passe de 48 à 56 de haut quand la minicourbe est affichée : prévoir ce décalage (le KPI avec minicourbe est plus haut que sans).
+- **Position** : Desktop — à droite de `Value`, 96 × 56. Mobile — sous `Value`, pleine largeur × 56 (le tracé suit la largeur). La `valueRow` passe de 48 à 56 de haut quand la minicourbe est affichée : prévoir ce décalage (le KPI avec minicourbe est plus haut que sans).
 - **Stagnant** : courbe quasi plate (écart de 2,6 px sur 32, centrée dans la boîte) pour une valeur qui ne bouge pas sur la période. À distinguer de `Neutral`, qui est irrégulier (monte et descend sans tendance, sans jugement). Même couleur `Icon/secondary`, pastille 96 × 56 inchangée.
 - **Forme indicative** : le tracé du composant Figma est un placeholder (montée, descente, irrégulier, plat selon `Trend`). En code, tracer les vraies données en SVG (une `polyline`, points normalisés sur la boîte 72 × 32) — le composant ne définit que la pastille, le trait et la couleur.
 - **Pourquoi pas un composant « Chart »** : aucune interaction, aucune donnée affichée ; c'est un habillage visuel de la valeur. Un vrai graphique (axes, survol) serait un autre composant.
@@ -50,7 +50,7 @@ Sous-composant du KPI (ComponentSet `Sparkline`, variant `Trend` = `Neutral` / `
 
 ## Chargement (`State=Loading`)
 
-Chaque élément est remplacé par une instance `Skeleton` (`components/skeleton/`) : icône (`Circle` 16), libellé (`Text`), valeur (`Rectangle`), tag (`Rectangle` en pilule) et repère (`Text`). Les trois zones (`Header`, `Value-row`, `Footer`) gardent la **hauteur exacte** de l'état `Default` — le KPI ne change pas de taille quand les données arrivent. Pas de minicourbe en `Loading`.
+Chaque élément est remplacé par une instance `Skeleton` (`components/skeleton/`) : icône (`Circle` 16), libellé (`Text`), valeur (`Rectangle`), tag (`Rectangle` en pilule) et repère (`Text`). Les trois zones (`Header`, `valueRow`, `Footer`) gardent la **hauteur exacte** de l'état `Default` — le KPI ne change pas de taille quand les données arrivent. Pas de minicourbe en `Loading`.
 
 - Les propriétés `Label`, `Value`, `Caption` et `Show-*` n'agissent pas dans cet état.
 - En code : `aria-busy="true"` sur le KPI, animation de pulsation/shimmer sur les squelettes (un squelette statique se lit comme une erreur de rendu). Ne jamais afficher une valeur `0` provisoire.

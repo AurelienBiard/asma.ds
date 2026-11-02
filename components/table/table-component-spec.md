@@ -22,7 +22,7 @@ En-tête de colonne, cliquable quand la colonne est triable.
 
 Conteneur horizontal 220px (largeur du composant, comme `Cell` — s'étire pour remplir sa colonne dans `Table`), hauteur hug. Padding `Spacing/component-sm` (horizontal, 12px) / `Spacing/component-2xs` (vertical, 4px), `itemSpacing: Spacing/component-2xs` (4px), alignement vertical centré. Deux enfants : `Label` (texte) puis instance `Sort-icon` (wrapper `Icon`, `Size=Small`).
 
-**Troncature 1 ligne** (ajouté le 2026-09-30, même règle que `Cell` → `Content=Text`) : `Label` en `textTruncation: ENDING` + `maxLines: 1` — un nom de colonne trop long est coupé avec une ellipse plutôt que de forcer un retour à la ligne (qui décalerait la hauteur de toute la `Header-row`) ou de pousser `Sort-icon` hors de la largeur de la colonne. Le nom complet reste consultable via `title` (HTML).
+**Troncature 1 ligne** (ajouté le 2026-09-30, même règle que `Cell` → `Content=Text`) : `Label` en `textTruncation: ENDING` + `maxLines: 1` — un nom de colonne trop long est coupé avec une ellipse plutôt que de forcer un retour à la ligne (qui décalerait la hauteur de toute la `headerRow`) ou de pousser `Sort-icon` hors de la largeur de la colonne. Le nom complet reste consultable via `title` (HTML).
 
 ### États et couleurs
 
@@ -52,22 +52,22 @@ Conteneur horizontal, hauteur hug (44px avec le contenu par défaut, portée par
 **Règle systématique : la dernière ligne d'un tableau n'a pas de bordure basse.** Le conteneur du tableau porte déjà la bordure extérieure ; une bordure de ligne en plus la doublerait. Dans Figma : sur l'instance de la dernière `Row`, `strokeBottomWeight = 0` (surcharge d'instance). En code : `tr:last-child { border-bottom: 0 }` (ou `.row:last-child`). Vaut pour tout assemblage de lignes dans un conteneur bordé (`Table`, listes de `Row`), y compris quand on ajoute ou retire des lignes : la règle suit la position, pas la ligne.
 
 - **Select-cell** (`Selectable=True` uniquement) : frame 44×44 centrée, contient une instance exposée `Checkbox` (`Show-label=false`) — juste la case, sans label.
-- **Cells** : frame horizontale hug, contient les instances `Cell` de la ligne (autant que de colonnes). Pas de Slot Figma scriptable ici (contrairement à `Cell` elle-même) — `component.createSlot()` ne s'attache qu'à un `COMPONENT`, pas à une frame interne, et un Slot au niveau du composant `Row` se serait positionné hors de la frame `Cells` plutôt que de remplacer son contenu. Composition manuelle : dupliquer l'instance `Row` et remplacer le contenu de `Cells` par les instances `Cell` voulues, comme pour `Body`/`Footer` sur `Card`.
+- **Cells** : frame horizontale hug, contient les instances `Cell` de la ligne (autant que de colonnes). Pas de Slot Figma scriptable ici (contrairement à `Cell` elle-même) — `component.createSlot()` ne s'attache qu'à un `COMPONENT`, pas à une frame interne, et un Slot au niveau du composant `Row` se serait positionné hors de la frame `cells` plutôt que de remplacer son contenu. Composition manuelle : dupliquer l'instance `Row` et remplacer le contenu de `cells` par les instances `Cell` voulues, comme pour `Body`/`Footer` sur `Card`.
 
 ### États et couleurs
 
 - **Default** : fond transparent.
 - **Hover** : fond `Action/ghost-hover`.
-- **Selected** : fond `Action/secondary-active`. Le `Checkbox` de `Select-cell` passe en `Checked=True`.
-- **Disabled** : fond transparent (pas de surbrillance), **toute la ligne à `opacity: 48%`** — plutôt qu'un remap token-par-token des `Cell` internes (`Cell` ne porte pas ses propres états, voir `components/cell/`, donc `Row` ne peut pas réécrire leurs bindings de couleur individuellement sans détacher chaque instance). L'opacité réduite atténue uniformément le texte, les icônes et le `Checkbox` sans casser la composition. Le `Checkbox` de `Select-cell` passe en `Interaction=Disabled`. Ligne non cliquable, non sélectionnable.
+- **Selected** : fond `Action/secondary-active`. Le `Checkbox` de `selectCell` passe en `Checked=True`.
+- **Disabled** : fond transparent (pas de surbrillance), **toute la ligne à `opacity: 48%`** — plutôt qu'un remap token-par-token des `Cell` internes (`Cell` ne porte pas ses propres états, voir `components/cell/`, donc `Row` ne peut pas réécrire leurs bindings de couleur individuellement sans détacher chaque instance). L'opacité réduite atténue uniformément le texte, les icônes et le `Checkbox` sans casser la composition. Le `Checkbox` de `selectCell` passe en `Interaction=Disabled`. Ligne non cliquable, non sélectionnable.
 
 ## Table (assemblage)
 
-Pas de composant unique paramétrique : une instance `Header-row` (assemblage manuel — `Select-cell` avec `Checkbox` en `Checked=Indeterminate` si sélection partielle / `True` si tout est sélectionné / `False` sinon, puis une instance `Header-cell` par colonne) suivie d'instances `Row`, le tout dans une frame conteneur (`Background/elevated`, bordure `Border/subtle`, `Radius/card`, `clipsContent: true` pour que la bordure basse de la dernière ligne ne dépasse pas).
+Pas de composant unique paramétrique : une instance `headerRow` (assemblage manuel — `selectCell` avec `Checkbox` en `Checked=Indeterminate` si sélection partielle / `True` si tout est sélectionné / `False` sinon, puis une instance `Header-cell` par colonne) suivie d'instances `Row`, le tout dans une frame conteneur (`Background/elevated`, bordure `Border/subtle`, `Radius/card`, `clipsContent: true` pour que la bordure basse de la dernière ligne ne dépasse pas).
 
-`Header-row` : fond `Background/subtle` (ajouté le 2026-10-01 — fond transparent jusqu'ici, l'en-tête ne se distinguait pas visuellement des `Row` en `Default`). Même bordure basse 1px `Border/subtle` que `Row`. Fond fixe, ne change pas au survol (l'en-tête n'est pas lui-même interactif — seuls `Header-cell` et la `Checkbox` de sélection le sont, chacun avec son propre état).
+`headerRow` : fond `Background/subtle` (ajouté le 2026-10-01 — fond transparent jusqu'ici, l'en-tête ne se distinguait pas visuellement des `Row` en `Default`). Même bordure basse 1px `Border/subtle` que `Row`. Fond fixe, ne change pas au survol (l'en-tête n'est pas lui-même interactif — seuls `Header-cell` et la `Checkbox` de sélection le sont, chacun avec son propre état).
 
-Exemple construit sur la page `↳ Table` : `Header-row` (checkbox indéterminée + colonne "Colonne" triée `Asc` + colonne "Colonne" non triable alignée à droite) + 3 `Row` (`Default`, `Hover`, `Selected`), toutes `Selectable=True`.
+Exemple construit sur la page `↳ Table` : `headerRow` (checkbox indéterminée + colonne "Colonne" triée `Asc` + colonne "Colonne" non triable alignée à droite) + 3 `Row` (`Default`, `Hover`, `Selected`), toutes `Selectable=True`.
 
 ### Tri (comportement)
 
@@ -75,8 +75,8 @@ Au clic sur un `Header-cell` triable : ce `Header-cell` passe à l'état de tri 
 
 ### Sélection (comportement)
 
-- Checkbox de `Select-cell` sur une `Row` : bascule cette ligne seule entre `Default`/`Selected` (ou `Hover`/`Selected` si survolée).
-- Checkbox de `Select-cell` sur `Header-row` (« tout sélectionner ») : `Checked=False` → sélectionne toutes les lignes non-`Disabled` ; `Checked=True` ou `Indeterminate` → désélectionne tout. `Indeterminate` = état visuel uniquement quand une sélection partielle existe (au moins une ligne sélectionnée, pas toutes) ; ne se clique pas vers un état "indéterminé", c'est un état dérivé, jamais choisi directement par l'utilisateur.
+- Checkbox de `selectCell` sur une `Row` : bascule cette ligne seule entre `Default`/`Selected` (ou `Hover`/`Selected` si survolée).
+- Checkbox de `selectCell` sur `headerRow` (« tout sélectionner ») : `Checked=False` → sélectionne toutes les lignes non-`Disabled` ; `Checked=True` ou `Indeterminate` → désélectionne tout. `Indeterminate` = état visuel uniquement quand une sélection partielle existe (au moins une ligne sélectionnée, pas toutes) ; ne se clique pas vers un état "indéterminé", c'est un état dérivé, jamais choisi directement par l'utilisateur.
 - Une ligne `Disabled` ignore les clics sur sa checkbox et n'est jamais comptée dans le « tout sélectionner ».
 
 ## Accessibilité

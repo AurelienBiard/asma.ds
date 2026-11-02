@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-11-02 (3) — Button : Type=Danger renommé Destructive
+
+- Figma : la valeur de variante `Type=Danger` du `Button` devient `Type=Destructive` (5 variantes, aucun changement visuel ; les instances suivent). Aligné sur le token `Action/destructive` et la règle « Destructive is an action ; Danger is feedback ».
+- Spec `button` et `design-system-ai-guidelines.yaml` mis à jour. Aucun token modifié.
+
+## 2026-11-02 (2) — Calques de mise en page en lowerCamelCase
+
+- Convention : les calques de mise en page à l'intérieur des composants (frames, auto-layouts, slots, groupes) sont en lowerCamelCase. Composants, variantes (`Type=Primary`), propriétés (`Show-label`), instances et textes gardent leurs noms. Règle ajoutée à `foundations.yaml` (`naming.layers`) et aux guidelines IA.
+- Figma : 914 calques renommés dans les composants du DS (hors prototypes, guidelines de pages et cover, laissés tels quels). Exemples : `Field` → `field`, `Value-row` → `valueRow`, `Select-cell` → `selectCell`, `Header-row` → `headerRow`, `Cell-active` → `cellActive`, `InnerTooltip` → `innerTooltip`, `Frame 85` → `frame85`, `CTA` → `cta`, `Pagination — Simple` → `paginationSimple`.
+- Specs mises à jour : les noms de calques distinctifs cités entre accents graves (`Field`, `Cells`, `Select-cell`, `Header-row`, `Value-row`, `Cell-*`, `Weekday-row`, `Days-grid`, `Shortcut-badge`, `Workspace-header`) passent en lowerCamelCase. Les noms génériques d'un seul mot (`Header`, `Body`, `Footer`, `Row`, `Track`, `Fill`…) peuvent encore apparaître avec une majuscule dans les specs quand ils désignent aussi un composant ou une propriété : à relire au fil des prochaines modifications.
+- À valider : les `Cell-*` du ThemeSwitcher / LangSwitcher et `Row` / `Cells` du Table sont des calques, pas des composants : vérifier que les specs n'ont pas confondu un nom de calque et un nom de composant.
+
+## 2026-11-02 — Dialog et Textarea : ligne de détourage et clipsContent
+
+- Specs `dialog` et `textarea` : la règle déjà notée pour `TextInput` (Focus en `strokeAlign: OUTSIDE`, parents sans `clipsContent`) y est reportée. Aucun changement Figma nécessaire : les 32 variantes du `Textarea` et les trois briques `Dialog-*` ne clippent déjà pas.
+- À valider : coins arrondis du conteneur de `Dialog` sans clip.
+- À reporter dans l'artefact à la prochaine MAJ asma.ds.
+
+## 2026-11-01 (2) — Toast : titre en Body/MD
+
+- Figma : le `Title` du `Toast` passe de `Body/SM` (12/16) à `Body/MD` (14/20), aligné sur la taille de `Action-label`. Largeur hug 274 → 297 px, hauteur 46 px inchangée (12 instances dans les prototypes suivent).
+- Spec `alert` (section Toast) mise à jour.
+
 ## 2026-11-01 — Button Type=Danger
 
 - Figma : `Button` gagne `Type=Danger` (5 états) : fond `Action/destructive` / `-hover` / `-active`, texte et icônes `Text/on-brand` / `Icon/on-brand`, Focus = `Border/focus`, Disabled = gris commun. 25 variantes (5 Type × 5 State). Propriétés (Label, Show-*) rebranchées. Guidelines de la page `↳ Button` mises à jour.

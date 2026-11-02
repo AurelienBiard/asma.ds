@@ -14,6 +14,8 @@ Feedback **éphémère**, flottant en superposition — disparaît automatiqueme
 
 Mêmes 4 `Status` et tokens Feedback qu'Alert, mais plus compact (une seule ligne, pas de `Description`). `Action` textuelle optionnelle (`Show-action`, Semi Bold souligné, ex. "Annuler"/"Voir") en plus de `Show-close`. Propriétés `Title`, `Action-label` (Text).
 
+**Text Styles du Toast (2026-11-01)** : `Title` en `Body/MD` (14/20, Regular) — auparavant `Body/SM` (12/16) ; `Action-label` reste en `Misc/Label` (14/20, Semi Bold). Le Toast passe de 274 à 297 px de large (largeur hug), hauteur inchangée (46 px).
+
 **Espacement du Toast (2026-10-13)** : padding de `Spacing/component-sm` (12px) sur les 4 côtés (le vertical était de 10px en dur) ; gap de `Spacing/component-xs`. Hauteur passée de 42 à 46px.
 
 ## Leçons de construction

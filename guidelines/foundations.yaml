@@ -29,6 +29,7 @@ naming:
     semantic: [Action/primary, Feedback/Danger/text, Icon/link]
     responsive: [Typography/body-md/Font-size, Typography/body-md/Line-Height, Spacing/component-md, Radius/control]
   rules: ["Use lowercase role segments.", "'/' creates Figma groups.", "Do not introduce a second naming convention."]
+  layers: "Figma layer names: layout layers inside components (frames, auto-layouts, slots, groups) are lowerCamelCase (field, valueRow, selectCell, headerRow, cellActive; generic numbered frames frame85). Applies to layers only: component, ComponentSet, variant (Type=Primary), component property (Show-label), instance and text layer names keep their existing convention. Names with '/' or '=' are never converted."
 
 aliases:
   semantic: "Every Semantic color role aliases a Primitive color."

@@ -10,11 +10,11 @@ Sélection de commande par recherche (`decisions.yaml` → `Command`), palette f
 
 Variant `State` : `Default` / `Hover` / `Active` / `Disabled` (ajouté le 2026-09-29 — une commande indisponible dans le contexte courant, ex. permission manquante, n'avait aucun traitement visuel prévu). Propriétés `Label` (Text), `Shortcut-text` (Text), `Show-shortcut` (Boolean, défaut `true`). Icône de tête exposée (`isExposedInstance = true`).
 
-**Disabled** : même fond transparent que `Default` (pas de surbrillance) — `Label` en `Text/disabled`, icône de tête en `Icon/disabled`, `Shortcut-badge` en `Background/disabled` + `Shortcut-text` en `Text/disabled`. Non cliquable, ignoré par la recherche clavier (ne reçoit jamais le focus/`Active` au clavier).
+**Disabled** : même fond transparent que `Default` (pas de surbrillance) — `Label` en `Text/disabled`, icône de tête en `Icon/disabled`, `shortcutBadge` en `Background/disabled` + `Shortcut-text` en `Text/disabled`. Non cliquable, ignoré par la recherche clavier (ne reçoit jamais le focus/`Active` au clavier).
 
 ## Command (assemblage)
 
-Composant unique : une instance `Field` en recherche en tête (slot rempli par un `TextInput`), puis des sections regroupées (libellé de section + liste d'instances `Command-item`).
+Composant unique : une instance `field` en recherche en tête (slot rempli par un `TextInput`), puis des sections regroupées (libellé de section + liste d'instances `Command-item`).
 
 ## Tokens
 

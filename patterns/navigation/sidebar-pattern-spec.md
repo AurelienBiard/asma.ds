@@ -28,7 +28,7 @@ Variant `Mode` = `Expanded` / `Collapsed`.
 
 - Conteneur vertical, fond `Background/elevated`, padding `Spacing/component-md` (haut/bas) × `Spacing/component-sm` (côtés), gap `Spacing/component-2xs`.
 - **Expanded** (largeur au contenu) :
-  - `Workspace-header` : logo + nom de l'espace en `Heading/SM` Bold `Text/primary`, gap `Spacing/component-sm`, padding bas 16px, gauche 8px.
+  - `workspaceHeader` : logo + nom de l'espace en `Heading/SM` Bold `Text/primary`, gap `Spacing/component-sm`, padding bas 16px, gauche 8px.
   - `Section-label` : `Misc/Caption` (JetBrains Mono, 12/16) en capitales, `Text/tertiary`, padding gauche 8px, bas 4px.
   - `Menu-item` : hauteur 36px, padding `Spacing/component-xs`, gap `Spacing/component-xs`, radius `Radius/control`, icône 16px, libellé `Body/MD` Regular `Text/primary`. `Active` = fond `Action/secondary-active` ; `Hover` = `Action/ghost-hover` ; `Indent=True` = padding gauche 32px.
   - `Footer-link` : instance `Link`.

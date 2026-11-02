@@ -4,7 +4,7 @@ Champ de saisie à valeurs multiples. Interaction × Content × Validation, 32 v
 
 ## Anatomie
 
-- `Field` : `layoutWrap: WRAP` (retour à la ligne si plusieurs valeurs), hauteur **minimale 44px** (depuis le 2026-10-29 ; 40px auparavant), alignée sur la hauteur réelle des autres champs (TextInput, Select, Search) dans Figma. Pas figée : grandit si les Chips passent sur plusieurs lignes. Contenu centré verticalement. `clipsContent: false` sur le composant externe (bug de bordure Focus coupée sinon, même cause que sur les autres Input).
+- `field` : `layoutWrap: WRAP` (retour à la ligne si plusieurs valeurs), hauteur **minimale 44px** (depuis le 2026-10-29 ; 40px auparavant), alignée sur la hauteur réelle des autres champs (TextInput, Select, Search) dans Figma. Pas figée : grandit si les Chips passent sur plusieurs lignes. Contenu centré verticalement. `clipsContent: false` sur le composant externe (bug de bordure Focus coupée sinon, même cause que sur les autres Input).
 - Padding du Field : `Spacing/component-xs` (haut, bas, gauche) ; à droite **32px** (8 + 16 d'icône + 8) pour réserver la place de Clear-all : les Chips et la saisie ne passent jamais sous l'icône.
 - Valeurs saisies = **vraies instances de Chip** (`Type=Neutral`, `Size=Small`, icône trailing `X`) — jamais des Tag (voir spec Chip pour la distinction Tag/Chip).
 - Zone de saisie libre (texte placeholder "Ajouter...") pour ajouter une nouvelle valeur.

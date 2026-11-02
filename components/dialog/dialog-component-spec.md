@@ -32,6 +32,10 @@ Fond `Background/elevated` · Bordure haute `Border/default` · Padding `Spacing
 
 Empiler header + body + footer dans un conteneur (radius `Radius/card`, aucune ombre tokenisée — l'architecture n'a pas de famille Shadow (Semantic = couleur uniquement), largeur fixe selon breakpoint) avec un fond assombri plein écran (voile plein écran sans token dédié — aucun token Overlay n'existe) derrière.
 
+## Champs dans un Dialog (ligne de détourage et clip)
+
+Un `Dialog` contient souvent des champs de saisie (`TextInput`, `Textarea`, `Select`, …) dont la bordure `Focus` est dessinée à l'extérieur (`strokeAlign: OUTSIDE`, voir `components/text-input/`). Règle : `Dialog-header`, `Dialog-body` et `Dialog-footer` ont `clipsContent: false`, et le conteneur de la composition aussi — un parent qui clippe coupe la ligne de détourage des champs en bordure du corps. Pour garder les coins arrondis (`Radius/card`) sans rogner : arrondir les coins hauts du `Dialog-header` et bas du `Dialog-footer` au lieu de clipper le conteneur. En code : pas de `overflow: hidden` sur le conteneur du dialogue ; le corps défile dans sa propre zone (`overflow: auto`) avec un padding qui laisse la place du trait (`Border/medium`). **À valider** : le détail des coins arrondis sans clip.
+
 ## Guidelines Figma
 
 Page dédiée `↳ Dialog`.

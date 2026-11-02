@@ -15,7 +15,7 @@ Bascule binaire de la langue de l'interface (FR ↔ EN) (`decisions.yaml` → `L
 ## Propriétés du composant Figma
 
 - **Lang** (variant) : `FR` (défaut) / `EN` — la cellule active est celle de la langue courante.
-- **Motion** (variant) : `Static` (défaut) / `Tension` — identique à `Theme switcher` : **Indicator** opaque `Background/elevated` 20×20 sur une **Tension-layer** (filtre `asma-tension`), cellules renommées `Cell-fr` / `Cell-en` et transparentes.
+- **Motion** (variant) : `Static` (défaut) / `Tension` — identique à `Theme switcher` : **Indicator** opaque `Background/elevated` 20×20 sur une **Tension-layer** (filtre `asma-tension`), cellules renommées `cellFr` / `cellEn` et transparentes.
 - **State** (variant) : `Default` / `Hover` / `Disabled`.
 
 12 variantes (2 Lang × 2 Motion × 3 State).

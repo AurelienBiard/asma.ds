@@ -6,7 +6,7 @@ Champ de saisie texte de base — fondation des autres champs texte du système 
 
 ## Anatomie
 
-- **Field** : conteneur (fond, bordure, radius, padding), hauteur fixe 44px, `layoutSizingHorizontal: FILL` (s'adapte à son conteneur).
+- **field** : conteneur (fond, bordure, radius, padding), hauteur fixe 44px, `layoutSizingHorizontal: FILL` (s'adapte à son conteneur).
 - **Placeholder / Value** : texte affiché — propriétés texte dédiées, éditables indépendamment.
 - **Status-icon** : icône de statut, visible uniquement si Validation ≠ None.
 - **Message** : texte d'aide/erreur sous le champ, visible uniquement si Validation ≠ None — propriété texte dédiée.

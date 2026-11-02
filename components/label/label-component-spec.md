@@ -2,7 +2,7 @@
 
 > Ce fichier est la **source de vérité** du composant. Toute modification (anatomie, variants, tokens) se fait ici en premier, puis est répercutée dans Figma. Ne pas modifier le composant Figma directement sans reporter le changement dans ce fichier ensuite.
 
-> **Décision (2026-09-25)** : le slot d'input de `Field` était passé, directement dans Figma et sans documentation préalable, à une vraie propriété Slot Figma (`Input-placeholder`). Décision confirmée : on **revient au `swapComponent()`**, pas de Slot. Cette spec documente la décision retenue ; le retrait du Slot dans Figma (remplacement par une instance simple swappable) est une modification manuelle à faire côté Figma, hors de cette session.
+> **Décision (2026-09-25)** : le slot d'input de `field` était passé, directement dans Figma et sans documentation préalable, à une vraie propriété Slot Figma (`Input-placeholder`). Décision confirmée : on **revient au `swapComponent()`**, pas de Slot. Cette spec documente la décision retenue ; le retrait du Slot dans Figma (remplacement par une instance simple swappable) est une modification manuelle à faire côté Figma, hors de cette session.
 
 Deux composants liés, pour le même problème ("comment ajouter un label à un input") — à choisir selon le contexte.
 
@@ -21,12 +21,12 @@ Composant unique — composition Label + un input, avec un gap garanti de 8px.
 
 ## Quand utiliser quoi
 
-- **Field** : choix par défaut pour un input de formulaire labellisé — garantit l'espacement, le plus rapide à poser.
+- **field** : choix par défaut pour un input de formulaire labellisé — garantit l'espacement, le plus rapide à poser.
 - **Label** : uniquement si le layout fixe de Field ne convient pas (label à côté d'un contrôle inline, label partagé par plusieurs inputs, espacement personnalisé).
 
 ## Référence d'usage
 
-Voir `patterns/authentication/login-pattern-spec.md` — composition avec de vraies instances `Field`, input remplacé via `swapComponent()` par `TextInput`/`PasswordInput`.
+Voir `patterns/authentication/login-pattern-spec.md` — composition avec de vraies instances `field`, input remplacé via `swapComponent()` par `TextInput`/`PasswordInput`.
 
 ## Guidelines Figma
 
