@@ -20,34 +20,34 @@
 - **Title** (Text) : intitulé (poste, événement).
 - **Subtitle** (Text) : organisation, lieu ou complément (« Studio Lumen · Paris »).
 - **Description** (Text) et **Show-description** (Boolean, défaut `true`) : texte libre sous le sous-titre.
-- **Show-logo** (Boolean, défaut `false`) : affiche, tout en haut de `Content` (au-dessus de `Period`), une instance exposée de `Logos` (variante au choix sur l'instance : `Ynov`, `Frinergy`, `CHStudio`, `Innlog`, `OuestFrance`) — logo de l'organisation.
-- **Show-tools** (Boolean, défaut `false`) : affiche, sous `Description`, le bloc `Tools` (voir « Outils »). **Show-tool-1** à **Show-tool-5** (Boolean ; 1 et 2 `true`, 3 à 5 `false`) : affichent chaque `Tool-n` individuellement.
+- **Show-logo** (Boolean, défaut `false`) : affiche, tout en haut de `content` (au-dessus de `Period`), une instance exposée de `Logos` (variante au choix sur l'instance : `Ynov`, `Frinergy`, `CHStudio`, `Innlog`, `OuestFrance`) — logo de l'organisation.
+- **Show-tools** (Boolean, défaut `false`) : affiche, sous `Description`, le bloc `tools` (voir « Outils »). **Show-tool-1** à **Show-tool-5** (Boolean ; 1 et 2 `true`, 3 à 5 `false`) : affichent chaque `Tool-n` individuellement.
 - **Show-connector** (Boolean, défaut `true`) : trait vertical vers l'élément suivant. À mettre sur `false` pour le **dernier** élément de la liste.
 
 ### Anatomie — Vertical
 
 Conteneur horizontal, largeur 480px dans le composant (s'étire à la largeur de son conteneur), deux enfants :
-- **Rail** (vertical, largeur 16px, `FILL` en hauteur, alignement centré) : `Marker` puis `Connector`. `Marker` : cercle 12×12, `Radius/pill`, bordure 2px, décalé de 2px du haut pour s'aligner sur la première ligne de texte. `Connector` : trait 2px de large, `FILL` en hauteur, `Border/default`, masquable.
-- **Content** (vertical, `FILL`, gap `Spacing/component-2xs`, padding bas `Spacing/component-lg` — espace entre deux éléments) : `Period` (`Misc/Caption` + `Text/tertiary`), `Title` (`Misc/Label` + `Text/primary`), `Subtitle` (`Body/MD` + `Text/secondary`), `Description` (`Body/MD` + `Text/secondary`, masquable), et, en première position, `Logo` (instance exposée de `Logos`, masquée par défaut, voir ci-dessous).
+- **rail** (vertical, largeur 16px, `FILL` en hauteur, alignement centré) : `marker` puis `Connector`. `marker` : cercle 12×12, `Radius/pill`, bordure 2px, décalé de 2px du haut pour s'aligner sur la première ligne de texte. `Connector` : trait 2px de large, `FILL` en hauteur, `Border/default`, masquable.
+- **content** (vertical, `FILL`, gap `Spacing/component-2xs`, padding bas `Spacing/component-lg` — espace entre deux éléments) : `Period` (`Misc/Caption` + `Text/tertiary`), `Title` (`Misc/Label` + `Text/primary`), `Subtitle` (`Body/MD` + `Text/secondary`), `Description` (`Body/MD` + `Text/secondary`, masquable), et, en première position, `Logo` (instance exposée de `Logos`, masquée par défaut, voir ci-dessous).
 - Gap horizontal Rail/Content : `Spacing/component-sm`.
 
 ### Anatomie — Horizontal
 
 Conteneur **vertical**, largeur **240px** par élément (`FIXED`), gap `Spacing/component-sm`, deux enfants :
-- **Rail** (horizontal, `FILL` en largeur, hauteur 12px, alignement centré, gap 4px) : `Marker` (même cercle 12×12) puis `Connector` (trait de 2px de haut, `FILL` en largeur, `Border/default`, masquable). Le connecteur relie le marqueur au suivant ; masqué sur le dernier élément.
-- **Content** (vertical, `FILL`, gap `Spacing/component-2xs`, padding **droit** `Spacing/component-lg` — espace entre deux éléments) : mêmes `Period`, `Title`, `Subtitle`, `Description` que la version verticale.
+- **rail** (horizontal, `FILL` en largeur, hauteur 12px, alignement centré, gap 4px) : `marker` (même cercle 12×12) puis `Connector` (trait de 2px de haut, `FILL` en largeur, `Border/default`, masquable). Le connecteur relie le marqueur au suivant ; masqué sur le dernier élément.
+- **content** (vertical, `FILL`, gap `Spacing/component-2xs`, padding **droit** `Spacing/component-lg` — espace entre deux éléments) : mêmes `Period`, `Title`, `Subtitle`, `Description` que la version verticale.
 
 À réserver à **3 à 5 étapes** qui tiennent sur une ligne ; au-delà, passer en `Vertical`. Sur écran étroit, une timeline horizontale doit se replier en verticale (ou défiler horizontalement avec un indicateur) — comportement non spécifié à ce jour.
 
 ### Outils
 
-Dernier enfant de `Content`, sous `Description` : bloc **`Tools`** (auto-layout horizontal, `layoutWrap = WRAP`, gap et `counterAxisSpacing` `Spacing/component-xs`, `FILL` en largeur), **visible = `Show-tools`** (`false` par défaut). Il contient `Tool-1` à `Tool-5`, instances exposées de `Tag` (`Type=Neutral`, `Size=Medium`, sans icônes), libellé modifiable depuis l'instance ; même mécanique que le pattern `Skill`. Même emplacement dans les 4 variantes. `Show-tools` est nécessaire en plus des `Show-tool-n` : un bloc dont tous les enfants sont masqués garde sa hauteur dans Figma.
+Dernier enfant de `content`, sous `Description` : bloc **`tools`** (auto-layout horizontal, `layoutWrap = WRAP`, gap et `counterAxisSpacing` `Spacing/component-xs`, `FILL` en largeur), **visible = `Show-tools`** (`false` par défaut). Il contient `Tool-1` à `Tool-5`, instances exposées de `Tag` (`Type=Neutral`, `Size=Medium`, sans icônes), libellé modifiable depuis l'instance ; même mécanique que le pattern `Skill`. Même emplacement dans les 4 variantes. `Show-tools` est nécessaire en plus des `Show-tool-n` : un bloc dont tous les enfants sont masqués garde sa hauteur dans Figma.
 
 ### Logo
 
-Premier enfant de `Content`, au-dessus de `Period` : instance exposée du composant `Logos` (page Figma `↳ Logos`, section Foundation ; 40×40 ; variante par défaut `OuestFrance`), **visible = `Show-logo`** (`false` par défaut), même emplacement dans les 4 variantes ; gap `Spacing/component-2xs` avec `Period`. `alt` = nom de l'organisation (voir `Image`).
+Premier enfant de `content`, au-dessus de `Period` : instance exposée du composant `Logos` (page Figma `↳ Logos`, section Foundation ; 40×40 ; variante par défaut `OuestFrance`), **visible = `Show-logo`** (`false` par défaut), même emplacement dans les 4 variantes ; gap `Spacing/component-2xs` avec `Period`. `alt` = nom de l'organisation (voir `Image`).
 
-Limites connues : le `Marker` du `Rail` reste calé en haut (à hauteur du logo quand il est affiché, non de `Period`) ; la propriété de variante de `Logos` s'appelle encore `Property 1` dans Figma (non renommée).
+Limites connues : le `marker` du `rail` reste calé en haut (à hauteur du logo quand il est affiché, non de `Period`) ; la propriété de variante de `Logos` s'appelle encore `Property 1` dans Figma (non renommée).
 
 ### États (marqueur)
 
@@ -66,7 +66,7 @@ Le connecteur d'un élément relie son marqueur au suivant : il est donc rempli 
 
 ## Timeline (assemblage)
 
-Instances de `Timeline-item` dans une frame auto-layout (gap 0) : **empilées verticalement** pour `Vertical` (rythme vertical = padding bas de `Content`), **alignées horizontalement** pour `Horizontal` (rythme = padding droit de `Content`). Ne jamais mélanger les deux orientations dans une même liste. Le dernier élément a `Show-connector=false`. Un seul sens chronologique par liste ; chaque élément porte sa date, l'ordre n'est jamais implicite.
+Instances de `Timeline-item` dans une frame auto-layout (gap 0) : **empilées verticalement** pour `Vertical` (rythme vertical = padding bas de `content`), **alignées horizontalement** pour `Horizontal` (rythme = padding droit de `content`). Ne jamais mélanger les deux orientations dans une même liste. Le dernier élément a `Show-connector=false`. Un seul sens chronologique par liste ; chaque élément porte sa date, l'ordre n'est jamais implicite.
 
 ## Comportement
 
@@ -113,7 +113,7 @@ Hors de ce comportement, la `Timeline` reste en lecture seule (voir ci-dessus) :
 
 ## Tokens
 
-`Background/elevated`, `Border/strong`, `Border/default`, `Action/primary`, `Text/primary`, `Text/secondary`, `Text/tertiary`, `Radius/pill`, `Spacing/component-2xs`, `Spacing/component-sm`, `Spacing/component-lg`. Text Styles : `Misc/Caption`, `Misc/Label`, `Body/MD`. Valeurs littérales assumées : largeur 480 (vertical) / 240 (horizontal), `Marker` 12, `Rail` 16 de large (vertical) / 12 de haut (horizontal), `Connector` 2.
+`Background/elevated`, `Border/strong`, `Border/default`, `Action/primary`, `Text/primary`, `Text/secondary`, `Text/tertiary`, `Radius/pill`, `Spacing/component-2xs`, `Spacing/component-sm`, `Spacing/component-lg`. Text Styles : `Misc/Caption`, `Misc/Label`, `Body/MD`. Valeurs littérales assumées : largeur 480 (vertical) / 240 (horizontal), `marker` 12, `rail` 16 de large (vertical) / 12 de haut (horizontal), `Connector` 2.
 
 ## Guidelines Figma
 

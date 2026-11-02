@@ -10,7 +10,7 @@ Propriétés : `Label` (Text), `Show-label` (Boolean, défaut `true` — permet 
 
 ## Step-indicator (assemblage)
 
-Instances de `Step-item` reliées par des `Connector` (piste + fill, remplissage progressif de gauche à droite plutôt qu'un changement de couleur binaire) : `Action/primary` si l'étape précédente est `Completed`, sinon `Border/strong`.
+Instances de `Step-item` reliées par des `connector` (piste + fill, remplissage progressif de gauche à droite plutôt qu'un changement de couleur binaire) : `Action/primary` si l'étape précédente est `Completed`, sinon `Border/strong`.
 
 ## Step-indicator-mobile (version compacte)
 

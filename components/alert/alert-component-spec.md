@@ -16,6 +16,13 @@ Mêmes 4 `Status` et tokens Feedback qu'Alert, mais plus compact (une seule lign
 
 **Text Styles du Toast (2026-11-01)** : `Title` en `Body/MD` (14/20, Regular) — auparavant `Body/SM` (12/16) ; `Action-label` reste en `Misc/Label` (14/20, Semi Bold). Le Toast passe de 274 à 297 px de large (largeur hug), hauteur inchangée (46 px).
 
+**Placement du Toast (2026-11-02)** :
+
+- **Desktop** : ancré au viewport (`position: fixed`), coin droit, à **40 px** des bords — en bas (`bottom: 40px`, placement par défaut) ou en haut (`top: 40px`).
+- **Mobile** : **centré horizontalement**, ancré en bas.
+- **Zones fixes** (barre de navigation, en-tête, pied collant, barre de retour mobile `OS / BreadCrumbMobile` de 60 px dans ASMA OS…) : le toast ne doit **jamais être masqué ni se superposer** à une zone fixe. Le placement s'adapte : le décalage de 40 px se mesure depuis le bord libre de la zone fixe, pas depuis le bord de l'écran. Sur mobile, prendre aussi en compte la zone de sécurité (`env(safe-area-inset-bottom)`).
+- Plusieurs toasts simultanés : empilés, convention (plus récent en haut ou en bas) à fixer une fois pour toutes par produit.
+
 **Espacement du Toast (2026-10-13)** : padding de `Spacing/component-sm` (12px) sur les 4 côtés (le vertical était de 10px en dur) ; gap de `Spacing/component-xs`. Hauteur passée de 42 à 46px.
 
 ## Leçons de construction

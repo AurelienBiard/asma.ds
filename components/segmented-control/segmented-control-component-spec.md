@@ -32,7 +32,7 @@ Propriété **Motion** (variant) : `Static` (défaut) / `Tension`. Même concept
 ### Anatomie
 
 - **Tension-layer** : couche `aria-hidden`, placée **sous** les Segments, en retrait `Primitive/Spacing/2xs` (le padding du conteneur), filtre SVG `asma-tension` (`foundations.yaml` → `motion.tension`).
-- **Indicator** : forme opaque `Background/elevated`, radius `Radius/control`, de la taille du Segment sélectionné. C'est elle qui porte le fond « Selected=True » : les Segments deviennent transparents dans cette variante (texte `Text/primary` si sélectionné, `Text/tertiary` sinon, inchangé).
+- **indicator** : forme opaque `Background/elevated`, radius `Radius/control`, de la taille du Segment sélectionné. C'est elle qui porte le fond « Selected=True » : les Segments deviennent transparents dans cette variante (texte `Text/primary` si sélectionné, `Text/tertiary` sinon, inchangé).
 - **Drop** : copie de l'Indicator posée sur l'ancienne position, visible uniquement pendant la transition.
 
 ### Comportement

@@ -8,24 +8,24 @@ Bascule binaire de la langue de l'interface (FR ↔ EN) (`decisions.yaml` → `L
 
 ## Anatomie
 
-- **Track** : rail horizontal 52×28, padding `Spacing/component-2xs` (4px), gap `Spacing/component-2xs`, fond `Action/secondary-active`, radius `Radius/card`.
+- **track** : rail horizontal 52×28, padding `Spacing/component-2xs` (4px), gap `Spacing/component-2xs`, fond `Action/secondary-active`, radius `Radius/card`.
 - **Cell-active** / **Cell-inactive** : deux cellules 20×20, radius `Radius/control`. L'active a le fond `Background/elevated` ; l'inactive est transparente.
 - **Label-fr** / **Label-en** : texte « FR » / « EN », style `Body/XS` (Inter 10px). Actif `Text/primary`, inactif `Text/tertiary`.
 
 ## Propriétés du composant Figma
 
 - **Lang** (variant) : `FR` (défaut) / `EN` — la cellule active est celle de la langue courante.
-- **Motion** (variant) : `Static` (défaut) / `Tension` — identique à `Theme switcher` : **Indicator** opaque `Background/elevated` 20×20 sur une **Tension-layer** (filtre `asma-tension`), cellules renommées `cellFr` / `cellEn` et transparentes.
+- **Motion** (variant) : `Static` (défaut) / `Tension` — identique à `Theme switcher` : **indicator** opaque `Background/elevated` 20×20 sur une **Tension-layer** (filtre `asma-tension`), cellules renommées `cellFr` / `cellEn` et transparentes.
 - **State** (variant) : `Default` / `Hover` / `Disabled`.
 
 12 variantes (2 Lang × 2 Motion × 3 State).
 
 ## États
 
-Règles identiques à `Theme switcher` : Hover et Disabled ne touchent jamais l'Indicator ni le filtre `asma-tension`.
+Règles identiques à `Theme switcher` : Hover et Disabled ne touchent jamais l'indicator ni le filtre `asma-tension`.
 
-- **Hover** : contour 1px `Border/default` autour de la `Track`, rien d'autre ne change. Le contour est `INSIDE` avec `strokesIncludedInLayout = false` : la `Track` garde 52×28 dans tous les états (sinon le composant, qui rogne son contenu, coupe le bord droit et bas).
-- **Disabled** : `Track` en `Background/disabled` + `Border/disabled` ; les deux codes en `Text/disabled` ; cellule active / Indicator reste `Background/elevated`. Non cliquable.
+- **Hover** : contour 1px `Border/default` autour de la `track`, rien d'autre ne change. Le contour est `INSIDE` avec `strokesIncludedInLayout = false` : la `track` garde 52×28 dans tous les états (sinon le composant, qui rogne son contenu, coupe le bord droit et bas).
+- **Disabled** : `track` en `Background/disabled` + `Border/disabled` ; les deux codes en `Text/disabled` ; cellule active / indicator reste `Background/elevated`. Non cliquable.
 
 ## Comportement
 

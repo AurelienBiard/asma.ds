@@ -29,20 +29,20 @@ Carte représentant une étape du graphe (déclencheur, action, condition, trans
 
 - **State** (variant) : `Default` / `Hover` / `Selected` / `Disabled`.
 - **Status** (variant) : `None` / `Success` / `Error` — résultat d'exécution ou de validation du nœud.
-- **Title** (Text), **Description** (Text), **Show-body** (Boolean, défaut `true` — masque tout le `Body`, description comprise), **Show-input** / **Show-output** (Boolean, défaut `true` — masquent toute la ligne `Port` d'entrée / de sortie, ex. un déclencheur n'a pas d'entrée).
+- **Title** (Text), **Description** (Text), **Show-body** (Boolean, défaut `true` — masque tout le `body`, description comprise), **Show-input** / **Show-output** (Boolean, défaut `true` — masquent toute la ligne `Port` d'entrée / de sortie, ex. un déclencheur n'a pas d'entrée).
 - Instances imbriquées **exposées** (leurs propriétés se règlent depuis l'instance de `Node`) : `Icon`, `Status-icon`, `Port-input`, `Port-output` (donc `Label`, `Show-label`, `Show-handle` et l'état du `Handle` par port).
 - **Icon** : instance imbriquée du composant `Icon` (`Size=Medium`), exposée — le pictogramme se change par instance (`Lightning` par défaut), comme sur les autres composants. Pas de propriété Instance swap dédiée sur `Node` (un swap direct remplacerait le composant `Icon` par le glyphe brut).
 
 12 variantes (4 State × 3 Status).
 
-`Body` et `Ports` n'ont **aucun fond** (`fills = []`) : un auto-layout créé par script a un fond blanc par défaut qui recouvrirait la bordure du `Node` (côtés et bas).
+`body` et `ports` n'ont **aucun fond** (`fills = []`) : un auto-layout créé par script a un fond blanc par défaut qui recouvrirait la bordure du `Node` (côtés et bas).
 
 ### Anatomie
 
 Conteneur vertical, largeur **240px** dans le composant (`clipsContent: false` — les `Handle` débordent volontairement), fond `Background/elevated`, bordure 1px, `Radius/card`.
-- **Header** : horizontal, fond `Background/subtle`, padding `Spacing/component-sm` (horizontal) / `Spacing/component-xs` (vertical), gap `Spacing/component-xs`, coins supérieurs `Radius/card`. `Icon` (`Icon/primary`) + `Title` (`Misc/Label` + `Text/primary`, `FILL`, tronqué sur 1 ligne) + `Status-icon` (uniquement si `Status` ≠ `None` : `CheckCircle` en `Feedback/Success/icon`, `WarningCircle` en `Feedback/Danger/icon`).
-- **Body** : vertical, padding `Spacing/component-sm`, gap `Spacing/component-xs`. `Description` (`Body/SM` + `Text/secondary`). Contenu libre possible en dessous (champ, valeur) par instances.
-- **Ports** : zone sans padding horizontal contenant les `Port` — `Input` à gauche, `Output` à droite, en lignes de 24px. Par défaut 1 `Input` + 1 `Output`.
+- **header** : horizontal, fond `Background/subtle`, padding `Spacing/component-sm` (horizontal) / `Spacing/component-xs` (vertical), gap `Spacing/component-xs`, coins supérieurs `Radius/card`. `Icon` (`Icon/primary`) + `Title` (`Misc/Label` + `Text/primary`, `FILL`, tronqué sur 1 ligne) + `Status-icon` (uniquement si `Status` ≠ `None` : `CheckCircle` en `Feedback/Success/icon`, `WarningCircle` en `Feedback/Danger/icon`).
+- **body** : vertical, padding `Spacing/component-sm`, gap `Spacing/component-xs`. `Description` (`Body/SM` + `Text/secondary`). Contenu libre possible en dessous (champ, valeur) par instances.
+- **ports** : zone sans padding horizontal contenant les `Port` — `Input` à gauche, `Output` à droite, en lignes de 24px. Par défaut 1 `Input` + 1 `Output`.
 
 ### États et couleurs (bordure)
 
@@ -100,7 +100,7 @@ Page dédiée `↳ Node` dans `❖ COMPONENTS` (entre `Menu` et `Numeric inputs`
 
 - Un `Handle` à cheval sur le bord se fait par `layoutPositioning = "ABSOLUTE"` dans le `Port` + contraintes (`MIN` à gauche, `MAX` à droite) ; le `Node` doit avoir `clipsContent = false`, sinon les `Handle` sont rognés.
 - Les `Edge` de l'exemple sont des vecteurs (`vectorPaths`, courbe cubique `M x1 y1 C x1+dx y1 x2-dx y2 x2 y2`, `dx = max(40, (x2-x1)/2)`) calés sur le centre des `Handle` (`absoluteBoundingBox`), placés sous les nœuds. Elles ne suivent pas les nœuds si on les déplace : à redessiner.
-- Un `figma.createAutoLayout()` a un fond blanc par défaut : `fills = []` sur `Body` et `Ports`, sinon la bordure du `Node` est masquée (les enfants se dessinent au-dessus du trait de leur parent).
+- Un `figma.createAutoLayout()` a un fond blanc par défaut : `fills = []` sur `body` et `ports`, sinon la bordure du `Node` est masquée (les enfants se dessinent au-dessus du trait de leur parent).
 - Une propriété Instance swap liée à `mainComponent` sur une instance imbriquée remplace le composant lui-même (ici `Icon` par le glyphe Phosphor) et renomme l'instance : préférer une instance exposée et `setProperties({'Instance#…': id})`.
 - `dashPattern` sur `findAll('VECTOR')` atteint aussi les glyphes d'icône des nœuds : cibler uniquement les `Edge`.
 - Un cloneur de section par script laisse des clones orphelins sur la page : vérifier `page.children` après un test.

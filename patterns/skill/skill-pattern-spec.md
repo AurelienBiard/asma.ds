@@ -28,12 +28,12 @@ Exprimer une compétence ou un domaine de pratique sur une ligne réutilisable :
 ComponentSet `Skill`, propriété de variante **`Device` = `Desktop` (540px) | `Mobile` (328px)**. Racine : auto-layout vertical, padding `Spacing/component-md`, `itemSpacing` `Spacing/component-xs`, bordure basse 1px `Border/subtle`, fond transparent, `FILL` en largeur dans son conteneur (même style que la `Row` de « Outils & technologies »).
 
 Enfants, dans l'ordre :
-1. **Header** — Desktop : horizontal, centré, gap `Spacing/component-md`. Mobile : horizontal (ligne), centré, gap `Spacing/component-md` — comme Desktop ; `Label` en `FILL`, **tronqué sur une ligne** (`textTruncation = ENDING`, `maxLines = 1`, ellipse), `Note` en `HUG` à droite.
+1. **header** — Desktop : horizontal, centré, gap `Spacing/component-md`. Mobile : horizontal (ligne), centré, gap `Spacing/component-md` — comme Desktop ; `Label` en `FILL`, **tronqué sur une ligne** (`textTruncation = ENDING`, `maxLines = 1`, ellipse), `note` en `HUG` à droite.
    - **Label** : `Misc/Label`, `Text/primary`, `FILL`.
-   - **Progress** (Desktop seulement, entre `Label` et `Note`) : instance exposée de `Progress-linear`, 120px de large fixe.
-   - **Note** : horizontal, centré, gap `Spacing/component-sm`, **`minWidth` 150px** (valeur littérale assumée) : **Score** (`Heading/SM`, `Text/primary`) puis **Level** (instance exposée de `Tag`).
-2. **Progress** (Mobile seulement) : instance exposée de `Progress-linear`, `FILL`, sous le `Header`. Sur Desktop elle est dans le `Header` (voir ci-dessus).
-3. **Tools** : horizontal, `layoutWrap = WRAP`, gap et `counterAxisSpacing` `Spacing/component-xs`. `Tool-1` à `Tool-5` : instances exposées de `Tag`.
+   - **Progress** (Desktop seulement, entre `Label` et `note`) : instance exposée de `Progress-linear`, 120px de large fixe.
+   - **note** : horizontal, centré, gap `Spacing/component-sm`, **`minWidth` 150px** (valeur littérale assumée) : **Score** (`Heading/SM`, `Text/primary`) puis **Level** (instance exposée de `Tag`).
+2. **Progress** (Mobile seulement) : instance exposée de `Progress-linear`, `FILL`, sous le `header`. Sur Desktop elle est dans le `header` (voir ci-dessus).
+3. **tools** : horizontal, `layoutWrap = WRAP`, gap et `counterAxisSpacing` `Spacing/component-xs`. `Tool-1` à `Tool-5` : instances exposées de `Tag`.
 4. **Description** : `Body/MD`, `Text/primary`, `FILL`.
 
 ## Propriétés du composant Figma
@@ -78,7 +78,7 @@ Une liste est un empilement d'instances sans espace entre elles (la bordure bass
 
 ## Tokens
 
-`Spacing/component-md`, `Spacing/component-xs`, `Spacing/component-sm`, `Spacing/component-2xs`, `Border/subtle`, `Text/primary`. Text Styles : `Misc/Label`, `Heading/SM`, `Body/MD`. Largeurs 540 / 328, `Progress` 120 (Desktop) et `minWidth` de `Note` 150 littérales assumées. Aucun token nouveau.
+`Spacing/component-md`, `Spacing/component-xs`, `Spacing/component-sm`, `Spacing/component-2xs`, `Border/subtle`, `Text/primary`. Text Styles : `Misc/Label`, `Heading/SM`, `Body/MD`. Largeurs 540 / 328, `Progress` 120 (Desktop) et `minWidth` de `note` 150 littérales assumées. Aucun token nouveau.
 
 ## Related
 

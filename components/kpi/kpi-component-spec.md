@@ -28,13 +28,13 @@ Propriétés :
 - **Icon** (Instance-swap, exposée depuis l'instance `Icon` du Header) — `Size=Small`, `Weight=Light`.
 - **Tag** (instance exposée) : son `Label` porte la variation (défaut `+8,2 %`), `Show-icon-leading` affiche la flèche.
 
-`Show-delta` et `Show-caption` ne sont **pas** liés : si les deux sont à `false`, le `Footer` est vide mais garde sa hauteur de ligne (pas de logique conditionnelle entre propriétés dans Figma).
+`Show-delta` et `Show-caption` ne sont **pas** liés : si les deux sont à `false`, le `footer` est vide mais garde sa hauteur de ligne (pas de logique conditionnelle entre propriétés dans Figma).
 
 ## Anatomie
 
-- **Header** : `Icon` (16 px) puis `Label`, gap `Spacing/component-2xs`.
+- **header** : `Icon` (16 px) puis `Label`, gap `Spacing/component-2xs`.
 - **Value-row** : `Value` (la valeur, toujours l'élément le plus grand du bloc) et, si `Show-chart`, la `Sparkline`. Gap `Spacing/component-sm` (Desktop) / `Spacing/component-2xs` (Mobile).
-- **Footer** : `Tag` (variation) puis `Caption`, gap `Spacing/component-2xs`.
+- **footer** : `Tag` (variation) puis `Caption`, gap `Spacing/component-2xs`.
 
 ## Minicourbe (`Sparkline`)
 
@@ -50,7 +50,7 @@ Sous-composant du KPI (ComponentSet `Sparkline`, variant `Trend` = `Neutral` / `
 
 ## Chargement (`State=Loading`)
 
-Chaque élément est remplacé par une instance `Skeleton` (`components/skeleton/`) : icône (`Circle` 16), libellé (`Text`), valeur (`Rectangle`), tag (`Rectangle` en pilule) et repère (`Text`). Les trois zones (`Header`, `valueRow`, `Footer`) gardent la **hauteur exacte** de l'état `Default` — le KPI ne change pas de taille quand les données arrivent. Pas de minicourbe en `Loading`.
+Chaque élément est remplacé par une instance `Skeleton` (`components/skeleton/`) : icône (`Circle` 16), libellé (`Text`), valeur (`Rectangle`), tag (`Rectangle` en pilule) et repère (`Text`). Les trois zones (`header`, `valueRow`, `footer`) gardent la **hauteur exacte** de l'état `Default` — le KPI ne change pas de taille quand les données arrivent. Pas de minicourbe en `Loading`.
 
 - Les propriétés `Label`, `Value`, `Caption` et `Show-*` n'agissent pas dans cet état.
 - En code : `aria-busy="true"` sur le KPI, animation de pulsation/shimmer sur les squelettes (un squelette statique se lit comme une erreur de rendu). Ne jamais afficher une valeur `0` provisoire.

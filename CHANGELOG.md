@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-11-02 (6) — Toast : placement
+
+- Spec `alert` (section Toast) : placement desktop (coin droit, `bottom: 40px` par défaut ou `top: 40px`) et mobile (centré en bas), adaptation aux zones fixes pour que le toast reste visible. Guideline Figma de la page `↳ Toast` alignée. Aucun composant modifié.
+
+## 2026-11-02 (5) — Dialog-header / Dialog-footer sans arrondi dans un Drawer
+
+- Figma : les instances `Dialog-header`, `Dialog-body` et `Dialog-footer` des composants `Drawer` (3 `Position` + `Drawer/Bottom`) ont leurs 4 coins à 0 (override de l'instance) ; l'arrondi propre au conteneur `Drawer` (coins côté contenu) est inchangé.
+- Spec `drawer` : nouvelle section « Dialog-header / Dialog-footer dans un Drawer » ; spec `dialog` : renvoi. Guideline Figma de la page `↳ Drawer` mise à jour.
+
+## 2026-11-02 (4) — Contraste Dark Destructive, Dialog, noms de calques génériques, règles Body/2XS et Border/subtle
+
+- **Tokens** : `Action/destructive`, `-hover`, `-active` en Dark passent de `Red/500`/`600`/`700` à `Red/600`/`700`/`800` (valeurs Dark = valeurs Light). Contraste `Text/on-brand` sur le fond : 3,76:1 → 4,83:1. Mis à jour dans Figma (alias), `tokens/semantic.json` et `dist/tokens.css`.
+- **Dialog** : `Dialog-header` (coins hauts) et `Dialog-footer` (coins bas) en `Radius/card` (variable liée), `clipsContent: false` conservé ; mention « À valider » retirée de la spec.
+- **Noms de calques** : les noms génériques à un mot sont en minuscule dans les specs (`header`, `footer`, `body`, `track`, `fill`, `indicator`, `row`, `arrow`, `marker`, `rail`, `content`, `tools`, `note`, `media`, `ports`, `connector`, `weekN`, `innerTooltip`, `frame85`). Instance `Search-button` → `searchButton` (exception voulue ; les autres instances, comme `Header-cell`, `Cell`, `Row`, gardent le nom de leur composant) ; `[field, searchButton]` dans la spec Search. Textes des guidelines Figma alignés (Calendar, Card, Command, Image, KPI, Lang/Theme switcher, Node, Numeric inputs, Popover, Progress, Skill, Step indicator, Text inputs, Timeline, Tooltip).
+- **Règles** : `Body/2XS` uniquement quand il n'y a pas d'autre choix (seul usage : Count ExtraSmall) ; `Border/subtle` = bordure surtout cosmétique à contraste faible assumé, `Border/default` quand la bordure doit rester bien visible.
+
 ## 2026-11-02 (3) — Button : Type=Danger renommé Destructive
 
 - Figma : la valeur de variante `Type=Danger` du `Button` devient `Type=Destructive` (5 variantes, aucun changement visuel ; les instances suivent). Aligné sur le token `Action/destructive` et la règle « Destructive is an action ; Danger is feedback ».

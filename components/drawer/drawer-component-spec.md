@@ -19,6 +19,10 @@ Tâche/contenu secondaire contextuel (`decisions.yaml` → `Drawer`). Réutilise
 
 Fond `Background/elevated` · Radius uniquement sur les coins côté contenu (`Radius/card`) · Ombre : aucune ombre tokenisée — l'architecture n'a pas de famille Shadow (Semantic = couleur uniquement) · Fond assombri : voile plein écran sans token dédié — aucun token Overlay n'existe.
 
+## Dialog-header / Dialog-footer dans un Drawer (2026-11-02)
+
+`Dialog-header` (coins hauts) et `Dialog-footer` (coins bas) portent un arrondi `Radius/card` quand ils composent un `Dialog` (voir `components/dialog/`). **Dans un `Drawer`, ils n'ont aucun arrondi propre** : les 4 coins de chaque instance sont à 0 (override de l'instance, variable de rayon déliée), dans les trois `Position` et dans le bottom-sheet. Seul le conteneur du `Drawer` porte un arrondi, uniquement sur ses coins côté contenu (`Radius/card`, jamais sur les coins collés au bord de l'écran). En code : pas de `border-radius` sur l'en-tête et le pied du panneau, quelle que soit la `Position`. Vérifié contre ASMA OS : le drawer d'édition (droite, 480 px, pleine hauteur, voile) réutilise ces composants sans arrondi propre.
+
 ## Drawer vs Dialog
 
 Drawer : panneau secondaire dismissible ancré à un bord (filtres, détail d'un item, formulaire large) ou bottom-sheet explicite. Dialog : interruption centrée qui demande attention immédiate (confirmation, formulaire court, alerte).

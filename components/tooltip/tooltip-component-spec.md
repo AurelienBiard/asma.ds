@@ -26,13 +26,13 @@ Info-bulle contextuelle. 36 variantes (3 State × 12 Position).
 **Problème initial** : une languette positionnée en `ABSOLUTE` par-dessus un corps bordé (`Body`) laisse une ligne de jonction visible entre la bordure du corps et la languette.
 
 **Solution (reproduite depuis une référence fournie par l'utilisateur, `FeatureCallout`)** :
-- `Arrow` (frame transparent, taille **fixe**, pas de FILL) et `InnerTooltip` (fond+bordure+radius) sont des **frères en flux normal** dans un outer auto-layout — jamais l'un superposé en absolu sur l'autre.
+- `arrow` (frame transparent, taille **fixe**, pas de FILL) et `innerTooltip` (fond+bordure+radius) sont des **frères en flux normal** dans un outer auto-layout — jamais l'un superposé en absolu sur l'autre.
 - L'outer a un **gap négatif (`itemSpacing: -1`)** entre les deux, créant un léger chevauchement qui masque toute ligne de jonction résiduelle (anti-aliasing).
-- `Arrow` contient un sous-frame `Frame 85` (`clipsContent: true`) avec 2 vecteurs superposés : `Vector` (fill, coloré comme le fond) et `Outline` (stroke seul, tracé ouvert sur les 2 côtés visibles seulement — pas le côté qui touche le corps).
-- **Positionnement latéral** : contrôlé par `counterAxisAlignItems` de l'**outer** (`MIN`/`CENTER`/`MAX`), jamais par un alignement interne à `Arrow` (qui reste toujours à sa taille naturelle).
+- `arrow` contient un sous-frame `frame85` (`clipsContent: true`) avec 2 vecteurs superposés : `Vector` (fill, coloré comme le fond) et `Outline` (stroke seul, tracé ouvert sur les 2 côtés visibles seulement — pas le côté qui touche le corps).
+- **Positionnement latéral** : contrôlé par `counterAxisAlignItems` de l'**outer** (`MIN`/`CENTER`/`MAX`), jamais par un alignement interne à `arrow` (qui reste toujours à sa taille naturelle).
 - **Canvas stacking** (`itemReverseZIndex`) : `true` pour `Position=top-*` et `left-*` (Arrow apparaît en premier dans le flux, donc "First on top" nécessaire pour qu'il passe visuellement devant dans la zone de chevauchement) ; `false` (défaut, "Last on top") pour `bottom-*`/`right-*` où Arrow est déjà en dernier dans le flux.
-- **Padding latéral `Spacing/component-xs`** sur `Arrow` pour les positions non centrées (`top-left`, `top-right`, etc.) — évite que la languette soit collée au coin exact.
-- Ordre des enfants dans l'outer : `Arrow` en premier si `Position` commence par `top-` ou `left-`, sinon `InnerTooltip` en premier.
+- **Padding latéral `Spacing/component-xs`** sur `arrow` pour les positions non centrées (`top-left`, `top-right`, etc.) — évite que la languette soit collée au coin exact.
+- Ordre des enfants dans l'outer : `arrow` en premier si `Position` commence par `top-` ou `left-`, sinon `innerTooltip` en premier.
 
 **Orientations du triangle** (tracé directement en 4 variantes, jamais par rotation d'un même vecteur — la rotation Figma introduit des décalages de point d'ancrage difficiles à corriger sans vérification visuelle) :
 ```
@@ -44,7 +44,7 @@ right: M 9.9 9.9 L 0 0 L 0 19.8 Z         (pour right-*)
 
 ## Message
 
-Text Style `Body/SM`. `layoutSizingHorizontal: FILL`, `textAutoResize: HEIGHT` (retour à la ligne activé, pas de troncature). `maxWidth: 400` sur `InnerTooltip` et sur le composant entier.
+Text Style `Body/SM`. `layoutSizingHorizontal: FILL`, `textAutoResize: HEIGHT` (retour à la ligne activé, pas de troncature). `maxWidth: 400` sur `innerTooltip` et sur le composant entier.
 
 ## Icône
 

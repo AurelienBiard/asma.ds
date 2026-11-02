@@ -14,9 +14,9 @@ Interrupteur (toggle) — bascule instantanée d'un réglage, pas un champ de fo
 
 ## Anatomie et couleurs
 
-- **Track** : 40×24, `cornerRadius: 12` (pilule). Off : `Border/strong`. On : `Action/primary` (`Action/primary-hover` en Hover). Disabled : `Background/disabled` + bordure `Border/disabled`.
+- **track** : 40×24, `cornerRadius: 12` (pilule). Off : `Border/strong`. On : `Action/primary` (`Action/primary-hover` en Hover). Disabled : `Background/disabled` + bordure `Border/disabled`.
 - **Thumb** : ellipse 18×18, toujours `Background/elevated` (blanc), position `x=3` (Off) ou `x=19` (On), `y=3`.
-- Focus : bordure `Border/focus` + `Primitive/Border/medium` sur `Track`, `strokeAlign: OUTSIDE`.
+- Focus : bordure `Border/focus` + `Primitive/Border/medium` sur `track`, `strokeAlign: OUTSIDE`.
 
 ## Usage
 

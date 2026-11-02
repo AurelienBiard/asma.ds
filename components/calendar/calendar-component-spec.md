@@ -13,16 +13,16 @@ Composant unique couvrant tous les pickers de date (Date Picker, Date Range Pick
 
 ## Calendar (assemblage)
 
-- `Header` : `Nav-prev`/`Nav-next` (CaretLeft/CaretRight) encadrant `Month-label`. **Largeur fixe 248px** (pas hug), alignée sur la grille.
+- `header` : `Nav-prev`/`Nav-next` (CaretLeft/CaretRight) encadrant `Month-label`. **Largeur fixe 248px** (pas hug), alignée sur la grille.
 - `weekdayRow` : 7 cases 32×20, `Text/tertiary`.
-- `daysGrid` : 5-6 rangées `Week-N` de 7 instances `Calendar-day`. Rangées `Header` et `Week-N` en largeur **FIXE** pour un alignement constant des colonnes.
-- `clipsContent: false` partout (outer, Header, Days-grid, chaque Week) — retiré pour cohérence après une modification manuelle.
+- `daysGrid` : 5-6 rangées `weekN` de 7 instances `Calendar-day`. Rangées `header` et `weekN` en largeur **FIXE** pour un alignement constant des colonnes.
+- `clipsContent: false` partout (outer, header, daysGrid, chaque weekN) — retiré pour cohérence après une modification manuelle.
 
 ## Usage
 
 - **Date Range Picker** : 2 jours `Selected` (début/fin), jours intermédiaires en `In-range`.
 - **Month/Year Picker** : réutiliser `Calendar-day` à l'identique (mêmes 7 states), seul le contenu texte change (mois/années au lieu de jours).
-- **Week Picker** : mettre toute une rangée `Week-N` en `In-range`.
+- **Week Picker** : mettre toute une rangée `weekN` en `In-range`.
 
 ## Leçon de construction
 

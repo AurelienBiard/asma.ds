@@ -85,4 +85,5 @@ Page `↳ Count` (entre `↳ Command` et `↳ Dot indicator`) : section `Guideli
 
 - Hauteurs 20 / 16 / 12 px en valeurs littérales : à rattacher à un token si une échelle de tailles de composants est introduite.
 - `Body/XS` (10 px) pour Small et `Body/2XS` (8 px) pour ExtraSmall : lisibilité limitée, d'où la restriction à la superposition sur icône. `Body/2XS` n'a pas de pas Primitive (2xs=6, xs=9) : valeur directe, comme `Body/XS`.
+- **Règle (2026-11-02)** : `Body/2XS` (8 px) est illisible pour du texte courant — il ne s'utilise que lorsqu'il n'y a vraiment pas d'autre choix. Son seul usage aujourd'hui est la valeur du Count `ExtraSmall` ; ne pas l'étendre à d'autres composants sans décision explicite.
 - Cas non couverts : Count dans un `Button` avec libellé, dans un `Tab-item` (propriété dédiée), dans la `Sidebar`.

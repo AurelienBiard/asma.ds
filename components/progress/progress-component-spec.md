@@ -19,12 +19,12 @@ Barre horizontale, 240px de large dans le composant (en usage réel, s'étire à
 
 - Conteneur vertical, gap 4px, `clipsContent: true`. Deux enfants en `Determinate`, un seul en `Indeterminate`.
 - **Percentage-label** (`Determinate` uniquement) : `Misc/Label` + `Text/primary`, `FILL` en largeur, aligné à droite, au-dessus de la barre.
-- **Track** : 240×8, fond `Action/neutral`, radius 4px (valeur littérale, pas de token), `clipsContent: true`.
-- **Fill** : hauteur 8, fond `Action/primary`, radius 4px. Largeur = pourcentage × largeur du `Track` (50 % → 120px dans le composant ; 0 % → 0px). **Adaptable en largeur (2026-10-12)** : `Track` en `layoutMode=NONE`, `FILL` en largeur ; `Fill` positionné à x=0 avec contrainte horizontale `SCALE` — redimensionner une instance (ou la passer en `FILL` dans un conteneur) étire le `Track` et le `Fill` garde le même pourcentage.
+- **track** : 240×8, fond `Action/neutral`, radius 4px (valeur littérale, pas de token), `clipsContent: true`.
+- **fill** : hauteur 8, fond `Action/primary`, radius 4px. Largeur = pourcentage × largeur du `track` (50 % → 120px dans le composant ; 0 % → 0px). **Adaptable en largeur (2026-10-12)** : `track` en `layoutMode=NONE`, `FILL` en largeur ; `fill` positionné à x=0 avec contrainte horizontale `SCALE` — redimensionner une instance (ou la passer en `FILL` dans un conteneur) étire le `track` et le `fill` garde le même pourcentage.
 
 ### Indeterminate
 
-Pas de label (hauteur totale 8px). `Fill` de largeur fixe 72px (30 % de la piste), posé à gauche dans Figma (statique). En usage réel, ce segment glisse en boucle sur toute la longueur de la piste ; `clipsContent` sur `Track` garantit qu'il ne déborde jamais pendant l'animation.
+Pas de label (hauteur totale 8px). `fill` de largeur fixe 72px (30 % de la piste), posé à gauche dans Figma (statique). En usage réel, ce segment glisse en boucle sur toute la longueur de la piste ; `clipsContent` sur `track` garantit qu'il ne déborde jamais pendant l'animation.
 
 ## Progress-circular
 
@@ -33,17 +33,17 @@ Indicateur circulaire de style donut (anneau plein avec trou central), 48×48.
 ### Anatomie
 
 Conteneur sans auto-layout, trois enfants superposés :
-- **Track** : ellipse 48×48, anneau complet (`arcData` de −π/2 à 3π/2, `innerRadius: 0.7`, soit une épaisseur d'anneau d'environ 7,2px), fond `Action/neutral`.
-- **Fill** : même ellipse, arc partiel superposé, fond `Action/primary`. Départ à midi (−π/2), sens horaire, fin à −π/2 + 2π × pourcentage (50 % → π/2).
+- **track** : ellipse 48×48, anneau complet (`arcData` de −π/2 à 3π/2, `innerRadius: 0.7`, soit une épaisseur d'anneau d'environ 7,2px), fond `Action/neutral`.
+- **fill** : même ellipse, arc partiel superposé, fond `Action/primary`. Départ à midi (−π/2), sens horaire, fin à −π/2 + 2π × pourcentage (50 % → π/2).
 - **Percentage-label** (`Determinate` uniquement) : `Body/XS` + `Text/primary`, centré horizontalement dans l'anneau, positionné à la main (texte hors auto-layout).
 
 ### Indeterminate
 
-Pas de label. `Fill` = arc fixe de 90° (de −π/2 à 0), statique dans Figma. En usage réel, il tourne en boucle autour de l'anneau.
+Pas de label. `fill` = arc fixe de 90° (de −π/2 à 0), statique dans Figma. En usage réel, il tourne en boucle autour de l'anneau.
 
 ## Comportement
 
-- **Determinate** : la largeur du `Fill` (Linear) ou l'angle de fin de l'arc (Circular) suit la valeur réelle ; le label affiche le pourcentage.
+- **Determinate** : la largeur du `fill` (Linear) ou l'angle de fin de l'arc (Circular) suit la valeur réelle ; le label affiche le pourcentage.
 - **Indeterminate** : uniquement quand la durée est réellement inconnue — sinon `Determinate` donne une meilleure perception du temps restant.
 - Composant non interactif : pas d'états `Hover`/`Focus`/`Disabled`.
 - Non spécifié à ce jour : durée et courbe de l'animation `Indeterminate`, comportement sous `prefers-reduced-motion`, variantes de statut (succès, erreur) et transition animée entre deux valeurs `Determinate`.
@@ -63,7 +63,7 @@ Pas de label. `Fill` = arc fixe de 90° (de −π/2 à 0), statique dans Figma. 
 
 ## Tokens
 
-`Action/neutral` (Track), `Action/primary` (Fill), `Text/primary` (label), `Misc/Label` (label Linear), `Body/XS` (label Circular).
+`Action/neutral` (track), `Action/primary` (fill), `Text/primary` (label), `Misc/Label` (label Linear), `Body/XS` (label Circular).
 
 ## Leçons de construction
 

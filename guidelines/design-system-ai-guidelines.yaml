@@ -69,7 +69,7 @@ naming:
     - "Use lowercase for the role segment (e.g. 'primary', 'default', 'component-md')."
     - "Do not prefix a variable's name with its own collection name."
     - "'/' creates a folder/group in the Figma variables panel."
-    - "Figma layer names: layout layers inside components (frames, auto-layouts, slots, groups) are lowerCamelCase (field, valueRow, selectCell, headerRow, cellActive; generic numbered frames frame85). Applies to layers only: component, ComponentSet, variant (Type=Primary), component property (Show-label), instance and text layer names keep their existing convention. Names with '/' or '=' are never converted."
+    - "Figma layer names: layout layers inside components (frames, auto-layouts, slots, groups) are lowerCamelCase (field, valueRow, selectCell, headerRow, cellActive; generic one-word layers too: header, footer, body, track, fill, indicator, row; generic numbered frames frame85). Applies to layers only: component, ComponentSet, variant (Type=Primary), component property (Show-label), instance and text layer names keep their existing convention. Names with '/' or '=' are never converted."
 
 # -----------------------------------------------------------------------------
 # 3. ALIASES

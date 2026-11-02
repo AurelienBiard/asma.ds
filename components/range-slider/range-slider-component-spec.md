@@ -8,7 +8,7 @@ Sélecteur de valeur continue ou de plage.
 
 ## Anatomie
 
-`Track` (200×4, `Border/strong`), `Fill` coloré (`Action/primary`) entre le(s) thumb(s), `Thumb(s)` en ellipse 16×16 (`Background/elevated` + contour `Action/primary`, épaissi en Focus). Pas de propriété texte (valeur portée par la position du thumb).
+`track` (200×4, `Border/strong`), `fill` coloré (`Action/primary`) entre le(s) thumb(s), `Thumb(s)` en ellipse 16×16 (`Background/elevated` + contour `Action/primary`, épaissi en Focus). Pas de propriété texte (valeur portée par la position du thumb).
 
 ## Usage
 

@@ -298,9 +298,9 @@
   --color-action-primary-active: #1123b5;
   --color-action-secondary: #0f172a;
   --color-action-secondary-hover: #1e293b;
-  --color-action-destructive: #ef4444;
-  --color-action-destructive-hover: #dc2626;
-  --color-action-destructive-active: #b91c1c;
+  --color-action-destructive: #dc2626;
+  --color-action-destructive-hover: #b91c1c;
+  --color-action-destructive-active: #991b1b;
   --color-feedback-info-background: #164e63;
   --color-feedback-info-border: #22d3ee;
   --color-feedback-info-icon: #22d3ee;

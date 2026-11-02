@@ -8,7 +8,7 @@ Bascule le mode de la collection **Semantic** (Light ↔ Dark) pour tout le fich
 
 ## Anatomie
 
-- **Track** : rail horizontal 52×28, padding `Spacing/component-2xs` (4px) sur les 4 côtés, gap `Spacing/component-2xs`, fond `Action/secondary-active`, radius `Radius/card`.
+- **track** : rail horizontal 52×28, padding `Spacing/component-2xs` (4px) sur les 4 côtés, gap `Spacing/component-2xs`, fond `Action/secondary-active`, radius `Radius/card`.
 - **Cell-active** / **Cell-inactive** : deux cellules 20×20, radius `Radius/control`. La cellule active a le fond `Background/elevated` ; l'inactive est transparente.
 - **Sun-icon** / **Moon-icon** : instances du wrapper `Icon` (`Size=Small`, rendu 12×12, `Format=Outline`, `Weight=Light`), pictogrammes `Sun` et `Moon`, couleur `Icon/primary`.
 
@@ -22,11 +22,11 @@ Bascule le mode de la collection **Semantic** (Light ↔ Dark) pour tout le fich
 
 ## États (ajouté le 2026-09-29)
 
-Règle de corrélation avec `Motion` : **Hover et Disabled ne touchent jamais la Tension-layer, l'Indicator, ni le filtre `asma-tension`** — identique en `Static` et en `Tension`, quel que soit le Mode. C'est une conséquence directe de la règle d'usage déjà posée sur `Motion=Tension` (`foundations.yaml` → `motion.usage_rules` : le filtre est réservé à un **changement d'état** porté par une forme opaque unique) — un survol ou un état désactivé n'est pas un changement d'état, donc n'anime/ne déforme jamais l'Indicator. Seuls `Track` et les icônes sont concernés par ces deux états.
+Règle de corrélation avec `Motion` : **Hover et Disabled ne touchent jamais la Tension-layer, l'indicator, ni le filtre `asma-tension`** — identique en `Static` et en `Tension`, quel que soit le Mode. C'est une conséquence directe de la règle d'usage déjà posée sur `Motion=Tension` (`foundations.yaml` → `motion.usage_rules` : le filtre est réservé à un **changement d'état** porté par une forme opaque unique) — un survol ou un état désactivé n'est pas un changement d'état, donc n'anime/ne déforme jamais l'indicator. Seuls `track` et les icônes sont concernés par ces deux états.
 
-- **Hover** : `Track` garde son fond `Action/secondary-active` inchangé (déjà au maximum d'intensité disponible dans cette famille de tokens — pas de `-hover` dédié), ajout d'un contour 1px `Border/default` autour du `Track`. Ni les cellules (`cellActive`/`cellInactive` en Static, `cellSun`/`cellMoon`/`Indicator` en Tension) ni les icônes ne changent.
-- **Correctif 2026-10-12** : en Hover/Disabled, la `Track` mesurait 54×30 dans un composant de 52×28 qui rogne son contenu — contour coupé à droite et en bas. Désormais `strokesIncludedInLayout = false`, `Track` 52×28 dans tous les états, cellules inchangées (4,4).
-- **Disabled** : `Track` passe en fond `Background/disabled` + bordure `Border/disabled`. Les icônes (`Sun-icon`/`Moon-icon`, les deux, dans les deux Motion) passent en `Icon/disabled`. La cellule active / l'`Indicator` **reste** `Background/elevated` inchangé — comme le Thumb de `Switch` qui reste blanc en Disabled — pour garder le toggle lisible malgré l'ensemble atténué. Non cliquable : la transition Light↔Dark (et donc l'effet Tension) ne peut jamais se déclencher dans cet état.
+- **Hover** : `track` garde son fond `Action/secondary-active` inchangé (déjà au maximum d'intensité disponible dans cette famille de tokens — pas de `-hover` dédié), ajout d'un contour 1px `Border/default` autour du `track`. Ni les cellules (`cellActive`/`cellInactive` en Static, `cellSun`/`cellMoon`/`indicator` en Tension) ni les icônes ne changent.
+- **Correctif 2026-10-12** : en Hover/Disabled, la `track` mesurait 54×30 dans un composant de 52×28 qui rogne son contenu — contour coupé à droite et en bas. Désormais `strokesIncludedInLayout = false`, `track` 52×28 dans tous les états, cellules inchangées (4,4).
+- **Disabled** : `track` passe en fond `Background/disabled` + bordure `Border/disabled`. Les icônes (`Sun-icon`/`Moon-icon`, les deux, dans les deux Motion) passent en `Icon/disabled`. La cellule active / l'`indicator` **reste** `Background/elevated` inchangé — comme le Thumb de `Switch` qui reste blanc en Disabled — pour garder le toggle lisible malgré l'ensemble atténué. Non cliquable : la transition Light↔Dark (et donc l'effet Tension) ne peut jamais se déclencher dans cet état.
 
 ## Comportement
 
@@ -42,7 +42,7 @@ Au clic, deux actions Figma enchaînées : `CHANGE_TO` vers l'autre variante + `
 
 Même principe que `SegmentedControl` / `Motion=Tension` (spec de référence : `components/segmented-control/`, fondation : `foundations.yaml` → `motion`) :
 - **Tension-layer** sous les deux cellules, en retrait `Spacing/component-2xs`, filtre `asma-tension`.
-- **Indicator** opaque `Background/elevated`, 20×20, radius `Radius/control` : il porte le fond actif et se déplace entre les deux positions. Les deux cellules sont renommées **Cell-sun** / **Cell-moon** (positions fixes portant chacune son icône) et deviennent transparentes dans cette variante — c'est l'Indicator qui indique laquelle est active, pas leur propre fond.
+- **indicator** opaque `Background/elevated`, 20×20, radius `Radius/control` : il porte le fond actif et se déplace entre les deux positions. Les deux cellules sont renommées **Cell-sun** / **Cell-moon** (positions fixes portant chacune son icône) et deviennent transparentes dans cette variante — c'est l'indicator qui indique laquelle est active, pas leur propre fond.
 - Au clic : bord d'attaque `Motion/Duration/sm` + `Motion/Easing/spring`, bord de fuite `Motion/Duration/md` + `Motion/Easing/standard` ; Drop sur l'ancienne cellule en `Motion/Duration/md` + `Motion/Easing/accelerate`.
 - Contraintes respectées : cellules de 20px ≥ taille minimale (8px), écart de 4px ≤ pont maximal (6px) — les deux formes fusionnent pendant le trajet.
 - `prefers-reduced-motion: reduce` → bascule sans transition. Accessibilité inchangée (`role="switch"`, `aria-checked`).

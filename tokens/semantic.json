@@ -268,7 +268,7 @@
     "type": "COLOR",
     "byMode": {
       "Light": "#dc2626",
-      "Dark": "#ef4444"
+      "Dark": "#dc2626"
     }
   },
   {
@@ -276,7 +276,7 @@
     "type": "COLOR",
     "byMode": {
       "Light": "#b91c1c",
-      "Dark": "#dc2626"
+      "Dark": "#b91c1c"
     }
   },
   {
@@ -284,7 +284,7 @@
     "type": "COLOR",
     "byMode": {
       "Light": "#991b1b",
-      "Dark": "#b91c1c"
+      "Dark": "#991b1b"
     }
   },
   {

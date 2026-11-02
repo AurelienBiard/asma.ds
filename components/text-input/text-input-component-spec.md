@@ -26,7 +26,7 @@ Champ de saisie texte de base — fondation des autres champs texte du système 
 
 | Interaction | Bordure |
 |---|---|
-| Default | `Border/subtle` (depuis le 2026-10-29 ; `Border/default` auparavant) |
+| Default | `Border/subtle` (depuis le 2026-10-29 ; `Border/default` auparavant) — bordure surtout cosmétique, contraste faible assumé (décision 2026-11-02) ; utiliser `Border/default` quand la bordure doit rester bien visible |
 | Hover | `Border/strong` |
 | Focus | `Border/focus` + `Primitive/Border/medium`, `strokeAlign: OUTSIDE` |
 | Disabled | `Border/disabled`, fond `Background/disabled`, texte `Text/disabled` |

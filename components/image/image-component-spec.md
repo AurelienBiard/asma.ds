@@ -15,18 +15,18 @@
 ## Anatomie
 
 Conteneur vertical, largeur **240px** dans le composant (s'étire à la largeur de son conteneur en usage réel), gap `Spacing/component-xs`, hauteur hug. Deux enfants :
-- **Media** : frame auto-layout `FILL` en largeur, hauteur **fixée par `Ratio`** (`Square` 240, `Landscape` 180, `Wide` 135 pour 240 de large), `Radius/card`, `clipsContent: true`, contenu centré. L'image elle-même est le **Fill** du calque `Media` (mode `Fill` ou `Fit`, voir « Cover ou Contain »).
+- **media** : frame auto-layout `FILL` en largeur, hauteur **fixée par `Ratio`** (`Square` 240, `Landscape` 180, `Wide` 135 pour 240 de large), `Radius/card`, `clipsContent: true`, contenu centré. L'image elle-même est le **Fill** du calque `media` (mode `Fill` ou `Fit`, voir « Cover ou Contain »).
 - **Caption** : `Body/SM` + `Text/tertiary`, `FILL` en largeur, masquable.
 
 ## États
 
-- **Default** : emplacement avant le remplacement par une image — fond `Background/sunken`, bordure 1px `Border/default`, icône `Image` (instance `Icon`, `Size=Large`, `Icon/tertiary`). Dès qu'une vraie image est posée, remplacer le `Fill` de `Media` et retirer l'icône.
+- **Default** : emplacement avant le remplacement par une image — fond `Background/sunken`, bordure 1px `Border/default`, icône `Image` (instance `Icon`, `Size=Large`, `Icon/tertiary`). Dès qu'une vraie image est posée, remplacer le `Fill` de `media` et retirer l'icône.
 - **Loading** : fond `Background/disabled` (même token que `Skeleton`), sans icône ni bordure. Attente du contenu — en code, un état transitoire sans interaction.
 - **Error** : comme `Default` avec l'icône `ImageBroken`. L'image n'a pas pu être chargée ; un lien « Réessayer » (`Button` Ghost) peut être ajouté à côté si le contexte s'y prête.
 
 ## Cover ou Contain
 
-- **Cover** (`object-fit: cover`, Figma `Fill`) : l'image remplit `Media` et est rognée. Pour les photos et les vignettes.
+- **Cover** (`object-fit: cover`, Figma `Fill`) : l'image remplit `media` et est rognée. Pour les photos et les vignettes.
 - **Contain** (`object-fit: contain`, Figma `Fit`) : l'image est visible en entier avec des marges autour. Pour les **logos**, illustrations et captures — un logo ne doit jamais être étiré ni rogné. Un fond neutre (`Background/default` ou `Background/subtle`) peut être posé sous le `Fill` pour les marges.
 - Ce choix est un réglage de `Fill`, pas une propriété du composant (le placeholder ne le montre pas) ; il est tracé ici pour qu'un agent le choisisse selon le contenu.
 
