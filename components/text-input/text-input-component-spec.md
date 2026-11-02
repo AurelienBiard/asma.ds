@@ -41,6 +41,7 @@ Cette règle vaut pour tous les champs de saisie en `Interaction=Default` et `Va
 
 ## Dimensions et comportement
 
+- **Décision (2026-11-02)** : 44 px est la hauteur définitive de tous les champs de saisie ; le 40 px est abandonné, aucune variante à 40 px.
 - Hauteur du Field fixée à 44px (padding vertical `Spacing/component-sm` moins la bordure de 1px, + ligne de 20px ; la spec disait 40px par erreur jusqu'au 2026-10-29) — atteinte en évitant `strokeAlign: INSIDE` combiné à un stroke sur un frame en hug (ajoute mystérieusement 2px de hauteur, cause exacte non identifiée malgré investigation ; contournement : construire avec `strokeAlign: OUTSIDE` pour Focus, sinon reconstruire proprement sans jamais appeler `resize()` sur la hauteur si le problème persiste).
 - Padding horizontal du Field : `Spacing/component-xs`. Padding vertical : `Spacing/component-sm`.
 - Radius : `Radius/control`.

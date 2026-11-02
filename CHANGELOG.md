@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-11-02 (8) — Toast : marge mobile
+
+- Spec `alert` (section Toast) : marge mobile fixée à 20 px (`bottom: 20px`, centré) ; desktop confirmé (coin droit, 40 px). `Header-row` de `Table (example)` conservé tel quel.
+
+## 2026-11-02 (7) — Palette de graphiques, Drawer carré, Textarea en FILL, slot Dialog-body, Table, TextInput
+
+- **Tokens** (5 nouveaux, Semantic) : `Chart/series-1` à `Chart/series-5` — couleurs catégorielles de séries de graphique, alias de primitives existantes. Light : `Blue/500`, `Red/600`, `Cyan/600`, `Green/600`, `Amber/600` ; Dark : `Blue/400`, `Red/500`, `Cyan/600`, `Green/600`, `Amber/600`. Validées (bande de luminosité, chroma, plancher de vision normale 17,4, contraste ≥ 3:1) ; séparation daltonisme adjacente 6,2 (plancher) → encodage secondaire obligatoire (légende, étiquettes directes ou tableau). Figma (variables), `tokens/semantic.json`, `dist/tokens.css` (régénéré), `foundations.yaml` (`color.chart_palette`) et guidelines IA mis à jour.
+- **Drawer** : coins carrés partout — le conteneur (3 `Position` + `Drawer/Bottom`) n'a plus d'arrondi ; les `Dialog-header` / `Dialog-footer` y restent à 0. Spec `drawer` réécrite en conséquence.
+- **Textarea** : le composant garde 280 px par défaut, `field` passe en `FILL` en largeur (32 variantes).
+- **Dialog-body** : `clipsContent: false` documenté sur le composant et le `slot` (déjà appliqué dans Figma) pour que le focus des champs reste visible.
+- **Table** : élévation 0 documentée (aucun effet dans Figma).
+- **TextInput** : hauteur 44 px actée comme définitive (40 px abandonné).
+- **KPI** : aucune modification — `Show-delta` est déjà documenté.
+
 ## 2026-11-02 (6) — Toast : placement
 
 - Spec `alert` (section Toast) : placement desktop (coin droit, `bottom: 40px` par défaut ou `top: 40px`) et mobile (centré en bas), adaptation aux zones fixes pour que le toast reste visible. Guideline Figma de la page `↳ Toast` alignée. Aucun composant modifié.

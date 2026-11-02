@@ -17,11 +17,11 @@ Tâche/contenu secondaire contextuel (`decisions.yaml` → `Drawer`). Réutilise
 
 ## Tokens
 
-Fond `Background/elevated` · Radius uniquement sur les coins côté contenu (`Radius/card`) · Ombre : aucune ombre tokenisée — l'architecture n'a pas de famille Shadow (Semantic = couleur uniquement) · Fond assombri : voile plein écran sans token dédié — aucun token Overlay n'existe.
+Fond `Background/elevated` · Radius : aucun (coins carrés, voir ci-dessous) · Ombre : aucune ombre tokenisée — l'architecture n'a pas de famille Shadow (Semantic = couleur uniquement) · Fond assombri : voile plein écran sans token dédié — aucun token Overlay n'existe.
 
-## Dialog-header / Dialog-footer dans un Drawer (2026-11-02)
+## Coins carrés (2026-11-02)
 
-`Dialog-header` (coins hauts) et `Dialog-footer` (coins bas) portent un arrondi `Radius/card` quand ils composent un `Dialog` (voir `components/dialog/`). **Dans un `Drawer`, ils n'ont aucun arrondi propre** : les 4 coins de chaque instance sont à 0 (override de l'instance, variable de rayon déliée), dans les trois `Position` et dans le bottom-sheet. Seul le conteneur du `Drawer` porte un arrondi, uniquement sur ses coins côté contenu (`Radius/card`, jamais sur les coins collés au bord de l'écran). En code : pas de `border-radius` sur l'en-tête et le pied du panneau, quelle que soit la `Position`. Vérifié contre ASMA OS : le drawer d'édition (droite, 480 px, pleine hauteur, voile) réutilise ces composants sans arrondi propre.
+**Un `Drawer` a des coins carrés**, quelle que soit la `Position` (`Right`, `Left`, `Bottom`) et dans le bottom-sheet mobile : le conteneur n'a aucun arrondi, et les instances `Dialog-header` et `Dialog-footer` qu'il contient non plus (les 4 coins de chaque instance à 0 — override, variable de rayon déliée). `Dialog-header` (coins hauts) et `Dialog-footer` (coins bas) ne portent un arrondi `Radius/card` que lorsqu'ils composent un `Dialog` (voir `components/dialog/`). En code : aucun `border-radius` sur le panneau, son en-tête ni son pied. Aligné sur ASMA OS (drawer d'édition : droite, 480 px, pleine hauteur, voile).
 
 ## Drawer vs Dialog
 

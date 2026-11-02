@@ -4,6 +4,8 @@
 
 > **Statut** : nouveau composant, créé le 2026-09-30. Composé de deux briques atomiques (`Header-cell`, `Row`), elles-mêmes construites sur `Cell` (voir `components/cell/`). Pas de ComponentSet monolithique « Table » — le nombre de colonnes est arbitraire, donc l'assemblage se fait par composition manuelle d'instances, comme `Command` (voir `components/command/`) et non par une matrice de variants.
 
+**Élévation** : niveau 0 (décision 2026-11-02, vérifiée dans Figma) — `Table`, `Header-cell`, `Row` et `Cell` n'ont ni ombre ni effet ; la structure passe par `Border/subtle` et les fonds, jamais par une élévation.
+
 ## Header-cell
 
 En-tête de colonne, cliquable quand la colonne est triable.

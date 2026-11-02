@@ -10,7 +10,7 @@ architecture:
     role: "Source values; no theme or breakpoint variation."
   Semantic:
     modes: [Light, Dark]
-    contains: [Background, Text, Border, Icon, Action, Feedback, Shadow]
+    contains: [Background, Text, Border, Icon, Action, Feedback, Chart, Shadow]
     role: "Color meaning/context layer."
   Responsive:
     modes: [Mobile, Desktop]
@@ -58,8 +58,22 @@ color:
       Success: [background, border, icon, text]
       Warning: [background, border, icon, text]
       Danger: [background, border, icon, text]
+    Chart: [series-1, series-2, series-3, series-4, series-5]
   rules: ["Choose by meaning, never by color name.", "Blue is brand/action, not automatically informational.", "Destructive is an action; Danger is feedback.", "Warning means caution; Success means positive state/completion.", "Info is contextual.", "Never hardcode hex values when a semantic role exists."]
   recent_additions: "Text/on-brand and Icon/on-brand (Light+Dark both Neutral/0 #ffffff) — for text/icons placed directly on a brand fill (Background/brand, Action/primary), distinct from Text/inverse / Icon/inverse which flip to Neutral/950 in Dark. Icon/on-brand added 2026-09-27."
+  chart_palette:
+    added: "2026-11-02"
+    tokens: [Chart/series-1, Chart/series-2, Chart/series-3, Chart/series-4, Chart/series-5]
+    purpose: "Categorical series colors for charts (identity, fixed order, never cycled); not for status."
+    light: {series-1: "Blue/500 #3f51e5", series-2: "Red/600 #dc2626", series-3: "Cyan/600 #0891b2", series-4: "Green/600 #16a34a", series-5: "Amber/600 #d97706"}
+    dark: {series-1: "Blue/400 #7182f5", series-2: "Red/500 #ef4444", series-3: "Cyan/600 #0891b2", series-4: "Green/600 #16a34a", series-5: "Amber/600 #d97706"}
+    validation: "Validated with the dataviz six checks on Background/elevated (Light #ffffff, Dark #1e293b): lightness band, chroma floor and normal-vision floor (>= 15; worst pair 17.4) pass; contrast >= 3:1 on the surface passes; adjacent CVD separation is 6.2 (floor band), so secondary encoding is mandatory."
+    rules:
+      - "Assign slots in order 1 to 5; a sixth series is never a new color: group into Other, split into small multiples, or add a secondary encoding."
+      - "Color follows the entity, never its rank: filtering must not repaint the remaining series."
+      - "Always pair with a legend (2+ series) and direct labels or a table view; never color alone (CVD floor)."
+      - "Red and Green appear here as identity colors only; they never mean bad/good. State goes through Feedback/* with icon and label."
+      - "Chart text uses Text/* tokens, never the series color."
   feedback_backgrounds: "Feedback/*/background = grade 100 (Light) / 900 (Dark) since the Tag contrast correction — the former 50/950 values were too close to the page background."
 
 typography:

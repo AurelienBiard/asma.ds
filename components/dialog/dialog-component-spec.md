@@ -20,7 +20,7 @@ Fond `Background/elevated` · Title `Heading/SM` · Subtitle `Misc/Caption` + `T
 
 Composant unique avec une **vraie propriété Slot Figma** (`figma.createSlot()` n'existe pas via script — un Slot ne peut être créé que manuellement dans l'UI Figma — mais une fois créé ainsi, il est bien lisible/pilotable via l'API Plugin, confirmé sur ce composant).
 
-Fond `Background/elevated` · Padding `Spacing/component-md` (Responsive).
+Fond `Background/elevated` · Padding `Spacing/component-md` (Responsive). **`clipsContent: false`** sur le composant et sur le `slot` (2026-11-02) : le contenu du slot n'est jamais rogné, pour que la ligne de détourage Focus d'un champ (`strokeAlign: OUTSIDE`) reste visible. Le contenu glissé dans le slot (formulaire, groupe de champs) ne clippe pas non plus.
 
 ## Dialog-footer
 

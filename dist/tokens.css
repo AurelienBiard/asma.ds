@@ -213,6 +213,11 @@
   --color-action-ghost-hover: #f1f5f9;
   --color-action-ghost-active: #e2e8f0;
   --color-text-on-brand: #ffffff;
+  --color-chart-series-1: #3f51e5;
+  --color-chart-series-2: #dc2626;
+  --color-chart-series-3: #0891b2;
+  --color-chart-series-4: #16a34a;
+  --color-chart-series-5: #d97706;
   --color-shadow-subtle: #0206171a;
   --color-shadow-strong: #02061733;
   --color-shadow-scrim: #02061759;
@@ -324,6 +329,11 @@
   --color-action-ghost-hover: #1e293b;
   --color-action-ghost-active: #334155;
   --color-text-on-brand: #ffffff;
+  --color-chart-series-1: #7182f5;
+  --color-chart-series-2: #ef4444;
+  --color-chart-series-3: #0891b2;
+  --color-chart-series-4: #16a34a;
+  --color-chart-series-5: #d97706;
   --color-shadow-subtle: #02061759;
   --color-shadow-strong: #02061799;
   --color-shadow-scrim: #02061799;

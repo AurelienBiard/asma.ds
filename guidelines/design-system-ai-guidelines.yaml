@@ -237,6 +237,7 @@ color:
       Success: [background, border, icon, text]
       Warning: [background, border, icon, text]
       Danger: [background, border, icon, text]
+    Chart: [series-1, series-2, series-3, series-4, series-5]  # categorical chart series, fixed order, never for status; see foundations.yaml color.chart_palette
 
   component_examples:
     Button:

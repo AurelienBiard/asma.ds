@@ -471,6 +471,46 @@
     }
   },
   {
+    "name": "Chart/series-1",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#3f51e5",
+      "Dark": "#7182f5"
+    }
+  },
+  {
+    "name": "Chart/series-2",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#dc2626",
+      "Dark": "#ef4444"
+    }
+  },
+  {
+    "name": "Chart/series-3",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#0891b2",
+      "Dark": "#0891b2"
+    }
+  },
+  {
+    "name": "Chart/series-4",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#16a34a",
+      "Dark": "#16a34a"
+    }
+  },
+  {
+    "name": "Chart/series-5",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#d97706",
+      "Dark": "#d97706"
+    }
+  },
+  {
     "name": "Shadow/subtle",
     "type": "COLOR",
     "byMode": {

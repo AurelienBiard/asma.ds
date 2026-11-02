@@ -19,8 +19,8 @@ Mêmes 4 `Status` et tokens Feedback qu'Alert, mais plus compact (une seule lign
 **Placement du Toast (2026-11-02)** :
 
 - **Desktop** : ancré au viewport (`position: fixed`), coin droit, à **40 px** des bords — en bas (`bottom: 40px`, placement par défaut) ou en haut (`top: 40px`).
-- **Mobile** : **centré horizontalement**, ancré en bas.
-- **Zones fixes** (barre de navigation, en-tête, pied collant, barre de retour mobile `OS / BreadCrumbMobile` de 60 px dans ASMA OS…) : le toast ne doit **jamais être masqué ni se superposer** à une zone fixe. Le placement s'adapte : le décalage de 40 px se mesure depuis le bord libre de la zone fixe, pas depuis le bord de l'écran. Sur mobile, prendre aussi en compte la zone de sécurité (`env(safe-area-inset-bottom)`).
+- **Mobile** : **centré horizontalement**, ancré en bas à **20 px** du bord (`bottom: 20px`, décision 2026-11-02). Desktop confirmé : coin droit, 40 px.
+- **Zones fixes** (barre de navigation, en-tête, pied collant, barre de retour mobile `OS / BreadCrumbMobile` de 60 px dans ASMA OS…) : le toast ne doit **jamais être masqué ni se superposer** à une zone fixe. Le placement s'adapte : le décalage (40 px desktop, 20 px mobile) se mesure depuis le bord libre de la zone fixe, pas depuis le bord de l'écran. Sur mobile, prendre aussi en compte la zone de sécurité (`env(safe-area-inset-bottom)`).
 - Plusieurs toasts simultanés : empilés, convention (plus récent en haut ou en bas) à fixer une fois pour toutes par produit.
 
 **Espacement du Toast (2026-10-13)** : padding de `Spacing/component-sm` (12px) sur les 4 côtés (le vertical était de 10px en dur) ; gap de `Spacing/component-xs`. Hauteur passée de 42 à 46px.
