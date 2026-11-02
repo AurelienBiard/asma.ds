@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-02 (9) — Button : Type Destructive-ghost
+
+- Figma : nouveau Type `Destructive-ghost` dans le ComponentSet `Button` (5 variantes `State`, 25 → 30 variantes). Transparent, texte `Feedback/Danger/text`, icônes `Feedback/Danger/icon`, fonds Hover/Active/Focus repris de `Ghost` (`Action/ghost-hover` / `-active`). Aucun token créé. Guidelines de la page `↳ Button` mises à jour.
+- Spec `button` : tableau des Types, section Destructive-ghost (contrastes, exception de nommage Danger/Action, limite Dark du survol).
+
 ## 2026-11-02 (8) — Toast : marge mobile
 
 - Spec `alert` (section Toast) : marge mobile fixée à 20 px (`bottom: 20px`, centré) ; desktop confirmé (coin droit, 40 px). `Header-row` de `Table (example)` conservé tel quel.

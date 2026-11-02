@@ -8,7 +8,7 @@ Une seule taille (MD), hauteur de 44px avec libellé (padding `Spacing/component
 
 ## Propriétés du composant Figma
 
-- **Type** (variant) : `Primary` / `Outlined` / `Neutral` / `Ghost` / `Destructive` (ajouté le 2026-11-01) — l'ancien Type `Link` a été retiré : utiliser le composant `Link` (`components/link/`) pour la navigation.
+- **Type** (variant) : `Primary` / `Outlined` / `Neutral` / `Ghost` / `Destructive` (ajouté le 2026-11-01) / `Destructive-ghost` (ajouté le 2026-11-02) — l'ancien Type `Link` a été retiré : utiliser le composant `Link` (`components/link/`) pour la navigation.
 - **State** (variant) : `Default` / `Hover` / `Active` / `Disabled` / `Focus`
 - **Icon-leading**, **Icon-trailing** : instances directes du composant `Icon` (16×16, `Format=Outline`, `Weight=Light`) — pas de Slot (retiré, plus de bénéfice une fois la recommandation de remplacement passée à "supprimer + glisser depuis Assets").
 - **Show-icon-leading**, **Show-icon-trailing** (Boolean, défaut `false`) : visibilité des icônes.
@@ -16,7 +16,7 @@ Une seule taille (MD), hauteur de 44px avec libellé (padding `Spacing/component
 - **Label** (Text, défaut `"Enregistrer"`) : contenu du label, éditable par instance.
 - **Icon-only** (Boolean, défaut `false`) : **non lié automatiquement** à `Show-label` — Figma ne permet pas de logique conditionnelle entre propriétés. À activer manuellement avec `Show-label=False` ; le bouton suit alors la règle « Bouton sans libellé » ci-dessous (44×44 fixe). Usages : `Search-button`, `Prev`/`Next` du composant `Pagination` (voir `components/pagination/`), actions de ligne de `Table`/`Cell`.
 
-25 variantes (5 Type × 5 State).
+30 variantes (6 Type × 5 State).
 
 ## Règle : bouton sans libellé (2026-10-29)
 
@@ -37,13 +37,15 @@ Quand un Button n'a pas de libellé (`Show-label=False`, en pratique avec `Icon-
 | Neutral | `Action/neutral` | — | `Text/primary` | `Icon/primary` |
 | Destructive | `Action/destructive` | — | `Text/on-brand` | `Icon/on-brand` |
 | Ghost | transparent | — | `Text/primary` | `Icon/primary` |
+| Destructive-ghost | transparent | — | `Feedback/Danger/text` | `Feedback/Danger/icon` |
 
 ## États communs à tous les Types
 
 - **Hover / Active** : progression d'intensité du fond.
 - **Disabled** : `Background/disabled` + `Text/disabled` + icônes `Icon/disabled` pour **tous** les Types — choix volontaire confirmé (reconnaissance immédiate et cohérente prime sur la préservation de la couleur du Type). Ne pas "corriger" ce comportement.
 - **Destructive** (ajouté le 2026-11-01, nommé `Danger` jusqu'au 2026-11-02) : action **destructive ou irréversible** (supprimer, archiver définitivement). Fond `Action/destructive` (Default), `Action/destructive-hover` (Hover), `Action/destructive-active` (Active) ; Focus : fond Default + bordure `Border/focus`. Disabled : gris neutre commun. Contraste du texte `Text/on-brand` sur le fond : 4,83:1 au repos, en Light **et** en Dark (en Dark le fond était `Red/500` à 3,76:1 jusqu'au 2026-11-02 ; `Action/destructive` / `-hover` / `-active` pointent désormais `Red/600` / `700` / `800` dans les deux thèmes). Réservé à l'action qui détruit — jamais pour un simple avertissement (→ `Alert`). Quand l'action est irréversible, demander une confirmation avant (`Dialog`). Le nom du Type suit le mot d'usage « Danger » ; les tokens restent `Action/destructive*` (« Destructive is an action, Danger is feedback »). **À valider** : contraste du texte blanc sur `Action/destructive` — Light `Red/600` 4,83:1 (AA), Dark `Red/500` 3,76:1 (sous 4,5:1 ; hover Dark `Red/600` 4,83:1). Correctif possible : Dark default → `Red/600`, hover → `Red/700`, active → `Red/800`.
-- **Focus** : bordure `Border/focus` + `Primitive/Border/medium`, `strokeAlign: OUTSIDE`. Sur `Ghost`, un fond léger (`Action/ghost-hover`) est ajouté en Focus pour délimiter visuellement la zone cliquable.
+- **Destructive-ghost** (ajouté le 2026-11-02) : même sémantique que `Destructive` (action qui détruit), sans fond plein. Transparent par défaut ; Hover `Action/ghost-hover`, Active `Action/ghost-active` (mêmes fonds que `Ghost`, aucun token créé) ; Focus : fond `Action/ghost-hover` + bordure `Border/focus` (comme `Ghost`) ; Disabled : gris neutre commun. Texte `Feedback/Danger/text` et icônes `Feedback/Danger/icon` : aucun token `Action/destructive*` n'est lisible comme texte en Dark (`Red/600` sur fond sombre), alors que `Feedback/Danger/*` s'inverse par thème — exception assumée à « Destructive is an action, Danger is feedback », limitée à la couleur du texte et de l'icône de ce Type. Contraste Light : texte 6,47:1 (repos), 5,25:1 (Active) ; icône 4,83:1 → 3,92:1 (≥ 3:1). Dark : texte 9,41:1 (sur `Background/default`), 5,46:1 (Active) ; icône 6,45:1 → 3,74:1. Usage : action destructive secondaire ou répétée (supprimer dans une ligne de `Table`, une liste, une barre d'outils) où un fond rouge plein serait trop lourd ; une seule action `Destructive` pleine par écran, mêmes règles de confirmation (`Dialog`) si irréversible. En Dark, le fond Hover `Action/ghost-hover` vaut `Background/elevated` : le survol ne se voit pas sur une surface élevée (limite héritée de `Ghost`).
+- **Focus** : bordure `Border/focus' + `Primitive/Border/medium`, `strokeAlign: OUTSIDE`. Sur `Ghost`, un fond léger (`Action/ghost-hover`) est ajouté en Focus pour délimiter visuellement la zone cliquable.
 - Une tentative de halo (Drop Shadow) à la place de la bordure de Focus a été testée puis abandonnée — retour à la bordure classique.
 
 ## Icônes — construction et limitation connue
