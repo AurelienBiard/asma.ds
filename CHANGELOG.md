@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-06 (1) — Drawer : Dialog-toolbar et Show-toolbar
+
+- Figma : nouveau composant `Dialog-toolbar` (page `↳ Dialog`) — 3 booléens `Show-action-1`, `Show-action-2`, `Show-delete` ; nouvelle propriété `Show-toolbar` (Boolean, `false`) sur le ComponentSet `Drawer` (3 `Position`). Zone fixe entre `Dialog-header` et `Dialog-body`. `Dialog-header` : padding bas à 16 px.
+- Spec `dialog` (section Dialog-toolbar, padding de l'en-tête) et spec `drawer` (propriété `Show-toolbar`). Aucun token créé.
+- Figma : composant `Drawer/Bottom` (480 px, jamais instancié) supprimé ; la variante `Position=Bottom` du ComponentSet `Drawer` (900 px) reste. La `Dialog-toolbar` est en `FILL` dans les 3 `Position` (suit la largeur du panneau, vérifié par redimensionnement).
+- Spec `dialog` : `Dialog-footer` sans bordure haute (alignée sur Figma), padding 8 / 16 / 16 / 16.
+- Figma : `minHeight = 44` sur les 30 variantes du `Button` (un bouton sans libellé ne retombe plus à 40 px de haut). Un carré 44×44 reste à régler par instance (`Icon-only` + taille fixe).
+
 ## 2026-11-02 (9) — Button : Type Destructive-ghost
 
 - Figma : nouveau Type `Destructive-ghost` dans le ComponentSet `Button` (5 variantes `State`, 25 → 30 variantes). Transparent, texte `Feedback/Danger/text`, icônes `Feedback/Danger/icon`, fonds Hover/Active/Focus repris de `Ghost` (`Action/ghost-hover` / `-active`). Aucun token créé. Guidelines de la page `↳ Button` mises à jour.

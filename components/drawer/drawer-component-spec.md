@@ -4,11 +4,12 @@
 
 > **Statut** : construit dans Figma avant que cette spec n'existe — rédigée le 2026-09-25 à partir d'une relecture de l'état Figma réel. À valider si un détail diverge de l'intention d'origine.
 
-Tâche/contenu secondaire contextuel (`decisions.yaml` → `Drawer`). Réutilise `Dialog-header` + `Dialog-body` + `Dialog-footer` dans un conteneur ancré à un bord plutôt que centré.
+Tâche/contenu secondaire contextuel (`decisions.yaml` → `Drawer`). Réutilise `Dialog-header` + `Dialog-toolbar` (optionnelle) + `Dialog-body` + `Dialog-footer` dans un conteneur ancré à un bord plutôt que centré.
 
 ## Propriétés
 
 - **Position** (variant) : `Right` / `Left` / `Bottom`
+- **Show-toolbar** (Boolean, défaut `false`, ajouté le 2026-11-06) : affiche la `Dialog-toolbar` entre l'en-tête et le corps, quand le panneau a besoin d'actions supplémentaires. Zone fixe comme l'en-tête et le pied (seul le corps défile). Voir `components/dialog/`. Présent sur les 3 `Position`.
 
 ## Dimensionnement
 

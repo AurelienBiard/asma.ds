@@ -14,7 +14,18 @@ Composant unique (pas de variantes — piloté par propriétés) :
 - **Show-back** (Boolean, défaut `false`) — chevron retour, pour dialogues multi-étapes
 - **Show-close** (Boolean, défaut `true`)
 
-Fond `Background/elevated` · Title `Heading/SM` · Subtitle `Misc/Caption` + `Text/secondary`.
+Fond `Background/elevated` · Padding 16 px sur les 4 côtés (le padding bas a été ajusté le 2026-11-06 pour s'aligner sur les autres côtés, notamment au-dessus de la `Dialog-toolbar`) · Title `Heading/SM` · Subtitle `Misc/Caption` + `Text/secondary`.
+
+## Dialog-toolbar (2026-11-06)
+
+Barre d'actions **optionnelle**, propre au `Drawer` : elle s'affiche quand le contenu appelle des actions supplémentaires (terminer, éditer, supprimer…) qui ne relèvent ni du titre ni de la validation du pied. Même famille que `Dialog-header` / `Dialog-body` / `Dialog-footer` : composant indépendant, réutilisé par le `Drawer` (voir `components/drawer/`). Elle n'est pas affichée dans un `Dialog` centré.
+
+- **Position** : entre `Dialog-header` et `Dialog-body`. **Zone fixe**, comme l'en-tête et le pied : elle ne défile jamais avec le corps.
+- **Propriétés** (Boolean) : `Show-action-1` (défaut `false`) — `Button` `Outlined` avec libellé et icône, `Show-action-2` (défaut `true`) — `Button` `Outlined` `Icon-only`, `Show-delete` (défaut `true`) — `Button` `Destructive` `Icon-only`.
+- **Anatomie** : rangée horizontale, gap 8, alignement vertical centré, padding 12 px vertical / 16 px horizontal. Un `spacer` en `FILL` pousse l'action de suppression à l'extrémité droite ; les autres actions s'alignent à gauche. Les boutons sans libellé suivent la règle 44×44 (`components/button/`). Hauteur : 70 px (44 + 2 × 12 + 2 bordures de 1 px).
+- **Tokens** : fond `Background/subtle` (distingue la barre du corps et de l'en-tête en `Background/elevated`), bordures haute et basse 1 px `Border/subtle`, aucun arrondi.
+- **Clip** : `clipsContent: false`, comme les autres parties (voir « Champs dans un Dialog »).
+- **Accessibilité** : `role="toolbar"` avec `aria-label`, navigation aux flèches, nom accessible (`aria-label`) sur chaque bouton sans libellé, dont la suppression. L'action destructive reste soumise à confirmation si elle est irréversible.
 
 ## Dialog-body
 
@@ -26,7 +37,7 @@ Fond `Background/elevated` · Padding `Spacing/component-md` (Responsive). **`cl
 
 Composant unique, **aucune propriété exposée** — placer des instances `Button` directement en enfants (typiquement un "Annuler" secondaire + une action primaire).
 
-Fond `Background/elevated` · Bordure haute `Border/default` · Padding `Spacing/component-md` (Responsive).
+Fond `Background/elevated` · **aucune bordure** (décision 2026-11-06, conforme à Figma ; la bordure haute `Border/default` annoncée jusqu'ici n'a jamais existé dans le composant) · Padding 8 px en haut, 16 px (`Spacing/component-md`) sur les 3 autres côtés.
 
 ## Composition
 
