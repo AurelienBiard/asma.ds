@@ -1,5 +1,56 @@
 # Changelog
 
+## 2026-11-07 (7) — Promotion de composants ASMA OS vers asma.ds
+
+Les composants suivants, génériques, passent de la section ASMA OS au design system. Ils sont **déplacés** (pas dupliqués) : les instances des maquettes OS suivent, seul le nom change (préfixe `OS / ` retiré).
+
+- `OS / List-group-header` → `List-group-header` (page `↳ List-group-header`). Libellé + compteur ; tâches, notes, ressources, notifications, recherche, corbeille.
+- `OS / Card` → `Card-collection` (page `↳ Card-collection`), distinct de `Card` qui reste inchangé. `OS / BlockHeader` → `Block-header` (déplacé avec : dépendance de `Card-collection`). `OS / Card-item / {Note, Tâche, Contact, Relation, Information, Projet}` → `Card-item / …` (6 patrons, noms français conservés ; `Projet` ajouté à la liste demandée).
+- Nouveau composant `Search-results` (page `↳ Search-results`) : panneau déroulant de résultats groupés, construit à partir du cadre `searchResults` de la recherche globale desktop (3 groupes en exemple, `Show-footer`, `Footer-label`, `Footer-hint`). Distinct de `Command`.
+- Specs créées : `components/list-group-header/`, `components/card-collection/`, `components/search-results/` ; `README.md` et `decisions.yaml` mis à jour. Textes de guidelines de la section OS corrigés (noms des composants promus). Aucun token créé.
+- Page `↳ Empty-state` replacée dans l'ordre des pages après `↳ Drawer`.
+
+## 2026-11-07 (6) — Dialog-toolbar : règles documentées
+
+- Spec `dialog` : règles des trois actions (`Action-1` action d'état Outlined libellé + icône ; `Action-2` action secondaire Outlined icône seule ; `Delete` Destructive plein, icône seule, toujours à droite) et règle « pas de barre dans les formulaires de création » (`Show-toolbar=false`).
+- Figma : section `Dialog-toolbar` ajoutée aux guidelines de la page `↳ Dialog` (aucun changement de composant).
+
+## 2026-11-07 (5) — Button : Pressed (bouton à bascule)
+
+- Figma : nouvelle propriété de variante `Pressed` (False / True) sur `Button`, 10 variantes ajoutées (`Outlined` et `Ghost` × 5 State en `Pressed=True`), ComponentSet de 30 à 40 variantes. Les 30 variantes existantes passent en `Pressed=False`.
+- `Pressed=True` : fond `Action/neutral-hover` (Default, Focus) ou `Action/neutral-active` (Hover, Active), Disabled inchangé. Correspond à `aria-pressed="true"`. Aucun token créé.
+- Guideline : « icône pleine = actif » (Weight=Light → Weight=Fill, même pictogramme ; étoile, épingle).
+- Spec `button` et guidelines de la page `↳ Button` mises à jour.
+
+## 2026-11-07 (4) — Nouveau composant Empty-state
+
+- Figma : page `↳ Empty-state`, ComponentSet `Empty-state` (2 variantes : `Size` Compact / Page). Propriétés `Title`, `Description`, `Show-icon`, `Show-action` ; instances exposées `Empty-icon` (Icon, défaut Tray) et `Action` (Button : Outlined en Compact, Primary en Page).
+- Compact : 280 px, icône 24, padding `component-lg`. Page : 480 px, icône 32, padding `component-xl`. Textes : Title `Misc/Label` / `Heading/SM`, Description `Body/MD` / `Body/LG`.
+- Tokens `Text/primary`, `Text/secondary`, `Icon/tertiary`, `Spacing/component-*`. Aucun token créé.
+- Spec `components/empty-state/empty-state-component-spec.md` créée ; `decisions.yaml`, README, `patterns/README.md` et le pattern Filter bar (cas « zéro résultat ») mis à jour.
+
+## 2026-11-07 (3) — Nouveau composant Banner
+
+- Figma : page `↳ Banner`, ComponentSet `Banner` (8 variantes : `Status` Info/Success/Warning/Danger × `Form` Inline/Page). Propriétés `Message`, `Show-icon`, `Show-action-1` (true), `Show-action-2` (false), `Show-close`. Actions = instances de `Button` (Outlined, Ghost).
+- `Inline` : arrondi `Radius/control`, bordure sur 4 côtés. `Page` : pleine largeur, angles droits, bordure inférieure seule, sous la barre du haut.
+- Tokens `Feedback/{Status}/background|border|text|icon`. Aucun token créé.
+- Spec `components/banner/banner-component-spec.md` créée (distinction Banner / Alert / Toast, hauteur, accessibilité).
+
+## 2026-11-07 (2) — Chip : types alignés sur Tag
+
+- Figma : le `Chip` reprend les 6 `Type` de `Tag` — ajout de `Info`, `Success`, `Warning`, `Danger` (48 variantes, ComponentSet de 24 à 72). Default/Hover : bordure `Feedback/{statut}/border`, texte et icônes `Feedback/{statut}/text` ; Active : fond `Feedback/{statut}/background`, sans bordure ; Disabled : gris commun. Propriétés `Label`, `Show-icon-leading`, `Show-icon-trailing` rebranchées sur les 48.
+- Spec `chip` mise à jour (Type, couleurs, Active, contrastes) ; guideline Figma de la page `↳ Chip` corrigée (72 variantes, State).
+- Aucun token créé.
+
+## 2026-11-07 — Tokens Data-viz
+
+- **Tokens** (Semantic, 19) : `Data-viz/series/1` à `6` (palette catégorielle, Light et Dark), `Data-viz/sequential/100` à `900` (rampe à une teinte, Blue : en Dark le pas N pointe `Blue/(1000 − N)`, donc le numéro désigne toujours l'intensité), `Data-viz/gridline`, `Data-viz/axis-label`, `Data-viz/current-period`, `Data-viz/highlight`. CSS : `--color-data-viz-series-1`, `--color-data-viz-sequential-100`, `--color-data-viz-gridline`…
+- **Renommage** : `Chart/series-1` à `5` (créés le 2026-11-02, jamais utilisés) deviennent `Data-viz/series/1` à `5` ; valeurs inchangées. Le groupe `Chart` disparaît.
+- **Primitive** (11 nouveaux) : famille `Color/Fuchsia/50` à `950` (ancre `#C026D3` au 600), utilisée uniquement par `Data-viz/series/6` — aucune des six familles existantes ne donne une sixième teinte chromatique distincte (le gris échoue au seuil de chroma). Série 6 : Fuchsia/600 en Light, Fuchsia/500 en Dark.
+- **Validation** (script dataviz) : bande de luminosité, chroma, écart en vision normale (pire paire adjacente 17,4) et contraste ≥ 3:1 sur la surface OK en Light et en Dark ; écart daltonien entre séries adjacentes 6,2 (zone plancher) : encodage secondaire obligatoire (légende, étiquettes directes ou tableau).
+- **Build** : `scripts/build_css.py` gère le préfixe `Data-viz` (`--color-data-viz-…`) ; `dist/tokens.css` régénéré.
+- Docs : `guidelines/foundations.yaml` (bloc `data_viz`, remplace `chart_palette`) et `guidelines/design-system-ai-guidelines.yaml`.
+
 ## 2026-11-06 (1) — Drawer : Dialog-toolbar et Show-toolbar
 
 - Figma : nouveau composant `Dialog-toolbar` (page `↳ Dialog`) — 3 booléens `Show-action-1`, `Show-action-2`, `Show-delete` ; nouvelle propriété `Show-toolbar` (Boolean, `false`) sur le ComponentSet `Drawer` (3 `Position`). Zone fixe entre `Dialog-header` et `Dialog-body`. `Dialog-header` : padding bas à 16 px.

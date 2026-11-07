@@ -21,11 +21,21 @@ Fond `Background/elevated` · Padding 16 px sur les 4 côtés (le padding bas a 
 Barre d'actions **optionnelle**, propre au `Drawer` : elle s'affiche quand le contenu appelle des actions supplémentaires (terminer, éditer, supprimer…) qui ne relèvent ni du titre ni de la validation du pied. Même famille que `Dialog-header` / `Dialog-body` / `Dialog-footer` : composant indépendant, réutilisé par le `Drawer` (voir `components/drawer/`). Elle n'est pas affichée dans un `Dialog` centré.
 
 - **Position** : entre `Dialog-header` et `Dialog-body`. **Zone fixe**, comme l'en-tête et le pied : elle ne défile jamais avec le corps.
-- **Propriétés** (Boolean) : `Show-action-1` (défaut `false`) — `Button` `Outlined` avec libellé et icône, `Show-action-2` (défaut `true`) — `Button` `Outlined` `Icon-only`, `Show-delete` (défaut `true`) — `Button` `Destructive` `Icon-only`.
+- **Propriétés** (Boolean) : `Show-action-1` (défaut `false`), `Show-action-2` (défaut `true`), `Show-delete` (défaut `true`). Instances de `Button` exposées : `Action-1`, `Action-2`, `Delete`.
 - **Anatomie** : rangée horizontale, gap 8, alignement vertical centré, padding 12 px vertical / 16 px horizontal. Un `spacer` en `FILL` pousse l'action de suppression à l'extrémité droite ; les autres actions s'alignent à gauche. Les boutons sans libellé suivent la règle 44×44 (`components/button/`). Hauteur : 68 px (44 + 2 × 12).
 - **Tokens** : fond `Background/sunken` (modifié le 2026-11-07, `Background/subtle` auparavant : distingue la barre du corps et de l'en-tête en `Background/elevated`), **aucune bordure** (retirée le 2026-11-07 — le contraste de fond suffit à séparer la zone), aucun arrondi.
 - **Clip** : `clipsContent: false`, comme les autres parties (voir « Champs dans un Dialog »).
 - **Accessibilité** : `role="toolbar"` avec `aria-label`, navigation aux flèches, nom accessible (`aria-label`) sur chaque bouton sans libellé, dont la suppression. L'action destructive reste soumise à confirmation si elle est irréversible.
+
+**Règles des actions (2026-11-07)**
+
+| Action | Rôle | Button | Règle |
+|---|---|---|---|
+| `Action-1` | Action d'état (terminer, archiver, publier…) | `Type=Outlined`, **libellé + icône** | Seule action avec libellé : elle nomme l'état qu'elle fait changer. Masquée par défaut. |
+| `Action-2` | Action secondaire (éditer, dupliquer, partager…) | `Type=Outlined`, **icône seule** (44×44) | Nom accessible obligatoire (`aria-label`). |
+| `Delete` | Suppression | `Type=Destructive` (**plein**), icône seule (44×44) | **Toujours à droite**, isolé des autres actions par le `spacer` ; confirmation (`Dialog`) si irréversible. |
+
+**Pas de barre dans les formulaires de création** : un `Drawer` ou un `Dialog` qui crée un élément n'a encore rien à terminer ni à supprimer. `Show-toolbar` reste à `false` ; seuls l'en-tête et le pied (Annuler / Créer) s'affichent. La barre est réservée à un élément **existant** (consultation, édition).
 
 ## Dialog-body
 

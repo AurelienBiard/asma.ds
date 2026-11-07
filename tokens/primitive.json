@@ -385,6 +385,83 @@
     }
   },
   {
+    "name": "Color/Fuchsia/50",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#fdf4ff"
+    }
+  },
+  {
+    "name": "Color/Fuchsia/100",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#fae8ff"
+    }
+  },
+  {
+    "name": "Color/Fuchsia/200",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#f5d0fe"
+    }
+  },
+  {
+    "name": "Color/Fuchsia/300",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#f0abfc"
+    }
+  },
+  {
+    "name": "Color/Fuchsia/400",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#e879f9"
+    }
+  },
+  {
+    "name": "Color/Fuchsia/500",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#d946ef"
+    }
+  },
+  {
+    "name": "Color/Fuchsia/600",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#c026d3"
+    }
+  },
+  {
+    "name": "Color/Fuchsia/700",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#a21caf"
+    }
+  },
+  {
+    "name": "Color/Fuchsia/800",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#86198f"
+    }
+  },
+  {
+    "name": "Color/Fuchsia/900",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#701a75"
+    }
+  },
+  {
+    "name": "Color/Fuchsia/950",
+    "type": "COLOR",
+    "byMode": {
+      "Value": "#4a044e"
+    }
+  },
+  {
     "name": "Color/Neutral/50",
     "type": "COLOR",
     "byMode": {

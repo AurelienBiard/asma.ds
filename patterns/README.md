@@ -15,7 +15,7 @@ Candidate patterns:
 - Confirmation
 - Authentication
 - NotificationCenter
-- EmptyState
+- EmptyState (construit comme composant `Empty-state`, voir `components/empty-state/`)
 - ErrorState
 - LoadingState
 

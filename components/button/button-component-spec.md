@@ -10,13 +10,14 @@ Une seule taille (MD), hauteur de 44px avec libellé (padding `Spacing/component
 
 - **Type** (variant) : `Primary` / `Outlined` / `Neutral` / `Ghost` / `Destructive` (ajouté le 2026-11-01) / `Destructive-ghost` (ajouté le 2026-11-02) — l'ancien Type `Link` a été retiré : utiliser le composant `Link` (`components/link/`) pour la navigation.
 - **State** (variant) : `Default` / `Hover` / `Active` / `Disabled` / `Focus`
+- **Pressed** (variant, `False` / `True`, ajouté le 2026-11-07) : état « activé » d'un bouton à bascule, **uniquement sur `Outlined` et `Ghost`** — voir « Pressed (bouton à bascule) » ci-dessous.
 - **Icon-leading**, **Icon-trailing** : instances directes du composant `Icon` (16×16, `Format=Outline`, `Weight=Light`) — pas de Slot (retiré, plus de bénéfice une fois la recommandation de remplacement passée à "supprimer + glisser depuis Assets").
 - **Show-icon-leading**, **Show-icon-trailing** (Boolean, défaut `false`) : visibilité des icônes.
 - **Show-label** (Boolean, défaut `true`) : visibilité du label.
 - **Label** (Text, défaut `"Enregistrer"`) : contenu du label, éditable par instance.
 - **Icon-only** (Boolean, défaut `false`) : **non lié automatiquement** à `Show-label` — Figma ne permet pas de logique conditionnelle entre propriétés. À activer manuellement avec `Show-label=False` ; le bouton suit alors la règle « Bouton sans libellé » ci-dessous (44×44 fixe). Usages : `Search-button`, `Prev`/`Next` du composant `Pagination` (voir `components/pagination/`), actions de ligne de `Table`/`Cell`.
 
-30 variantes (6 Type × 5 State).
+40 variantes : 30 (6 Type × 5 State, `Pressed=False`) + 10 (`Outlined` et `Ghost` × 5 State, `Pressed=True`).
 
 ## Règle : bouton sans libellé (2026-10-29)
 
@@ -38,6 +39,24 @@ Quand un Button n'a pas de libellé (`Show-label=False`, en pratique avec `Icon-
 | Destructive | `Action/destructive` | — | `Text/on-brand` | `Icon/on-brand` |
 | Ghost | transparent | — | `Text/primary` | `Icon/primary` |
 | Destructive-ghost | transparent | — | `Feedback/Danger/text` | `Feedback/Danger/icon` |
+
+## Pressed (bouton à bascule) — 2026-11-07
+
+`Pressed=True` représente un bouton à bascule **activé** (favori, épingle, filtre actif, mode), l'équivalent de `aria-pressed="true"` en code. Variante, et non nouvel état de `State` : un bouton activé reste survolable, actif et focusable. Disponible sur `Outlined` et `Ghost` uniquement (les autres Types n'ont pas de sens « à bascule » : un `Primary` ou un `Destructive` déclenche une action).
+
+| State | Fond avec `Pressed=True` | Bordure |
+|---|---|---|
+| Default | `Action/neutral-hover` | inchangée (`Border/strong` pour Outlined, aucune pour Ghost) |
+| Focus | `Action/neutral-hover` | `Border/focus` |
+| Hover | `Action/neutral-active` | inchangée |
+| Active | `Action/neutral-active` | inchangée |
+| Disabled | `Background/disabled` (identique à `Pressed=False`) | inchangée |
+
+Texte et icônes gardent leurs couleurs (`Text/primary`, `Icon/primary`). Aucun token créé. En `Pressed=True`, Hover et Active partagent le même fond : Active est instantané. Contraste de `Text/primary` sur `Action/neutral-active` à mesurer lors de l'implémentation.
+
+**Règle : icône pleine = actif.** Le fond teinté seul ne suffit pas (la couleur ne porte jamais le sens seule). Un bouton à bascule avec icône utilise le même pictogramme en deux poids : `Weight=Light` (contour) quand il est inactif, `Weight=Fill` (pleine) quand il est activé (étoile, épingle, cœur, marque-page). Le libellé ne change pas (« Épingler » reste « Épingler ») : l'état est porté par `aria-pressed`, pas par le texte.
+
+**Code** : `<button aria-pressed="true|false">` ; ne jamais combiner avec `aria-label` modifié selon l'état. Pour une bascule à deux choix visibles, préférer `SegmentedControl`.
 
 ## États communs à tous les Types
 

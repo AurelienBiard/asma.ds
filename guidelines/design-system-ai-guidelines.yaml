@@ -204,6 +204,7 @@ color:
     Amber:   { "600": "#D97706" }
     Red:     { "600": "#DC2626" }
     Neutral: { "600": "#475569" }
+    Fuchsia: { "600": "#C026D3" }  # added 2026-11-07, only for Data-viz/series/6
 
   core_rules:
     - rule: "Use Semantic tokens first"
@@ -237,7 +238,7 @@ color:
       Success: [background, border, icon, text]
       Warning: [background, border, icon, text]
       Danger: [background, border, icon, text]
-    Chart: [series-1, series-2, series-3, series-4, series-5]  # categorical chart series, fixed order, never for status; see foundations.yaml color.chart_palette
+    Data-viz: { series: [1, 2, 3, 4, 5, 6], sequential: [100, 200, 300, 400, 500, 600, 700, 800, 900], single: [gridline, axis-label, current-period, highlight] }  # data visualization only, never for status; see foundations.yaml color.data_viz
 
   component_examples:
     Button:
@@ -245,6 +246,8 @@ color:
       destructive: { background: "Semantic → Action/destructive (hover: destructive-hover, active: destructive-active)", label: "Semantic → Text/on-brand", icon: "Semantic → Icon/on-brand", note: "Button Type=Danger (2026-11-01) = destructive or irreversible action only; Disabled uses the shared neutral grey." }
     Alert:
       danger: { background: "Semantic → Feedback/Danger/background", border: "Semantic → Feedback/Danger/border", icon: "Semantic → Feedback/Danger/icon", text: "Semantic → Feedback/Danger/text" }
+    Banner:
+      note: "Same Feedback/{Status} tokens as Alert (background, border, text, icon). Form=Inline: Radius/control, border on 4 sides. Form=Page: square corners, bottom border only, under the top bar."
 
 # -----------------------------------------------------------------------------
 # 6. TYPOGRAPHY (Primitive + Responsive)

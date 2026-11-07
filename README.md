@@ -99,6 +99,11 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | Tooltip | ✅ 36 variantes | `components/tooltip/` |
 | Alert | ✅ 4 variantes | `components/alert/` |
 | Toast | ✅ 4 variantes | `components/toast/` |
+| Banner | ✅ 8 variantes (4 Status × Inline/Page) | `components/banner/` |
+| Empty-state | ✅ 2 variantes (Compact/Page) | `components/empty-state/` |
+| List-group-header | ✅ promu depuis ASMA OS | `components/list-group-header/` |
+| Card-collection (+ Block-header, Card-item) | ✅ 4 variantes, promu depuis ASMA OS | `components/card-collection/` |
+| Search-results | ✅ promu depuis ASMA OS | `components/search-results/` |
 | Skeleton | ✅ 3 variantes | `components/skeleton/` |
 | Progress (linear/circular) | ✅ 12+12 variantes | voir Figma page `↳ Progress` |
 | Step Indicator | ✅ Step-item (3) + assemblages | `components/step-indicator/` |

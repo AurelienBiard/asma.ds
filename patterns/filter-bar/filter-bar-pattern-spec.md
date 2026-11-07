@@ -44,7 +44,7 @@ Conteneur vertical, `itemSpacing: Spacing/component-sm`.
 
 - **Sans filtre** : `Controls` seule, pas de « Réinitialiser », pas de `Applied-filters`.
 - **Filtré** : `Controls` avec « Réinitialiser » + `Applied-filters`.
-- **Zéro résultat** : pas de composant dédié à ce jour — message simple avec l'action « Réinitialiser » (`EmptyState` non construit).
+- **Zéro résultat** : utiliser le composant `Empty-state` (`Size=Compact` dans une carte ou un tableau, `Page` si la liste occupe la page), avec l'action « Réinitialiser les filtres » (composant construit le 2026-11-07).
 
 ## Validation/errors
 

@@ -471,7 +471,7 @@
     }
   },
   {
-    "name": "Chart/series-1",
+    "name": "Data-viz/series/1",
     "type": "COLOR",
     "byMode": {
       "Light": "#3f51e5",
@@ -479,7 +479,7 @@
     }
   },
   {
-    "name": "Chart/series-2",
+    "name": "Data-viz/series/2",
     "type": "COLOR",
     "byMode": {
       "Light": "#dc2626",
@@ -487,7 +487,7 @@
     }
   },
   {
-    "name": "Chart/series-3",
+    "name": "Data-viz/series/3",
     "type": "COLOR",
     "byMode": {
       "Light": "#0891b2",
@@ -495,7 +495,7 @@
     }
   },
   {
-    "name": "Chart/series-4",
+    "name": "Data-viz/series/4",
     "type": "COLOR",
     "byMode": {
       "Light": "#16a34a",
@@ -503,11 +503,123 @@
     }
   },
   {
-    "name": "Chart/series-5",
+    "name": "Data-viz/series/5",
     "type": "COLOR",
     "byMode": {
       "Light": "#d97706",
       "Dark": "#d97706"
+    }
+  },
+  {
+    "name": "Data-viz/series/6",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#c026d3",
+      "Dark": "#d946ef"
+    }
+  },
+  {
+    "name": "Data-viz/sequential/100",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#e1e6ff",
+      "Dark": "#0b1675"
+    }
+  },
+  {
+    "name": "Data-viz/sequential/200",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#c3ccff",
+      "Dark": "#0e1d96"
+    }
+  },
+  {
+    "name": "Data-viz/sequential/300",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#9ba9ff",
+      "Dark": "#1123b5"
+    }
+  },
+  {
+    "name": "Data-viz/sequential/400",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#7182f5",
+      "Dark": "#152ad3"
+    }
+  },
+  {
+    "name": "Data-viz/sequential/500",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#3f51e5",
+      "Dark": "#3f51e5"
+    }
+  },
+  {
+    "name": "Data-viz/sequential/600",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#152ad3",
+      "Dark": "#7182f5"
+    }
+  },
+  {
+    "name": "Data-viz/sequential/700",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#1123b5",
+      "Dark": "#9ba9ff"
+    }
+  },
+  {
+    "name": "Data-viz/sequential/800",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#0e1d96",
+      "Dark": "#c3ccff"
+    }
+  },
+  {
+    "name": "Data-viz/sequential/900",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#0b1675",
+      "Dark": "#e1e6ff"
+    }
+  },
+  {
+    "name": "Data-viz/gridline",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#e2e8f0",
+      "Dark": "#334155"
+    }
+  },
+  {
+    "name": "Data-viz/axis-label",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#475569",
+      "Dark": "#94a3b8"
+    }
+  },
+  {
+    "name": "Data-viz/current-period",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#64748b",
+      "Dark": "#94a3b8"
+    }
+  },
+  {
+    "name": "Data-viz/highlight",
+    "type": "COLOR",
+    "byMode": {
+      "Light": "#0f172a",
+      "Dark": "#f8fafc"
     }
   },
   {

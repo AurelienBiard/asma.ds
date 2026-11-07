@@ -9,7 +9,7 @@ Tâche/contenu secondaire contextuel (`decisions.yaml` → `Drawer`). Réutilise
 ## Propriétés
 
 - **Position** (variant) : `Right` / `Left` / `Bottom`
-- **Show-toolbar** (Boolean, défaut `false`, ajouté le 2026-11-06) : affiche la `Dialog-toolbar` entre l'en-tête et le corps, quand le panneau a besoin d'actions supplémentaires. Zone fixe comme l'en-tête et le pied (seul le corps défile). Voir `components/dialog/`. Présent sur les 3 `Position`.
+- **Show-toolbar** (Boolean, défaut `false`, ajouté le 2026-11-06) : affiche la `Dialog-toolbar` entre l'en-tête et le corps, quand le panneau a besoin d'actions supplémentaires. Zone fixe comme l'en-tête et le pied (seul le corps défile). Voir `components/dialog/`. Présent sur les 3 `Position`. Reste à `false` dans un formulaire de création (rien à terminer ni à supprimer) ; règles des actions dans `components/dialog/`.
 
 ## Dimensionnement
 

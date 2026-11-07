@@ -64,6 +64,10 @@ def semantic_var_name(name):
     if parts[0] == "Feedback":
         # Feedback/Danger/text -> --color-feedback-danger-text
         return f"--color-feedback-{slug(parts[1])}-{slug(parts[2])}"
+    if parts[0] == "Data-viz":
+        # Data-viz/series/1 -> --color-data-viz-series-1 ; Data-viz/sequential/300 -> --color-data-viz-sequential-300
+        # Data-viz/gridline -> --color-data-viz-gridline
+        return "--color-data-viz-" + "-".join(slug(x) for x in parts[1:])
     # Background/default -> --color-background-default
     # Action/primary-hover -> --color-action-primary-hover
     return f"--color-{slug(parts[0])}-{slug(parts[1])}"

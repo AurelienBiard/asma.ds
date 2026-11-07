@@ -10,7 +10,7 @@ architecture:
     role: "Source values; no theme or breakpoint variation."
   Semantic:
     modes: [Light, Dark]
-    contains: [Background, Text, Border, Icon, Action, Feedback, Chart, Shadow]
+    contains: [Background, Text, Border, Icon, Action, Feedback, Data-viz, Shadow]
     role: "Color meaning/context layer."
   Responsive:
     modes: [Mobile, Desktop]
@@ -44,7 +44,7 @@ modes:
   rules: ["Theme and breakpoint axes stay independent.", "Do not combine axes into one collection.", "Responsive Radius repeats the same alias in Mobile/Desktop by convention."]
 
 color:
-  primitive_families: {Blue: "#152AD3 at 600", Cyan: "#0891B2 at 600", Green: "#16A34A at 600", Amber: "#D97706 at 600", Red: "#DC2626 at 600", Neutral: "#475569 at 600"}
+  primitive_families: {Blue: "#152AD3 at 600", Cyan: "#0891B2 at 600", Green: "#16A34A at 600", Amber: "#D97706 at 600", Red: "#DC2626 at 600", Neutral: "#475569 at 600", Fuchsia: "#C026D3 at 600 (added 2026-11-07, only for Data-viz/series/6)"}
   scale: "50–950; Neutral also has 0."
   semantic_roles:
     Background: [default, subtle, elevated, sunken, inverse, brand, disabled, strong]
@@ -58,22 +58,41 @@ color:
       Success: [background, border, icon, text]
       Warning: [background, border, icon, text]
       Danger: [background, border, icon, text]
-    Chart: [series-1, series-2, series-3, series-4, series-5]
+    Data-viz:
+      series: [1, 2, 3, 4, 5, 6]
+      sequential: [100, 200, 300, 400, 500, 600, 700, 800, 900]
+      single: [gridline, axis-label, current-period, highlight]
   rules: ["Choose by meaning, never by color name.", "Blue is brand/action, not automatically informational.", "Destructive is an action; Danger is feedback.", "Warning means caution; Success means positive state/completion.", "Info is contextual.", "Never hardcode hex values when a semantic role exists."]
   recent_additions: "Text/on-brand and Icon/on-brand (Light+Dark both Neutral/0 #ffffff) — for text/icons placed directly on a brand fill (Background/brand, Action/primary), distinct from Text/inverse / Icon/inverse which flip to Neutral/950 in Dark. Icon/on-brand added 2026-09-27."
-  chart_palette:
-    added: "2026-11-02"
-    tokens: [Chart/series-1, Chart/series-2, Chart/series-3, Chart/series-4, Chart/series-5]
-    purpose: "Categorical series colors for charts (identity, fixed order, never cycled); not for status."
-    light: {series-1: "Blue/500 #3f51e5", series-2: "Red/600 #dc2626", series-3: "Cyan/600 #0891b2", series-4: "Green/600 #16a34a", series-5: "Amber/600 #d97706"}
-    dark: {series-1: "Blue/400 #7182f5", series-2: "Red/500 #ef4444", series-3: "Cyan/600 #0891b2", series-4: "Green/600 #16a34a", series-5: "Amber/600 #d97706"}
-    validation: "Validated with the dataviz six checks on Background/elevated (Light #ffffff, Dark #1e293b): lightness band, chroma floor and normal-vision floor (>= 15; worst pair 17.4) pass; contrast >= 3:1 on the surface passes; adjacent CVD separation is 6.2 (floor band), so secondary encoding is mandatory."
-    rules:
-      - "Assign slots in order 1 to 5; a sixth series is never a new color: group into Other, split into small multiples, or add a secondary encoding."
-      - "Color follows the entity, never its rank: filtering must not repaint the remaining series."
-      - "Always pair with a legend (2+ series) and direct labels or a table view; never color alone (CVD floor)."
-      - "Red and Green appear here as identity colors only; they never mean bad/good. State goes through Feedback/* with icon and label."
-      - "Chart text uses Text/* tokens, never the series color."
+  data_viz:
+    added: "2026-11-07 (replaces Chart/series-1..5 of 2026-11-02, renamed and extended)"
+    purpose: "Semantic color tokens for data visualization: categorical series, one-hue sequential ramp, and chart chrome. Never used for status or UI states."
+    series:
+      tokens: [Data-viz/series/1, Data-viz/series/2, Data-viz/series/3, Data-viz/series/4, Data-viz/series/5, Data-viz/series/6]
+      light: {1: "Blue/500 #3f51e5", 2: "Red/600 #dc2626", 3: "Cyan/600 #0891b2", 4: "Green/600 #16a34a", 5: "Amber/600 #d97706", 6: "Fuchsia/600 #c026d3"}
+      dark: {1: "Blue/400 #7182f5", 2: "Red/500 #ef4444", 3: "Cyan/600 #0891b2", 4: "Green/600 #16a34a", 5: "Amber/600 #d97706", 6: "Fuchsia/500 #d946ef"}
+      validation: "Validated with the dataviz six checks on Background/elevated (Light #ffffff, Dark #1e293b): lightness band, chroma floor and normal-vision floor (adjacent worst 17.4) pass; contrast >= 3:1 on the surface passes (series 6: 4.71 Light, 4.23 Dark); adjacent CVD separation is 6.2 (floor band), so secondary encoding is mandatory. All-pairs checks fail by nature with six hues (amber/red 14.4): never rely on color alone."
+      new_primitive: "Color/Fuchsia/50-950 added (anchor #C026D3 at 600): the six existing families offer no sixth distinct chromatic hue (Neutral reads gray and fails the chroma floor). Fuchsia is used only by Data-viz/series/6."
+      rules:
+        - "Assign slots in order 1 to 6; a seventh series is never a new color: group into Other, split into small multiples, or add a secondary encoding."
+        - "Color follows the entity, never its rank: filtering must not repaint the remaining series."
+        - "Always pair with a legend (2+ series) and direct labels or a table view; never color alone (CVD floor)."
+        - "Red and Green appear here as identity colors only; they never mean bad/good. State goes through Feedback/* with icon and label."
+        - "Chart text uses Text/* or Data-viz/axis-label, never the series color."
+    sequential:
+      tokens: "Data-viz/sequential/100 to 900 (nine steps, one hue: Blue)"
+      light: "Step N = Color/Blue/N: 100 lightest (low intensity) to 900 darkest (high intensity)."
+      dark: "Step N = Color/Blue/(1000 - N): 100 is closest to the surface (low intensity), 900 is the brightest (high intensity). The step number always means intensity, never a fixed lightness."
+      use: "Heatmaps, stacked bars of one measure, choropleth and any magnitude encoding. Higher number = more intense value."
+      rules:
+        - "One hue only; never mix with the categorical series and never use for polarity (no diverging ramp is defined yet)."
+        - "Lowest steps stay close to the surface by design (Light 100 = 1.24:1, Dark 100 = 1.04:1): carry the value with a label, a tooltip or a visible cell border; never rely on those steps alone."
+        - "Text on a cell uses Text/primary or Text/on-brand according to the cell step, checked for 4.5:1."
+    chrome:
+      gridline: "Light Neutral/200, Dark Neutral/700 — deliberately faint (1.23:1 / 1.41:1), decorative only."
+      axis-label: "Light Neutral/600, Dark Neutral/400 — axis labels and ticks, text contrast 7.58:1 / 5.71:1."
+      current-period: "Light Neutral/500, Dark Neutral/400 — period in progress (incomplete data): dashed stroke or hatch, more muted than the series; contrast 4.76:1 / 5.71:1. Always dashed, never a plain line."
+      highlight: "Light Neutral/900, Dark Neutral/50 — contour or marker of the hovered or selected item (crosshair, ring), 17.85:1 / 13.98:1."
   feedback_backgrounds: "Feedback/*/background = grade 100 (Light) / 900 (Dark) since the Tag contrast correction — the former 50/950 values were too close to the page background."
 
 typography:
