@@ -22,8 +22,8 @@ Barre d'actions **optionnelle**, propre au `Drawer` : elle s'affiche quand le co
 
 - **Position** : entre `Dialog-header` et `Dialog-body`. **Zone fixe**, comme l'en-tête et le pied : elle ne défile jamais avec le corps.
 - **Propriétés** (Boolean) : `Show-action-1` (défaut `false`) — `Button` `Outlined` avec libellé et icône, `Show-action-2` (défaut `true`) — `Button` `Outlined` `Icon-only`, `Show-delete` (défaut `true`) — `Button` `Destructive` `Icon-only`.
-- **Anatomie** : rangée horizontale, gap 8, alignement vertical centré, padding 12 px vertical / 16 px horizontal. Un `spacer` en `FILL` pousse l'action de suppression à l'extrémité droite ; les autres actions s'alignent à gauche. Les boutons sans libellé suivent la règle 44×44 (`components/button/`). Hauteur : 70 px (44 + 2 × 12 + 2 bordures de 1 px).
-- **Tokens** : fond `Background/subtle` (distingue la barre du corps et de l'en-tête en `Background/elevated`), bordures haute et basse 1 px `Border/subtle`, aucun arrondi.
+- **Anatomie** : rangée horizontale, gap 8, alignement vertical centré, padding 12 px vertical / 16 px horizontal. Un `spacer` en `FILL` pousse l'action de suppression à l'extrémité droite ; les autres actions s'alignent à gauche. Les boutons sans libellé suivent la règle 44×44 (`components/button/`). Hauteur : 68 px (44 + 2 × 12).
+- **Tokens** : fond `Background/sunken` (modifié le 2026-11-07, `Background/subtle` auparavant : distingue la barre du corps et de l'en-tête en `Background/elevated`), **aucune bordure** (retirée le 2026-11-07 — le contraste de fond suffit à séparer la zone), aucun arrondi.
 - **Clip** : `clipsContent: false`, comme les autres parties (voir « Champs dans un Dialog »).
 - **Accessibilité** : `role="toolbar"` avec `aria-label`, navigation aux flèches, nom accessible (`aria-label`) sur chaque bouton sans libellé, dont la suppression. L'action destructive reste soumise à confirmation si elle est irréversible.
 
