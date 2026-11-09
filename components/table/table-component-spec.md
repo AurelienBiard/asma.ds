@@ -80,6 +80,7 @@ Au clic sur un `Header-cell` triable : ce `Header-cell` passe à l'état de tri 
 - Checkbox de `selectCell` sur une `Row` : bascule cette ligne seule entre `Default`/`Selected` (ou `Hover`/`Selected` si survolée).
 - Checkbox de `selectCell` sur `headerRow` (« tout sélectionner ») : `Checked=False` → sélectionne toutes les lignes non-`Disabled` ; `Checked=True` ou `Indeterminate` → désélectionne tout. `Indeterminate` = état visuel uniquement quand une sélection partielle existe (au moins une ligne sélectionnée, pas toutes) ; ne se clique pas vers un état "indéterminé", c'est un état dérivé, jamais choisi directement par l'utilisateur.
 - Une ligne `Disabled` ignore les clics sur sa checkbox et n'est jamais comptée dans le « tout sélectionner ».
+- Dès qu'au moins une ligne est sélectionnée, la `Bulk-action-bar` apparaît (nombre, actions sur la sélection) — voir `components/bulk-action-bar/` (ajouté le 2026-11-09). « Tout sélectionner » ne prend que les lignes visibles avec les filtres en cours ; changer un filtre, la recherche, le tri ou la page vide la sélection.
 
 ## Accessibilité
 

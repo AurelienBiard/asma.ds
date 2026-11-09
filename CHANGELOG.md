@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-09 (3) — Bulk-action-bar (barre d'actions groupées)
+
+- Nouveau composant `Bulk-action-bar` (page `↳ Bulk-action-bar`, ComponentSet `Device=Desktop | Mobile`) : barre flottante en bas de la zone de contenu, visible dès qu'un élément d'une collection est sélectionné. Clear (X) · libellé « 3 sélectionnés » · « Tout sélectionner (n) » · séparateur · jusqu'à 3 actions `Outlined` · `More` (Menu) · `Delete` (`Destructive-ghost`). Mobile : Clear, libellé, une action, More, Delete. `Background/elevated`, `Border/subtle`, `Radius/card`, `Elevation/3`, padding et gap `Spacing/component-xs`.
+- Propriétés : `Selection-label`, `Show-select-all`, `Show-action-2`, `Show-action-3`, `Show-more`, `Show-delete` ; instances exposées `Action-1..3`, `More`, `Delete`, `Select-all`.
+- Règles : uniquement des actions sur la sélection (jamais filtres, tri, vue ou réglage d'affichage) ; « Tout sélectionner » = lignes visibles filtrées ; changer un filtre vide la sélection ; sélection mixte « 3 sur 5 archivés » ; une confirmation et un Toast par lot (Annuler / Restaurer) ; tout ou rien.
+- Repo : spec `components/bulk-action-bar/`, renvoi dans la spec `table` (Sélection), `decisions.yaml`, `accessibility.yaml` (`selection`), `README.md`. Aucun token créé.
+
 ## 2026-11-09 (2) — Textarea : même Text Style que TextInput
 
 - Figma : `Textarea` passe de `Body/SM` (12/16 Regular) à `Misc/Label` (14/20 Semi Bold), placeholder et texte saisi, sur les 32 variantes. Hauteur fixe de 160 px inchangée, troncature toujours désactivée.

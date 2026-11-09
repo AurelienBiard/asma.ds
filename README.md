@@ -104,6 +104,7 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | List-group-header | ✅ promu depuis ASMA OS | `components/list-group-header/` |
 | Card-collection (+ Block-header, Card-item) | ✅ 4 variantes, promu depuis ASMA OS | `components/card-collection/` |
 | Search-results | ✅ promu depuis ASMA OS | `components/search-results/` |
+| Bulk-action-bar | ✅ 2 variantes (Desktop/Mobile) | `components/bulk-action-bar/` |
 | Skeleton | ✅ 3 variantes | `components/skeleton/` |
 | Progress (linear/circular) | ✅ 12+12 variantes | voir Figma page `↳ Progress` |
 | Step Indicator | ✅ Step-item (3) + assemblages | `components/step-indicator/` |

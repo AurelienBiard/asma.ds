@@ -18,4 +18,5 @@ forms:
   required: "Required status must be programmatically and visually understandable."
   errors: ["Identify the affected field.", "Explain the problem and, when possible, the correction."]
 motion: ["Respect reduced-motion preferences.", "Essential information must not depend on animation."]
+selection: ["Bulk-action-bar: role=toolbar named « Actions sur la sélection », selection count announced with aria-live=polite, its appearance never moves focus, arrow keys between its buttons, Escape clears the selection."]
 content: ["Icon-only actions need accessible names.", "Decorative icons must not create redundant accessible content."]
