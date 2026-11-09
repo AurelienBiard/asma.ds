@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-09 (2) — Textarea : même Text Style que TextInput
+
+- Figma : `Textarea` passe de `Body/SM` (12/16 Regular) à `Misc/Label` (14/20 Semi Bold), placeholder et texte saisi, sur les 32 variantes. Hauteur fixe de 160 px inchangée, troncature toujours désactivée.
+- Spec `textarea` et guideline de la page `↳ Text inputs` corrigées.
+
 ## 2026-11-09 — Règle de couleur du texte des champs
 
 - Règle formalisée pour `TextInput`, `PasswordInput`, `Search`, `Textarea`, `Select`, `TagInput` : placeholder (champ vide) `Text/tertiary`, texte saisi `Text/primary`, `Text/disabled` en Disabled ; la validation ne change pas la couleur du texte. Contrastes sur `Background/elevated` : tertiary 7,58:1 (Light) / 5,71:1 (Dark).

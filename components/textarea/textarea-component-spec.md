@@ -8,7 +8,7 @@ Champ de saisie multiligne — base TextInput adaptée pour du texte long.
 
 - **Alignement** : `counterAxisAlignItems: MIN` (texte aligné en haut, pas centré) — le contenu grandit vers le bas.
 - **Pas de troncature** : `textTruncation: DISABLED`, retour à la ligne actif.
-- **Text Style** : `Body/SM` (pas `Misc/Label`) — plus adapté à un volume de texte important.
+- **Text Style** : `Misc/Label` (14/20 Semi Bold), **identique à `TextInput`**, pour le placeholder comme pour le texte saisi — le style ne change pas quand l'utilisateur commence à écrire (décision 2026-11-09 ; `Body/SM` auparavant). Les 32 variantes sont à jour.
 - **Dimensions** (2026-11-02) : le composant fait 280 px de large par défaut ; `field` est en **`FILL`** en largeur (il suit la largeur de l'instance : redimensionner ou placer en `FILL` dans un conteneur élargit le champ), hauteur fixe **160px** (pas de hug — représente une zone de saisie à défilement, le texte peut dépasser visuellement plutôt que d'étirer le composant indéfiniment).
 - **Ligne de détourage (Focus)** : comme `TextInput` — `Border/focus` + `Primitive/Border/medium`, `strokeAlign: OUTSIDE`. Le trait est dessiné à l'extérieur du champ : il n'ajoute rien à la hauteur fixe de 160 px, mais il est rogné si un parent clippe.
 - **`clipsContent: false`** sur `field`, sur chaque variante et sur le composant global (comme `TextInput`). Les cadres qui contiennent un `Textarea` (formulaires, rangées, cartes, `Dialog`) ne rognent pas non plus leur contenu, sinon la ligne de détourage est coupée. Vérifié dans Figma le 2026-11-02 : les 32 variantes sont déjà conformes.
