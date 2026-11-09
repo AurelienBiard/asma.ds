@@ -36,8 +36,34 @@ Cette règle vaut pour tous les champs de saisie en `Interaction=Default` et `Va
 **Validation prioritaire sur Interaction** pour la bordure — un champ Error en Hover garde la bordure `Feedback/Danger/border`, pas `Border/strong`. Exception documentée : en Disabled, la bordure de validation reste visible même si le champ n'est plus interactif (choix volontaire).
 
 - Fond (hors Disabled) : `Background/elevated`.
-- Texte Empty (placeholder) : `Text/tertiary`. Texte Filled (value) : `Text/primary`.
+- Texte Empty (placeholder) : `Text/tertiary`. Texte Filled (value) : `Text/primary`. Voir « Règle : couleur du texte d'un champ » ci-dessous.
 - Icône de statut + message : `Feedback/{Error|Warning|Success}/icon` et `/text`.
+
+## Règle : couleur du texte d'un champ (2026-11-09)
+
+Règle commune à `TextInput`, `PasswordInput`, `Search`, `Textarea`, `Select` et `TagInput`.
+
+| Situation | Couleur du texte |
+|---|---|
+| Champ vide (`Content=Empty`), `Interaction` Default, Hover ou Focus | `Text/tertiary` (placeholder) |
+| Texte saisi ou valeur choisie (`Content=Filled`) | `Text/primary` |
+| `Interaction=Disabled` (placeholder comme valeur) | `Text/disabled` |
+
+- La validation (`Error`, `Warning`, `Success`) **ne change jamais** la couleur du texte du champ : seuls le message et l'icône de statut prennent la couleur `Feedback/{statut}/…`.
+- `Select` : « Sélectionner une option » en `Text/tertiary`, l'option choisie en `Text/primary`. `TagInput` : le texte d'ajout (`Input-placeholder`) en `Text/tertiary` ; les tags saisis sont des `Chip`, qui gardent leurs couleurs.
+- Le placeholder n'est jamais un libellé (voir `guidelines/accessibility.yaml`) et ne porte pas d'information indispensable.
+- Contraste sur le fond du champ (`Background/elevated`) : `Text/tertiary` 7,58:1 en Light, 5,71:1 en Dark ; `Text/primary` 17,85:1 et 13,98:1.
+
+**Code**
+
+```css
+.field { color: var(--color-text-primary); }
+.field::placeholder { color: var(--color-text-tertiary); opacity: 1; }   /* opacity: 1 pour Firefox */
+.field:disabled,
+.field:disabled::placeholder { color: var(--color-text-disabled); }
+/* Select personnalisé : valeur vide */
+.select__value[data-empty] { color: var(--color-text-tertiary); }
+```
 
 ## Dimensions et comportement
 

@@ -14,7 +14,7 @@ interaction:
   focus: ["Never remove visible focus without an equivalent indication."]
   states: ["States remain distinguishable without relying only on color."]
 forms:
-  labels: ["Every field has an accessible label.", "Placeholder is not a label."]
+  labels: ["Every field has an accessible label.", "Placeholder is not a label.", "Field text: placeholder Text/tertiary (empty), user text Text/primary, disabled Text/disabled; both enabled colors pass 4.5:1 on Background/elevated (tertiary 7.58 Light, 5.71 Dark)."]
   required: "Required status must be programmatically and visually understandable."
   errors: ["Identify the affected field.", "Explain the problem and, when possible, the correction."]
 motion: ["Respect reduced-motion preferences.", "Essential information must not depend on animation."]

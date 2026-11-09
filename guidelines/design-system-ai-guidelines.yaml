@@ -246,6 +246,12 @@ color:
       destructive: { background: "Semantic → Action/destructive (hover: destructive-hover, active: destructive-active)", label: "Semantic → Text/on-brand", icon: "Semantic → Icon/on-brand", note: "Button Type=Danger (2026-11-01) = destructive or irreversible action only; Disabled uses the shared neutral grey." }
     Alert:
       danger: { background: "Semantic → Feedback/Danger/background", border: "Semantic → Feedback/Danger/border", icon: "Semantic → Feedback/Danger/icon", text: "Semantic → Feedback/Danger/text" }
+    Field_text:
+      applies_to: "TextInput, PasswordInput, Search, Textarea, Select, TagInput"
+      empty_placeholder: "Semantic → Text/tertiary (Interaction Default/Hover/Focus)"
+      user_text: "Semantic → Text/primary (typed text or chosen value)"
+      disabled: "Semantic → Text/disabled (placeholder and value)"
+      note: "Validation (Error/Warning/Success) never changes the field text color; only Message and status icon do. CSS: field color var(--color-text-primary); ::placeholder var(--color-text-tertiary) with opacity 1; :disabled and :disabled::placeholder var(--color-text-disabled)."
     Banner:
       note: "Same Feedback/{Status} tokens as Alert (background, border, text, icon). Form=Inline: Radius/control, border on 4 sides. Form=Page: square corners, bottom border only, under the top bar."
 

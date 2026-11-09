@@ -21,3 +21,5 @@ Base identique à TextInput (32 variantes Interaction × Content × Validation),
 - `Left` doit être en `layoutSizingHorizontal: FILL` pour que `Label` (également FILL) profite de l'espace disponible et tronque correctement un texte long.
 
 Doc complète : voir aussi `components/checkbox/`, `components/radio/`, `components/switch/` pour les sous-composants réutilisés.
+
+**Couleur du texte** : placeholder `Text/tertiary` tant que le champ est vide, texte saisi `Text/primary`, `Text/disabled` en Disabled — règle commune détaillée dans `components/text-input/`.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-09 — Règle de couleur du texte des champs
+
+- Règle formalisée pour `TextInput`, `PasswordInput`, `Search`, `Textarea`, `Select`, `TagInput` : placeholder (champ vide) `Text/tertiary`, texte saisi `Text/primary`, `Text/disabled` en Disabled ; la validation ne change pas la couleur du texte. Contrastes sur `Background/elevated` : tertiary 7,58:1 (Light) / 5,71:1 (Dark).
+- Figma : déjà conforme sur tous les composants, aucune variante modifiée ; guidelines de la page `↳ Text inputs` complétées (règle, contrastes, extrait CSS).
+- Repo : spec `text-input` (section dédiée + code CSS), renvoi dans les 5 autres specs, `design-system-ai-guidelines.yaml` (`Field_text`), `accessibility.yaml`.
+
 ## 2026-11-07 (7) — Promotion de composants ASMA OS vers asma.ds
 
 Les composants suivants, génériques, passent de la section ASMA OS au design system. Ils sont **déplacés** (pas dupliqués) : les instances des maquettes OS suivent, seul le nom change (préfixe `OS / ` retiré).

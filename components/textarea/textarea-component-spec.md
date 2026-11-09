@@ -26,3 +26,5 @@ Champ de saisie multiligne — base TextInput adaptée pour du texte long.
 ## Guidelines Figma
 
 Page `↳ Text inputs`, section "Textarea". Guidelines partagées + note dédiée.
+
+**Couleur du texte** : placeholder `Text/tertiary` tant que le champ est vide, texte saisi `Text/primary`, `Text/disabled` en Disabled — règle commune détaillée dans `components/text-input/`.

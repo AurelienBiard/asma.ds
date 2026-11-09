@@ -22,3 +22,5 @@ Mêmes propriétés que TextInput (`Placeholder`, `Value`, `Message`) + `Show-ic
 ## Guidelines Figma
 
 Page `↳ Text inputs`, section "Search". Guidelines partagées avec TextInput/PasswordInput (section générique) + note dédiée.
+
+**Couleur du texte** : placeholder `Text/tertiary` tant que le champ est vide, texte saisi `Text/primary`, `Text/disabled` en Disabled — règle commune détaillée dans `components/text-input/`.

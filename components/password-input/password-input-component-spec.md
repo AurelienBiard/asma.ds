@@ -22,3 +22,5 @@ La propriété `preferredValues` de `Visibility-icon` n'a pas pu être mise à j
 ## Guidelines Figma
 
 Page `↳ Text inputs`, section "PasswordInput". Partage les guidelines génériques du composant `Input` de base avec TextInput.
+
+**Couleur du texte** : placeholder `Text/tertiary` tant que le champ est vide, texte saisi `Text/primary`, `Text/disabled` en Disabled — règle commune détaillée dans `components/text-input/`.

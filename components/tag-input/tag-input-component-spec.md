@@ -54,3 +54,5 @@ Bloc « TagInput » dans les guidelines génériques de la page `↳ Text inputs
 ## À valider
 
 - La spec TextInput indique une hauteur de Field de 40px, alors que TextInput, Select et Search mesurent 44px dans Figma (padding vertical `Spacing/component-sm`). TagInput a été aligné sur la mesure réelle (44px) ; la spec TextInput a été corrigée à 44px le 2026-10-29.
+
+**Couleur du texte** : placeholder `Text/tertiary` tant que le champ est vide, texte saisi `Text/primary`, `Text/disabled` en Disabled — règle commune détaillée dans `components/text-input/`.
