@@ -4,10 +4,11 @@ Journal lisible des commits du repo `AurelienBiard/asma.ds`, du plus récent au 
 
 Généré depuis l'historique git local (`.git/logs/HEAD`) et mis à jour à chaque MAJ asma.ds. Heures de Paris.
 
-44 commits, du 2026-09-16 au 2026-11-09.
+45 commits, du 2026-09-16 au 2026-11-09.
 
 | # | Date | Commit | Message |
 |---|---|---|---|
+| 45 | 2026-11-09 22:07 | [284ac8f](https://github.com/AurelienBiard/asma.ds/commit/284ac8f) | feat(bulk-action-bar): barre d'actions groupées (Desktop/Mobile) |
 | 44 | 2026-11-09 12:51 | [b573d1e](https://github.com/AurelienBiard/asma.ds/commit/b573d1e) | fix(textarea): même Text Style (Misc/Label) que TextInput pour le placeholder et le texte saisi |
 | 43 | 2026-11-09 12:39 | [a8da1fb](https://github.com/AurelienBiard/asma.ds/commit/a8da1fb) | docs(inputs): règle de couleur du texte des champs (placeholder tertiary, saisie primary, disabled) |
 | 42 | 2026-11-07 16:35 | [9ac1fa3](https://github.com/AurelienBiard/asma.ds/commit/9ac1fa3) | feat(ds): Banner, Empty-state, Button Pressed, règles Dialog-toolbar, promotion List-group-header / Card-collection / Search-results depuis ASMA OS |

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-10 — Cartes : en-tête sobre, « Tous les … » dans le pied, « ⋯ » sur les éléments
+
+- `Block-header` : `Show-secondary-action` passe à `false` par défaut ; en-tête de carte = icône, titre, compteur, une seule action (l'ajout).
+- `Card-collection` : nouvelle propriété `Show-all-link` (défaut `false`) ; le lien « Tous les … (N) » est dans le pied, seulement au-delà de 5 éléments ; la variante `Desktop` reçoit un pied réduit à ce lien.
+- `Card-item` (Note, Tâche, Contact, Relation, Projet) : nouvelle propriété `Show-menu` (défaut `false`) — bouton « ⋯ » (`Ghost`, icône seule) en fin de ligne qui ouvre le menu des actions de l'élément ; plus de boutons d'action visibles dans les lignes. En mobile, `Card-item / Contact` masque sa coordonnée.
+- Repo : spec `card-collection`. Aucun token créé.
+
 ## 2026-11-09 (3) — Bulk-action-bar (barre d'actions groupées)
 
 - Nouveau composant `Bulk-action-bar` (page `↳ Bulk-action-bar`, ComponentSet `Device=Desktop | Mobile`) : barre flottante en bas de la zone de contenu, visible dès qu'un élément d'une collection est sélectionné. Clear (X) · libellé « 3 sélectionnés » · « Tout sélectionner (n) » · séparateur · jusqu'à 3 actions `Outlined` · `More` (Menu) · `Delete` (`Destructive-ghost`). Mobile : Clear, libellé, une action, More, Delete. `Background/elevated`, `Border/subtle`, `Radius/card`, `Elevation/3`, padding et gap `Spacing/component-xs`.
