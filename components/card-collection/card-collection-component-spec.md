@@ -38,7 +38,7 @@ ComponentSet, 4 variantes :
 En-tête d'un bloc de contenu (une `Card-collection` ou une section de page de détail) : pictogramme, titre, compteur, filtre et actions. Équivalent de `PageHeader` au niveau section. Ajouté à la promotion parce que `Card-collection` en dépend.
 
 - ComponentSet, `Device` = `Desktop` | `Mobile`.
-- Propriétés : `Title`, `Description` (Text) ; `Show-icon` (true), `Show-count` (true), `Show-filter` (true), `Show-action` (true), `Show-secondary-action` (**false** depuis le 2026-11-10 — à n'activer que pour une section de page hors carte), `Show-toggle` (false), `Show-description` (true).
+- Propriétés : `Title`, `Description` (Text) ; `Show-icon` (true), `Show-count` (true), `Show-filter` (**false** depuis le 2026-11-10 — pas de filtre dans une carte : le lien « Tous les … » ouvre la collection et ses filtres ; exception possible : un sélecteur de mesure, comme pour des données chiffrées), `Show-action` (true), `Show-secondary-action` (**false** depuis le 2026-11-10 — à n'activer que pour une section de page hors carte), `Show-toggle` (false), `Show-description` (true).
 - `Title` : `Heading/SM`, `Text/primary`. `Description` : `Body/SM`, `Text/tertiary`. Gap `Spacing/component-xs`. Instances : `Icon`, `Count`, `Select`, `Button` (`Neutral` et `Outlined`).
 
 ## Card-item (patron de ligne)

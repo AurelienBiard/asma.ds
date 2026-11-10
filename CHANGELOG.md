@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-10 (2) — Block-header sans filtre par défaut
+
+- `Block-header` : `Show-filter` passe à `false` par défaut — pas de filtre dans une carte, le lien « Tous les … » ouvre la collection filtrable ; seule exception, un sélecteur de mesure (données chiffrées).
+- Figma : page Guidelines de `Card-collection` réécrite (une action dans l'en-tête, `Show-all-link`, `Show-menu`, clavier du menu ⋯, pas de filtre).
+- Repo : spec `card-collection`. Aucun token créé.
+
 ## 2026-11-10 — Cartes : en-tête sobre, « Tous les … » dans le pied, « ⋯ » sur les éléments
 
 - `Block-header` : `Show-secondary-action` passe à `false` par défaut ; en-tête de carte = icône, titre, compteur, une seule action (l'ajout).
