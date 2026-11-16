@@ -11,6 +11,7 @@ Conteneur borné pour du contenu/action cohérent (`decisions.yaml` → `Card`).
 - **Interaction** (variant) : `Default` / `Hover` / `Focus` — état visuel de prévisualisation uniquement, ne pilote pas le vrai hover/focus applicatif (géré côté app).
 - **Title**, **Subtitle**, **Body** (Text)
 - **Show-header**, **Show-subtitle**, **Show-footer** (Boolean, défaut `true`)
+- **Show-icon** (Boolean, défaut **`false`**) — affiche une icône `Icon` **XLarge** (32 px) en **premier enfant** de la carte, **avant `header`** (espacement vertical de 12 px hérité du layout de la carte, soit +44 px de hauteur quand l'icône est affichée). Nom du calque : `Card-icon`. Icône par défaut `Icon/tertiary` ; l'icône se change via l'instance (Instance swap de l'`Icon` imbriqué). Utilisée pour illustrer le type de contenu (ex. carte de sélection, carte d'information) ; elle est décorative → `aria-hidden="true"` côté code, sauf si elle est seule porteuse de sens.
 
 ## Composition — pas de Slot scriptable
 

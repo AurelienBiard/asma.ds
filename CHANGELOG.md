@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-16 — Card : propriété Show-icon (icône XLarge avant Header)
+
+- **Card** : nouvelle propriété Boolean `Show-icon` (défaut `false`) ; instance `Icon` Size `XLarge` (32 px) insérée avant `header` dans les 3 variantes `Interaction` (Default/Hover/Focus), couleur `Icon/tertiary`.
+- Spec `components/card/card-component-spec.md` mise à jour ; texte de guideline Figma de la page `↳ Card` mis à jour.
+
 ## 2026-11-10 (2) — Block-header sans filtre par défaut
 
 - `Block-header` : `Show-filter` passe à `false` par défaut — pas de filtre dans une carte, le lien « Tous les … » ouvre la collection filtrable ; seule exception, un sélecteur de mesure (données chiffrées).
