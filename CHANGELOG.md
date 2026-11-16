@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-16 (3) — Nouveau composant Kanban-card
+
+- **Kanban-card** : carte générique d'une colonne Kanban (Title, Context, Meta, marqueur Flag), 5 variantes `State` (Default, Hover, Focus, Dragging, Done), 7 propriétés. Exemple de réutilisation : `OS / Task-card` d'ASMA OS (inchangé).
+- `State=Done` : titre barré uniquement sur cette variante ; son `Title` n'est pas lié à la propriété texte (sinon le barré se propage aux 5 variantes).
+- Page Figma `↳ Kanban-card`, spec `components/kanban-card/kanban-card-component-spec.md`, ligne dans le README et `decisions.yaml`.
+
 ## 2026-11-16 (2) — Card : Interactive, Style, icône en brand
 
 - **Card** : nouvel axe `Interactive` (True défaut / False) — survol, élévation et focus réservés aux cartes cliquables ; `Interactive=False` = Default uniquement.
