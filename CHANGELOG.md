@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-16 (2) — Card : Interactive, Style, icône en brand
+
+- **Card** : nouvel axe `Interactive` (True défaut / False) — survol, élévation et focus réservés aux cartes cliquables ; `Interactive=False` = Default uniquement.
+- **Card** : nouvel axe `Style` (`Outlined` défaut / `Subtle` = fond `Background/subtle`, sans bordure ; Focus garde `Border/focus`).
+- **Card** : icône `Show-icon` en `Icon/brand` (au lieu de `Icon/tertiary`).
+- 8 variantes au total dans Figma (page `↳ Card`, guidelines mises à jour).
+
 ## 2026-11-16 — Card : propriété Show-icon (icône XLarge avant Header)
 
 - **Card** : nouvelle propriété Boolean `Show-icon` (défaut `false`) ; instance `Icon` Size `XLarge` (32 px) insérée avant `header` dans les 3 variantes `Interaction` (Default/Hover/Focus), couleur `Icon/tertiary`.
