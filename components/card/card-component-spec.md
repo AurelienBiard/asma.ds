@@ -17,6 +17,7 @@ Conteneur borné pour du contenu/action cohérent (`decisions.yaml` → `Card`).
 - **Title**, **Subtitle**, **Body** (Text)
 - **Show-header**, **Show-subtitle**, **Show-footer** (Boolean, défaut `true`)
 - **Show-icon** (Boolean, défaut **`false`**) — affiche une icône `Icon` **XLarge** (32 px) en **premier enfant** de la carte, **avant `header`** (espacement vertical de 12 px hérité du layout de la carte, soit +44 px de hauteur quand l'icône est affichée). Nom du calque : `Card-icon`. Couleur de l'icône : `Icon/brand` (changé de `Icon/tertiary` le 2026-11-16) ; l'icône se change via l'instance (Instance swap de l'`Icon` imbriqué). Utilisée pour illustrer le type de contenu (ex. carte de sélection, carte d'information) ; elle est décorative → `aria-hidden="true"` côté code, sauf si elle est seule porteuse de sens.
+- **Show-tag** (Boolean, défaut **`false`**) — affiche une instance `Tag` (Type `Neutral`, Size `Small`, sans icônes ; calque `Card-tag`) **dans `header`, à droite du titre**. Le `header` est horizontal : `title-group` (Title + Subtitle, remplit la largeur) puis le Tag, aligné en haut, espacement `Spacing/component-sm`. Le titre se rétrécit et passe à la ligne si besoin ; la hauteur de la carte ne change pas pour un titre d'une ligne. Libellé et `Type` du Tag se modifient sur l'instance (statut, catégorie : texte court). Masqué avec le `header` (`Show-header=false`).
 
 ## Composition — pas de Slot scriptable
 

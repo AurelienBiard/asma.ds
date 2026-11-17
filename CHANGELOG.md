@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-17 — Card : propriété Show-tag
+
+- **Card** : nouvelle propriété Boolean `Show-tag` (défaut `false`) ; instance `Tag` (Neutral, Small, sans icônes) dans `header`, à droite du titre, dans les 8 variantes. Le `header` devient horizontal (`title-group` + Tag). Spec et guidelines Figma mises à jour.
+
 ## 2026-11-16 (3) — Nouveau composant Kanban-card
 
 - **Kanban-card** : carte générique d'une colonne Kanban (Title, Context, Meta, marqueur Flag), 5 variantes `State` (Default, Hover, Focus, Dragging, Done), 7 propriétés. Exemple de réutilisation : `OS / Task-card` d'ASMA OS (inchangé).
