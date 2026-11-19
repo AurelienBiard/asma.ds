@@ -24,8 +24,8 @@ Aucun token créé.
 
 - À placer avant les éléments qu'il regroupe, au même niveau que les lignes (`Card-item`, lignes de `Table`, `Command-item`).
 - Un groupe sans élément n'est pas affiché.
-- Pas un titre de section : pour un titre de bloc de page, utiliser `Block-header` (`components/card-collection/`).
-- Usages dans ASMA OS : tâches (par échéance), notes, ressources, notifications, résultats de recherche (`Search-results`), corbeille.
+- Pas un titre de section : pour un titre de bloc de page, utiliser `Block-header` (`patterns/collection-card/`).
+- Usages dans ASMA OS : tâches (par échéance), notes, ressources, notifications, résultats de recherche (pattern `Search`, brique `Search-results`), corbeille.
 
 ## Accessibilité
 

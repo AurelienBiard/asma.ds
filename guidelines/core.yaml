@@ -3,7 +3,7 @@ name: ASMA
 purpose: "Normative rules for an AI-readable design system. Guidelines are the source of truth."
 
 source_of_truth:
-  order: [guidelines/*.yaml, components/<name>/<name>-component-spec.md, patterns/<name>/<name>-spec.md, tokens/*.json, Figma]
+  order: [guidelines/*.yaml, components/<name>/<name>-component-spec.md, patterns/<name>/<name>-pattern-spec.md, tokens/*.json, Figma]
   rule: "Document decisions in the repository; Figma must not silently redefine the system."
 
 principles:
@@ -26,7 +26,7 @@ component_boundary:
 
 decision_order:
   - "Understand intent and interaction."
-  - "Search existing pattern."
+  - "Search existing pattern: guidelines/decisions.yaml -> pattern_selection (match the need and the intent keywords, then read the pattern spec)."
   - "Search existing component."
   - "Check variants, properties and slots."
   - "Check composition."
@@ -44,7 +44,7 @@ token_architecture:
 change_management:
   new_token: ["Search existing roles", "Search primitives", "Prove the value is new", "Create primitive if required", "Expose semantic/responsive meaning", "Update JSON and documentation"]
   new_component: ["Search components/patterns", "Explain why variants/properties/slots/composition fail", "Write spec", "Implement documented behavior"]
-  new_pattern: ["Prove recurrence", "Document workflow, components and states"]
+  new_pattern: ["Prove recurrence", "Document workflow, components and states", "Write patterns/<name>/<name>-pattern-spec.md", "Add an entry to decisions.yaml -> pattern_selection (need, intent, components, spec, status, not_for)", "Run scripts/check_patterns.py"]
   breaking_change: "Explicitly document changes to token meaning, aliases, component contracts or naming."
 
 ai_reasoning:

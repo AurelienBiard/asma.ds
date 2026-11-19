@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-11-19 (2) — Curation composants → patterns + découvrabilité des patterns
+
+- **Reclassement** : `Kanban-card` → pattern **Kanban**, `Bulk-action-bar` → pattern **BulkActions**, `Search-results` → pattern **Search**, `Card-collection` (+ `Block-header`, `Card-item`) → pattern **Collection card**. Les briques restent des composants Figma ; leur spec est une section « Brick » du pattern (`patterns/<nom>/<nom>-pattern-spec.md`, en anglais) et les dossiers `components/{kanban-card,bulk-action-bar,search-results,card-collection}/` sont supprimés. Pages Figma déplacées dans `💻 PATTERNS` (`↳ Kanban`, `↳ Bulk-actions`, `↳ Search`, `↳ Collection card`), eyebrow « Patterns ».
+- **Skill** : déjà un pattern, sa classification corrigée dans `decisions.yaml` (il figurait dans `component_selection`).
+- **6 nouvelles specs de patterns** (statut `spec`, pas de page Figma) : `DataTable`, `Node-graph`, `Form`, `FileUpload`, `Confirmation`, `States`.
+- **Découvrabilité** : nouvelle section `pattern_selection` dans `guidelines/decisions.yaml` (20 entrées : besoin, synonymes d'intention en anglais, composants, spec, statut `built|spec|candidate`, `not_for`) ; les briques gardent une ligne de redirection dans `component_selection`. `core.yaml` : chemin corrigé en `patterns/<name>/<name>-pattern-spec.md`, étape 2 de `decision_order` → `pattern_selection`. `agent.yaml` et `design-system-ai-guidelines.yaml` (`discovery`) : ordre besoin → pattern → composant → token.
+- `patterns/README.md` réécrit (format + pointeur, plus de liste dupliquée) ; `scripts/check_patterns.py` (dossiers de specs ↔ `pattern_selection`, chemins, sections requises, briques). README, `list-group-header` mis à jour.
+- Convention : les specs de patterns sont rédigées **en français** (comme les specs de composants) ; les `.yaml` restent en anglais et `intent` de `pattern_selection` contient des synonymes anglais **et français**.
+- **Switchers** : les pages Figma `↳ Theme switcher` et `↳ Lang switcher` sont fusionnées en `↳ Switchers` (composants inchangés) ; specs mises à jour.
+- **Image-upload** : reste documenté avec `Dropzone` sur `↳ File & media` (décision consignée dans la spec FileUpload).
+- **ASMA OS** : `OS / Task-card` est refait comme conteneur d'une instance exposée de `Kanban-card` ; les 36 cartes OS migrées (Terminé → `State=Done`, carte glissée → `Dragging`, échéance en retard en `Feedback/Danger/text`). Les anciennes propriétés `Title/Context/Due/Show-priority/Show-due` sont remplacées par celles de `Kanban-card` (`Meta`, `Show-meta`, `Show-flag`…).
+
 ## 2026-11-19 — Fondation Background : strates + fond Canvas-dotted
 
 - **Fondation `Background`** (page Figma `↳ Background`, après `↳ Elevation`) : les 8 strates `Background/*` expliquées (valeurs Light/Dark, usages, lecture de la hauteur, exemple d'empilement page → zone → carte → champ). Règle d'imbrication proposée, à valider.

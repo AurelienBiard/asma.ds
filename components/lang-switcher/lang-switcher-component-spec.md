@@ -2,7 +2,7 @@
 
 > Ce fichier est la **source de vérité** du composant. Toute modification (anatomie, variants, tokens) se fait ici en premier, puis est répercutée dans Figma.
 
-> **Statut** : construit le 2026-10-12 dans Figma (page `↳ Lang switcher`), par duplication de `Theme-switcher` dont les pictogrammes sont remplacés par des codes de langue en typographie.
+> **Statut** : construit le 2026-10-12 dans Figma (page `↳ Switchers`, partagée avec `Theme switcher`), par duplication de `Theme-switcher` dont les pictogrammes sont remplacés par des codes de langue en typographie.
 
 Bascule binaire de la langue de l'interface (FR ↔ EN) (`decisions.yaml` → `LangSwitcher`). Même squelette que `Theme switcher` (voir `components/theme-switcher/`), mais **sans icône** : le contenu de chaque cellule est un code de langue ISO 639-1 en capitales.
 
@@ -45,4 +45,4 @@ Au clic : `CHANGE_TO` vers l'autre langue (même Motion, même State), `SMART_AN
 
 ## Guidelines Figma
 
-Page dédiée `↳ Lang switcher`.
+Page `↳ Switchers` (partagée avec `Theme switcher`, fusion du 2026-11-19).

@@ -21,7 +21,7 @@ design-system/
 │   ├── decisions.yaml      # Guide de sélection de composant (quel composant pour quel besoin)
 │   └── accessibility.yaml  # Règles a11y (contraste, clavier, focus, formulaires)
 ├── patterns/
-│   └── README.md           # Patterns candidats (workflows recurrents multi-composants)
+│   └── README.md           # Format des specs + pointeur vers decisions.yaml → pattern_selection
 ├── scripts/
 │   └── build_css.py      # Génère dist/tokens.css depuis les 3 fichiers tokens/
 └── dist/
@@ -102,10 +102,7 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | Banner | ✅ 8 variantes (4 Status × Inline/Page) | `components/banner/` |
 | Empty-state | ✅ 2 variantes (Compact/Page) | `components/empty-state/` |
 | List-group-header | ✅ promu depuis ASMA OS | `components/list-group-header/` |
-| Kanban-card | ✅ 5 états (`State`), exemple : `OS / Task-card` | `components/kanban-card/` |
 | Canvas-dotted | ✅ fond de canvas à points (fondation `Background`) | `components/canvas-dotted/` |
-| Card-collection (+ Block-header, Card-item) | ✅ 4 variantes, promu depuis ASMA OS | `components/card-collection/` |
-| Search-results | ✅ promu depuis ASMA OS | `components/search-results/` |
 | Skeleton | ✅ 3 variantes | `components/skeleton/` |
 | Progress (linear/circular) | ✅ 12+12 variantes | voir Figma page `↳ Progress` |
 | Step Indicator | ✅ Step-item (3) + assemblages | `components/step-indicator/` |
@@ -116,13 +113,21 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | Breadcrumb | ✅ 1 composant, 4 niveaux (Show-level-1..4) | `components/breadcrumb/` |
 | Lang switcher | ✅ 12 variantes (FR/EN, typographique) | `components/lang-switcher/` |
 
-### Patterns (page Figma `↳ Navigation`)
-| Pattern | Statut |
-|---|---|
-| Sidebar (Mode=Expanded/Collapsed) | ✅ — `patterns/navigation/sidebar-pattern-spec.md` |
-| Topbar (SaaS) | ✅ |
-| Site-nav (vitrine) | ✅ |
-| Skill (Device=Desktop/Mobile) | ✅ — `patterns/skill/skill-pattern-spec.md` |
+### Patterns (section Figma `💻 PATTERNS`)
+
+Liste de référence et mots-clés d'intention : `guidelines/decisions.yaml` → `pattern_selection` (contrôle : `python3 scripts/check_patterns.py`). Les briques des patterns (`Kanban-card`, `Bulk-action-bar`, `Search-results`, `Card-collection`, `Block-header`, `Card-item`) restent des composants Figma, documentés dans la spec de leur pattern.
+
+| Pattern | Statut | Spec |
+|---|---|---|
+| Login | ✅ | `patterns/authentication/login-pattern-spec.md` |
+| Sidebar · Topbar · Site-nav | ✅ | `patterns/navigation/sidebar-pattern-spec.md` |
+| Filter bar | ✅ | `patterns/filter-bar/filter-bar-pattern-spec.md` |
+| Skill | ✅ | `patterns/skill/skill-pattern-spec.md` |
+| Kanban (brique `Kanban-card`) | ✅ | `patterns/kanban/kanban-pattern-spec.md` |
+| BulkActions (brique `Bulk-action-bar`) | ✅ | `patterns/bulk-actions/bulk-actions-pattern-spec.md` |
+| Search (brique `Search-results`) | ✅ | `patterns/search/search-pattern-spec.md` |
+| Collection card (briques `Card-collection`, `Block-header`, `Card-item`) | ✅ | `patterns/collection-card/collection-card-pattern-spec.md` |
+| DataTable · Node-graph · Form · FileUpload · Confirmation · States | spec seule | `patterns/<nom>/<nom>-pattern-spec.md` |
 
 Voir `guidelines/decisions.yaml` pour le guide de sélection de composant. Historique des évolutions : `CHANGELOG.md`.
 

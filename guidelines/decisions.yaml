@@ -3,6 +3,151 @@ purpose: "Decision logic for choosing existing ASMA abstractions before creating
 
 process: [understand_intent, search_pattern, search_component, check_variants_properties_slots, check_composition, check_tokens, justify_creation, document]
 
+# Pattern lookup. Read this BEFORE component_selection: if the need matches a pattern, use the pattern and its spec.
+# status: built = Figma page and spec exist | spec = spec only, no Figma page yet | candidate = recognised need, no spec yet.
+# intent = English synonyms an agent may search for. Spec path: patterns/<folder>/<folder>-pattern-spec.md (Login: patterns/authentication/login-pattern-spec.md).
+pattern_selection:
+  Login:
+    need: "Let a user sign in with a labelled form (email, password, secondary links)."
+    intent: [login, sign in, signin, authentication, auth, log in, password form, connexion, se connecter, identification, formulaire de connexion, mot de passe]
+    components: [Field, TextInput, PasswordInput, Button, Link]
+    spec: patterns/authentication/login-pattern-spec.md
+    status: built
+    not_for: "Account creation or multi-field data entry -> Form."
+  Sidebar:
+    need: "Persistent navigation between the main sections of a SaaS application (expanded or collapsed to icons)."
+    intent: [sidebar, side nav, side navigation, left menu, app navigation, navigation rail, main menu, barre latérale, menu latéral, navigation latérale, menu principal]
+    components: [Menu-item, Avatar]
+    spec: patterns/navigation/sidebar-pattern-spec.md
+    status: built
+    not_for: "Marketing site navigation -> Site-nav. Peer views in one context -> Tabs."
+  Topbar:
+    need: "Global bar with search, notifications and account, complementing the Sidebar."
+    intent: [topbar, top bar, header bar, app header, global header, account menu, barre supérieure, en-tête applicatif, menu du compte, recherche globale]
+    components: [Search, Avatar, Button]
+    spec: patterns/navigation/sidebar-pattern-spec.md
+    status: built
+    not_for: "Page title and page actions -> PageHeader."
+  Site-nav:
+    need: "Flat navigation of a marketing site with a call to action, no user account context."
+    intent: [site nav, website header, marketing navigation, landing navigation, navbar, navigation de site, en-tête de site vitrine, barre de navigation]
+    components: [Link, Button]
+    spec: patterns/navigation/sidebar-pattern-spec.md
+    status: built
+    not_for: "Application navigation -> Sidebar."
+  FilterBar:
+    need: "Search and filter a data set shown below, with applied filters visible and removable."
+    intent: [filter bar, filters, search and filter, applied filters, filter chips, faceted filter, refine list, barre de filtres, filtres, recherche et filtres, filtres appliqués, affiner une liste]
+    components: [Search, Select, Chip, Button]
+    spec: patterns/filter-bar/filter-bar-pattern-spec.md
+    status: built
+    not_for: "Search alone -> Search component. Many nested criteria -> QueryBuilder (candidate)."
+  Skill:
+    need: "Express a skill or practice domain on one row: label, score and level, progress, tools, description."
+    intent: [skill, skills list, competence, proficiency, tools and technologies, skill matrix, compétence, niveau, outils et technologies, cartographie de compétences]
+    components: [Tag, Progress-linear]
+    spec: patterns/skill/skill-pattern-spec.md
+    status: built
+    not_for: "Comparable columns -> Table. Dated history -> Timeline."
+  Kanban:
+    need: "Show items grouped by status in columns and let the user move them between statuses."
+    intent: [kanban, board, task board, columns by status, pipeline, drag and drop cards, swimlane, trello, tableau kanban, colonnes par statut, cartes déplaçables, glisser-déposer]
+    components: [Kanban-card, List-group-header, Menu, Empty-state, Toast]
+    spec: patterns/kanban/kanban-pattern-spec.md
+    status: built
+    not_for: "No status progression -> List or Table. Short read-only group inside a page -> CollectionCard."
+  BulkActions:
+    need: "Select several items of a collection and act on all of them (delete, archive, tag, change status)."
+    intent: [bulk actions, multi select, batch actions, selection bar, mass action, select all, act on selection, actions groupées, sélection multiple, actions en lot, tout sélectionner]
+    components: [Bulk-action-bar, Table, Button, Menu, Dialog, Toast]
+    spec: patterns/bulk-actions/bulk-actions-pattern-spec.md
+    status: built
+    not_for: "Action on one item -> row actions. Filters, sort, view toggle -> FilterBar."
+  Search:
+    need: "Type a query in a Search field and preview grouped results with a link to all results."
+    intent: [search, global search, search results, autocomplete, typeahead, combobox results, search dropdown, omnibox, recherche, recherche globale, résultats de recherche, autocomplétion, résultats groupés]
+    components: [Search, Search-results, List-group-header, Card-item, Empty-state, Skeleton]
+    spec: patterns/search/search-pattern-spec.md
+    status: built
+    not_for: "Command palette -> Command. Value choice in a form -> Select. Narrow a visible data set -> FilterBar."
+  CollectionCard:
+    need: "A card listing a short group of related entries (max 5) with a header and a link to the full list."
+    intent: [collection card, related items card, linked entities, summary list card, widget list, home widget, block with header and rows, carte de collection, entrées liées, carte liste, bloc avec en-tête et lignes]
+    components: [Card-collection, Block-header, Card-item, Button, Count, Tag]
+    spec: patterns/collection-card/collection-card-pattern-spec.md
+    status: built
+    not_for: "Generic title/body/actions container -> Card. Long or tabular list -> DataTable."
+  DataTable:
+    need: "Browse, filter, select and page through a large tabular data set."
+    intent: [data table, data grid page, list page, records table, table with filters, table with pagination, admin table, listing, tableau de données, page liste, tableau avec filtres, tableau paginé, liste d enregistrements]
+    components: [Table, FilterBar, Pagination, BulkActions, Empty-state, Skeleton]
+    spec: patterns/data-table/data-table-pattern-spec.md
+    status: spec
+    not_for: "Editable cells and spreadsheet keyboard model -> DataGrid. Short list -> CollectionCard."
+  NodeGraph:
+    need: "Edit or display a graph of connected nodes (workflow, pipeline, agent graph) on a free canvas."
+    intent: [node graph, node editor, workflow editor, flow chart editor, pipeline builder, agent graph, canvas with nodes, graphe de nœuds, éditeur de workflow, constructeur de pipeline, canvas de nœuds]
+    components: [Node, Port, Handle, Edge, Canvas-dotted]
+    spec: patterns/node-graph/node-graph-pattern-spec.md
+    status: spec
+    not_for: "Linear journey -> Step-indicator. Diagram drawing -> not covered."
+  Form:
+    need: "Collect structured input with labelled fields, validation and a submit action."
+    intent: [form, create form, edit form, settings form, sign up form, input form, wizard step, data entry, formulaire, formulaire de création, formulaire d édition, saisie de données, réglages]
+    components: [Field, Label, TextInput, Select, Checkbox, Radio, Switch, Textarea, Banner, Alert, Button]
+    spec: patterns/form/form-pattern-spec.md
+    status: spec
+    not_for: "A single field -> the input component. Sign in -> Login. Upload only -> FileUpload."
+  FileUpload:
+    need: "Let the user add one or several files (drag and drop or browse), see progress and errors."
+    intent: [file upload, upload, dropzone, drag and drop files, attach file, image upload, import file, envoi de fichier, téléversement, glisser-déposer des fichiers, joindre un fichier, import]
+    components: [Dropzone, Image-upload, Progress, Alert]
+    spec: patterns/file-upload/file-upload-pattern-spec.md
+    status: spec
+    not_for: "Choosing among existing files -> Select or Command."
+  Confirmation:
+    need: "Ask the user to confirm a destructive or irreversible action before it runs."
+    intent: [confirmation, confirm delete, are you sure, destructive dialog, delete confirmation, irreversible action, undo, confirmation, confirmer la suppression, êtes-vous sûr, action destructive, irréversible]
+    components: [Dialog, Button, Toast]
+    spec: patterns/confirmation/confirmation-pattern-spec.md
+    status: spec
+    not_for: "Reversible action -> run it and offer Undo in a Toast. Non-destructive information -> Banner or Toast."
+  States:
+    need: "Show what a view looks like when empty, loading or in error."
+    intent: [empty state, loading state, error state, skeleton, no data, no results, zero state, placeholder, état vide, état de chargement, état d erreur, aucune donnée, aucun résultat]
+    components: [Empty-state, Skeleton, Alert, Banner, Button]
+    spec: patterns/states/states-pattern-spec.md
+    status: spec
+    not_for: "Transient feedback -> Toast. Progress of a known operation -> Progress."
+  QueryBuilder:
+    need: "Build a query with many nested criteria."
+    intent: [query builder, advanced filter, rule builder, nested filters, constructeur de requête, filtre avancé, règles imbriquées]
+    components: []
+    spec: null
+    status: candidate
+    not_for: "1 to 4 simple criteria -> FilterBar."
+  DetailView:
+    need: "Show one record with its sections and related collections."
+    intent: [detail view, record page, entity page, detail page, vue détail, page d enregistrement, fiche]
+    components: []
+    spec: null
+    status: candidate
+    not_for: "Compose with CollectionCard and Block-header until a spec exists."
+  MasterDetail:
+    need: "A list and the detail of the selected item side by side."
+    intent: [master detail, list detail, split view, inbox layout, maître-détail, liste et détail, vue scindée]
+    components: []
+    spec: null
+    status: candidate
+    not_for: "Navigation to a separate page -> Link."
+  NotificationCenter:
+    need: "Aggregate and manage notifications over time."
+    intent: [notification center, notifications list, inbox, activity feed, centre de notifications, liste de notifications, fil d activité]
+    components: []
+    spec: null
+    status: candidate
+    not_for: "One transient message -> Toast."
+
 component_selection:
   Button: "Action triggering an operation. Icon-only rendering (no visible label) is the Icon-only boolean variant property on Button, not a separate component — same concept, same interaction model, only a visual/configuration difference."
   Link: "Navigation."
@@ -40,17 +185,17 @@ component_selection:
   List: "Repeated content without tabular semantics."
   Card: "Bounded coherent content/action container. Optional XLarge brand Icon before the header (Show-icon, false by default). Optional Tag at the right of the title (Show-tag, false by default). Style Outlined (default) | Subtle (Background/subtle, no border). Interactive True (default) | False: hover, elevation and focus only on clickable cards; Interactive=False has Default only."
   Canvas-dotted: "Dotted working background of free-placement surfaces (node graph, whiteboard): Background/subtle fill + Border/subtle dots, 2 px, 16 px pitch. Decorative, one per view, elements on top are Background/elevated with a border. Not for reading content, forms or tables; not inside a Card or Dialog. Figma component Canvas-dotted; CSS in foundations.yaml → background."
-  Kanban-card: "Card of one item in a Kanban column (one column per status/stage): Title, optional Context, optional Meta (date, count), optional high-importance Flag (icon + label). Generic: item can be a task, ticket, application, request. State Default | Hover | Focus | Dragging | Done (Done = struck-through title). Always clickable and draggable (no Interactive axis); keyboard alternative to drag required. Not a Card (generic container), not Card-collection (lists a group of items). Reuse example: OS / Task-card."
-  Card-collection: "Card listing a collection or group of related information: Block-header, free Slot receiving Card-item rows (one per entity: Note, Tâche, Contact, Relation, Information, Projet), optional footer; Device Desktop|Desktop-sidebar|Mobile, State Expanded|Collapsed. Not a Card (generic title/body/actions container); not nested inside another card. Max 5 items, then a footer link to the full list."
+  Kanban-card: "Brick of pattern Kanban (patterns/kanban/): card of one item in a status column. Not a Card (rich content, several actions), not a Card-collection (list of related entries)."
+  Card-collection: "Brick of pattern Collection card (patterns/collection-card/). Components Card-collection, Block-header and Card-item stay in Figma; selection and usage rules live in pattern_selection → CollectionCard. Not a Card (generic title/body/actions container)."
   List-group-header: "Group header inside a list: label + Count, full-width band (Background/sunken). Not a section title (use Block-header)."
-  Bulk-action-bar: "Floating bar shown while at least one item of a selectable collection is selected (Table Selectable=True, list in selection mode): Clear, live count, optional Select all (visible filtered items only), up to 3 actions then More, Delete last. ComponentSet Device=Desktop|Mobile, Elevation/3, bottom-centered. Only actions on the selection — never filters, sort, view toggles or display settings (those stay in the filter bar). One confirmation and one Toast with Undo/Restore per batch. Not a Dialog-toolbar (actions on one open item), not a Filter bar."
-  Search-results: "Dropdown panel of grouped results anchored to a Search field (List-group-header + Card-item rows + footer link). Not Command (modal palette, Cmd+K), not Select (value choice). Mobile uses a dedicated search screen."
+  Bulk-action-bar: "Brick of pattern BulkActions (patterns/bulk-actions/): the floating bar shown while at least one item is selected. Rules (max 3 actions then More, Delete last, one confirmation, one Toast) live in the pattern spec. Not a Dialog-toolbar, not a Filter bar."
+  Search-results: "Brick of pattern Search (patterns/search/): the grouped results panel anchored to a Search field. Not Command (modal palette), not Select (value choice)."
   Breadcrumb: "Secondary navigation showing the current page's position in a site hierarchy and linking back to parent levels (max 4 levels, Show-level-1..4 booleans). Parent levels reuse the Link component (exposed instances); the current level is Body/MD Text/secondary, non-interactive. Not a replacement for primary navigation (Menu / Tabs) nor for Step-indicator (progress through a flow to complete)."
   Pagination: "Navigation across a bounded sequence of pages of the same data set. Prev/Next are reused Button instances (Type=Ghost, Icon-only=true), not a new control — only Page-item (the numbered selector itself) and the manual assembly are new. Not a single parametric ComponentSet, same reasoning as Table: page count is arbitrary."
   Node: "Step of a node graph (workflow, pipeline, agent graph) with labelled connection points. Family of Handle (connection dot), Port (labelled row carrying a Handle), Node (card) and Edge (link, drawn as a vector — the ComponentSet is a style template only). Not a Card (a Card is a passive container with no ports), not a Step-indicator (linear journey). Manual assembly, same reasoning as Table: node/port/edge counts are arbitrary."
   Timeline: "Read-only chronological history of dated facts (work experience, activity log, record history), vertical or horizontal. Atomic Timeline-item assembled manually into a list (arbitrary item count, same reasoning as Table). On a scrolling page the active item follows the scroll (reference line on the first marker, connector fills continuously and stays filled once passed). Not a Step-indicator (progress through a journey still to be completed, interactive), not a Table (comparable data in columns), not a Dot Indicator (8px notification dot)."
   Image: "Display of a raster or SVG image with a fixed ratio (Square, Landscape, Wide), rounded corners, Loading and Error states and an optional caption. Base for thumbnails, galleries and logo lists (logos use Contain, never stretched). Not an Avatar (a person or entity portrait), not an Image-upload/Dropzone (file input), not an Icon (interface glyph). A logo list is a pattern composed of Image, not a variant of it."
-  Skill: "Row expressing a skill or practice domain: label, note (Score + Level Tag + Progress bar), tools (Tag list) and description, each block toggled by a Boolean. ComponentSet with Device=Desktop|Mobile (pattern page 'Skill'). Reuses Tag and Progress-linear. Not a Table (comparable columns), not a Timeline (dated history), not a Progress alone (no label or tools)."
+  Skill: "Pattern, not a component: see pattern_selection → Skill (patterns/skill/). Reuses Tag and Progress-linear."
   Blockquote: "Quotation highlighted within content (a person's words, a testimonial, an excerpt): vertical bar on the left, quote text, optional citation line. Variants Default / Accent (one Accent per view). Not an Alert (system message), not a Card (content container), not a Tooltip (contextual help)."
   Count: "Small numeric marker expressing a quantity (unread items, filter results, open tasks) next to a label or overlaid on an icon. Variants Type (Neutral/Brand/Info/Success/Warning/Danger, same mapping as Tag) x Size (Medium 20px / Small 16px / ExtraSmall 12px, Small and ExtraSmall only overlaid on an icon; ExtraSmall on Small and Medium icons), text property Value, cap at 99+, hidden at 0. Static and non-interactive. Takes the place of the Dot Indicator when a quantity is relevant (Icon: Bullet=Count, same four positions). Not a Tag (label, category or status), not a Dot Indicator (presence without quantity), not a KPI (monitored value with trend), not a Progress."
   KPI: "Single key indicator at a glance: label with a small icon, dominant value (Display/SM), an optional Sparkline (decorative trend line, no axis or data shown; Trend Neutral|Positive|Negative|Stagnant, Stagnant = nearly flat line), a delta carried by a Tag Small (Trend Neutral/Positive/Negative = judgement, signed text and arrow) and a comparison caption. ComponentSet Device=Desktop|Mobile x Trend x State=Default|Loading (Loading = Skeleton instances at the exact heights of Default, no layout shift); properties Label/Value/Caption, Show-icon/Show-delta/Show-caption/Show-chart, exposed Icon instance-swap and Tag; Device sets the Responsive mode. Reuses Tag, Icon and Skeleton. Not a Card (fixed structure and two layouts), not a Tag (state) or Progress (completion), not a chart (no interaction). Non-interactive; the container carries any link."

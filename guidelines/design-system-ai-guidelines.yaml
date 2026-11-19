@@ -446,6 +446,11 @@ component_description_field:
 # -----------------------------------------------------------------------------
 # 11. COMPONENTS
 # -----------------------------------------------------------------------------
+discovery:
+  lookup_order: "need -> pattern (decisions.yaml pattern_selection) -> component (decisions.yaml component_selection) -> token. A pattern is a workflow built from several components; a brick of a pattern is still a component but its component_selection entry redirects to the pattern."
+  pattern_selection_fields: "need (one sentence), intent (English synonyms to search), components, spec (path), status (built|spec|candidate), not_for (what to use instead)."
+  rule: "Never create a custom arrangement of components without first checking pattern_selection. Run scripts/check_patterns.py after adding or renaming a pattern."
+
 components:
   general_rules:
     - "Components consume Semantic (color) and Responsive (typography/spacing/radius) tokens first."

@@ -2,7 +2,7 @@
 
 > Ce fichier est la **source de vérité** du composant. Toute modification (anatomie, variants, tokens) se fait ici en premier, puis est répercutée dans Figma. Ne pas modifier le composant Figma directement sans reporter le changement dans ce fichier ensuite.
 
-> **Statut** : construit dans Figma (page `↳ Theme switcher`) avant que cette spec n'existe — rédigée le 2026-09-27 à partir d'une relecture de l'état Figma réel. À valider si un détail diverge de l'intention d'origine.
+> **Statut** : construit dans Figma (page `↳ Switchers`, partagée avec `Lang switcher`) avant que cette spec n'existe — rédigée le 2026-09-27 à partir d'une relecture de l'état Figma réel. À valider si un détail diverge de l'intention d'origine.
 
 Bascule le mode de la collection **Semantic** (Light ↔ Dark) pour tout le fichier ou toute l'application (`decisions.yaml` → `ThemeSwitcher`). Fonctionnel, pas un simple état visuel.
 
@@ -49,4 +49,4 @@ Même principe que `SegmentedControl` / `Motion=Tension` (spec de référence : 
 
 ## Guidelines Figma
 
-Page dédiée `↳ Theme switcher`.
+Page `↳ Switchers` (partagée avec `Lang switcher`, fusion du 2026-11-19).

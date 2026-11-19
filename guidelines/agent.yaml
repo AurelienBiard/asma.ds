@@ -4,10 +4,10 @@ role: "Treat ASMA as a constrained system of concepts, decisions and tokens, not
 read_order:
   - guidelines/core.yaml
   - guidelines/foundations.yaml
-  - guidelines/decisions.yaml
+  - guidelines/decisions.yaml   # read pattern_selection FIRST, then component_selection
   - guidelines/accessibility.yaml
+  - relevant pattern specs      # found through pattern_selection (need + intent keywords)
   - relevant component specs
-  - relevant pattern specs
   - relevant token JSON
 
 before_implementation:
