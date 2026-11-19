@@ -103,6 +103,7 @@ Construits dans Figma à partir des specs du repo — voir la source de vérité
 | Empty-state | ✅ 2 variantes (Compact/Page) | `components/empty-state/` |
 | List-group-header | ✅ promu depuis ASMA OS | `components/list-group-header/` |
 | Kanban-card | ✅ 5 états (`State`), exemple : `OS / Task-card` | `components/kanban-card/` |
+| Canvas-dotted | ✅ fond de canvas à points (fondation `Background`) | `components/canvas-dotted/` |
 | Card-collection (+ Block-header, Card-item) | ✅ 4 variantes, promu depuis ASMA OS | `components/card-collection/` |
 | Search-results | ✅ promu depuis ASMA OS | `components/search-results/` |
 | Skeleton | ✅ 3 variantes | `components/skeleton/` |

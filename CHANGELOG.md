@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-19 — Fondation Background : strates + fond Canvas-dotted
+
+- **Fondation `Background`** (page Figma `↳ Background`, après `↳ Elevation`) : les 8 strates `Background/*` expliquées (valeurs Light/Dark, usages, lecture de la hauteur, exemple d'empilement page → zone → carte → champ). Règle d'imbrication proposée, à valider.
+- **`Canvas-dotted`** : fond à points des surfaces libres (graphes de nœuds, tableaux blancs) — `Background/subtle` + points `Border/subtle` Ø 2 px, pas 16 px. **Aucun nouveau token.** Composant Figma (1088×480, points dans un seul vecteur), CSS (`radial-gradient`), règles d'usage et d'accessibilité.
+- `foundations.yaml` (`background:`), `design-system-ai-guidelines.yaml` (`Canvas_dotted`), `decisions.yaml`, `components/canvas-dotted/`, `components/node/` (fond du canvas), README.
+
 ## 2026-11-17 — Card : propriété Show-tag
 
 - **Card** : nouvelle propriété Boolean `Show-tag` (défaut `false`) ; instance `Tag` (Neutral, Small, sans icônes) dans `header`, à droite du titre, dans les 8 variantes. Le `header` devient horizontal (`title-group` + Tag). Spec et guidelines Figma mises à jour.

@@ -77,6 +77,7 @@ Liaison entre deux `Handle` (sortie d'un nœud → entrée d'un autre). Représe
 
 - Éditeur de workflow, pipeline de données, graphe d'agents, schéma relationnel. Pas pour un organigramme ou un simple parcours d'étapes (→ `Step-indicator`).
 - Un `Node` ne contient pas d'autre `Node` ni de `Card` imbriquée.
+- Fond du canvas : `Canvas-dotted` (`Background/subtle` + points `Border/subtle`, voir `components/canvas-dotted/`). Bordure du `Node` (`Border/default`) : 4.55:1 (Light) et 3.42:1 (Dark) sur ce fond, conforme au 3:1 ci-dessous.
 - Nommer les ports par leur donnée (« Contexte », « Résultat »), jamais « Entrée 1 ».
 
 ## Accessibilité

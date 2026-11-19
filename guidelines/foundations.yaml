@@ -153,6 +153,30 @@ spacing:
     component-lg: {mobile: lg, desktop: xl}
     component-xl: {mobile: xl, desktop: 3xl}
 
+background:
+  status: "2026-11-19 — strata describe the existing Semantic Background/* tokens; nesting rules and the dotted canvas are a proposal pending validation. No new token."
+  strata:
+    sunken: "Background/sunken — Neutral/100 (Light) · Neutral/950 (Dark). Recessed: input fields, code blocks."
+    default: "Background/default — Neutral/0 · Neutral/900. Page: application background."
+    subtle: "Background/subtle — Neutral/50 · Neutral/850. Secondary zone: sidebar, panel, banner, canvas."
+    elevated: "Background/elevated — Neutral/0 · Neutral/800. Raised surface: Card, Popover, Menu, Dialog, Node."
+    strong: "Background/strong — Neutral/200 · Neutral/700. Marked neutral: Tag Neutral."
+    inverse: "Background/inverse — Neutral/900 · Neutral/50. Inverted contrast."
+    brand: "Background/brand — Blue/600 · Blue/500. Brand: Button Primary, selected states."
+    disabled: "Background/disabled — Neutral/100 · Neutral/800. Disabled control."
+  reading: "Height order of the four surface strata: sunken < default < subtle < elevated. In Dark it is read as lightness (950 < 900 < 850 < 800). In Light, default and elevated are both white: separation comes from the shadow (Elevation/1..5) or Border/subtle."
+  nesting_rule: "Proposal (to validate): a surface sits on the neighbouring stratum (page default -> zone subtle -> card elevated -> field sunken); two surfaces of the same stratum nest with a border, never without."
+  canvas_dotted:
+    purpose: "Working background of free-placement surfaces (node graph, whiteboard, workflow editor): scale and movement reference without lines competing with links."
+    fill: "Background/subtle (Neutral/50 Light, Neutral/850 Dark)."
+    dots: "Border/subtle, 2 px diameter, 16 px pitch (multiple of the node placement grid). Contrast dots/fill 1.42:1 Light, 2.15:1 Dark — deliberately quiet, decorative."
+    on_top: "Elements are Background/elevated surfaces with Border/default (4.55:1 Light, 3.42:1 Dark against the canvas). The fill alone does not separate them (1.05:1, 1.11:1): the border is mandatory."
+    css: ".canvas-dotted { background-color: var(--color-background-subtle); background-image: radial-gradient(circle, var(--color-border-subtle) 1px, transparent 1px); background-size: 16px 16px; } @media (forced-colors: active) { .canvas-dotted { background-image: none; } }"
+    behavior: "The pattern follows the view: tile size x zoom, position = view offset. Nodes snap to the 16 px step."
+    do_not_use: "Behind reading content, forms or data tables; inside a Card or Dialog. One canvas per view."
+    accessibility: "Decorative (CSS only, no DOM element, nothing conveyed by the dots); no dots in forced-colors; keyboard alternative to move a node (arrows = one 16 px step)."
+    figma: "Component Canvas-dotted (1088x480, dots drawn in one vector) on the Foundation page Background."
+
 elevation:
   status: "Proposal 2026-10-27, softened 2026-10-28 — token and Effect Styles created; component mapping and Dark surface rules pending validation."
   levels: {0: "flat, no effect", 1: "Raised — Card", 2: "Floating — Popover, Menu, Select, Tooltip", 3: "Overlay — Toast", 4: "Panel — Drawer", 5: "Modal — Dialog, Command"}
